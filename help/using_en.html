@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>Wion Result viewer - How to use</title>
+</head>
+<body>
+
+<H1>How to use</H1>
+<p>First you need to know how to obtain the result of a Dutch Dig alert. 
+From here I use Wion Result when I refer to this result of a Dutch Dig Alert. 
+How to obtain it is explained in <a href="aboutWion_en.html">About WION</a>.
+After you downloaded the result you will have a zip-archive. 
+You have to extract the contents first in a directory.</p>
+
+<p>The Wion Result Viewer has three tabs, <B>Messages</B>,<B>Themes</B> and <B>Options</B>.
+The viewer, allways starts with the open tab <B>Messages</B>, because the 
+first thing you have to do is open a Wion Message.</p>  
+<p>When the contents of received zip-archive is extracted to a directory, 
+you can use the button <B>[Open Directory...]</B> to select this directory 
+holding the Wion Result.<BR>
+It is recommended to first set the default Directory in tab <B>Options</B> so searching starts in selected directory where Wion messages are expected to be found.<BR>
+After selection and pressing [OK] this is what will happen:
+<ul>
+<li>The xml file of Wion result is read which holds information on the other 
+included files in the Wion Alert</li>
+<li>Next to all images that will be loaded as layers, little files will 
+be created, called world files, to give those images a coordinate system and in 
+fact turning images into maps.</li>
+<li>The legend groups Annotation, Dimensioning, Location, and Background topo 
+are created in QGIS in the layer panel (not in QGIS 1.6.0).</li>
+<li>The maps are loaded in the right order as layers into QGIS and placed 
+in the right legend group.</li>
+<li>The registration number of this Wion result is added to the list of loaded 
+Wion Results.</li>
+<li>Also the documents that come with the maps, being PDF files, are sorted out 
+and placed in a list of included files.</li> 
+<li>In the tab <B>Themes</B> included themes in the Wion Result become 
+clearly visible.</li>
+</ul>
+Be aware that a Wion Result can include many files and processing can 
+take some time.</p> 
+
+<P>Before loading, you can first extract the zipfile holding the Wion result 
+yourself, but you can also use the button <B>[Open Zipfile...]</B> or use Alt-Z.<BR>
+This Function first extracts the zipfile and then loads the Wion Result in 
+QGIS. You should use this function only once for every Wion result, the next 
+time it is faster to use [Open Folder...] instead.
+</p>
+<p>When the list with PDF files is filled you can select and open them using 
+<B>[Open file(s)]</B>. When you select multiple PDF files or use Ctrl-A to select  
+them all, you can also open several pdf files at once. 
+Double clicking a file in the list of PDF files opens it directly. 
+</p>
+<p>You can load and work with more Wion results. 
+After loading another wion result, you can select this result in the list of 
+Wion results. After selection the list of accompanying documents is refreshed 
+with the ones belonging to that Wion Result.<BR>
+You can use the button <B>[Goto]</B> or Alt-B to move the map in QGIS to the extent 
+of selected Wion result.<BR>
+To get the best view of the Wion Result use the button <B>[Best Scale]</B> 
+or Alt-B. 
+Use the button <B>[Close Message]</B>, Alt-C to close selected Wion Message. 
+</p>
+<p>You can store all information in Wion Result Viewer plugin in a project using the
+button <B>[Save in project]</B>. This only works when you first have created
+a project, use the option <B>Save project</B> from the <B>File</B> menu. 
+Then the next time you open a project the contents of the plugin is restored.
+</p>
+<p>Use the button <B>[Quit]</B>, Alt-Q or using the [Esc]-button on your keyboard 
+to close the Wion Result Viewer. When you open the Wion Result Viewer again 
+you will find it in the same state as when you closed it.</p>
+
+<p>After loading, all layers are visible, you can make layers invisible by 
+deselecting the little cross, used to mark the visibility, in front of each layer 
+or several layers for a whole group (for QGIS1.6.0 only from Themes tab).<BR>
+<p>It is also possible to set visibilities using the <B>Themes</B> tab.</p>
+
+<p>The first two characters followed by an underscore of each layer 
+indicate what kind of layer it concerns.</p>
+<ul>
+<li><B>AN_</B> means annotation, and is used to label pipelines, cables etc.</li>
+<li><B>MV_</B> holds the dimensioning, the marked distances between pipes
+and buildings for example.</li>
+<li><B>LG_</B> holds the position of the pipelines and cables themselves.</li>
+<li><B>GB_</B> holds the background topography provided by Kadaster,
+the outlines of houses, roads etc.</li>
+<li><B>PT_</B> and <B>ET_</B> hold addition background topography
+which can be delivered by the netowners.</li> 
+</ul>
+</p>
+
+<p>The tab <B>Themes</B> shows which Wion themes the selected Wion Result 
+contains. It is also a legend of the map. 
+For example the green lines are used to show the position of cables 
+on the map that convey data. The visibility can be changed for 
+active available themes. A theme includes the position, annotation and 
+dimensioning of a cable/pipe. 
+Special themes have also been added to turn on/of the visibility for all
+layers that contain only annotation, dimensioning, location or topo.</p>
+<p>Use the button [Refresh] Alt-R to refresh the contents of the 
+<B>Themes</B> tab. Use this button when you did not change the visibility 
+of layers from the Wion Result Viewer, but directly in QGIS Layers panel. 
+In that case the Themes may not correspond anymore with the actual situation
+in the map. A refresh can in that case be done manually.</p>
+
+<P>A checkbox of a theme and a group in the layers panel can have three
+statusses with respect to layers belonging to that theme or group.
+<ol>
+<li>an empty checkbox, no layers are visible</li>
+<li>A checkbox with a grey cross, some layers are visible </li>
+<li>A checkbox with a black cross, all layers are visible</li>
+</ol>
+
+<H2>Question and Answers</H2>
+<P>Question: Why is the list of PDF documents empty after opening a saved project?<BR>
+Answer: Use the button <B>Save in project</B> to retain the state of
+plugin in the project.</P>
+<P>Question: Is it possible to load more Wion Results?<BR>
+Answer: Yes you can, only when they do overlap remember that the
+topography layer delivered by Kadaster (the one starting with GB_)
+is not transparant. So you better move that layer to the bottom of the
+list with layers.
+</P>
+<P>Question: Why are In QGIS 1.6.0 the legend groups missing?<BR>
+Answer: There is a problem in version 1.6.0 with adding legend groups so
+they could not be used, in 1.5.0 they still are there and I expect in 1.7.0
+the layer groups will also be available again.</P>
+<P>Question: How can I load a design drawing from Autocad?<BR>
+Answer: QGIS1.6.0 uses GDAL1.7.0 which allows you to load autocad dxf as
+a layer.</P>
+                    
+
+<H2>Error messages</h2>
+<p>When a directory is selected that holds no (valid) Wion result, you will get following error message:<BR>
+&nbsp;&nbsp;&nbsp;<i>Selected directory does not contain<BR>
+&nbsp;&nbsp;&nbsp;result of Dutch Dig Alert or it can not be read!
+</i><BR>
+In that case often there is a folder underneath selected folder that does contain a valid Wion Result.
+</p>
+</body>
+</html>
