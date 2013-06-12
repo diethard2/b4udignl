@@ -25,11 +25,11 @@ def name():
 def description():
     return "View the result of a Dutch B4Udig request"
 def version():
-    return "Version 1.3.2" 
+    return "Version 1.3.3" 
 def icon():
     return "images/b4udig48.png"
 def qgisMinimumVersion():
-    return "1.6"
+    return "2.0"
 def classFactory(iface): 
     # load B4UdigNL class from file B4UdigNL
     from B4UdigNL import B4UdigNL

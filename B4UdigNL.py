@@ -26,7 +26,7 @@ from qgis.core import *
 import qrc_resources
 # Add translations to translator
 application = QgsApplication.instance()
-localeName = QSettings().value("locale/userLocale").toString()
+localeName = QSettings().value("locale/userLocale", type=str)
 translator = QTranslator()
 translator.load("B4UdigNL_"+localeName, ":/")
 # Add translator to application
