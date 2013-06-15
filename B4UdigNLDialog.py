@@ -90,7 +90,10 @@ class B4UdigNLDialog(QDialog):
         s = QSettings()
         for i_key, i_value in l_settings.iteritems():
             # try to read user settings from system configuration
-            l_user_value = s.value(i_key).toString()
+            try:
+                l_user_value = s.value(i_key, type=str)
+            except TypeError, e:
+                l_user_value = ""
             if l_user_value != "" and l_user_value != i_value:
                 # retrieved setting, now store in list and replace default
                 # settings!
@@ -342,7 +345,7 @@ class B4UdigNLDialog(QDialog):
         l_fileName = QFileDialog.getOpenFileName(self, l_request, l_path, l_filter)
         if l_fileName=="":
             return
-        l_fileName = unicode(l_fileName)
+        #l_fileName = unicode(l_fileName)
         #first find out if zipfile contains a named directory being
         #ID of dig alert
         l_dirName = self._dirNameInArchive(l_fileName)

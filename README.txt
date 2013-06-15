@@ -6,18 +6,24 @@ OpenSource License GPL v.2 and up.
 Installation
 ============
 First you need an installation of Quantum GIS! 
-Download QGIS v. 1.6 from www.qgis.org.
+Download QGIS v. 2.0 from www.qgis.org.
 
 Use QGIS Python Plugin Installer for installation of this plugin.
 
 You can also manually unzip and place contents of b4udignl.zip
-in your home folder ~/.qgis/python/plugins/
+in your home folder ~/.qgis2/python/plugins/
+
+Release notes 20/06/2013
+=============
+Version 1.4.0
+
+Updated plugin so it works as well for QGIS 2.0
 
 Release notes 27/06/2012
 =============
 Version 1.3.2
 
-Move this plugin to official QGIS plugins repository.
+Moved this plugin to official QGIS plugins repository.
 Tested for QGIS 1.8.0 and plugin still works great.
 Repository from site http://wwww.gis-plugins.nl will be removed after
 succesfull transfer.

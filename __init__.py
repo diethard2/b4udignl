@@ -25,7 +25,7 @@ def name():
 def description():
     return "View the result of a Dutch B4Udig request"
 def version():
-    return "Version 1.3.3" 
+    return "Version 1.4.0" 
 def icon():
     return "images/b4udig48.png"
 def qgisMinimumVersion():
