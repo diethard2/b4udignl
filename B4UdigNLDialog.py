@@ -329,9 +329,9 @@ class B4UdigNLDialog(QDialog):
         #l_request = "Select directory which hold result request Dig ALert"
         l_request = self.tr("Selecteer folder met resultaat WION bericht")
         l_dir_path = QFileDialog.getExistingDirectory(self, l_request, l_path)
-        if not l_dir_path.isEmpty():
-            self.__dir = l_dir_path
-            QSettings().setValue("b4udignl/dir_last_used", l_dir_path)
+        if l_dir_path: # evaluates to true when it contains anything
+            self.__dir = str(l_dir_path)
+            QSettings().setValue("b4udignl/dir_last_used", str(l_dir_path))
             self._loadMsg()
             
     @pyqtSignature("")
@@ -488,8 +488,8 @@ class B4UdigNLDialog(QDialog):
         l_path = self.__settings["b4udignl/dir_preferred"]
         l_request = self.tr("Selecteer standaard folder met WION berichten")
         l_dir_path = QFileDialog.getExistingDirectory(self, l_request, l_path)
-        if not l_dir_path.isEmpty():
-            self.__settings["b4udignl/dir_preferred"] = l_dir_path
+        if l_dir_path: # if l_dir_path is not empty this evaluates to true..
+            self.__settings["b4udignl/dir_preferred"] = str(l_dir_path)
             QSettings().setValue("b4udignl/dir_preferred", l_dir_path)
             self.ui.textEditDirPreffered.setText(l_dir_path)
 
@@ -555,7 +555,7 @@ class B4UdigNLDialog(QDialog):
         l_list.clear()
         for i_doc in self.__wvs:
             l_klicnummer = i_doc.klicnummer
-            l_item = QListWidgetItem(QString(l_klicnummer))
+            l_item = QListWidgetItem(l_klicnummer)
             l_list.addItem(l_item)
             if l_klicnummer == self.__wv.klicnummer:
                 l_selected = l_item
@@ -579,7 +579,7 @@ class B4UdigNLDialog(QDialog):
             if parent is None:
                 parent = QTreeWidgetItem(l_tree,[i_pdf.type])
             parentTypePdf[i_pdf.type] = parent
-            item = QTreeWidgetItem(parent, [QString(i_pdf.name)])
+            item = QTreeWidgetItem(parent, [i_pdf.name])
             l_tree.expandItem(parent)
             l_tree.resizeColumnToContents(0)
 
