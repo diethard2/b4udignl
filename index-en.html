@@ -1,13 +1,38 @@
 <html>
 <head>
-<title>Wion Result viewer - How to use</title>
+<title>Wion Result Viewer</title>
+<LINK HREF="style.css" REL="stylesheet" TYPE="text/css"
 </head>
 <body>
+<H1><img src="images/b4udig48.png">Wion Result Viewer</H1>
+<p>The <b>Wion Result Viewer</b> is developed to view and understand 
+quickly the result of a Dutch Dig Alert.</p>
 
+<p>It is a good alternative for the free KLIC viewer provided by the 
+Kadaster, the Dutch Mapping Agency, which can be found at 
+<a href="http://www.kadaster.nl/klicviewer">http://www.kadaster.nl/klicviewer</a>.</p>
+
+<p>Because this viewer is part of a real GIS system, you can also 
+measure distances, add design drawings as a layer, read multiple Dig 
+Alert Results etcetera.</p>
+
+In <a href="#using">How to Use</a> the actual functionality of the 
+Wion Result Viewer itself is explained.<BR>
+In <a href="#aboutWion">About WION</a> is explained how to obtain 
+the result of a dig alert. What Wion is and how it works including a 
+little history.<BR>
+In <a href="#aboutLicense">About License</a> the license and terms
+of usage are explained.<br>
+In <a href="#aboutIcon">About Icon</a> the background thought of 
+the Icon is explained.<br>
+</p>
+
+<a name="using">
 <H1>How to use</H1>
+</a>
 <p>First you need to know how to obtain the result of a Dutch Dig alert. 
 From here I use Wion Result when I refer to this result of a Dutch Dig Alert. 
-How to obtain it is explained in <a href="aboutWion_en.html">About WION</a>.
+How to obtain it is explained in <a href="#aboutWion">About WION</a>.
 After you downloaded the result you will have a zip-archive. 
 You have to extract the contents first in a directory.</p>
 
@@ -136,5 +161,112 @@ a layer.</P>
 </i><BR>
 In that case often there is a folder underneath selected folder that does contain a valid Wion Result.
 </p>
+
+<a name="aboutWion">
+<H1>About Wion</H1>
+</a>
+
+<H2>General</H2>
+<p>In the Netherlands mechanical digging is only allowed according the law WION.
+The purpose of this law it to bring back the amount of damage caused by 
+digging that could have been prevented when information about pipes and 
+cables was available in one map together with guiding drawings and letters.
+The law WION has helped to establish a framework for optimal exchange of
+information between the ones who dig and the netowners. To enforce the law,
+steep penalty fees have to be paid when digger failed to request information
+or netowner failed to provide requested information!</p>
+
+<H2>History</H2>
+<p>Netowners have tried for a very long time to protect their underground
+network. The netowners organised themselves and agreed to provide free
+information to building companies. A central non-profit organisation was born
+called KLIC. Building companies could provide a dig alert to KLIC, KLIC
+informed the netowners, the netowners provided the building companies with
+information directly.</P>
+<p>Although a dig alert was not neccesary then, insurance companies demanded
+building companies to do so. Less damage meant lower insurance fees, but failing
+to do a dig alert means damage was not well insured anymore!<BR> 
+The growing amount of information received by the contractor was often hard
+to interprete and the contractor needed more time to merge this information 
+to one clear picture. Sometimes digging commenced without consulting all
+received information first.</p>
+
+<H2>The law WION</H2>
+<p>When the law WION came into force, things changed a bit. Mechanical digging
+was absolutely not allowed anymore without doing first a dig alert with
+Kadaster. Penalty fees are steep (ten thousands of euro's). A dig alert is not
+free anymore, a dig alert costs 24 euro (july 2010).
+The kadaster now collects information from all network owners and the result
+is returned as layers of maps with network information together with guiding
+letters and drawings. The layers can be combined into one clear picture.
+This information can be viewed from inside a free viewer provided by 
+Kadaster, but even better from QGIS using the Wion Result Viewer.
+</p>
+                                  
+<H2>3 kinds of requests</H2>
+<p>
+Three kinds of requests can be made, each of them serve a special purpose.
+<ol>
+    <li>Digging alert: Three days before digging takes place, this should
+    be requested. A digging alert is only valid for 21 days</li>
+    <li>Calamity alert: When a cable or pipe is broken a calamity alert has to
+    be done. The information helps to prevent further damage and personal
+    injuries.</li>
+    <li>Orientation request: For other purposes like design an orientation
+    request can be done. Mechanical digging can not be done using this
+    kind of request!</li>
+</ol>                                  
+
+<H2>Doing a Dig Alert request</H2>
+<p>The website www.kadaster.nl/klic gives information how to do a Dig Alert
+request. For companies there is the web service KLIC-online that can be used
+to do a Dig Alert, registration is necessary. Using KLIC-online you can draw
+the planned area inside an interactive map, where you want to excavate.
+Private persons can fill in a form to obtain information.</p>
+<p>Within a day you will receive an email with an url where you can download
+requested information. Be carefull to download this information first without
+opening it directly. You have only 5 attempts to receive requested information.
+After downloading the information unpack it and view it using the Wion Result
+Viewer</p>
+<p>For testing purposes, you can also download one of the two free example
+digging requests from <a href="http://www.kadaster.nl/web/artikel/download/KLIC-proefbestand-Klicviewer-1.htm">http://www.kadaster.nl/klicviewer</a><p>
+
+<a name="aboutLicense">
+<H1>License and terms of usage</H1>
+</a>
+
+Copyright: (C) 2013 Diethard Jansen<BR>
+Version: 1.4.0
+email: Diethard.Jansen at gmail.com<BR>
+
+<p>The <b>Wion Result Viewer</b> python plugin is free software;
+you can redistribute it and/or modify it under the terms of the GNU
+General Public License as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later
+version.</p>
+<p>Because it is free software no claims can be done whatsoever for damage
+occured due to using this software.<BR>
+Still it is created with the best intentions and expertise, I am
+confident it can be usefull to you.</p>
+
+<a name="aboutIcon">
+<H1>About Icon</H1>
+</a>
+<P>Below you will see a bigger version of the Icon used to start 
+the Wion Result Viewer from the menu<p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/b4udig128.png"></p>
+<p>The background represents the three coloured flag of the Netherlands.
+The plugin is especially targetted for use inside the Netherlands.<br>
+The Netherlands has maybe the most advanced warning system in the
+world to protect their underground Infrastructure.
+<p>On the foreground you can see the bucket of excevating machine representing
+mechanical digging.</p>
+<p>By law, before any mechanical digging is done in the Netherlands, first
+information on the infrastructure underground has to be aqcuired and viewed
+carefully. This viewer helps to prevent damage by giving a clear picture that
+can be compared (by loading) the necessary excavation work according design.
+For more information on this law named WION and how it works go to
+<a href="#aboutWion">About WION</a>.</p>
+
 </body>
 </html>

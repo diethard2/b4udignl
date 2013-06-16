@@ -21,6 +21,7 @@ email                : diethard.jansen at gmail.com
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+import qgis
 from qgis.core import *
 from ui_B4UdigNL import Ui_B4UdigNL
 import wv, ifaceqgis, os
