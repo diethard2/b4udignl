@@ -23,7 +23,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
 from ui_B4UdigNL import Ui_B4UdigNL
-import wv, ifaceqgis, os, helpform
+import wv, ifaceqgis, os
 import unzip, zipfile, pickle
 
 
@@ -721,9 +721,7 @@ class B4UdigNLDialog(QDialog):
         """
         starts the help manual which resides behind the help button
         """
-        l_index = self.tr("index.html")
-        form = helpform.HelpForm(l_index, self.tr("Wion Result Viewer"), self)
-        form.show()
+        qgis.utils.showPluginHelp()
 
     def _setUnitToMeters(self):
         """
