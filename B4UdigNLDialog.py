@@ -451,7 +451,7 @@ class B4UdigNLDialog(QDialog):
         if l_doc is None:
             return
         l_klicnumber = l_doc.klicnummer
-        self._updateGroupIndexesB4Remove()
+##        self._updateGroupIndexesB4Remove()
         l_mapCanvas = self.__iface.mapCanvas()
         l_mapCanvas.setRenderFlag(False)
         self._removeGroups()
@@ -609,8 +609,8 @@ class B4UdigNLDialog(QDialog):
         This does not work in QGIS 1.6.0
         """
         self._createLayerGroups()
-        if not self.__addGroupsBuggy:
-            self._moveLayersToGroups()
+##        if not self.__addGroupsBuggy:
+##            self._moveLayersToGroups()
 
     def _createLayerGroups(self, p_doc):
         """
@@ -633,19 +633,24 @@ class B4UdigNLDialog(QDialog):
                 l_index += 1
                 l_newGroupName = l_groupName + str(l_index)
             
-            l_id = l_legend.addGroup(l_newGroupName, True)
-            l_groupIds.append(l_id)
+            # in QGIS 2.0, unfortunately adding groups seems
+            # to work only for the first group so I decided to
+            # 1st version does not use grouplayers..
+##            l_id = l_legend.addGroup(l_newGroupName, True)
+##            l_groupIds.append(l_id)
             
             l_layerGroup = wv.LayerGroup(l_newGroupName)
-            l_layerGroup.index = l_id
+            l_layerGroup.index = l_index
             p_doc.layerGroups[i_group] = l_layerGroup
         # in QGIS 1.6.0, unfortunately a bug was introduced.
         # the layergroups are nested and could not be used.
         # In that case remove added groups.
-        if len(l_groupIds) > 1:
-            if l_groupIds[1] == 0:
-                self.__addGroupsBuggy = True
-                l_legend.removeGroup(l_groupIds[0])
+##        if len(l_groupIds) > 1:
+##            if l_groupIds[1] == 0:
+##                self.__addGroupsBuggy = True
+##                l_legend.removeGroup(l_groupIds[0])
+        
+        
 
     def _moveLayersToGroups(self, p_doc):
         """
