@@ -35,7 +35,7 @@ Author: Diethard Jansen, 14-3-2010
 """
 
 
-from PyQt4.QtCore import *
+#from PyQt4.QtCore import *
 import os, wv
 import xml2obj
 
@@ -459,7 +459,7 @@ class Doc():
         if l_iface != None:
             lyrs = l_iface.loadedLayers()
             for i_lyr in self.layers:
-                i_lyr.layer = lyrs[QString(i_lyr.layerId)]
+                i_lyr.layer = lyrs[i_lyr.layerId]
                 i_lyr.owner = self
                 
     def attachThemes(self):
@@ -474,7 +474,7 @@ class Doc():
             for i_theme in self.themes.itervalues():
                 i_theme.owner = self
                 for i_lyr in i_theme.layers:
-                    i_lyr.layer = lyrs[QString(i_lyr.layerId)]
+                    i_lyr.layer = lyrs[i_lyr.layerId]
                     i_lyr.owner = self
             
 class Layer:
