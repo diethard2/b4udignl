@@ -55,10 +55,8 @@ Na selectie en op [OK] te hebben gedrukt gebeurt het volgende:
 geplaatst. Daardoor kunnen deze plaatjes gemaakt in PNG formaat die ligging,
 annotatie, maatvoering en onderliggende topo bevatten worden ingelezen in QGIS
 en krijgen deze het Nederlandse Coordinaten Systeem.</li>
-<li>De legendagroepen Annotatie, Maatvoering, Ligging en Topo worden aangemaakt.
-(niet in QGIS1.6.0)</li>
-<li>De PNG files worden vervolgens in de goede volgorde geopend in QGIS, 
-geplaatst in de juiste legenda Groep en zichtbaar in de kaart.</li>
+<li>De PNG files worden in de goede volgorde geopend in QGIS, 
+en zichtbaar in de kaart.</li>
 <li>Het meldnummer van het Wion bericht wordt toegevoegd aan de lijst van
 geladen berichten.</li>
 <li>De PDF files, waarin begeleidende brieven, detailtekeningen en
@@ -111,8 +109,7 @@ bewaard gebleven, m.a.w. alle instellingen worden vastgehouden.</p>
 <p>Na het laden zijn standaard alle lagen zichtbaar, je kunt lagen onzichtbaar 
 maken door het aankruisvakje voor de kaartlaag te deselecteren. Het kruisje 
 verdwijnt en de geselecteerde laag is niet langer zichtbaar.  
-Dit kun je ook voor meerdere kaartlagen ineens doen door het aankruisjevakje 
-van een legendagroep (voor 1.6.0 alleen via Thema's).</p>
+</p>
 <p>Het is ook mogelijk om per Wion thema kaartlagen aan of uit te zetten via het 
 tabblad <B>Thema's</B>.</p>
  
@@ -165,13 +162,9 @@ Antwoord: Ja dat kan, alleen hou er dan rekening dat je daarna de volgorde van
 tekenlagen nog moet verplaatsen wanneer twee WION berichten elkaar overlappen. 
 De meegeleverde onderliggende topo (Lagen die beginnen met GB_ zijn namelijk 
 niet transparant!</P>
-<P>Vraag: Waarom zijn er in 1.6.0 geen legendagroepen meer in mijn lagen panel?<BR>
-Antwoord: in QGIS 1.6.0 bleek een fout te zitten waardoor de legendagroepen niet
-meer gebruikt kunnen worden. Ik verwacht dat dit probleem is opgelost in 
-versie 1.7.0.</P>
 <P>Vraag: Hoe kan ik een Autocad ontwerp tekening bijladen?<BR>
-Antwoord: sinds QGIS 1.6.0 wordt GDAL 1.7.0 gebruikt waarmee ook het rechtsstreeks
-inlezen van DXF autocad bestand wordt ondersteund.
+Antwoord: sinds QGIS 1.6.0 wordt ook het rechtsstreeks
+inlezen van DXF autocad bestand als vectorlaag ondersteund.
 </P>
 
 <H2>Foutmeldingen</h2>
