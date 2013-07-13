@@ -100,7 +100,7 @@ class Iface:
         """ remove layer from QGIS map registry"""
         lyr_id = wvLayer.layerId
         layerLegend = core.QgsMapLayerRegistry.instance()
-        layerLegend.removeMapLayer(lyr_id, True)
+        layerLegend.removeMapLayer(lyr_id)
         
     def bestScale(self, wvLayer):
         """Set best scale for given layer"""

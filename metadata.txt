@@ -26,5 +26,5 @@ changelog:
     1.0.2   first official release tested with QGIS 1.0.1, 1.3 and 1.4 on all platforms
 
 homepage:http://sourceforge.net/projects/b4udignl
-repository:https://b4udignl.svn.sourceforge.net/svnroot/b4udignl
+repository:https://github.com/diethard2/b4udignl
 icon:images/b4udig48.png

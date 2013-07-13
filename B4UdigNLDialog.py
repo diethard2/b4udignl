@@ -132,7 +132,6 @@ class B4UdigNLDialog(QDialog):
         """use to translate/update visibility of buttons"""
         l_ui = self.ui
         l_tree = l_ui.treeWidget
-        #l_headers = "Type Document/Name Document" 
         l_headers = self.tr("Soort Bijlage/Naam Bijlage")
         l_tree.setHeaderLabels([l_headers])
         l_ui.textEditDirPreffered.setText(self.__settings["b4udignl/dir_preferred"])
@@ -143,11 +142,6 @@ class B4UdigNLDialog(QDialog):
         self.connect(self.ui.treeWidget,
                      SIGNAL("itemDoubleClicked(QTreeWidgetItem*, int)"),
                      self._openPdf)
-        # next connection does not work, a signal from QT can not
-        # be connected to a slot method created in pyqt (maybe in future?)
-        self.connect(self.__legend,
-                     SIGNAL("groupIndexChanged(int, int)"),
-                     self._updateLayerGroup)
         self.connect(self.ui.checkBoxData,
                      SIGNAL("stateChanged(int)"),
                      self._checkBoxDataStateChanged)
@@ -407,7 +401,7 @@ class B4UdigNLDialog(QDialog):
             l_index = l_a_zipped_file.index("/")
             l_dirName = l_a_zipped_file[:l_index]
         except:
-            # this is probably testmessage
+            # this is probably test wion message
             l_dirName = os.path.basename(p_fileName)[:-4]
         return l_dirName
 
@@ -451,10 +445,8 @@ class B4UdigNLDialog(QDialog):
         if l_doc is None:
             return
         l_klicnumber = l_doc.klicnummer
-##        self._updateGroupIndexesB4Remove()
         l_mapCanvas = self.__iface.mapCanvas()
         l_mapCanvas.setRenderFlag(False)
-        self._removeGroups()
         l_doc.removeLayers()
         l_mapCanvas.setRenderFlag(True)
         l_mapCanvas.refresh()
@@ -503,12 +495,9 @@ class B4UdigNLDialog(QDialog):
         self.__wvs.append(l_doc)
         self._populateMsgList()
         self._populateTree()
-        self._createLayerGroups(l_doc)
         l_iface = l_doc.iface
         l_iface.doRendering(False)
         l_doc.loadLayers()
-        self._updateAllLayerGroups(len(l_doc.layers))
-        self._moveLayersToGroups(l_doc)
         l_iface.doRendering(False)
         l_iface.refreshMap()
         self._setStateOfVisibilitiesThemes()
@@ -532,10 +521,7 @@ class B4UdigNLDialog(QDialog):
         give a warning to user that wion message could not be read
         from selected folder
         """
-        #l_titleMsg = "Problem reading result"
         l_titleMsg = self.tr("Fout WION bericht")
-        #l_errorMsg = "Selected directory does not contain\n\
-        #              result of Dutch Dig Alert or it can not be read!")
         l_errorMsg = self.tr("Geselecteerde folder bevat geen goed\n\
         WION bericht of kan niet worden geopend!")
         QMessageBox.warning(self, l_titleMsg, l_errorMsg)
@@ -601,128 +587,7 @@ class B4UdigNLDialog(QDialog):
         for i_doc in self.__wvs:
             if i_doc.klicnummer == l_klicnummer:
                 return i_doc
-
-    def _layersInGroups(self):
-        """
-        Create legend groups (when this can be done properly)
-        and move layers inside these legend groups
-        This does not work in QGIS 1.6.0
-        """
-        self._createLayerGroups()
-##        if not self.__addGroupsBuggy:
-##            self._moveLayersToGroups()
-
-    def _createLayerGroups(self, p_doc):
-        """
-        Create the layer groups that I want to use to move
-        layers into.
-        """
-        l_legend = self.__legend
-        l_groups = l_legend.groups()
-        l_idLastGroup = 0
-        l_groupNames = self.layerGroupNames() # dictionary for translations!
-        l_groupIds = []
-        
-        for i_group in self.layerGroups: # list for order!
-            l_groupName = l_groupNames[i_group]
-            l_newGroupName = l_groupName
-            l_index = 1
-            
-            while l_newGroupName in l_groups:
-                # when exists create new groupname..
-                l_index += 1
-                l_newGroupName = l_groupName + str(l_index)
-            
-            # in QGIS 2.0, unfortunately adding groups seems
-            # to work only for the first group so I decided to
-            # 1st version does not use grouplayers..
-##            l_id = l_legend.addGroup(l_newGroupName, True)
-##            l_groupIds.append(l_id)
-            
-            l_layerGroup = wv.LayerGroup(l_newGroupName)
-            l_layerGroup.index = l_index
-            p_doc.layerGroups[i_group] = l_layerGroup
-        # in QGIS 1.6.0, unfortunately a bug was introduced.
-        # the layergroups are nested and could not be used.
-        # In that case remove added groups.
-##        if len(l_groupIds) > 1:
-##            if l_groupIds[1] == 0:
-##                self.__addGroupsBuggy = True
-##                l_legend.removeGroup(l_groupIds[0])
-        
-        
-
-    def _moveLayersToGroups(self, p_doc):
-        """
-        Move the layers into groups that I want to use to move
-        layers into
-        """
-        l_legend = self.__legend
-        for i_layer in p_doc.layers:
-            l_layer = i_layer.layer
-            l_groupName = i_layer.groupName()
-            l_layerGroup = p_doc.layerGroups[l_groupName]
-#            l_layerName = i_layer.layerName()
-#            l_string = "layer " + l_layerName +" verplaatsen naar " + l_groupName + "\nmet index " + str(l_layerGroup.index)
-            l_legend.moveLayer(l_layer, l_layerGroup.index)
-            self._updateAllLayerGroups(-1)
-            
-    def _updateGroupIndexesB4Remove(self):
-        """
-        reduce indexes of other groups of messages loaded at later stage
-        before removing current message
-        """
-        l_doc = self.__wv
-        l_nr = l_doc.klicnummer
-        l_layer = l_doc.layers[0]
-        l_groupName = l_layer.groupName()
-        l_indexGroup = l_doc.layerGroups[l_groupName].index
-        l_change = len(self.__wv.layers)+4
-        for i_doc in self.__wvs:
-            if i_doc.klicnummer == l_nr:
-                continue
-            if i_doc.layerGroups[l_groupName].index > l_indexGroup:
-                self._updateLayerGroups(i_doc, -l_change)
-
-    def _removeGroups(self):
-        """
-        removes legend groups and all layer groups underneath effectively
-        """
-        l_doc = self.__wv
-        l_indexes = []
-        for i_layerGroup in l_doc.layerGroups.itervalues():
-            l_indexes.append(i_layerGroup.index)
-        l_indexes.sort(reverse=True)
-        l_legend = self.__legend
-        for i_index in l_indexes:
-            if l_legend.groupExists(i_index):
-                l_legend.removeGroup(i_index)
-            
-    def _updateLayerGroup(self, p_oldIndex, p_new_index):
-        """
-        Keep index of groups synchronised with legend
-        """
-        QMessageBox.warning(self, "effe wachten", "update groepindex werkt!!")
-        for i_doc in self.__wvs:
-            for i_groupName, i_layerGroup in i_doc.layerGroups.iteritems():
-                if p_oldIndex == i_layerGroup.index:
-                    i_layerGroup.index = p_new_index
-                    break
-                
-    def _updateAllLayerGroups(self, p_change):
-        """
-        As long signal does not work, just change all groupindexes by given change
-        """
-        for i_doc in self.__wvs:
-            self._updateLayerGroups(i_doc, p_change)
-    
-    def _updateLayerGroups(self, p_doc, p_change):
-        """
-        As long signal does not work, just change all groupindexes by given change
-        """
-        for i_layerGroup in p_doc.layerGroups.itervalues():
-            i_layerGroup.index += p_change
-                
+               
     def helpHelp(self):
         """
         starts the help manual which resides behind the help button
