@@ -76,7 +76,7 @@
     <message>
         <location filename="B4UdigNL.ui" line="33"/>
         <source>Wion Berichten</source>
-        <translation>DigAlert Messages</translation>
+        <translation type="obsolete">DigAlert Messages</translation>
     </message>
     <message>
         <location filename="B4UdigNL.ui" line="133"/>
@@ -216,7 +216,7 @@
     <message>
         <location filename="B4UdigNL.ui" line="6658"/>
         <source>KLIC Berichten</source>
-        <translation>DigAlert Messages</translation>
+        <translation>KLIC Messages</translation>
     </message>
     <message>
         <location filename="B4UdigNL.py" line="60"/>
@@ -304,7 +304,7 @@ result of Dutch Dig Alert or it can not be read!</translation>
         <source>Nog niet opgeslagen als project!
 Kies Bestand - Project opslaan...</source>
         <translation>There is not project yes
-Please choose File - Save project</translation>
+Please choose File - Save project...</translation>
     </message>
     <message>
         <location filename="B4UdigNLDialog.py" line="727"/>

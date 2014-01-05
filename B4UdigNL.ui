@@ -30,7 +30,7 @@
        <item>
         <widget class="QGroupBox" name="messageBox">
          <property name="title">
-          <string>Wion Berichten</string>
+          <string>KLIC Berichten</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">

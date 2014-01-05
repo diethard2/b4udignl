@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'B4UdigNL.ui'
 #
-# Created: Sun Jan 05 19:47:32 2014
+# Created: Sun Jan 05 20:25:49 2014
 #      by: PyQt4 UI code generator 4.7.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -2285,7 +2285,7 @@ class Ui_B4UdigNL(object):
 
     def retranslateUi(self, B4UdigNL):
         B4UdigNL.setWindowTitle(QtGui.QApplication.translate("B4UdigNL", "KLIC Viewer", None, QtGui.QApplication.UnicodeUTF8))
-        self.messageBox.setTitle(QtGui.QApplication.translate("B4UdigNL", "Wion Berichten", None, QtGui.QApplication.UnicodeUTF8))
+        self.messageBox.setTitle(QtGui.QApplication.translate("B4UdigNL", "KLIC Berichten", None, QtGui.QApplication.UnicodeUTF8))
         self.openMsgButton.setText(QtGui.QApplication.translate("B4UdigNL", "&Open Folder...", None, QtGui.QApplication.UnicodeUTF8))
         self.openArchiveButton.setText(QtGui.QApplication.translate("B4UdigNL", "Open &Zip-bestand...", None, QtGui.QApplication.UnicodeUTF8))
         self.gotoButton.setText(QtGui.QApplication.translate("B4UdigNL", "&Ga naar", None, QtGui.QApplication.UnicodeUTF8))
