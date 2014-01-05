@@ -1,34 +1,7 @@
-<RCC> 
+<RCC>
 <qresource>
-
 <file>B4UdigNL_en.qm</file>
-
 <file alias="b4udignl.png">images/b4udig48.png</file>
-    
 <file alias="b4udig128.png">images/b4udig128.png</file>
-
-<file alias="back.png">images/back.png</file>
-
-<file alias="home.png">images/home.png</file>
-  
-<file alias="index.html">help/index.html</file>
-<file alias="aboutWion.html">help/aboutWion.html</file>
-<file alias="aboutLicense.html">help/aboutLicense.html</file>
-<file alias="aboutIcon.html">help/aboutIcon.html</file>
-<file alias="using.html">help/using.html</file>
-<file alias="help.html">help/help.html</file>
-<file alias="index_en.html">help/index_en.html</file>
-<file alias="aboutWion_en.html">help/aboutWion_en.html</file>
-<file alias="aboutLicense_en.html">help/aboutLicense_en.html</file>
-<file alias="aboutIcon_en.html">help/aboutIcon_en.html</file>
-<file alias="using_en.html">help/using_en.html</file>
-
-<file alias="help_en.html">help/help_en.html</file>
-<file alias="index_ja.html">help/index_jp.html</file>
-
-
-<file alias="help_ja.html">help/help_jp.html</file>
-  
 </qresource>
-
 </RCC> 

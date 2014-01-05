@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\dev\python\b4udignl\B4UdigNL.ui'
+# Form implementation generated from reading ui file 'B4UdigNL.ui'
 #
-# Created: Sun Feb 13 16:32:41 2011
+# Created: Sun Jan 05 19:47:32 2014
 #      by: PyQt4 UI code generator 4.7.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -2284,7 +2284,7 @@ class Ui_B4UdigNL(object):
         QtCore.QMetaObject.connectSlotsByName(B4UdigNL)
 
     def retranslateUi(self, B4UdigNL):
-        B4UdigNL.setWindowTitle(QtGui.QApplication.translate("B4UdigNL", "Wion Result Viewer", None, QtGui.QApplication.UnicodeUTF8))
+        B4UdigNL.setWindowTitle(QtGui.QApplication.translate("B4UdigNL", "KLIC Viewer", None, QtGui.QApplication.UnicodeUTF8))
         self.messageBox.setTitle(QtGui.QApplication.translate("B4UdigNL", "Wion Berichten", None, QtGui.QApplication.UnicodeUTF8))
         self.openMsgButton.setText(QtGui.QApplication.translate("B4UdigNL", "&Open Folder...", None, QtGui.QApplication.UnicodeUTF8))
         self.openArchiveButton.setText(QtGui.QApplication.translate("B4UdigNL", "Open &Zip-bestand...", None, QtGui.QApplication.UnicodeUTF8))
@@ -2317,7 +2317,7 @@ class Ui_B4UdigNL(object):
         self.topoCheckBox.setText(QtGui.QApplication.translate("B4UdigNL", "Topo", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxOther.setText(QtGui.QApplication.translate("B4UdigNL", "Overig", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.ThemesTab), QtGui.QApplication.translate("B4UdigNL", "Thema\'s", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox.setTitle(QtGui.QApplication.translate("B4UdigNL", "Wion Berichten", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("B4UdigNL", "KLIC Berichten", None, QtGui.QApplication.UnicodeUTF8))
         self.optionMsgDirButton.setText(QtGui.QApplication.translate("B4UdigNL", "Standaard folder...", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("B4UdigNL", "Opties", None, QtGui.QApplication.UnicodeUTF8))
 

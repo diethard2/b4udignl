@@ -6,7 +6,7 @@
     <message>
         <location filename="B4UdigNL.py" line="47"/>
         <source>Wion Result Viewer</source>
-        <translation>Wion Result Viewer</translation>
+        <translation type="obsolete">Wion Result Viewer</translation>
     </message>
     <message>
         <location filename="B4UdigNL.ui" line="22"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="B4UdigNL.py" line="60"/>
         <source>&amp;Wion Result Viewer</source>
-        <translation>&amp;Wion Result Viewer</translation>
+        <translation type="obsolete">&amp;Wion Result Viewer</translation>
     </message>
     <message>
         <location filename="B4UdigNL.ui" line="225"/>
@@ -74,7 +74,7 @@
         <translation>Messages</translation>
     </message>
     <message>
-        <location filename="B4UdigNL.ui" line="6658"/>
+        <location filename="B4UdigNL.ui" line="33"/>
         <source>Wion Berichten</source>
         <translation>DigAlert Messages</translation>
     </message>
@@ -208,84 +208,99 @@
         <source>Opslaan in Project</source>
         <translation>Save in project</translation>
     </message>
+    <message>
+        <location filename="B4UdigNL.py" line="47"/>
+        <source>KLIC Viewer</source>
+        <translation>KLIC Viewer</translation>
+    </message>
+    <message>
+        <location filename="B4UdigNL.ui" line="6658"/>
+        <source>KLIC Berichten</source>
+        <translation>DigAlert Messages</translation>
+    </message>
+    <message>
+        <location filename="B4UdigNL.py" line="60"/>
+        <source>&amp;KLIC Viewer</source>
+        <translation>&amp;KLIC Viewer</translation>
+    </message>
 </context>
 <context>
     <name>B4UdigNLDialog</name>
     <message>
-        <location filename="B4UdigNLDialog.py" line="122"/>
+        <location filename="B4UdigNLDialog.py" line="135"/>
         <source>Soort Bijlage/Naam Bijlage</source>
         <translation>Type Document/Name Document</translation>
     </message>
     <message>
         <location filename="B4UdigNLDialog.py" line="308"/>
         <source>Selecteer folder met resultaat WION bericht</source>
-        <translation>Select directory which hold result request Dig Alert</translation>
+        <translation type="obsolete">Select directory which hold result request Dig Alert</translation>
     </message>
     <message>
         <location filename="B4UdigNLDialog.py" line="498"/>
         <source>Fout WION bericht</source>
-        <translation>Problem reading result</translation>
+        <translation type="obsolete">Problem reading result</translation>
     </message>
     <message>
         <location filename="B4UdigNLDialog.py" line="501"/>
         <source>Geselecteerde folder bevat geen goed
 
             WION bericht of kan niet worden geopend!</source>
-        <translation>Selected directory does not contain
+        <translation type="obsolete">Selected directory does not contain
 result of Dutch Dig Alert or it can not be read!</translation>
     </message>
     <message>
         <location filename="B4UdigNLDialog.py" line="674"/>
         <source>index.html</source>
-        <translation>index_en.html</translation>
+        <translation type="obsolete">index_en.html</translation>
     </message>
     <message>
         <location filename="B4UdigNLDialog.py" line="675"/>
         <source>Wion Result Viewer</source>
-        <translation>Wion Result Viewer</translation>
+        <translation type="obsolete">Wion Result Viewer</translation>
     </message>
     <message>
         <location filename="B4UdigNLDialog.py" line="321"/>
         <source>Selecteer een zip bestand die een WION bericht bevat</source>
-        <translation>Select a Zip-file containing WION result</translation>
+        <translation type="obsolete">Select a Zip-file containing WION result</translation>
     </message>
     <message>
-        <location filename="B4UdigNLDialog.py" line="322"/>
+        <location filename="B4UdigNLDialog.py" line="339"/>
         <source>Zip bestanden (*.zip *.ZIP)</source>
         <translation>Zip files (*.zip *.ZIP)</translation>
     </message>
     <message>
-        <location filename="B4UdigNLDialog.py" line="75"/>
+        <location filename="B4UdigNLDialog.py" line="78"/>
         <source>Annotatie</source>
         <translation>Annotation</translation>
     </message>
     <message>
-        <location filename="B4UdigNLDialog.py" line="76"/>
+        <location filename="B4UdigNLDialog.py" line="79"/>
         <source>Maatvoering</source>
         <translation>Dimensioning</translation>
     </message>
     <message>
-        <location filename="B4UdigNLDialog.py" line="77"/>
+        <location filename="B4UdigNLDialog.py" line="80"/>
         <source>Ligging</source>
         <translation>Location</translation>
     </message>
     <message>
-        <location filename="B4UdigNLDialog.py" line="78"/>
+        <location filename="B4UdigNLDialog.py" line="81"/>
         <source>Topo</source>
         <translation>Background topo</translation>
     </message>
     <message>
         <location filename="B4UdigNLDialog.py" line="461"/>
         <source>Selecteer standaard folder met WION berichten</source>
-        <translation>Select standard directory which normally holds Wion Result Messages</translation>
+        <translation type="obsolete">Select standard directory which normally holds Wion Result Messages</translation>
     </message>
     <message>
-        <location filename="B4UdigNLDialog.py" line="714"/>
+        <location filename="B4UdigNLDialog.py" line="646"/>
         <source>Opslaan in project</source>
         <translation>Save in project</translation>
     </message>
     <message>
-        <location filename="B4UdigNLDialog.py" line="716"/>
+        <location filename="B4UdigNLDialog.py" line="648"/>
         <source>Nog niet opgeslagen als project!
 Kies Bestand - Project opslaan...</source>
         <translation>There is not project yes
@@ -294,7 +309,40 @@ Please choose File - Save project</translation>
     <message>
         <location filename="B4UdigNLDialog.py" line="727"/>
         <source>Wion berichten opgeslagen in project</source>
-        <translation>Wion result message saved in project</translation>
+        <translation type="obsolete">Wion result message saved in project</translation>
+    </message>
+    <message>
+        <location filename="B4UdigNLDialog.py" line="325"/>
+        <source>Selecteer folder met KLIC bericht</source>
+        <translation>Select directory which hold KLIC message</translation>
+    </message>
+    <message>
+        <location filename="B4UdigNLDialog.py" line="338"/>
+        <source>Selecteer een zip bestand die een KLIC bericht bevat</source>
+        <translation>Select a Zip-file containing KLIC message</translation>
+    </message>
+    <message>
+        <location filename="B4UdigNLDialog.py" line="482"/>
+        <source>Selecteer standaard folder met KLIC berichten</source>
+        <translation>Select standard directory which normally holds KLIC messages</translation>
+    </message>
+    <message>
+        <location filename="B4UdigNLDialog.py" line="524"/>
+        <source>Fout KLIC bericht</source>
+        <translation>Error in KLIC message</translation>
+    </message>
+    <message>
+        <location filename="B4UdigNLDialog.py" line="525"/>
+        <source>Geselecteerde folder bevat geen goed
+
+        KLIC bericht of kan niet worden geopend!</source>
+        <translation>Selected directory does not contain
+result of Dutch Dig Alert or it can not be read!</translation>
+    </message>
+    <message>
+        <location filename="B4UdigNLDialog.py" line="670"/>
+        <source>KLIC berichten opgeslagen in project</source>
+        <translation>KLIC message saved in project</translation>
     </message>
 </context>
 <context>
@@ -302,27 +350,27 @@ Please choose File - Save project</translation>
     <message>
         <location filename="helpform.py" line="24"/>
         <source>&amp;Terug</source>
-        <translation>&amp;Back</translation>
+        <translation type="obsolete">&amp;Back</translation>
     </message>
     <message>
         <location filename="helpform.py" line="27"/>
         <source>&amp;Home</source>
-        <translation>&amp;Home</translation>
+        <translation type="obsolete">&amp;Home</translation>
     </message>
     <message>
         <location filename="helpform.py" line="29"/>
         <source>Home</source>
-        <translation>Home</translation>
+        <translation type="obsolete">Home</translation>
     </message>
     <message>
         <location filename="helpform.py" line="55"/>
         <source>%1 Help</source>
-        <translation>%1 Help</translation>
+        <translation type="obsolete">%1 Help</translation>
     </message>
     <message>
         <location filename="helpform.py" line="69"/>
         <source>index.html</source>
-        <translation>index_en.html</translation>
+        <translation type="obsolete">index_en.html</translation>
     </message>
 </context>
 </TS>
