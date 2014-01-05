@@ -1,4 +1,4 @@
-QGIS Wion Result Viewer Plugin
+QGIS KLIC Viewer Plugin
 Author Diethard Jansen
 OpenSource License GPL v.2 and up.
 
@@ -18,6 +18,11 @@ Release notes 20/06/2013
 Version 1.4.0
 
 Updated plugin so it works as well for QGIS 2.0
+Changed name of plugin from QGIS WION Result Viewer to
+the QGIS KLIC Viewer.
+Removed the grouping of loaded layers because the code was complicated
+and because the QGIS grouping functions of layers behaved weird.
+Updated the help function.
 
 Release notes 27/06/2012
 =============

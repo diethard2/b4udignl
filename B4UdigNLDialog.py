@@ -322,7 +322,7 @@ class B4UdigNLDialog(QDialog):
         l_path = self._start_find_path()
         
         #l_request = "Select directory which hold result request Dig ALert"
-        l_request = self.tr("Selecteer folder met resultaat WION bericht")
+        l_request = self.tr("Selecteer folder met KLIC bericht")
         l_dir_path = QFileDialog.getExistingDirectory(self, l_request, l_path)
         if l_dir_path: # evaluates to true when it contains anything
             self.__dir = str(l_dir_path)
@@ -335,7 +335,7 @@ class B4UdigNLDialog(QDialog):
         l_path = self._start_find_path()
         
         #l_request = "Select zipfile which holds result request Dig ALert"
-        l_request = self.tr("Selecteer een zip bestand die een WION bericht bevat")
+        l_request = self.tr("Selecteer een zip bestand die een KLIC bericht bevat")
         l_filter = self.tr("Zip bestanden (*.zip *.ZIP)")
         l_fileName = QFileDialog.getOpenFileName(self, l_request, l_path, l_filter)
         if l_fileName=="":
@@ -358,10 +358,10 @@ class B4UdigNLDialog(QDialog):
 
     def _start_find_path(self):
         """
-        returns path that should be used to look for next wion message to load
+        returns path that should be used to look for next b4udig message to load
         this path can be stored in user setting dir_preffered
         when user setting is not set it then uses last directory used
-        to open a wion message. 
+        to open a b4udig message. 
         """
         if self.__dir != None:
             l_path = self.__dir
@@ -401,7 +401,7 @@ class B4UdigNLDialog(QDialog):
             l_index = l_a_zipped_file.index("/")
             l_dirName = l_a_zipped_file[:l_index]
         except:
-            # this is probably test wion message
+            # this is probably test KLIC message
             l_dirName = os.path.basename(p_fileName)[:-4]
         return l_dirName
 
@@ -476,10 +476,10 @@ class B4UdigNLDialog(QDialog):
     def on_optionMsgDirButton_clicked(self):
         """
         select directory which will be used to start searching
-        Wion result messages from when using openMsgButton
+        KLIC messages from when using openMsgButton
         """
         l_path = self.__settings["b4udignl/dir_preferred"]
-        l_request = self.tr("Selecteer standaard folder met WION berichten")
+        l_request = self.tr("Selecteer standaard folder met KLIC berichten")
         l_dir_path = QFileDialog.getExistingDirectory(self, l_request, l_path)
         if l_dir_path: # if l_dir_path is not empty this evaluates to true..
             self.__settings["b4udignl/dir_preferred"] = str(l_dir_path)
@@ -505,7 +505,7 @@ class B4UdigNLDialog(QDialog):
 
     def _openMsg(self, p_path):
         """
-        p_path = directory path where wion message can be found.
+        p_path = directory path where KLIC message can be found.
         returns object of type Doc holding all information read from xml
         found in given path.
         """
@@ -518,12 +518,12 @@ class B4UdigNLDialog(QDialog):
 
     def _displayWrongMsg(self):
         """
-        give a warning to user that wion message could not be read
+        give a warning to user that KLIC message could not be read
         from selected folder
         """
-        l_titleMsg = self.tr("Fout WION bericht")
+        l_titleMsg = self.tr("Fout KLIC bericht")
         l_errorMsg = self.tr("Geselecteerde folder bevat geen goed\n\
-        WION bericht of kan niet worden geopend!")
+        KLIC bericht of kan niet worden geopend!")
         QMessageBox.warning(self, l_titleMsg, l_errorMsg)
         
     def _openPdf(self, pdfItem):
@@ -535,7 +535,7 @@ class B4UdigNLDialog(QDialog):
                 break
 
     def _populateMsgList(self):
-        """populates list of wion messages"""
+        """populates list of KLIC messages"""
         l_selected = None
         l_ui = self.ui
         l_list = l_ui.msgListWidget
@@ -637,7 +637,7 @@ class B4UdigNLDialog(QDialog):
 
     def saveMessages(self):
         """
-        Saves each wion message using pickle in textfile in a folder Wion
+        Saves each KLIC message using pickle in textfile in a folder KLIC
         next to Quantum GIS projectfile. Save also reference to this
         pickled object in project file itself.
         """
@@ -667,7 +667,7 @@ class B4UdigNLDialog(QDialog):
             # activate(0) triggers the action save project!
             l_action.activate(0)
             # inform the user that changes have been included in project.
-            l_msg = self.tr("Wion berichten opgeslagen in project")
+            l_msg = self.tr("KLIC berichten opgeslagen in project")
             QMessageBox.warning(self, l_title, l_msg)
 
     def docsToPickle(self):
@@ -677,7 +677,7 @@ class B4UdigNLDialog(QDialog):
         """
         l_wv_docs =[]
         for i_wv_doc in self.__wvs:
-            # for each wion document use pickle(), this method
+            # for each KLIC document use pickle(), this method
             # gives back an object that can be saved to a textfile
             # using pickle!
             l_wv_docs.append(i_wv_doc.pickle())
@@ -685,7 +685,7 @@ class B4UdigNLDialog(QDialog):
 
     def restoreMessages(self):
         """
-        Restores each wion message saved using pickle from textfile in a folder Wion
+        Restores each KLIC message saved using pickle from textfile in a folder KLIC
         next to Quantum GIS projectfile.
         """
         # now get from projectfile pickled objectstring from setting 'wvs_docs_file'
@@ -699,7 +699,7 @@ class B4UdigNLDialog(QDialog):
             l_file = open(l_fileName)
             # now use pickle to recreate object from file
             l_wvs = pickle.load(l_file)
-            # connect qgis properly back to Wion messages.
+            # connect qgis properly back to KLIC messages.
             self.__wvs = l_wvs
             for i_wv in self.__wvs:
                 i_wv.iface = ifaceqgis.Iface(self.__iface)

@@ -1,11 +1,11 @@
 <html>
 <head>
-<title>Wion Result Viewer</title>
+<title>KLIC Viewer</title>
 <LINK HREF="style.css" REL="stylesheet" TYPE="text/css"
 </head>
 <body>
-<H1><img src="images/b4udig48.png">Wion Result Viewer</H1>
-<p>The <b>Wion Result Viewer</b> is developed to view and understand 
+<H1><img src="images/b4udig48.png">KLIC Viewer</H1>
+<p>The <b>KLIC Viewer</b> is developed to view and understand 
 quickly the result of a Dutch Dig Alert.</p>
 
 <p>It is a good alternative for the free KLIC viewer provided by the 
@@ -17,13 +17,13 @@ measure distances, add design drawings as a layer, read multiple Dig
 Alert Results etcetera.</p>
 
 In <a href="#using">How to Use</a> the actual functionality of the 
-Wion Result Viewer itself is explained.<BR>
+KLIC Viewer itself is explained.<BR>
 In <a href="#aboutWion">About WION</a> is explained how to obtain 
-the result of a dig alert. What Wion is and how it works including a 
+the result of a dig alert. What WION is and how it works including a 
 little history.<BR>
 In <a href="#aboutLicense">About License</a> the license and terms
 of usage are explained.<br>
-In <a href="#aboutIcon">About Icon</a> the background thought of 
+In <a href="#aboutIcon">About Icon</a> the background of 
 the Icon is explained.<br>
 </p>
 
@@ -31,21 +31,21 @@ the Icon is explained.<br>
 <H1>How to use</H1>
 </a>
 <p>First you need to know how to obtain the result of a Dutch Dig alert. 
-From here I use Wion Result when I refer to this result of a Dutch Dig Alert. 
+From here I use KLIC message when I refer to this result of a Dutch Dig Alert. 
 How to obtain it is explained in <a href="#aboutWion">About WION</a>.
 After you downloaded the result you will have a zip-archive. 
 You have to extract the contents first in a directory.</p>
 
-<p>The Wion Result Viewer has three tabs, <B>Messages</B>,<B>Themes</B> and <B>Options</B>.
+<p>The KLIC Viewer has three tabs, <B>Messages</B>,<B>Themes</B> and <B>Options</B>.
 The viewer, allways starts with the open tab <B>Messages</B>, because the 
-first thing you have to do is open a Wion Message.</p>  
+first thing you have to do is open a KLIC message.</p>  
 <p>When the contents of received zip-archive is extracted to a directory, 
 you can use the button <B>[Open Directory...]</B> to select this directory 
-holding the Wion Result.<BR>
-It is recommended to first set the default Directory in tab <B>Options</B> so searching starts in selected directory where Wion messages are expected to be found.<BR>
+holding the KLIC message.<BR>
+It is recommended to first set the default Directory in tab <B>Options</B> so searching starts in selected directory where KLIC messages are expected to be found.<BR>
 After selection and pressing [OK] this is what will happen:
 <ul>
-<li>The xml file of Wion result is read which holds information on the other 
+<li>The xml file of a KLIC message is read which holds information on the other 
 included files in the Wion Alert</li>
 <li>Next to all images that will be loaded as layers, little files will 
 be created, called world files, to give those images a coordinate system and in 
@@ -54,20 +54,19 @@ fact turning images into maps.</li>
 are created in QGIS in the layer panel (not in QGIS 1.6.0).</li>
 <li>The maps are loaded in the right order as layers into QGIS and placed 
 in the right legend group.</li>
-<li>The registration number of this Wion result is added to the list of loaded 
-Wion Results.</li>
+<li>The registration number of this KLIC message is added to the list of loaded 
+KLIC messages.</li>
 <li>Also the documents that come with the maps, being PDF files, are sorted out 
 and placed in a list of included files.</li> 
-<li>In the tab <B>Themes</B> included themes in the Wion Result become 
+<li>In the tab <B>Themes</B> included themes in the KLIC message become 
 clearly visible.</li>
 </ul>
-Be aware that a Wion Result can include many files and processing can 
+Be aware that a KLIC message can include many files and processing can 
 take some time.</p> 
 
-<P>Before loading, you can first extract the zipfile holding the Wion result 
-yourself, but you can also use the button <B>[Open Zipfile...]</B> or use Alt-Z.<BR>
-This Function first extracts the zipfile and then loads the Wion Result in 
-QGIS. You should use this function only once for every Wion result, the next 
+<P>Before loading, you can first extract the zipfile containing the KLIC message, but you can also use the button <B>[Open Zipfile...]</B> or use Alt-Z.<BR>
+This Function first extracts the zipfile and then loads the KLIC message in 
+QGIS. You should use this function only once for every KLIC message, the next 
 time it is faster to use [Open Folder...] instead.
 </p>
 <p>When the list with PDF files is filled you can select and open them using 
@@ -75,23 +74,23 @@ time it is faster to use [Open Folder...] instead.
 them all, you can also open several pdf files at once. 
 Double clicking a file in the list of PDF files opens it directly. 
 </p>
-<p>You can load and work with more Wion results. 
-After loading another wion result, you can select this result in the list of 
-Wion results. After selection the list of accompanying documents is refreshed 
-with the ones belonging to that Wion Result.<BR>
+<p>You can load and work with more KLIC messages. 
+After loading another KLIC message, you can select this result in the list of 
+KLIC messages. After selection the list of accompanying documents is refreshed 
+with the ones belonging to that KLIC message.<BR>
 You can use the button <B>[Goto]</B> or Alt-B to move the map in QGIS to the extent 
 of selected Wion result.<BR>
-To get the best view of the Wion Result use the button <B>[Best Scale]</B> 
+To get the best view of the KLIC message use the button <B>[Best Scale]</B> 
 or Alt-B. 
 Use the button <B>[Close Message]</B>, Alt-C to close selected Wion Message. 
 </p>
-<p>You can store all information in Wion Result Viewer plugin in a project using the
+<p>You can store all information in KLIC message Viewer plugin in a project using the
 button <B>[Save in project]</B>. This only works when you first have created
 a project, use the option <B>Save project</B> from the <B>File</B> menu. 
 Then the next time you open a project the contents of the plugin is restored.
 </p>
 <p>Use the button <B>[Quit]</B>, Alt-Q or using the [Esc]-button on your keyboard 
-to close the Wion Result Viewer. When you open the Wion Result Viewer again 
+to close the KLIC Viewer. When you open the KLIC Viewer again 
 you will find it in the same state as when you closed it.</p>
 
 <p>After loading, all layers are visible, you can make layers invisible by 
@@ -113,7 +112,7 @@ which can be delivered by the netowners.</li>
 </ul>
 </p>
 
-<p>The tab <B>Themes</B> shows which Wion themes the selected Wion Result 
+<p>The tab <B>Themes</B> shows which Wion themes the selected KLIC message 
 contains. It is also a legend of the map. 
 For example the green lines are used to show the position of cables 
 on the map that convey data. The visibility can be changed for 
@@ -123,7 +122,7 @@ Special themes have also been added to turn on/of the visibility for all
 layers that contain only annotation, dimensioning, location or topo.</p>
 <p>Use the button [Refresh] Alt-R to refresh the contents of the 
 <B>Themes</B> tab. Use this button when you did not change the visibility 
-of layers from the Wion Result Viewer, but directly in QGIS Layers panel. 
+of layers from the KLIC Viewer, but directly in QGIS Layers panel. 
 In that case the Themes may not correspond anymore with the actual situation
 in the map. A refresh can in that case be done manually.</p>
 
@@ -139,7 +138,7 @@ statusses with respect to layers belonging to that theme or group.
 <P>Question: Why is the list of PDF documents empty after opening a saved project?<BR>
 Answer: Use the button <B>Save in project</B> to retain the state of
 plugin in the project.</P>
-<P>Question: Is it possible to load more Wion Results?<BR>
+<P>Question: Is it possible to load more KLIC messages?<BR>
 Answer: Yes you can, only when they do overlap remember that the
 topography layer delivered by Kadaster (the one starting with GB_)
 is not transparant. So you better move that layer to the bottom of the
@@ -154,7 +153,7 @@ Answer: From QGIS version 1.6.0 you can load autocad dxf as a vector layer.</P>
 &nbsp;&nbsp;&nbsp;<i>Selected directory does not contain<BR>
 &nbsp;&nbsp;&nbsp;result of Dutch Dig Alert or it can not be read!
 </i><BR>
-In that case often there is a folder underneath selected folder that does contain a valid Wion Result.
+In that case often there is a folder underneath selected folder that does contain a valid KLIC message.
 </p>
 
 <a name="aboutWion">
@@ -172,11 +171,11 @@ steep penalty fees have to be paid when digger failed to request information
 or netowner failed to provide requested information!</p>
 
 <H2>History</H2>
-<p>Netowners have tried for a very long time to protect their underground
-network. The netowners organised themselves and agreed to provide free
+<p>Net owners have tried for a very long time to protect their underground
+network. The net owners organised themselves and agreed to provide free
 information to building companies. A central non-profit organisation was born
 called KLIC. Building companies could provide a dig alert to KLIC, KLIC
-informed the netowners, the netowners provided the building companies with
+informed the netowners, the net owners provided the building companies with
 information directly.</P>
 <p>Although a dig alert was not neccesary then, insurance companies demanded
 building companies to do so. Less damage meant lower insurance fees, but failing
@@ -195,7 +194,7 @@ The kadaster now collects information from all network owners and the result
 is returned as layers of maps with network information together with guiding
 letters and drawings. The layers can be combined into one clear picture.
 This information can be viewed from inside a free viewer provided by 
-Kadaster, but even better from QGIS using the Wion Result Viewer.
+Kadaster, but even better from QGIS using the KLIC Viewer plugin.
 </p>
                                   
 <H2>3 kinds of requests</H2>
@@ -221,7 +220,7 @@ Private persons can fill in a form to obtain information.</p>
 <p>Within a day you will receive an email with an url where you can download
 requested information. Be carefull to download this information first without
 opening it directly. You have only 5 attempts to receive requested information.
-After downloading the information unpack it and view it using the Wion Result
+After downloading the information unpack it and view it using the KLIC message
 Viewer</p>
 <p>For testing purposes, you can also download one of the two free example
 digging requests from <a href="http://www.kadaster.nl/web/artikel/download/KLIC-proefbestand-Klicviewer-1.htm">http://www.kadaster.nl/klicviewer</a><p>
@@ -234,7 +233,7 @@ Copyright: (C) 2013 Diethard Jansen<BR>
 Version: 1.4.0
 email: Diethard.Jansen at gmail.com<BR>
 
-<p>The <b>Wion Result Viewer</b> python plugin is free software;
+<p>The QGIS <b>KLIC Viewer</b> python plugin is free software;
 you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation;
 either version 2 of the License, or (at your option) any later
@@ -248,7 +247,7 @@ confident it can be usefull to you.</p>
 <H1>About Icon</H1>
 </a>
 <P>Below you will see a bigger version of the Icon used to start 
-the Wion Result Viewer from the menu<p> 
+the KLIC Viewer from the menu<p> 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/b4udig128.png"></p>
 <p>The background represents the three coloured flag of the Netherlands.
 The plugin is especially targetted for use inside the Netherlands.<br>

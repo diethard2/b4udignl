@@ -1,6 +1,6 @@
 ; the next section is mandatory
 [general]
-name:WION Result Viewer
+name:KLIC Viewer
 qgisMinimumVersion:2.0
 description:View the result of a B4Udig request of the Netherlands to prevent damage
 version:1.4.0
@@ -9,7 +9,7 @@ version:1.4.0
 ; start of optional metadata
 
 changelog:
-    1.4.0   New version for qgis 2.0
+    1.4.0   New version for qgis 2.0, changed name from WION result viewer to KLIC viewer, help function streamlined with QGIS
     1.3.2   Moved plugin to official QGIS repository and update it to new standards
     1.3.1   Opening order of project or Wion Result Viewer plugin does not matter anymore
     1.3.0   Contents of plugin can be saved with QGIS project

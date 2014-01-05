@@ -21,7 +21,7 @@ email                : diethard.jansen at gmail.com
 """
 
 def name(): 
-    return "WION result viewer" 
+    return "KLIC viewer" 
 def description():
     return "View the result of a Dutch B4Udig request"
 def version():

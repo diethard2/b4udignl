@@ -45,19 +45,19 @@ class B4UdigNL:
     def initGui(self):  
         # Create action that will start plugin configuration
         self.action = QAction(QIcon(":/b4udignl.png"), \
-            QApplication.translate("B4UdigNL","Wion Result Viewer"), self.iface.mainWindow())
+            QApplication.translate("B4UdigNL","KLIC Viewer"), self.iface.mainWindow())
         # connect the action to the run method
         QObject.connect(self.action, SIGNAL("triggered()"), self.run) 
 
         # Add toolbar button and menu item
         self.iface.addToolBarIcon(self.action)
-        self.iface.addPluginToMenu(QApplication.translate("B4UdigNL","&Wion Result Viewer"), self.action)
+        self.iface.addPluginToMenu(QApplication.translate("B4UdigNL","&KLIC Viewer"), self.action)
 
     def unload(self):
         # Remove the plugin menu item and icon
         if self.dialog != None:
             self.dialog.storeDialogPosition()
-        self.iface.removePluginMenu(QApplication.translate("B4UdigNL","&Wion Result Viewer"),self.action)
+        self.iface.removePluginMenu(QApplication.translate("B4UdigNL","&KLIC Viewer"),self.action)
         self.iface.removeToolBarIcon(self.action)
 
     # run method that performs all the real work
