@@ -103,7 +103,8 @@ class Xml2Obj:
     def CharacterData(self,data):
         'SAX character data event handler'
         if string.strip(data):
-            data = data.encode()
+#            data = data.encode()
+            data = data.encode('utf-8')
             element = self.nodeStack[-1]
             element.cdata += data
             return

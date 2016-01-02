@@ -20,16 +20,6 @@ email                : diethard.jansen at gmail.com
  This script initializes the plugin, making it known to QGIS.
 """
 
-def name(): 
-    return "KLIC viewer" 
-def description():
-    return "View the result of a Dutch B4Udig request"
-def version():
-    return "Version 1.4.0" 
-def icon():
-    return "images/b4udig48.png"
-def qgisMinimumVersion():
-    return "2.0"
 def classFactory(iface): 
     # load B4UdigNL class from file B4UdigNL
     from B4UdigNL import B4UdigNL
