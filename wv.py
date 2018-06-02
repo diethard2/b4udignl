@@ -35,7 +35,6 @@ Author: Diethard Jansen, 14-3-2010
 """
 
 
-#from PyQt4.QtCore import *
 import os, wv
 import xml2obj
 
@@ -62,14 +61,15 @@ class Doc():
         usage:
         >>> l_doc = Doc(msg_dir)
         >>> l_doc.klicnummer
-        '09G267447'
+        '14G166926'
         >>> l_doc.meldingsoort
         'Graafmelding'
         >>> l_doc.polygon
-        [Coord(196723.00, 311697.00), Coord(196724.00, 311693.00), Coord(196927.00, 311495.00), Coord(196970.00, 311534.00), Coord(196752.00, 311731.00), Coord(196723.00, 311697.00)]
+        [Coord(194154.00, 465912.00), Coord(194154.00, 465849.00), Coord(194270.00, 465850.00), Coord(194269.00, 465914.00), Coord(194154.00, 465912.00)]
         >>> l_doc.netOwners
-        [Company('KPN B.V.'), Company('ENEXIS BV')]
+        [Company('Liander'), Company('APELDOORN'), Company('Eurofiber'), Company('KPN'), Company('Reggefiber'), Company('Tele2'), Company('trent'), Company('upc'), Company('Vitens')]
         >>> l_doc.layers
+        [Layer('GB_14G166926.png'), Layer('ET_KPN_0000546663_14G166926.png'), Layer('ET_Liander_0000574962_14G166926.png'), Layer('PT_KPN_0000546663_14G166926.png'), Layer('LG_datatransport_KPN_0000546663_14G166926.png'), Layer('LG_datatransport_trent_0000585212_14G166926.png'), Layer('LG_gas+lage+druk_Liander_0000574962_14G166926.png'), Layer('LG_laagspanning_Liander_0000574962_14G166926.png'), Layer('LG_middenspanning_Liander_0000574962_14G166926.png'), Layer('LG_riool+vrijverval_APELDOORN_0000586326_14G166926.png'), Layer('LG_water_Vitens_0000552354_14G166926.png'), Layer('MV_datatransport_KPN_0000546663_14G166926.png'), Layer('MV_datatransport_trent_0000585212_14G166926.png'), Layer('MV_gas+lage+druk_Liander_0000574962_14G166926.png'), Layer('MV_laagspanning_Liander_0000574962_14G166926.png'), Layer('MV_middenspanning_Liander_0000574962_14G166926.png'), Layer('AN_datatransport_KPN_0000546663_14G166926.png'), Layer('AN_datatransport_trent_0000585212_14G166926.png'), Layer('AN_gas+lage+druk_Liander_0000574962_14G166926.png'), Layer('AN_laagspanning_Liander_0000574962_14G166926.png'), Layer('AN_middenspanning_Liander_0000574962_14G166926.png'), Layer('AN_water_Vitens_0000552354_14G166926.png')]
         """
 
         # holds folder used to create whole structure
@@ -701,15 +701,15 @@ AXIS[&quot;Y&quot;,NORTH]]</SRS>\
         >>> l_doc = Doc(msg_dir)
         >>> r = l_doc.rectangle
         >>> r
-        Rectangle(Coord(196723.00, 311495.00), Coord(196970.00, 311731.00))
+        Rectangle(Coord(194154.00, 465849.00), Coord(194270.00, 465914.00))
         >>> r.lowerLeftCorner
-        Coord(196723.00, 311495.00)
+        Coord(194154.00, 465849.00)
         >>> r.upperRightCorner
-        Coord(196970.00, 311731.00)
+        Coord(194270.00, 465914.00)
         >>> r.pixelsWidth
-        3458
+        1624
         >>> r.pixelsHeight
-        3304
+        910
         """
         self.lowerLeftCorner = lowerLeftCoord
         self.upperRightCorner = upperRightCoord
@@ -729,7 +729,7 @@ AXIS[&quot;Y&quot;,NORTH]]</SRS>\
         >>> r.pixelsWidth = 3458
         >>> r.pixelsHeight = 3304
         >>> r.worldFileParameters()
-        (196723.0, 0.071428571428571425, 311731.0, -0.071428571428571425)
+        (196723.0, 0.07142857142857142, 311731.0, -0.07142857142857142)
         """
         ll = self.lowerLeftCorner
         ur = self.upperRightCorner
@@ -758,22 +758,21 @@ class Company:
         usage:
         >>> l_doc = Doc(msg_dir)
         >>> l_doc.netOwners
-        [Company('KPN B.V.'), Company('ENEXIS BV')]
-        >>> l_kpn = l_doc.netOwners[0]
-        >>> l_kpn
-        Company('KPN B.V.')
-        >>> l_kpn.name
-        'KPN B.V.'
-        >>> l_kpn.shortName
-        'KPN'
-        >>> l_kpn.telNrDamage
-        '033-1234123'
-        >>> l_kpn.telNrProblemIT
-        '033-1234567'
-        >>> l_kpn.contactPerson
-        Person('KPN KLIC-loket')
-        >>> l_kpn.themes
-        [Theme('datatransport')]
+        [Company('Liander'), Company('APELDOORN'), Company('Eurofiber'), Company('KPN'), Company('Reggefiber'), Company('Tele2'), Company('trent'), Company('upc'), Company('Vitens')]
+        >>> l_company = l_doc.netOwners[0]
+        >>> l_company
+        Company('Liander')
+        >>> l_company.name
+        'Liander'
+        >>> l_company.shortName
+        'Liander'
+        >>> l_company.telNrDamage
+        >>> l_company.telNrProblemIT
+        '0800-9009'
+        >>> l_company.contactPerson
+        Person('Gis Data Klic')
+        >>> l_company.themes
+        [Theme('middenspanning'), Theme('gas lage druk'), Theme('laagspanning')]
         """
         self.name = name
         self.shortName = None
@@ -795,21 +794,20 @@ class Person:
         usage:
         >>> l_doc = Doc(msg_dir)
         >>> l_doc.netOwners
-        [Company('KPN B.V.'), Company('ENEXIS BV')]
-        >>> l_kpn = l_doc.netOwners[0]
-        >>> l_kpn
-        Company('KPN B.V.')
-        >>> l_person = l_kpn.contactPerson
+        [Company('Liander'), Company('APELDOORN'), Company('Eurofiber'), Company('KPN'), Company('Reggefiber'), Company('Tele2'), Company('trent'), Company('upc'), Company('Vitens')]
+        >>> l_company = l_doc.netOwners[0]
+        >>> l_company
+        Company('Liander')
+        >>> l_person = l_company.contactPerson
         >>> l_person
-        Person('KPN KLIC-loket')
+        Person('Gis Data Klic')
         >>> l_person.name
-        'KPN KLIC-loket'
+        'Gis Data Klic'
         >>> l_person.email
-        'klic@kpn.com'
+        'infoklic@alliander.com'
         >>> l_person.telephone
-        '0302553334'
+        '0611382570'
         >>> l_person.fax
-        '0302553605'
         """
         self.name = name
         self.telephone = None
@@ -830,22 +828,20 @@ class Theme:
 
         usage:
         >>> l_doc = Doc(msg_dir)
-        >>> l_doc.netOwners
-        [Company('KPN B.V.'), Company('ENEXIS BV')]
         >>> l_cmp = l_doc.netOwners[0]
         >>> l_cmp
-        Company('KPN B.V.')
+        Company('Liander')
         >>> l_cmp.themes
-        [Theme('datatransport')]
+        [Theme('middenspanning'), Theme('gas lage druk'), Theme('laagspanning')]
         >>> t = l_cmp.themes[0]
         >>> t
-        Theme('datatransport')
+        Theme('middenspanning')
         >>> t.name
-        'datatransport'
+        'middenspanning'
         >>> t.supervisionNecessary
         'false'
         >>> t.supervisors
-        [Person('T. Oezichthouder')]
+        [Person('None')]
         """
         self.owner = p_owner
         self.name = p_name
@@ -985,12 +981,14 @@ if __name__ == "__main__":
     print "test_dir:", l_test_dir
     if not os.path.exists(l_test_dir):
         os.mkdir(l_test_dir)
-    msg_dir = os.path.join(l_test_dir,"09G267447_1")
+    msg_dir = os.path.join(l_test_dir,"14G166926_1")
     if not os.path.exists(msg_dir):
         # download and unzip testmsg in testdir
         import urllib2, zipfile
-        url = "http://www.klicviewer.nl/09G267447_1.zip"
+        url = "https://www.kadaster.nl/documents/20838/87975/\
+KLIC+proefbestand+Klic+viewer/0ffdb475-bd96-43c6-bf71-d639bad14a1c"
         l_remote_file = urllib2.urlopen(url)
+        #l_file_name = os.path.join(l_test_dir,os.path.basename(url))
         l_file_name = os.path.join(l_test_dir,os.path.basename(url))
         l_file = open(l_file_name, "wb")
         l_file.write(l_remote_file.read())

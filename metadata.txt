@@ -2,12 +2,14 @@
 [general]
 name=KLIC Viewer
 qgisMinimumVersion=2.0
+qgisMaximumVersion=2.18
 description=View the result of a B4Udig request of the Netherlands to prevent damage
 about=When you want to dig mechanically In the Netherlands you are obliged to request information on the area where you want to dig. The information on the network you receive can be viewed in QGIS. Information includes raster + letters + detaildrawings in pdf. 
 version=1.4.2
 author=Diethard Jansen
 email=hulp@gis-hulp.nl
 changelog:
+    1.4.3   added maximum version needed for upgrade
     1.4.2   fixed issue concerning character encoding
     1.4.1   Added a webpage for this site and improved metadata.txt
     1.4.0   New version for qgis 2.0, changed name from WION result viewer to KLIC viewer, help function streamlined with QGIS

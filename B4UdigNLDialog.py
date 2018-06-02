@@ -19,10 +19,11 @@ email                : diethard.jansen at gmail.com
  ***************************************************************************/
 """
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QSettings, SIGNAL, pyqtSignature
+from PyQt4.QtGui import QDialog, QFileDialog, QMessageBox, QListWidgetItem, \
+     QTreeWidgetItem
 import qgis
-from qgis.core import *
+from qgis.core import QgsProject
 from ui_B4UdigNL import Ui_B4UdigNL
 import wv, ifaceqgis, os
 import unzip, zipfile, pickle

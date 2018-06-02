@@ -19,9 +19,9 @@ email                : diethard.jansen at gmail.com
  ***************************************************************************/
 """
 # Import the PyQt and QGIS libraries
-from PyQt4.QtCore import * 
-from PyQt4.QtGui import *
-from qgis.core import *
+from PyQt4.QtCore import QSettings, QTranslator, QObject, SIGNAL
+from PyQt4.QtGui import QApplication, QAction, QIcon
+from qgis.core import QgsApplication
 # Initialize Qt resources from file resources.py
 import qrc_resources
 # Add translations to translator
