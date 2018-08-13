@@ -60,6 +60,8 @@ class Doc():
         
         usage:
         >>> l_doc = Doc(msg_dir)
+        >>> l_doc.version
+        '1.5'
         >>> l_doc.klicnummer
         '14G166926'
         >>> l_doc.meldingsoort
@@ -77,6 +79,7 @@ class Doc():
         # holds interface to gis.   
         self.__iface = None
         self.layers = None
+        self.version = None
         self.klicnummer = None
         self.meldingsoort = None
         self.polygon = None
@@ -86,8 +89,8 @@ class Doc():
         self.layerGroups = {}
         self.themes = {}
         # find and read xml file holding metadata
-        xml_file = self._xml_file()
-        self._parse_xml(xml_file)
+        xml_files = self._xml_files()
+        self._parse_xml_files(xml_files)
         # set layers and create world files
         self._setLayers()
         self._setAdditionalFiles()
@@ -114,26 +117,36 @@ class Doc():
 
     path = property(fget=_path)
     
-    def _xml_file(self):
-        """gives back xml_file containing metadata"""
+    
+    def _xml_files(self):
+        """gives back xml_files containing metadata"""
         sourceDir = self.path
         allFiles = os.listdir(sourceDir)
+        xmlFiles =[]
         xmlFile = ""
         for x in allFiles:
             if ".xml" in x and not ".aux.xml" in x:
                 xmlFile = x
-                break
-        xmlFile = os.path.join(sourceDir,xmlFile)
-        return xmlFile
+                xmlFile = os.path.join(sourceDir,xmlFile)
+                xmlFiles.append(xmlFile)
+        return xmlFiles
+
+    def _parse_xml_files(self, xmlFiles):
+        """fill attributes of Doc from given xml files"""
+        for xmlFile in xmlFiles:
+            self._parse_xml(xmlFile)
 
     def _parse_xml(self, xmlFile):
-        """fill attributes of Doc from given xml file"""
+        """fill attributes of Doc from a given xml file"""
         xmlObj = xml2obj.Xml2Obj()
         topElement = xmlObj.Parse(xmlFile)
         # filter out everything we want to store in this object
         for i_el in topElement.getElements():
             l_name = i_el.name
-            if l_name == "lev:Klicnummer":
+            if l_name == "lev:Version":
+                self.version = i_el.getData()
+                self.klicnummer = '123456'
+            elif l_name == "lev:Klicnummer":
                 self.klicnummer = i_el.getData()
             elif l_name == "lev:Meldingsoort":
                 self.meldingsoort = i_el.getData()
@@ -143,6 +156,8 @@ class Doc():
                 self._processPngformaat(i_el)
             elif l_name == "lev:NetbeheerderLeveringen":
                 self._processNetbeheerders(i_el)
+            # from version 2.1 the LI**.xml contains information
+            # on contents and paths and has changed a lot!
 
     def _processLocatie(self, xmlElement):
         """process xml element with tag lev:Locatie"""

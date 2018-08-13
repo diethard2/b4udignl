@@ -526,7 +526,7 @@ class B4UdigNLDialog(QDialog):
         l_errorMsg = self.tr("Geselecteerde folder bevat geen goed\n\
         KLIC bericht of kan niet worden geopend!")
         QMessageBox.warning(self, l_titleMsg, l_errorMsg)
-        
+
     def _openPdf(self, pdfItem):
         """use name of PDF to get right pdf and open it"""
         l_pdfName = unicode(pdfItem.text(0))
@@ -542,6 +542,8 @@ class B4UdigNLDialog(QDialog):
         l_list = l_ui.msgListWidget
         l_list.clear()
         for i_doc in self.__wvs:
+            QMessageBox.information(self, "Add message",
+                                    "Add klic message" + i_doc.klicnummer)
             l_klicnummer = i_doc.klicnummer
             l_item = QListWidgetItem(l_klicnummer)
             l_list.addItem(l_item)
