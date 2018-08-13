@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="test" xmlns:gml="http://www.opengis.net/gml/3.2">
+
+<gml:Point gml:id="Point_0" srsName="urn:ogc:def:crs:EPSG::28992">
+  <gml:pos>155000.000 388030.000</gml:pos>
+</gml:Point>
+
+<gml:LineString gml:id="Line_2" srsName="urn:ogc:def:crs:EPSG::28992">
+ <gml:posList>155038.000 388070.000 155022.000 388070.000</gml:posList>
+</gml:LineString>
+
+<gml:Envelope srsName="urn:ogc:def:crs:EPSG::28992" srsDimension="2">
+  <gml:lowerCorner>154980.0 387980.0</gml:lowerCorner>
+  <gml:upperCorner>155120.0 388140.0</gml:upperCorner>
+</gml:Envelope>
+
+<gml:Polygon srsName="urn:ogc:def:crs:EPSG::28992">
+  <gml:exterior>
+    <gml:LinearRing>
+      <gml:posList srsDimension="2" count="5">80089.798 383288.255 81816.255 383744.931 82005.608 381650.906 80769.242 381394.722 80089.798 383288.255</gml:posList>
+    </gml:LinearRing>
+  </gml:exterior>
+  <gml:interior>
+    <gml:LinearRing>
+      <gml:posList srsDimension="2" count="5">80758.104 383310.532 81704.871 383455.332 81348.441 382809.303 80802.658 382820.441 80758.104 383310.532</gml:posList>
+    </gml:LinearRing>
+  </gml:interior>
+</gml:Polygon>
+
+<gml:Polygon srsName="urn:ogc:def:crs:EPSG::28992">
+  <gml:exterior>
+    <gml:LinearRing>
+      <gml:posList srsDimension="3" count="5">253680.97 576716.1 0.0 253679.11 576736.32 0.0 253667.39 576735.3 0.0 253669.21 576715.11 0.0 253680.97 576716.1 0.0</gml:posList>
+    </gml:LinearRing>
+  </gml:exterior>
+  <gml:interior>
+    <gml:LinearRing>
+      <gml:posList srsDimension="3" count="5">253679.875 576724.723 0.0 253671.753 576723.992 0.0 253671.406 576727.849 0.0 253679.528 576728.58 0.0 253679.875 576724.723 0.0</gml:posList>
+    </gml:LinearRing>
+  </gml:interior>
+</gml:Polygon>
+
+<gml:MultiSurface srsName="urn:ogc:def:crs:EPSG::28992">
+  <gml:surfaceMember>
+    <gml:Polygon>
+      <gml:exterior>
+        <gml:LinearRing>
+          <gml:posList srsDimension="2" count="5">180001.576 580918.246 186053.377 581436.193 186462.283 578137.688 180328.700 577510.700 180001.576 580918.246</gml:posList>
+        </gml:LinearRing>
+      </gml:exterior>
+      <gml:interior>
+        <gml:LinearRing>
+          <gml:posList srsDimension="2" count="4">181733.025 579596.742 181911.214 579873.924 182049.805 579576.943 181733.025 579596.742</gml:posList>
+        </gml:LinearRing>
+      </gml:interior>
+      <gml:interior>
+        <gml:LinearRing>
+          <gml:posList srsDimension="2" count="4">185257.193 579586.843 185366.086 579784.830 185534.375 579636.339 185257.193 579586.843</gml:posList>
+        </gml:LinearRing>
+      </gml:interior>
+    </gml:Polygon>
+  </gml:surfaceMember>
+  <gml:surfaceMember>
+    <gml:Polygon>
+      <gml:exterior>
+        <gml:LinearRing>
+          <gml:posList srsDimension="2" count="5">184247.460 577379.288 185435.382 577735.665 185544.274 577112.006 184445.447 576914.019 184247.460 577379.288</gml:posList>
+        </gml:LinearRing>
+      </gml:exterior>
+    </gml:Polygon>
+  </gml:surfaceMember>
+</gml:MultiSurface>
+</gml:FeatureCollection>
