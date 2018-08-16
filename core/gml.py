@@ -23,7 +23,7 @@ from xml_utils import *
 def wkt_coords_from_gml(gml_coords):
     wkt_coords = ""
     count = 0
-    values = gml_coords.split(' ')
+    values = gml_coords.split()
     for value in values:
         count += 1
         if count % 2 == 1:
@@ -33,7 +33,7 @@ def wkt_coords_from_gml(gml_coords):
     return wkt_coords[:-2]
 
 def coords_2d_from_3d(gml_coords_text):
-    xyz = gml_coords_text.split(' ')
+    xyz = gml_coords_text.split()
     xy = []
     l_count = 0
     for i_coord in xyz:
@@ -58,7 +58,7 @@ class GmlBase(B_XmlProcessor):
         if self._is_poslist_3d(elem):
             return coords_2d_from_3d(elem.text)
         else:
-            return elem.text
+            return ' '.join(elem.text.split())
             
     def _is_poslist_3d(self, elem):
         is_3d = False

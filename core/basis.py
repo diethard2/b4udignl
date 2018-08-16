@@ -18,7 +18,6 @@
  ***************************************************************************/
 """
 from xml_utils import *
-import gml
 
 class B_Field(object):
     """general attribute object, fields are created for target collection"""
@@ -27,7 +26,7 @@ class B_Field(object):
     ALL_TYPES = GEOMETRY_TYPES + ("TEXT", "INTEGER", "REAL")
 
 
-    def __init__(self, field_name, field_type, from_tag, to_object=None, is_mandatory=True,
+    def __init__(self, field_name, field_type, from_tag, from_attribute=None,to_object=None, is_mandatory=True,
                  is_key_field=False):
         """create field object
 
@@ -42,7 +41,8 @@ class B_Field(object):
         """
         self.__name = field_name
         self.__type = None
-        self.__from_tag = from_tag        
+        self.__from_tag = from_tag
+        self.__from_attribute = from_attribute
         # set field value using object.. i.e. gml polygon -> wkt geometry
         self.__to_object = to_object
         self.__is_mandatory = is_mandatory
@@ -94,6 +94,12 @@ class B_Field(object):
     from_tag = property(fget=_from_tag,
                         doc="tag found in xml to create field from")
 
+    def _from_attribute(self):
+        return self.__from_attribute
+
+    from_attribute = property(fget=_from_attribute,
+                              doc="attribute to find in xml element")
+
     def _to_object(self):
         return self.__to_object
 
@@ -111,13 +117,20 @@ to get value frome")
         
     def set_value_from_xml(self, xml_element):
         """Convert contents of xml_element into field value."""
-        if self.to_object is None:
-            self.value = xml_element.text
-        else:
+        if self.to_object is not None:
             if self.from_tag == clean_tag(xml_element.tag):
                 an_object = self.to_object()
                 an_object.process(xml_element)
-                self.value = an_object.as_text()
+                self.value = an_object.as_text()            
+        elif self.from_attribute is not None:
+            for i_key, i_value in xml_element.attrib.items():
+                if clean_tag(i_key) == self.from_attribute:
+                    self.value = i_value
+                    break
+        else:
+            self.value = xml_element.text
+        if self.value is None:
+            self.value = ''
             
     def sql_value(self):
         value = self.value
@@ -212,11 +225,23 @@ class B_Object(B_XmlProcessor):
 
     def csv_header(self):
         """Return the csv_header."""
-        return ";".join(self.field_names())
+        csv_header = ""
+        field_names_size = len(self.field_names())
+        if field_names_size == 1:
+            csv_header = self.field_names()[0]
+        elif field_names_size > 1:
+            csv_header = ";".join(self.field_names())
+        return csv_header 
 
     def as_csv(self):
         '''Returns CSV line to write a record for current object.'''
-        return ";".join(self.field_values())
+        csv_header = ""
+        field_names_size = len(self.field_names())
+        if field_names_size == 1:
+            csv_header = self.field_values()[0]
+        elif field_names_size > 1:
+            csv_header = ";".join(self.field_values())
+        return csv_header 
 
     def as_sql(self):
         '''Gives SQL insert statement to insert record for current object'''
