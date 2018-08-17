@@ -25,6 +25,60 @@ import gml
 from basis import B_Object, B_Field
 from xml_utils import B_XmlProcessor, clean_tag
 
+# for old version of IMKL messages (before 1-1-2019)
+def leveringsInformatie():
+    obj = B_Object("LeveringsInformatie")
+    obj.add_field(B_Field("version", "TEXT", "Version"))
+    obj.add_field(B_Field("klicnummer", "TEXT", "Klicnummer", is_key_field=True)))
+    obj.add_field(B_Field("orderNummer", "TEXT", "Ordernummer"))
+    obj.add_field(B_Field("meldingsoort", "TEXT", "Meldingsoort"))
+    obj.add_field(B_Field("graafpolygoon", "POLYGON", "IMKL_Locatie",
+                          to_object=gml.Polygon))
+    obj.add_field(B_Field("omsluitendeRechthoek", "POLYGON", "Pngformaat",
+                          to_object=Pngformaat))    
+    obj.add_tags_to_process()
+    return obj
+
+class IMKL_Locatie(B_XmlProcessor):
+    """ To process an xml_element as an object, because structure is a
+    bit too complicated to extract value from
+    """
+    def __init__(self):
+        B_XmlProcessor.__init__(self)
+        self.geom_text=''
+
+    def process(self, xml_element):
+        polygon = gml.Polygon()
+        polygon._process_polygon(xml_element)
+        self.geom_text = polygon.as_wkt()
+
+     def as_text(self):
+        return self.geom_text    
+    
+class Pngformaat(B_XmlProcessor):
+    """ To process an xml_element as an object, because structure is a
+    bit too complicated to extract value from
+    """
+    
+    def __init__(self):
+        B_XmlProcessor.__init__(self)
+        self.geom_text=''
+        self.pixels_width=0
+        self.pixels_heigth=0
+
+    def process(self, xml_element):
+        for i_elem in xml_element:
+            tag = clean_tag(i_elem)
+            if tag == 'OmsluitendeRechthoek':
+                polygon = gml.Envelope()
+                polygon.process(i_elem)
+                self.geom_text = polygon.as_wkt()
+
+    def as_text(self):
+        return self.geom_text
+
+
+# for new version of IMKL messages (after 1-1-2019)
 def aanduidingEisVoorzorgsmaatregel():
     obj = B_Object("AanduidingEisVoorzorgsmaatregel")
     obj.add_field(B_Field("id", "TEXT", "identificatie",
@@ -39,7 +93,8 @@ def extraGeometrie():
     obj.add_field(B_Field("registratiedatum", "TEXT", "beginLifespanVersion"))
     obj.add_field(B_Field("network_id", "TEXT", "inNetwork",
                           from_attribute='href'))
-    obj.add_field(B_Field("vlakgeometrie", "POLYGON", "vlakgeometrie2D",to_object=gml.Polygon))
+    obj.add_field(B_Field("vlakgeometrie", "POLYGON", "vlakgeometrie2D",
+                          to_object=gml.Polygon))
     obj.add_tags_to_process()
     return obj
 
@@ -128,20 +183,3 @@ class IMKL_Id(B_XmlProcessor):
     def as_text(self):
         return self.id
 
-class IMKL_Extractor(B_XmlProcessor):
-    """ To process an xml_element as an object, because structure is a
-    bit too complicated to extract value from
-    """
-    
-    def __init__(self):
-        B_XmlProcessor.__init__(self)
-        self.link_id = ""                
-
-    def process(self, xml_element):
-        for i_key, i_value in xml_element.attrib.items():
-            if clean_tag(i_key) == 'href':
-                self.link_id = i_value
-                break
-    
-    def as_text(self):
-        return self.link_id

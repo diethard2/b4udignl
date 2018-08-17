@@ -26,9 +26,9 @@ It should be created using the path to the folder that contain
 all png files and pdf documents that will be made available in application.
 (i.e. opensource desktop GIS/ web application).
 
-This WION Viewer plugin named b4udig is a responds to the
-free klicviewer that the Dutch National Cartographic Agency supplies.
-It lacks some features that are available in all OSS Desktop GIS like
+This WION Viewer plugin named b4udignl was a reaction to the first versions of
+the free klicviewer that the Dutch National Cartographic Agency supplies.
+It lacked some important basic features that are available in QGIS like
 a coordinate systems, measuring and the possibility to load design drawings.
 
 Author: Diethard Jansen, 14-3-2010
@@ -36,13 +36,14 @@ Author: Diethard Jansen, 14-3-2010
 
 
 import os, wv
+import imkl
 import xml2obj
 
 WIN = "startfile" in dir(os)
 Ubuntu = os.environ.get('GNOME_DESKTOP_SESSION_ID') != None
 
 
-msg_dir = os.path.join(os.path.dirname(wv.__file__), "testMsg\\09G267447_1")
+##msg_dir = os.path.join(os.path.dirname(wv.__file__), "testMsg\\09G267447_1")
 """hold path to directory with test message, to be used for testing purposes only!!
 
 using doc_test with >> python wv.py -v
@@ -129,6 +130,7 @@ class Doc():
                 xmlFile = x
                 xmlFile = os.path.join(sourceDir,xmlFile)
                 xmlFiles.append(xmlFile)
+        print(xmlFiles)
         return xmlFiles
 
     def _parse_xml_files(self, xmlFiles):
@@ -136,6 +138,9 @@ class Doc():
         for xmlFile in xmlFiles:
             self._parse_xml(xmlFile)
 
+    def _parse_xml2(self, xmlFile):
+        """fill attributes of Doc from a given xml file"""
+        
     def _parse_xml(self, xmlFile):
         """fill attributes of Doc from a given xml file"""
         xmlObj = xml2obj.Xml2Obj()
