@@ -154,6 +154,10 @@ class Polygon(GmlBase):
                 tag = clean_tag(i_elem.tag)
                 if tag == "Polygon":
                     self._process_polygon(i_elem)
+                elif tag =="exterior":
+                    self._process_exterior(i_elem)
+                elif tag == "interior":
+                    self._process_interior(i_elem)
                 
     def _process_polygon(self, elem):
         for i_elem in elem:
@@ -208,11 +212,13 @@ class MultiPolygon(GmlBase):
         self._add_tags_to_process()
 
     def _add_tags_to_process(self):
+        print "in MultiPolygon._add_tags_to_process(self)"
         for i_tag in ("MultiSurface", "surfaceMember"):
             self.add_tag_method_to_process(i_tag, self.process)
         self.add_tag_method_to_process("Polygon", self._process_Polygon)
 
     def _process_Polygon(self, elem):
+        print "in MultiPolygon.process_Polygon()"
         a_polygon = Polygon()
         a_polygon.process(elem)
         self.polygons.append(a_polygon)

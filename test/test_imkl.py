@@ -18,18 +18,127 @@
 """
 import sys, os
 path_core = os.path.join(os.path.dirname(__file__), '..')
-##path_core = os.path.join(path_core, 'core')
 sys.path.append(path_core)
 
 import unittest
 from core import imkl, gml, xml_utils
 import xml.etree.ElementTree as ET
 
+class LeveringsInformatieTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test reading LeveringsInformatie xml-tag
+        this is part of the old klic message (before 01-01-2019).
+        """
+        # read the file
+        xml_file = open("../testMsg/14G166926_1/LI_14G166926_1.xml")
+        self.xml_element = ET.fromstring(xml_file.read())
+        self.leveringsInformatie = imkl.leveringsInformatie()
+        self.leveringsInformatie.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.leveringsInformatie.field_names(),
+                         ['version', 'klicnummer', 'ordernummer',
+                          'meldingsoort','datumTijdAanvraag',
+                          'klantReferentie', 'graafpolygoon'])
+
+    def test_field_values(self):
+        self.assertEqual(self.leveringsInformatie.field_values(),
+                         ['1.5', '14G166926', '9805738757',
+                          'Graafmelding', '2014-04-30T14:07:00.000+02:00',
+                          'KADASTER TESTMELDING',
+                          'Polygon((194154 465912, 194154 465849, 194270 465850, 194269 465914, 194154 465912))'])
+        
+    def test_omsluitendeRechthoek(self):
+        obj = self.leveringsInformatie
+        omsluitende_rechthoek = obj.field("omsluitendeRechthoek").value
+        self.assertEqual(omsluitende_rechthoek.field_values(),
+                         ['Polygon(194154 465849, 194154 465914, \
+194270 465914, 194270 465849, 194154 465849)', '1624', '910'])
+
+    def test_layer_names(self):
+        obj = self.leveringsInformatie
+        netbeheerders = obj.field("netbeheerderLeveringen").value
+        layer_names = []
+        for netbeheerder in netbeheerders:
+            themas = netbeheerder.field("themas").value
+            if themas is not None:
+                for thema in themas:
+                    ligging = thema.field("ligging").value
+                    maatvoering = thema.field("maatvoering").value
+                    annotatie = thema.field("annotatie").value
+                    for theme_layer in (ligging, maatvoering, annotatie):
+                        if theme_layer is not None:
+                            layer_name = theme_layer.field("bestandsnaam").value
+                            layer_names.append(layer_name)
+        self.maxDiff = None
+        self.assertEqual(layer_names,
+                         ['LG_middenspanning_Liander_0000574962_14G166926.png',
+                          'MV_middenspanning_Liander_0000574962_14G166926.png',
+                          'AN_middenspanning_Liander_0000574962_14G166926.png',
+                          'LG_gas+lage+druk_Liander_0000574962_14G166926.png',
+                          'MV_gas+lage+druk_Liander_0000574962_14G166926.png',
+                          'AN_gas+lage+druk_Liander_0000574962_14G166926.png',
+                          'LG_laagspanning_Liander_0000574962_14G166926.png',
+                          'MV_laagspanning_Liander_0000574962_14G166926.png',
+                          'AN_laagspanning_Liander_0000574962_14G166926.png',
+                          'LG_riool+vrijverval_APELDOORN_0000586326_14G166926.png',
+                          'LG_datatransport_KPN_0000546663_14G166926.png',
+                          'MV_datatransport_KPN_0000546663_14G166926.png',
+                          'AN_datatransport_KPN_0000546663_14G166926.png',
+                          'LG_datatransport_trent_0000585212_14G166926.png',
+                          'MV_datatransport_trent_0000585212_14G166926.png',
+                          'AN_datatransport_trent_0000585212_14G166926.png',
+                          'LG_water_Vitens_0000552354_14G166926.png',
+                          'AN_water_Vitens_0000552354_14G166926.png'])
+
+    def test_pdf_names(self):
+        obj = self.leveringsInformatie
+        netbeheerders = obj.field("netbeheerderLeveringen").value
+        pdfs = []
+        pdf_names = []
+        for netbeheerder in netbeheerders:
+            themas = netbeheerder.field("themas").value
+            if themas is not None:
+                for thema in themas:
+                    aansluitschetsen = thema.field("huisaansluitschetsen").value
+                    if aansluitschetsen is not None:
+                        pdfs.extend(aansluitschetsen)
+                    themabijlagen = thema.field("themaBijlagen").value
+                    if themabijlagen is not None:
+                        pdfs.extend(themabijlagen)
+            bijlagen = netbeheerder.field("bijlagen").value
+            if bijlagen is not None:
+                pdfs.extend(bijlagen)
+            pdf_names = [pdf.field("bestandsnaam").value for pdf in pdfs]
+        self.maxDiff = None
+        self.assertEqual(pdf_names,
+                         ['HA_laagspanning_Liander_0000574962_14G166926_7334DP_701.pdf',
+                          'BL_Liander_0000574962_14G166926_BriefAlgemeen.pdf',
+                          'BL_Liander_0000574962_14G166926_OntwerpContouren.pdf',
+                          'BL_APELDOORN_0000586326_14G166926_Graafantwoord.pdf',
+                          'BL_Eurofiber_0000560460_14G166926_Brief-GeenBelang.pdf',
+                          'HA_datatransport_KPN_0000546663_14G166926_7334DP_701.PDF',
+                          'TB_datatransport_KPN_0000546663_14G166926_Waterkruisingen.PDF',
+                          'BL_KPN_0000546663_14G166926_Brief-belang.PDF',
+                          'BL_Reggefiber_0000579733_14G166926_Brief-GeenBelang.pdf',
+                          'BL_Tele2_0000546705_14G166926_Brief-GeenBelang.pdf',
+                          'BL_trent_0000585212_14G166926_brief.pdf',
+                          'BL_upc_0000565862_14G166926_brief.pdf',
+                          'BL_upc_0000565862_14G166926_voorwaarden.pdf',
+                          'HA_water_Vitens_0000552354_14G166926_7334+DP_701.pdf',
+                          'BL_Vitens_0000552354_14G166926_BriefAlgemeenMetOverzichtskaart.pdf'
+                          ])
+     
+_suite_leveringsInformatie = unittest.TestLoader().loadTestsFromTestCase(LeveringsInformatieTestCase)
+
 class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
 
     def setUp(self):
         """
-        unit test to test gml.Point
+        unit test to test reading OlieGasChemicalienPijpleiding XML
         """
         # read the file
         xml_file = open("data/18G007160_1/BuisGevaarlijkeInhoud.xml")
@@ -112,7 +221,8 @@ nl.imkl-nbact1.un00057;Polygon((155052.000 388010.000, \
     
 _suite_extraGeometrie = unittest.TestLoader().loadTestsFromTestCase(ExtraGeometrieTestCase)
 
-unit_test_suites = [_suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie]
+unit_test_suites = [_suite_leveringsInformatie,
+                    _suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

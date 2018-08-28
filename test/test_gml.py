@@ -16,9 +16,12 @@
  *                                                                         *
  ***************************************************************************/
 """
+import sys, os
+path_core = os.path.join(os.path.dirname(__file__), '..')
+sys.path.append(path_core)
+
 import unittest
-from core import gml
-from core.xml_utils import *
+from core import gml, xml_utils
 import xml.etree.ElementTree as ET
 
 class PointTestCase(unittest.TestCase):
@@ -28,9 +31,9 @@ class PointTestCase(unittest.TestCase):
         unit test to test gml.Point
         """
         # read the file
-        xml_file = open("test/data/gml/gml_geometries.xml")
+        xml_file = open("data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
-        self.xml_element = find_xml_with_tag(root, "Point", None)
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Point", None)
         self.point = gml.Point()
         self.point.process(self.xml_element)
         xml_file.close()
@@ -55,9 +58,9 @@ class LineStringTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("test/data/gml/gml_geometries.xml")
+        xml_file = open("data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
-        self.xml_geometry = find_xml_with_tag(root, "LineString", None)
+        self.xml_geometry = xml_utils.find_xml_with_tag(root, "LineString", None)
         self.linestring = gml.LineString()
         self.linestring.process(self.xml_geometry)
         xml_file.close()        
@@ -84,9 +87,9 @@ class EnvelopeTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("test/data/gml/gml_geometries.xml")
+        xml_file = open("data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
-        self.xml_geometry = find_xml_with_tag(root, "Envelope", None)
+        self.xml_geometry = xml_utils.find_xml_with_tag(root, "Envelope", None)
         self.envelope = gml.Envelope()
         self.envelope.process(self.xml_geometry)
         xml_file.close()        
@@ -117,9 +120,9 @@ class PolygonTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("test/data/gml/gml_geometries.xml")
+        xml_file = open("data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
-        self.xml_geometry = find_xml_with_tag(root, "Polygon", None)
+        self.xml_geometry = xml_utils.find_xml_with_tag(root, "Polygon", None)
         self.polygon = gml.Polygon()
         self.polygon.process(self.xml_geometry)
         xml_file.close()        
@@ -153,9 +156,9 @@ class MultiPolygonTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("test/data/gml/gml_geometries.xml")
+        xml_file = open("data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
-        self.xml_geometry = find_xml_with_tag(root, "MultiSurface", None)
+        self.xml_geometry = xml_utils.find_xml_with_tag(root, "MultiSurface", None)
         self.multipolygon = gml.MultiPolygon()
         self.multipolygon.process(self.xml_geometry)
         xml_file.close()        
@@ -191,9 +194,9 @@ class Polygon3DTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("test/data/gml/pand.xml")
+        xml_file = open("data/gml/pand.xml")
         root = ET.fromstring(xml_file.read())
-        self.xml_geometry = find_xml_with_tag(root, "pandGeometrie", None)
+        self.xml_geometry = xml_utils.find_xml_with_tag(root, "pandGeometrie", None)
         self.polygon = gml.Polygon()
         self.polygon.process(self.xml_geometry)
         xml_file.close()        

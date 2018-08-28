@@ -29,54 +29,98 @@ from xml_utils import B_XmlProcessor, clean_tag
 def leveringsInformatie():
     obj = B_Object("LeveringsInformatie")
     obj.add_field(B_Field("version", "TEXT", "Version"))
-    obj.add_field(B_Field("klicnummer", "TEXT", "Klicnummer", is_key_field=True)))
-    obj.add_field(B_Field("orderNummer", "TEXT", "Ordernummer"))
+    obj.add_field(B_Field("klicnummer", "TEXT", "Klicnummer",
+                          is_key_field=True))
+    obj.add_field(B_Field("ordernummer", "TEXT", "Ordernummer"))
     obj.add_field(B_Field("meldingsoort", "TEXT", "Meldingsoort"))
-    obj.add_field(B_Field("graafpolygoon", "POLYGON", "IMKL_Locatie",
+    obj.add_field(B_Field("datumTijdAanvraag", "TEXT", "DatumTijdAanvraag"))
+    obj.add_field(B_Field("klantReferentie", "TEXT", "KlantReferentie"))
+    obj.add_field(B_Field("graafpolygoon", "POLYGON", "Locatie",
                           to_object=gml.Polygon))
-    obj.add_field(B_Field("omsluitendeRechthoek", "POLYGON", "Pngformaat",
-                          to_object=Pngformaat))    
+    obj.add_field(B_Field("omsluitendeRechthoek", "OBJECT", "Pngformaat",
+                          to_object=pngformaat))
+    obj.add_field(B_Field("netbeheerderLeveringen", "CONTAINER",
+                          "NetbeheerderLeveringen",
+                          to_object=netbeheerderLevering))
     obj.add_tags_to_process()
     return obj
 
-class IMKL_Locatie(B_XmlProcessor):
-    """ To process an xml_element as an object, because structure is a
-    bit too complicated to extract value from
-    """
-    def __init__(self):
-        B_XmlProcessor.__init__(self)
-        self.geom_text=''
+def pngformaat():
+    pngFormaat = B_Object("Pngformaat")
+    pngFormaat.add_field(B_Field("omsluitendeRechthoek", "POLYGON",
+                                       "OmsluitendeRechthoek",
+                                       to_object=gml.Envelope))
+    pngFormaat.add_field(B_Field("pixelsBreed", "TEXT", "PixelsBreed"))
+    pngFormaat.add_field(B_Field("pixelsHoog", "TEXT", "PixelsHoog"))
+    pngFormaat.add_tags_to_process()
+    return pngFormaat
 
-    def process(self, xml_element):
-        polygon = gml.Polygon()
-        polygon._process_polygon(xml_element)
-        self.geom_text = polygon.as_wkt()
+def netbeheerderLevering():
+    obj = B_Object("NetbeheerderLevering")
+    obj.add_field(B_Field("bedrijfsnaam", "TEXT", "Bedrijfsnaam"))
+    obj.add_field(B_Field("bedrijfsnaamAfkorting", "TEXT",
+                          "BedrijfsnaamAfkorting"))
+    obj.add_field(B_Field("contact", "OBJECT", "Contact", to_object=contact))
+    obj.add_field(B_Field("contactpersoon", "OBJECT",
+                          "ContactPersoon", to_object=contact))
+    obj.add_field(B_Field("belangAanwezig", "TEXT", "BelangAanwezig"))
+    obj.add_field(B_Field("storingsnummer", "TEXT", "Storingsnummer"))
+    obj.add_field(B_Field("beschadigingsnummer", "TEXT", "Beschadigingsnummer"))
+    obj.add_field(B_Field("themas", "CONTAINER", "Themas", to_object=thema))
+    obj.add_field(B_Field("bijlagen", "CONTAINER", "Bijlagen",
+                          to_object=bijlage))
+    obj.add_tags_to_process()
+    return obj
 
-     def as_text(self):
-        return self.geom_text    
-    
-class Pngformaat(B_XmlProcessor):
-    """ To process an xml_element as an object, because structure is a
-    bit too complicated to extract value from
-    """
-    
-    def __init__(self):
-        B_XmlProcessor.__init__(self)
-        self.geom_text=''
-        self.pixels_width=0
-        self.pixels_heigth=0
+def contact():
+    obj = B_Object("Contact")
+    obj.add_field(B_Field("naam", "TEXT", "Naam"))
+    obj.add_field(B_Field("telefoon", "TEXT",
+                                    "Telefoon"))
+    obj.add_field(B_Field("Email", "TEXT", "Email"))
+    obj.add_tags_to_process()
+    return obj                    
 
-    def process(self, xml_element):
-        for i_elem in xml_element:
-            tag = clean_tag(i_elem)
-            if tag == 'OmsluitendeRechthoek':
-                polygon = gml.Envelope()
-                polygon.process(i_elem)
-                self.geom_text = polygon.as_wkt()
+def toezichthouder():
+    obj = contact()
+    obj.name = "Toezichthouder"
+    return obj
 
-    def as_text(self):
-        return self.geom_text
+def bijlage():
+    a_bijlage = B_Object("Bijlage")
+    a_bijlage.add_field(B_Field("bestandsnaam", "TEXT", "Bestandsnaam"))
+    a_bijlage.add_tags_to_process()
+    return a_bijlage
 
+def huisaansluiting():
+    obj = bijlage()
+    obj.name = "Huisaansluitschets"
+    return obj
+
+def themaBijlage():
+    obj = bijlage()
+    obj.name = "ThemaBijlage"
+    return obj
+
+def thema():
+    a_thema = B_Object("Thema")
+    a_thema.add_field(B_Field("themanaam", "TEXT", "Themanaam"))
+    a_thema.add_field(B_Field("toezichthouders", "CONTAINER",
+                              "Toezichthouders", to_object=toezichthouder))
+    a_thema.add_field(B_Field("EisVoorzorgmaatregel", "TEXT",
+                              "EisVoorzorgmaatregel"))
+    a_thema.add_field(B_Field("ligging", "OBJECT",
+                              "Ligging", to_object=bijlage))
+    a_thema.add_field(B_Field("maatvoering", "OBJECT",
+                              "Maatvoering", to_object=bijlage))
+    a_thema.add_field(B_Field("annotatie", "OBJECT",
+                              "Annotatie", to_object=bijlage))
+    a_thema.add_field(B_Field("huisaansluitschetsen", "CONTAINER",
+                              "Huisaansluitschetsen", to_object=huisaansluiting))
+    a_thema.add_field(B_Field("themaBijlagen", "CONTAINER",
+                              "ThemaBijlagen", to_object=themaBijlage))
+    a_thema.add_tags_to_process()
+    return a_thema                    
 
 # for new version of IMKL messages (after 1-1-2019)
 def aanduidingEisVoorzorgsmaatregel():
