@@ -39,7 +39,6 @@ import xml.etree.ElementTree as ET
 from core import imkl, xml_utils
 from qgis.core import QgsGeometry
 
-#import xml2obj
 
 WIN = "startfile" in dir(os)
 Ubuntu = os.environ.get('GNOME_DESKTOP_SESSION_ID') != None
@@ -60,19 +59,6 @@ class Doc():
         Creates whole structure using XML file in given directory.
         Creates world files that are used in GIS systems to show rasterfiles.
         Interface to GIS is delegated to attribute iface.
-        
-        usage:
-        >>> l_doc = Doc(msg_dir)
-        >>> l_doc.version
-        '1.5'
-        >>> l_doc.klicnummer
-        '14G166926'
-        >>> l_doc.meldingsoort
-        'Graafmelding'
-        >>> l_doc.netOwners
-        [Company('Liander'), Company('APELDOORN'), Company('Eurofiber'), Company('KPN'), Company('Reggefiber'), Company('Tele2'), Company('trent'), Company('upc'), Company('Vitens')]
-        >>> l_doc.layers
-        [Layer('GB_14G166926.png'), Layer('ET_KPN_0000546663_14G166926.png'), Layer('ET_Liander_0000574962_14G166926.png'), Layer('PT_KPN_0000546663_14G166926.png'), Layer('LG_datatransport_KPN_0000546663_14G166926.png'), Layer('LG_datatransport_trent_0000585212_14G166926.png'), Layer('LG_gas+lage+druk_Liander_0000574962_14G166926.png'), Layer('LG_laagspanning_Liander_0000574962_14G166926.png'), Layer('LG_middenspanning_Liander_0000574962_14G166926.png'), Layer('LG_riool+vrijverval_APELDOORN_0000586326_14G166926.png'), Layer('LG_water_Vitens_0000552354_14G166926.png'), Layer('MV_datatransport_KPN_0000546663_14G166926.png'), Layer('MV_datatransport_trent_0000585212_14G166926.png'), Layer('MV_gas+lage+druk_Liander_0000574962_14G166926.png'), Layer('MV_laagspanning_Liander_0000574962_14G166926.png'), Layer('MV_middenspanning_Liander_0000574962_14G166926.png'), Layer('AN_datatransport_KPN_0000546663_14G166926.png'), Layer('AN_datatransport_trent_0000585212_14G166926.png'), Layer('AN_gas+lage+druk_Liander_0000574962_14G166926.png'), Layer('AN_laagspanning_Liander_0000574962_14G166926.png'), Layer('AN_middenspanning_Liander_0000574962_14G166926.png'), Layer('AN_water_Vitens_0000552354_14G166926.png')]
         """
 
         # holds folder used to create whole structure
@@ -131,7 +117,6 @@ class Doc():
                 xmlFile = x
                 xmlFile = os.path.join(sourceDir,xmlFile)
                 xmlFiles.append(xmlFile)
-##        print(xmlFiles)
         return xmlFiles
 
     def _parse_xml_files(self, xmlFiles):
@@ -609,15 +594,6 @@ class Layer:
 class Coord:
     def __init__(self, p_x=0, p_y=0):
         """Initialises new instance of Coord with optional x & y value
-
-        >>> c1 = Coord(4,5)
-        >>> c1.x
-        4
-        >>> c1.y
-        5
-        >>> c1.x = 6
-        >>> c1.x
-        6
         """
         self.x = p_x
         self.y = p_y
@@ -656,20 +632,6 @@ AXIS[&quot;Y&quot;,NORTH]]</SRS>\
     def __init__(self, lowerLeftCoord=Coord(), upperRightCoord=Coord()):
         """Initialises new instance of Rectangle with optional lowerLeftCoord
         & upperRightCoord
-
-        usage:
-        >>> l_doc = Doc(msg_dir)
-        >>> r = l_doc.rectangle
-        >>> r
-        Rectangle(Coord(194154.00, 465849.00), Coord(194270.00, 465914.00))
-        >>> r.lowerLeftCorner
-        Coord(194154.00, 465849.00)
-        >>> r.upperRightCorner
-        Coord(194270.00, 465914.00)
-        >>> r.pixelsWidth
-        1624
-        >>> r.pixelsHeight
-        910
         """
         self.lowerLeftCorner = lowerLeftCoord
         self.upperRightCorner = upperRightCoord
@@ -691,14 +653,6 @@ AXIS[&quot;Y&quot;,NORTH]]</SRS>\
 
     def worldFileParameters(self):
         """returns essential parameters needed to create world files
-
-        >>> r = Rectangle()
-        >>> r.lowerLeftCorner = Coord(196723.0, 311495.0)
-        >>> r.upperRightCorner = Coord(196970.0, 311731.0)
-        >>> r.pixelsWidth = 3458
-        >>> r.pixelsHeight = 3304
-        >>> r.worldFileParameters()
-        (196723.0, 0.07142857142857142, 311731.0, -0.07142857142857142)
         """
         ll = self.lowerLeftCorner
         ur = self.upperRightCorner
@@ -723,23 +677,6 @@ class Company:
         The netowner provide all information, including contactpersons
         rasters with positions of pipeline, pdf's with accompanying letters
         additional drawings etcetera...
-
-        usage:
-        >>> l_doc = Doc(msg_dir)
-        >>> l_company = l_doc.netOwners[0]
-        >>> l_company
-        Company('Liander')
-        >>> l_company.name
-        'Liander'
-        >>> l_company.shortName
-        'Liander'
-        >>> l_company.telNrDamage
-        >>> l_company.telNrProblemIT
-        '0800-9009'
-        >>> l_company.contactPerson
-        Person('Gis Data Klic')
-        >>> l_company.themes
-        [Theme('middenspanning'), Theme('gas lage druk'), Theme('laagspanning')]
         """
         self.name = name
         self.shortName = None
@@ -757,24 +694,6 @@ class Person:
     def __init__(self, name=None):
         """Person which can be a contactperson from the netowner.
         It can hold information like name/email/telnr/fax
-
-        usage:
-        >>> l_doc = Doc(msg_dir)
-        >>> l_doc.netOwners
-        [Company('Liander'), Company('APELDOORN'), Company('Eurofiber'), Company('KPN'), Company('Reggefiber'), Company('Tele2'), Company('trent'), Company('upc'), Company('Vitens')]
-        >>> l_company = l_doc.netOwners[0]
-        >>> l_company
-        Company('Liander')
-        >>> l_person = l_company.contactPerson
-        >>> l_person
-        Person('Gis Data Klic')
-        >>> l_person.name
-        'Gis Data Klic'
-        >>> l_person.email
-        'infoklic@alliander.com'
-        >>> l_person.telephone
-        '0611382570'
-        >>> l_person.fax
         """
         self.name = name
         self.telephone = None
@@ -792,23 +711,6 @@ class Theme:
         """Theme presenting a kind of network, like water or datatransport
         Holds also information if supervision is neccesary during works i.e.
         for Gas pipelines and information on supervisor that will attend.
-
-        usage:
-        >>> l_doc = Doc(msg_dir)
-        >>> l_cmp = l_doc.netOwners[0]
-        >>> l_cmp
-        Company('Liander')
-        >>> l_cmp.themes
-        [Theme('middenspanning'), Theme('gas lage druk'), Theme('laagspanning')]
-        >>> t = l_cmp.themes[0]
-        >>> t
-        Theme('middenspanning')
-        >>> t.name
-        'middenspanning'
-        >>> t.supervisionNecessary
-        'false'
-        >>> t.supervisors
-        [Person('None')]
         """
         self.owner = p_owner
         self.name = p_name
@@ -899,7 +801,7 @@ class Theme:
             if imkl_layer is not None:
                 layer_file = imkl_layer.field('bestandsnaam').value
                 layer_file = os.path.join(msg_dir, layer_file)
-                self.layers.append(Layer(self, layer_file))
+                self.layers.append(Layer(self.owner, layer_file))
 
     def _set_theme_docs(self, msg_dir, imkl_theme):
         pdf_files = []
@@ -968,7 +870,7 @@ class LayerGroup:
 
         
 if __name__ == "__main__":
-    import os, doctest, wv
+    import os, wv
     l_my_dir = os.path.dirname(wv.__file__)
     l_test_dir = os.path.join(l_my_dir,"testMsg")
     print "test_dir:", l_test_dir
@@ -989,4 +891,3 @@ KLIC+proefbestand+Klic+viewer/0ffdb475-bd96-43c6-bf71-d639bad14a1c"
         z = zipfile.ZipFile(l_file_name)
         z.extractall(l_test_dir)
         z.close
-    doctest.testmod()
