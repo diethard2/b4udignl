@@ -1,9 +1,9 @@
 """
 /***************************************************************************
- Unit test suite to test gml geometry objects.
+ Unit test suite to test imkl objects.
  -------------------
- begin                : 26-06-2015
- copyright            : (C) 2015 by Diethard Jansen
+ begin                : 01-08-2018
+ copyright            : (C) 2018 by Diethard Jansen
  email                : Diethard.Jansen at Gmail.com
  ***************************************************************************/
 
@@ -34,32 +34,32 @@ class LeveringsInformatieTestCase(unittest.TestCase):
         # read the file
         xml_file = open("../testMsg/14G166926_1/LI_14G166926_1.xml")
         self.xml_element = ET.fromstring(xml_file.read())
-        self.leveringsInformatie = imkl.leveringsInformatie()
-        self.leveringsInformatie.process(self.xml_element)
+        self.leveringsinformatie = imkl.leveringsinformatie()
+        self.leveringsinformatie.process(self.xml_element)
         xml_file.close()
 
     def test_field_names(self):
-        self.assertEqual(self.leveringsInformatie.field_names(),
+        self.assertEqual(self.leveringsinformatie.field_names(),
                          ['version', 'klicnummer', 'ordernummer',
                           'meldingsoort','datumTijdAanvraag',
                           'klantReferentie', 'graafpolygoon'])
 
     def test_field_values(self):
-        self.assertEqual(self.leveringsInformatie.field_values(),
+        self.assertEqual(self.leveringsinformatie.field_values(),
                          ['1.5', '14G166926', '9805738757',
                           'Graafmelding', '2014-04-30T14:07:00.000+02:00',
                           'KADASTER TESTMELDING',
                           'Polygon((194154 465912, 194154 465849, 194270 465850, 194269 465914, 194154 465912))'])
         
     def test_omsluitendeRechthoek(self):
-        obj = self.leveringsInformatie
+        obj = self.leveringsinformatie
         omsluitende_rechthoek = obj.field("omsluitendeRechthoek").value
         self.assertEqual(omsluitende_rechthoek.field_values(),
-                         ['Polygon(194154 465849, 194154 465914, \
-194270 465914, 194270 465849, 194154 465849)', '1624', '910'])
+                         ['Polygon((194154 465849, 194154 465914, \
+194270 465914, 194270 465849, 194154 465849))', '1624', '910'])
 
     def test_layer_names(self):
-        obj = self.leveringsInformatie
+        obj = self.leveringsinformatie
         netbeheerders = obj.field("netbeheerderLeveringen").value
         layer_names = []
         for netbeheerder in netbeheerders:
@@ -95,7 +95,7 @@ class LeveringsInformatieTestCase(unittest.TestCase):
                           'AN_water_Vitens_0000552354_14G166926.png'])
 
     def test_pdf_names(self):
-        obj = self.leveringsInformatie
+        obj = self.leveringsinformatie
         netbeheerders = obj.field("netbeheerderLeveringen").value
         pdfs = []
         pdf_names = []

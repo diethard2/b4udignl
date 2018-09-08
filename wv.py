@@ -34,10 +34,12 @@ a coordinate systems, measuring and the possibility to load design drawings.
 Author: Diethard Jansen, 14-3-2010
 """
 
-
 import os, wv
-import imkl
-import xml2obj
+import xml.etree.ElementTree as ET
+from core import imkl, xml_utils
+from qgis.core import QgsGeometry
+
+#import xml2obj
 
 WIN = "startfile" in dir(os)
 Ubuntu = os.environ.get('GNOME_DESKTOP_SESSION_ID') != None
@@ -67,8 +69,6 @@ class Doc():
         '14G166926'
         >>> l_doc.meldingsoort
         'Graafmelding'
-        >>> l_doc.polygon
-        [Coord(194154.00, 465912.00), Coord(194154.00, 465849.00), Coord(194270.00, 465850.00), Coord(194269.00, 465914.00), Coord(194154.00, 465912.00)]
         >>> l_doc.netOwners
         [Company('Liander'), Company('APELDOORN'), Company('Eurofiber'), Company('KPN'), Company('Reggefiber'), Company('Tele2'), Company('trent'), Company('upc'), Company('Vitens')]
         >>> l_doc.layers
@@ -79,7 +79,9 @@ class Doc():
         self.__path = os.path.realpath(path_message)
         # holds interface to gis.   
         self.__iface = None
-        self.layers = None
+        # holds all information in imkl objects
+        self.imkls = {}
+        self.layers = []
         self.version = None
         self.klicnummer = None
         self.meldingsoort = None
@@ -118,7 +120,6 @@ class Doc():
 
     path = property(fget=_path)
     
-    
     def _xml_files(self):
         """gives back xml_files containing metadata"""
         sourceDir = self.path
@@ -130,174 +131,136 @@ class Doc():
                 xmlFile = x
                 xmlFile = os.path.join(sourceDir,xmlFile)
                 xmlFiles.append(xmlFile)
-        print(xmlFiles)
+##        print(xmlFiles)
         return xmlFiles
 
     def _parse_xml_files(self, xmlFiles):
         """fill attributes of Doc from given xml files"""
         for xmlFile in xmlFiles:
             self._parse_xml(xmlFile)
+            self._set_attributes_from_imkl()
 
-    def _parse_xml2(self, xmlFile):
-        """fill attributes of Doc from a given xml file"""
-        
     def _parse_xml(self, xmlFile):
         """fill attributes of Doc from a given xml file"""
-        xmlObj = xml2obj.Xml2Obj()
-        topElement = xmlObj.Parse(xmlFile)
-        # filter out everything we want to store in this object
-        for i_el in topElement.getElements():
-            l_name = i_el.name
-            if l_name == "lev:Version":
-                self.version = i_el.getData()
-                self.klicnummer = '123456'
-            elif l_name == "lev:Klicnummer":
-                self.klicnummer = i_el.getData()
-            elif l_name == "lev:Meldingsoort":
-                self.meldingsoort = i_el.getData()
-            elif l_name == "lev:Locatie":
-                self._processLocatie(i_el)
-            elif l_name == "lev:Pngformaat":
-                self._processPngformaat(i_el)
-            elif l_name == "lev:NetbeheerderLeveringen":
-                self._processNetbeheerders(i_el)
-            # from version 2.1 the LI**.xml contains information
-            # on contents and paths and has changed a lot!
+        xml_stream = open(xmlFile)
+        xml_element = ET.fromstring(xml_stream.read())
+        tag = xml_utils.clean_tag(xml_element.tag)
+##        print "tag = ", tag
+        if tag == "Leveringsinformatie":
+            obj = imkl.leveringsinformatie()
+            obj.process(xml_element)
+            self.imkls[tag] = obj
+        xml_stream.close()
 
-    def _processLocatie(self, xmlElement):
-        """process xml element with tag lev:Locatie"""
-        for i_el in xmlElement.getElements():
-            if i_el.name == "gml:exterior":
-                for i_el2 in i_el.getElements():
-                    if i_el2.name == "gml:LinearRing":
-                        for i_el3 in i_el2.getElements():
-                            if i_el3.name == "gml:posList":
-                                self._processPosList(i_el3)
+    def _set_attributes_from_imkl(self):
+        if self.imkls.has_key("Leveringsinformatie"):
+            imkl_obj = self.imkls["Leveringsinformatie"]
+            self._set_from_old_imkl(imkl_obj)
+        else:
+            for imkl_obj in self.imkls.items():
+                self._set_from_imkl(imkl_obj)
 
-    def _processPosList(self, xmlElement):
-        """process xml element with tag gml:posList"""
-        l_pointList = xmlElement.getData().split()
-        l_coords = []
-        l_points = len(l_pointList)
-        for i in range(0,l_points-1,2):
-            l_x = float(l_pointList[i])
-            l_y = float(l_pointList[i+1])
-            l_coord = Coord(l_x, l_y)
-            l_coords.append(l_coord)
-        self.polygon = l_coords
-        
-    def _processPngformaat(self, xmlElement):
-        """process xml element with tag lev:Pngformaat"""
+    def _set_from_imkl(self, imkl_obj):
+        pass
+
+    def _set_from_old_imkl(self, imkl_obj):
+##        print "in _set_from_old_imkl()"
+        self.version = imkl_obj.field("version").value
+        self.klicnummer = imkl_obj.field("klicnummer").value
+        self.meldingsoort = imkl_obj.field("meldingsoort").value
+        self.polygon = imkl_obj.field("graafpolygoon").value
+        omsluitende_rechthoek = imkl_obj.field("omsluitendeRechthoek").value
+        wkt = omsluitende_rechthoek.field("omsluitendeRechthoek").value
+        width = omsluitende_rechthoek.field("pixelsBreed").value
+        height = omsluitende_rechthoek.field("pixelsHoog").value
         self.rectangle = Rectangle()
-        for i_el in xmlElement.getElements():
-            l_name = i_el.name
-            if l_name == "lev:OmsluitendeRechthoek":
-                for i_el2 in i_el.getElements():
-                    if "Envelope" in i_el2.name:
-                        self._processEnvelope(i_el2)
-            elif l_name == "lev:PixelsBreed":
-                self.rectangle.pixelsWidth = int(i_el.getData())
-            elif l_name == "lev:PixelsHoog":
-                self.rectangle.pixelsHeight = int(i_el.getData())
-                        
-    def _processEnvelope(self, xmlElement):
-        """
-        process xml element with tag Envelope
-        This is vital to be able to georefence included PNG images
-        in Dig Alert message received.
-        """
-        for i_el in xmlElement.getElements():
-            l_name = i_el.name
-            l_list = i_el.getData().split()
-            l_xy = [float(s) for s in l_list]
-            l_coord = Coord(l_xy[0],l_xy[1])
-            if "lowerCorner" in l_name:
-                self.rectangle.lowerLeftCorner=l_coord
-            elif "upperCorner" in l_name:
-                self.rectangle.upperRightCorner=l_coord
+        self.rectangle.setFromWkt(wkt)
+        self.rectangle.pixelsWidth = int(width)
+        self.rectangle.pixelsHeight = int(height)
+        netowner_deliveries = imkl_obj.field("netbeheerderLeveringen").value
+        for netowner_delivery in netowner_deliveries:
+            self._process_netowner_delivery(netowner_delivery)
 
-    def _processNetbeheerders(self, xmlElement):
-        """process xml element with tag lev:NetbeheerderLeveringen"""
-        for i_el in xmlElement.getElements():
-            if i_el.name == "lev:NetbeheerderLevering":
-                self._processNetbeheerder(i_el)
+    def _process_netowner_delivery(self, netowner):
+##        print "in _process_netowner_delivery()"
+        netOwner = Company()
+        netOwner.name = netowner.field("bedrijfsnaam").value
+        netOwner.shortName = netowner.field("bedrijfsnaam").value
+        netOwner.telNrProblemIT = netowner.field("storingsnummer").value
+        netOwner.telNrDamage = netowner.field("beschadigingsnummer").value
+        
+        contactpersoon = netowner.field("contactpersoon").value
+        if contactpersoon is not None:
+            person = self._process_person(contactpersoon)
+            netOwner.contactPerson = person
+            
+        imkl_themes = netowner.field("themas").value
+        if imkl_themes is not None:
+            themes = self._process_themes(imkl_themes)
+            netOwner.themes = themes
+
+        imkl_docs = netowner.field("bijlagen").value
+        if imkl_docs is not None:
+            docs = self._process_imkl_docs(imkl_docs)
+            self.pdfFiles.extend(docs)
+
+        for topo_name in ("topo", "plan_topo"):
+            imkl_topo = netowner.field(topo_name).value
+            if imkl_topo is not None:
+                filename = imkl_topo.field("bestandsnaam").value
+                layer_file = os.path.join(self.path, filename)
+                self.layers.append(Layer(self, layer_file))
+
+        self.netOwners.append(netOwner)
+
+    def _process_person(self, imkl_person):
+        person = None
+        if imkl_person is not None:
+            person = Person()
+            person.name = imkl_person.field("naam").value
+            person.telephone = imkl_person.field("telefoon").value
+            person.email = imkl_person.field("email").value
+            person.fax = imkl_person.field("fax").value
+        return person
                 
-    def _processNetbeheerder(self, xmlElement):
-        """process xml element with tag lev:NetbeheerderLevering"""
-        l_netOwner = Company()
-        for i_el in xmlElement.getElements():
-            l_name = i_el.name
-            if l_name == "lev:Bedrijfsnaam":
-                l_netOwner.name = i_el.getData()
-            elif l_name == "lev:BedrijfsnaamAfkorting":
-                l_netOwner.shortName = i_el.getData()
-            elif l_name == "lev:Storingsnummer":
-                l_netOwner.telNrProblemIT = i_el.getData()
-            elif l_name == "lev:Beschadigingsnummer":
-                l_netOwner.telNrDamage = i_el.getData()
-            elif l_name == "lev:Contactpersoon":
-                l_person = self._processPerson(i_el)
-                l_netOwner.contactPerson = l_person
-            elif l_name == "lev:Themas":
-                l_themes = self._processThemas(i_el)
-                l_netOwner.themes = l_themes
-        self.netOwners.append(l_netOwner)
-                
-    def _processThemas(self, xmlElement):
+    def _process_themes(self, imkl_themes):
         """
-        process xml element with tag lev:Themas
-        returns a list of Theme objects belonging to a netowner
+        process a list of imkl_themes and return a list of wv.Theme objects
         """
-        l_themes = []
-        for i_el in xmlElement.getElements():
-            l_theme = self._processThema(i_el)
-            l_themes.append(l_theme)
-        return l_themes
+        themes = []
+        for imkl_theme in imkl_themes:
+            theme = self._process_theme(imkl_theme)
+            themes.append(theme)
+        return themes
 
-    def _processThema(self, xmlElement):
-        """
-        process xml element being a single theme
-        return an object Theme with information from xml file
-        """
-        l_theme = Theme(self)
-        for i_el in xmlElement.getElements():
-            l_name = i_el.name
-            if l_name == "lev:Themanaam":
-                l_theme.name = i_el.getData()
-            elif l_name == "lev:EisVoorzorgmaatregel":
-                l_theme.supervisionNecessary = i_el.getData()
-            elif l_name == "lev:Toezichthouders":
-                l_theme.supervisors = self._processSupervisors(i_el)
-        return l_theme
+    def _process_theme(self, imkl_theme):
+        theme = Theme(self)
+        theme.name = imkl_theme.field("themanaam").value
+        theme.supervisionNecessary = imkl_theme.field("eisVoorzorgmaatregel").value
+        imkl_toezichthouders = imkl_theme.field("toezichthouders").value
+        if imkl_toezichthouders is not None:
+            persons = self._process_persons(imkl_toezichthouders)
+            theme.supervisors = persons
+        theme._set_theme_layers(self.path, imkl_theme)
+        theme._set_theme_docs(self.path, imkl_theme)
+        return theme
 
-    def _processSupervisors(self, xmlElement):
-        """
-        process xml element with tag lev:Toezichthouders
-        returns a list of Person objects that are indeed supervisors.
-        """
-        l_supervisors = []
-        for i_el in xmlElement.getElements():
-            l_supervisor = self._processPerson(i_el)
-            l_supervisors.append(l_supervisor)
-        return l_supervisors
+    def _process_persons(self, imkl_persons):
+        persons = []
+        for imkl_person in imkl_persons:
+            person = self._process_person(imkl_person)
+            persons.append(person)
+        return persons
 
-    def _processPerson(self, xmlElement):
-        """
-        process xml element being a person
-        returns a Person object with information read from xml.
-        """
-        l_person = Person()
-        for i_el in xmlElement.getElements():
-            l_name = i_el.name
-            if l_name == "lev:Naam":
-                l_person.name = i_el.getData()
-            if l_name == "lev:Telefoon":
-                l_person.telephone = i_el.getData()
-            if l_name == "lev:Email":
-                l_person.email = i_el.getData()
-            if l_name == "lev:Fax":
-                l_person.fax = i_el.getData()
-        return l_person
+    def _process_imkl_docs(self, imkl_docs):
+        docs = []
+        for imkl_doc in imkl_docs:
+            pdf_name = imkl_doc.field("bestandsnaam").value
+            pdf_file = PdfFile(pdf_name)
+            pdf_file.type = imkl_doc.name
+            pdf_file.filePath = os.path.join(self.path, pdf_name)
+            docs.append(pdf_file)
+        return docs
 
     def _setLayers(self):
         """
@@ -306,20 +269,19 @@ class Doc():
         priority so when we load them they are loaded in exactly
         the right order. 
         """
-        l_sourceDir = self.path
-        l_allFiles = os.listdir(l_sourceDir)
-        # find pgn files using list comprehension
-        l_pngFiles = [x for x in l_allFiles if x.endswith(".png")]
-        l_layerFiles = []
-        for i_pngFile in l_pngFiles:
-            for i_prefix in Layer.layerPriority:
-                if i_pngFile.startswith(i_prefix):
-                    l_layerFiles.append(i_pngFile)
-        l_layerFiles = [os.path.join(l_sourceDir,x) for x in l_layerFiles]
-        l_layers = [Layer(self, x) for x in l_layerFiles]
-        l_layers.sort()
+        # find pgn files in themes
+        layers = []
+        for netowner in self.netOwners:
+            for theme in netowner.themes:
+                layers.extend(theme.layers)
+        # add 1 layer not included in xml (but it should be included!)
+        kadaster_png =  'GB_' + self.klicnummer + '.png'
+        file_png = os.path.join(self.path, kadaster_png)
+        layer = Layer(self, file_png)
+        layers.append(layer)
         # set attribute layers with sorted list op PNG files.
-        self.layers = l_layers
+        self.layers.extend(layers)
+        self.layers.sort()
         
     def _setAdditionalFiles(self):
         """
@@ -328,31 +290,9 @@ class Doc():
         Again these are sorted in groups so it will be easy for
         user to find quickly right document.
         """
-        l_sourceDir = self.path
-        l_allFiles = os.listdir(l_sourceDir)
-        # find pdfn files using list comprehension
-        l_file_extensions = (".PDF", ".pdf")
-        l_pdfFiles = []
-        for i_file in l_allFiles:
-            for i_ext in l_file_extensions:
-                if i_file.endswith(i_ext):
-                    l_pdfFiles.append(i_file)
-                    break
-                
-        l_starters = {"BL_": "Algemene Bijlage",
-                      "DK_": "Detailkaart",
-                      "HA_": "Huisaansluitschets",
-                      "TB_": "Thema Bijlage",
-                      "EV_": "Eis-Voorzorgsmaatregel"}
-              
-        for i_pdfFile in l_pdfFiles:
-            l_key = i_pdfFile[:3]
-            if l_starters.has_key(l_key):
-                l_pdfFile = PdfFile(i_pdfFile)
-                l_pdfFile.type = l_starters[l_key]
-                l_pdfFile.filePath = os.path.join(l_sourceDir,i_pdfFile)
-                self.pdfFiles.append(l_pdfFile)
-
+        # find pdf files in themes
+        for theme in self.themes:
+            self.pdFiles.extend(theme.pdf_files)
         self.pdfFiles.sort()
 
     def _setThemes(self):
@@ -740,6 +680,15 @@ AXIS[&quot;Y&quot;,NORTH]]</SRS>\
         """Represenation of rectangle that can be used to reproduce object"""
         return "Rectangle(%s, %s)" % (self.lowerLeftCorner, self.upperRightCorner)
 
+    def setFromWkt(self, wkt):
+        """set lowerLeftCorner or upperRightCorner from polyon in WKT format
+        """
+##        print "wkt: ", wkt
+        geom = QgsGeometry.fromWkt(wkt)
+        bb = geom.boundingBox()
+        self.lowerLeftCorner = Coord(bb.xMinimum(), bb.yMinimum())
+        self.upperRightCorner = Coord(bb.xMaximum(), bb.yMaximum())
+
     def worldFileParameters(self):
         """returns essential parameters needed to create world files
 
@@ -777,8 +726,6 @@ class Company:
 
         usage:
         >>> l_doc = Doc(msg_dir)
-        >>> l_doc.netOwners
-        [Company('Liander'), Company('APELDOORN'), Company('Eurofiber'), Company('KPN'), Company('Reggefiber'), Company('Tele2'), Company('trent'), Company('upc'), Company('Vitens')]
         >>> l_company = l_doc.netOwners[0]
         >>> l_company
         Company('Liander')
@@ -868,6 +815,7 @@ class Theme:
         self.supervisionNecessary = None
         self.supervisors = []
         self.layers = []
+        self.pdf_docs = []
         self.__visible = 0
 
     def __repr__(self):
@@ -942,6 +890,31 @@ class Theme:
         # refresh state of visibility and return!
         # Result value should be 0 (all off) or 2 (all on)
         return self.checkVisible()
+
+    def _set_theme_layers(self, msg_dir, imkl_theme):
+        layer_names = [name.lower() for name in Layer.layerGroupNames.keys()]
+        layer_names.remove("topo")
+        for layer_name in layer_names:
+            imkl_layer = imkl_theme.field(layer_name).value
+            if imkl_layer is not None:
+                layer_file = imkl_layer.field('bestandsnaam').value
+                layer_file = os.path.join(msg_dir, layer_file)
+                self.layers.append(Layer(self, layer_file))
+
+    def _set_theme_docs(self, msg_dir, imkl_theme):
+        pdf_files = []
+        pdf_fields = ("detailkaarten", "huisaansluitschetsen", "themaBijlagen")
+        for pdf_field in pdf_fields:
+            a_container = imkl_theme.field(pdf_field).value
+##            print pdf_field, a_container
+            if a_container is not None:
+##                print a_container
+                for pdf_object in a_container:
+                    file_name = pdf_object.field("bestandsnaam").value
+                    pdfFile = PdfFile(file_name)
+                    pdfFile.type = pdf_object.name
+                    pdfFile.filePath = os.path.join(msg_dir, file_name)
+                    self.pdf_docs.append(pdfFile)     
 
 class PdfFile:
     def __init__(self, name=None):

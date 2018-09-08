@@ -104,8 +104,8 @@ class EnvelopeTestCase(unittest.TestCase):
 
     def test_as_wkt(self):
         self.assertEqual(self.envelope.as_wkt(),
-                         'Polygon(154980.0 387980.0, 154980.0 388140.0, \
-155120.0 388140.0, 155120.0 387980.0, 154980.0 387980.0)')  
+                         'Polygon((154980.0 387980.0, 154980.0 388140.0, \
+155120.0 388140.0, 155120.0 387980.0, 154980.0 387980.0))')  
 
 _suite_envelope = unittest.TestLoader().loadTestsFromTestCase(EnvelopeTestCase)
                          

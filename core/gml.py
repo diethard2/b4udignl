@@ -131,7 +131,7 @@ class Envelope(GmlBase):
         xmax = self.xmax
         ymax = self.ymax
         coords = (xmin, ymin, xmin, ymax, xmax, ymax, xmax, ymin, xmin, ymin)
-        wkt = "Polygon(%s %s, %s %s, %s %s, %s %s, %s %s)" % coords
+        wkt = "Polygon((%s %s, %s %s, %s %s, %s %s, %s %s))" % coords
         return wkt
 
         
@@ -212,13 +212,13 @@ class MultiPolygon(GmlBase):
         self._add_tags_to_process()
 
     def _add_tags_to_process(self):
-        print "in MultiPolygon._add_tags_to_process(self)"
+##        print "in MultiPolygon._add_tags_to_process(self)"
         for i_tag in ("MultiSurface", "surfaceMember"):
             self.add_tag_method_to_process(i_tag, self.process)
         self.add_tag_method_to_process("Polygon", self._process_Polygon)
 
     def _process_Polygon(self, elem):
-        print "in MultiPolygon.process_Polygon()"
+##        print "in MultiPolygon.process_Polygon()"
         a_polygon = Polygon()
         a_polygon.process(elem)
         self.polygons.append(a_polygon)

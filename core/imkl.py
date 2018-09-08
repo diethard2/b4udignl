@@ -26,7 +26,7 @@ from basis import B_Object, B_Field
 from xml_utils import B_XmlProcessor, clean_tag
 
 # for old version of IMKL messages (before 1-1-2019)
-def leveringsInformatie():
+def leveringsinformatie():
     obj = B_Object("LeveringsInformatie")
     obj.add_field(B_Field("version", "TEXT", "Version"))
     obj.add_field(B_Field("klicnummer", "TEXT", "Klicnummer",
@@ -62,13 +62,15 @@ def netbeheerderLevering():
                           "BedrijfsnaamAfkorting"))
     obj.add_field(B_Field("contact", "OBJECT", "Contact", to_object=contact))
     obj.add_field(B_Field("contactpersoon", "OBJECT",
-                          "ContactPersoon", to_object=contact))
+                          "Contactpersoon", to_object=contact))
     obj.add_field(B_Field("belangAanwezig", "TEXT", "BelangAanwezig"))
     obj.add_field(B_Field("storingsnummer", "TEXT", "Storingsnummer"))
     obj.add_field(B_Field("beschadigingsnummer", "TEXT", "Beschadigingsnummer"))
     obj.add_field(B_Field("themas", "CONTAINER", "Themas", to_object=thema))
     obj.add_field(B_Field("bijlagen", "CONTAINER", "Bijlagen",
                           to_object=bijlage))
+    obj.add_field(B_Field("topo", "OBJECT", "EigenTopo", to_object=bijlage))
+    obj.add_field(B_Field("plan_topo", "OBJECT", "PlanTopo", to_object=bijlage))
     obj.add_tags_to_process()
     return obj
 
@@ -77,7 +79,8 @@ def contact():
     obj.add_field(B_Field("naam", "TEXT", "Naam"))
     obj.add_field(B_Field("telefoon", "TEXT",
                                     "Telefoon"))
-    obj.add_field(B_Field("Email", "TEXT", "Email"))
+    obj.add_field(B_Field("email", "TEXT", "Email"))
+    obj.add_field(B_Field("fax", "TEXT", "Fax"))
     obj.add_tags_to_process()
     return obj                    
 
@@ -92,7 +95,12 @@ def bijlage():
     a_bijlage.add_tags_to_process()
     return a_bijlage
 
-def huisaansluiting():
+def detailkaart():
+    obj = bijlage()
+    obj.name = "Detailkaart"
+    return obj
+
+def huisaansluitschets():
     obj = bijlage()
     obj.name = "Huisaansluitschets"
     return obj
@@ -107,7 +115,7 @@ def thema():
     a_thema.add_field(B_Field("themanaam", "TEXT", "Themanaam"))
     a_thema.add_field(B_Field("toezichthouders", "CONTAINER",
                               "Toezichthouders", to_object=toezichthouder))
-    a_thema.add_field(B_Field("EisVoorzorgmaatregel", "TEXT",
+    a_thema.add_field(B_Field("eisVoorzorgmaatregel", "TEXT",
                               "EisVoorzorgmaatregel"))
     a_thema.add_field(B_Field("ligging", "OBJECT",
                               "Ligging", to_object=bijlage))
@@ -115,8 +123,10 @@ def thema():
                               "Maatvoering", to_object=bijlage))
     a_thema.add_field(B_Field("annotatie", "OBJECT",
                               "Annotatie", to_object=bijlage))
+    a_thema.add_field(B_Field("detailkaarten", "CONTAINER",
+                              "Detailkaarten", to_object=detailkaart))
     a_thema.add_field(B_Field("huisaansluitschetsen", "CONTAINER",
-                              "Huisaansluitschetsen", to_object=huisaansluiting))
+                              "Huisaansluitschetsen", to_object=huisaansluitschets))
     a_thema.add_field(B_Field("themaBijlagen", "CONTAINER",
                               "ThemaBijlagen", to_object=themaBijlage))
     a_thema.add_tags_to_process()
