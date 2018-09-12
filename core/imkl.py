@@ -135,67 +135,88 @@ def thema():
 # for new version of IMKL messages (after 1-1-2019)
 def aanduidingEisVoorzorgsmaatregel():
     obj = B_Object("AanduidingEisVoorzorgsmaatregel")
-    obj.add_field(B_Field("id", "TEXT", "identificatie",
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
                           to_object=IMKL_Id, is_key_field=True))
+    obj.add_tags_to_process()
+    return obj
+
+def boundedBy():
+    obj = B_Object("boundedBy")
+    obj.add_field(B_Field("envelope", "POLYGON", "Envelope",
+                          to_object=gml.Envelope))
     obj.add_tags_to_process()
     return obj
 
 def extraGeometrie():
     obj = B_Object("ExtraGeometrie")
-    obj.add_field(B_Field("id", "TEXT", "identificatie",
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
                           to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "beginLifespanVersion"))
-    obj.add_field(B_Field("network_id", "TEXT", "inNetwork",
-                          from_attribute='href'))
-    obj.add_field(B_Field("vlakgeometrie", "POLYGON", "vlakgeometrie2D",
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("vlakgeometrie", "POLYGON", "Vlakgeometrie2D",
                           to_object=gml.Polygon))
     obj.add_tags_to_process()
     return obj
 
+
 def olieGasChemicalienPijpleiding():
     obj = B_Object("OlieGasChemicalienPijpleiding")
-    obj.add_field(B_Field("id", "TEXT", "inspireId",
+    obj.add_field(B_Field("id", "TEXT", "InspireId",
                           to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "beginLifespanVersion"))
-    obj.add_field(B_Field("network_id", "TEXT", "inNetwork",
-                          from_attribute='href'))
-    obj.add_field(B_Field("link_id", "TEXT", "link",
-                          from_attribute='href'))
-    obj.add_field(B_Field("status", "TEXT", "currentStatus",
-                          from_attribute='href'))
-    obj.add_field(B_Field("aanwezig_vanaf", "TEXT", "validFrom"))
-    obj.add_field(B_Field("vertical_position", "TEXT", "verticalPosition"))
-    obj.add_field(B_Field("diameter", "REAL", "pipeDiameter"))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("link_id", "TEXT", "Link",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("status", "TEXT", "CurrentStatus",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("aanwezig_vanaf", "TEXT", "ValidFrom"))
+    obj.add_field(B_Field("vertical_position", "TEXT", "VerticalPosition"))
+    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
 ##TODO maybe later, now I can not handle attribute and values in 1 XML-element
 ##     and output these in two separate fields.
 ##    obj.add_field(B_Field("diameter_eenheid", "TEXT", "pipeDiameter",
 ##                          from_attribute='uom'))
-    obj.add_field(B_Field("druk", "REAL", "pressure"))
+    obj.add_field(B_Field("druk", "REAL", "Pressure"))
 ##    obj.add_field(B_Field("druk_eenheid", "TEXT", "pressure",
 ##                          from_attribute='uom'))
-    obj.add_field(B_Field("fluid", "TEXT", "oilGasChemicalsProductType",
-                          from_attribute='href'))
-    obj.add_field(B_Field("geom_id", "TEXT", "extraGeometrie",
-                          from_attribute='href'))
-    obj.add_field(B_Field("label", "TEXT", "label"))
+    obj.add_field(B_Field("fluid", "TEXT", "OilGasChemicalsProductType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("geom_id", "TEXT", "ExtraGeometrie",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("label", "TEXT", "Label"))
     obj.add_tags_to_process()
     return obj
 
 def utiliteitsnet():
     obj = B_Object("utiliteitsnet")
-    obj.add_field(B_Field("id", "TEXT", "inspireId",
+    obj.add_field(B_Field("id", "TEXT", "InspireId",
                           to_object=IMKL_Id, is_key_field=True))
     obj.add_field(B_Field("naam_contactpersoon", "TEXT",
-                          "technischContactpersoon",
+                          "TechnischContactpersoon",
                           to_object=Unet_Contactpersoon))
     obj.add_field(B_Field("telefoon_contactpersoon", "TEXT",
-                          "technischContactpersoon",
+                          "TechnischContactpersoon",
                           to_object=Unet_Contactpersoon))
     obj.add_field(B_Field("email_contactpersoon", "TEXT",
-                          "technischContactpersoon",
+                          "TechnischContactpersoon",
                           to_object=Unet_Contactpersoon))
     obj.add_tags_to_process()
     return obj
+
+
+def bijlage_per_levering():
+    a_bijlage = B_Object("BijlagePerLevering")
+    a_bijlage.add_field(B_Field("soort_bijlage", "TEXT", "SoortBijlage"))
+    a_bijlage.add_field(B_Field("bestandlocatie", "TEXT", "BestandLocatie"))
+    a_bijlage.add_field(B_Field("bestandidentificator", "TEXT", "BestandIdentificator"))
+    a_bijlage.add_tags_to_process()
+    return a_bijlage
+
+def bijlage_per_netbeheerder():
+    a_bijlage = bijlage_per_levering()
+    a_bijlage.name = "BijlagePerNetbeheerder"
 
 def sql_creation_statements():
     sql_statements = []
@@ -223,9 +244,9 @@ class IMKL_Id(B_XmlProcessor):
     def _process_id(self, elem):
         for i_elem in elem:
             tag = clean_tag(i_elem.tag)
-            if tag == 'namespace':
+            if tag == 'Namespace':
                 self._process_namespace(i_elem)
-            elif tag in ('lokaalID', 'localId'):
+            elif tag in ('LokaalID', 'LocalId'):
                 self._process_localId(i_elem)
 
     def _process_namespace(self, elem):

@@ -74,10 +74,11 @@ class Point(B_XmlProcessor):
         B_XmlProcessor.__init__(self)
         self.coords = ""
         self.add_tag_method_to_process("Point", self.process)
-        self.add_tag_method_to_process("pos", self._process_pos)
+        self.add_tag_method_to_process("Pos", self._process_pos)
 
     def _process_pos(self, elem):
         '''From xml element pos derive the position of a GML Point'''
+##        print "in _process_pos()"
         coord_text = elem.text
         self.coords = coords_2d_from_3d(elem.text)
 
@@ -92,7 +93,7 @@ class LineString(GmlBase):
         GmlBase.__init__(self)
         self.coords = ""
         self.add_tag_method_to_process("LineString", self.process)
-        self.add_tag_method_to_process("posList", self._process_posList)
+        self.add_tag_method_to_process("PosList", self._process_posList)
 
     def _process_posList(self, elem):
         '''From xml element posList derive the coords'''        
@@ -113,8 +114,8 @@ class Envelope(GmlBase):
         self.xmax = ""
         self.ymax = ""
         self.add_tag_method_to_process("Envelope", self.process)
-        self.add_tag_method_to_process("lowerCorner", self._process_lowerCorner)
-        self.add_tag_method_to_process("upperCorner", self._process_upperCorner)
+        self.add_tag_method_to_process("LowerCorner", self._process_lowerCorner)
+        self.add_tag_method_to_process("UpperCorner", self._process_upperCorner)
 
     def _process_lowerCorner(self, elem):
         '''From xml element lowerCorner set the xmin and ymin'''
@@ -154,17 +155,17 @@ class Polygon(GmlBase):
                 tag = clean_tag(i_elem.tag)
                 if tag == "Polygon":
                     self._process_polygon(i_elem)
-                elif tag =="exterior":
+                elif tag =="Exterior":
                     self._process_exterior(i_elem)
-                elif tag == "interior":
+                elif tag == "Interior":
                     self._process_interior(i_elem)
                 
     def _process_polygon(self, elem):
         for i_elem in elem:
             tag = clean_tag(i_elem.tag)
-            if tag == "exterior":
+            if tag == "Exterior":
                     self._process_exterior(i_elem)
-            elif tag == "interior":
+            elif tag == "Interior":
                     self._process_interior(i_elem)
 
     def _process_exterior(self, elem):
@@ -182,7 +183,7 @@ class Polygon(GmlBase):
     def _process_LinearRing(self, elem, exterior):
         for i_elem in elem:
             tag = clean_tag(i_elem.tag)
-            if tag == "posList":
+            if tag == "PosList":
                 if exterior == True:
                     coords_text = self._text_poslist(i_elem)
                     self.exterior_ring = coords_text
@@ -213,7 +214,7 @@ class MultiPolygon(GmlBase):
 
     def _add_tags_to_process(self):
 ##        print "in MultiPolygon._add_tags_to_process(self)"
-        for i_tag in ("MultiSurface", "surfaceMember"):
+        for i_tag in ("MultiSurface", "SurfaceMember"):
             self.add_tag_method_to_process(i_tag, self.process)
         self.add_tag_method_to_process("Polygon", self._process_Polygon)
 

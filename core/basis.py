@@ -181,7 +181,7 @@ to get value frome")
         return definition                        
      
 class B_Object(B_XmlProcessor):
-    """Parent class for all Basis Classes i.e. defined in bag.py."""
+    """Parent class used to define most IMKL objects."""
 
     def __init__(self, name):
         B_XmlProcessor.__init__(self)

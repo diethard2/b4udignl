@@ -66,9 +66,15 @@ class Doc():
         # holds interface to gis.   
         self.__iface = None
         # holds all information in imkl objects
+        self.tag2function = {"AanduidingEisVoorzorgsmaatregel": imkl.aanduidingEisVoorzorgsmaatregel,
+                             "boundedBy": imkl.boundedBy,
+                             "ExtraGeometrie": imkl.extraGeometrie,
+                             "Leveringsinformatie": imkl.leveringsinformatie,
+                             "OlieGasChemicalienPijpleiding": imkl.olieGasChemicalienPijpleiding,
+                             "utiliteitsnet": imkl.utiliteitsnet}
         self.imkls = {}
         self.layers = []
-        self.version = None
+        self.__version = None
         self.klicnummer = None
         self.meldingsoort = None
         self.polygon = None
@@ -87,7 +93,6 @@ class Doc():
         self._createWorldFiles()
 
 # defining access to attributes of class Layer
-
     def _iface(self):
         """return private attribute iface"""
         return self.__iface
@@ -99,6 +104,25 @@ class Doc():
             self.__iface  = iface
     
     iface = property(fget=_iface, fset=_setIface)
+        
+    def _version(self):
+        """return private attribute version"""
+        if self.__version is None:
+            self.__version = self._get_version()
+        return self.__version
+
+    version = property(fget=_version)
+
+    def _get_version(self):
+        """the first time the version is requested, find out the
+        version from imkl elements"""
+        version = None
+        if self.imkls.has_key("Leveringsinformatie"):
+            imkl_obj = self.imkls["Leveringsinformatie"][0]
+            version = imkl_obj.field("version").value
+            if version is None:
+                version = imkl_obj.field("version2").value
+        return version
         
     def _path(self):
         """return privat attribute path"""
@@ -132,25 +156,46 @@ class Doc():
         tag = xml_utils.clean_tag(xml_element.tag)
 ##        print "tag = ", tag
         if tag == "Leveringsinformatie":
-            obj = imkl.leveringsinformatie()
-            obj.process(xml_element)
-            self.imkls[tag] = obj
+            self._process_tag_to_object(xml_element)
+        elif tag == "FeatureCollection":
+            for i_elem in xml_element:
+                self._process_feature_member(i_elem)
+        else:
+            print "not processed tag: ", tag
         xml_stream.close()
 
+    def _process_feature_member(self, xml_element):
+        for i_elem in xml_element:
+            self._process_tag_to_object(xml_element)
+                
+    def _process_tag_to_object(self, xml_element):
+        tag = xml_utils.clean_tag(xml_element.tag)
+        if self.tag2function.has_key(tag):
+            function = self.tag2function[tag]
+            obj = function()
+            obj.process(xml_element)
+            self._add_obj_to_imkl(tag, obj)
+
+    def _add_obj_to_imkl(self, tag, obj):
+        if self.imkls.has_key(tag):
+            self.imkls[tag].append(obj)
+        else:
+            self.imkls[tag] = [obj]
+
     def _set_attributes_from_imkl(self):
-        if self.imkls.has_key("Leveringsinformatie"):
-            imkl_obj = self.imkls["Leveringsinformatie"]
+        if self.version == '1.5':
+            imkl_obj = self.imkls["Leveringsinformatie"][0]
             self._set_from_old_imkl(imkl_obj)
         else:
-            for imkl_obj in self.imkls.items():
-                self._set_from_imkl(imkl_obj)
+            print self.version
+##            for imkl_obj in self.imkls.items():
+##                self._set_from_imkl(imkl_obj)
 
     def _set_from_imkl(self, imkl_obj):
         pass
 
     def _set_from_old_imkl(self, imkl_obj):
 ##        print "in _set_from_old_imkl()"
-        self.version = imkl_obj.field("version").value
         self.klicnummer = imkl_obj.field("klicnummer").value
         self.meldingsoort = imkl_obj.field("meldingsoort").value
         self.polygon = imkl_obj.field("graafpolygoon").value
@@ -260,10 +305,11 @@ class Doc():
             for theme in netowner.themes:
                 layers.extend(theme.layers)
         # add 1 layer not included in xml (but it should be included!)
-        kadaster_png =  'GB_' + self.klicnummer + '.png'
-        file_png = os.path.join(self.path, kadaster_png)
-        layer = Layer(self, file_png)
-        layers.append(layer)
+        if self.version == "1.5":
+            kadaster_png =  'GB_' + self.klicnummer + '.png'
+            file_png = os.path.join(self.path, kadaster_png)
+            layer = Layer(self, file_png)
+            layers.append(layer)
         # set attribute layers with sorted list op PNG files.
         self.layers.extend(layers)
         self.layers.sort()

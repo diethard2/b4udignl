@@ -16,11 +16,14 @@
  *                                                                         *
  ***************************************************************************/
 """
+import re
+
 def clean_tag(tag):
     """Remove namespace from tag"""
     if '}' in tag:
         index = tag.rindex('}')
         tag = tag[index+1:]
+        tag = re.sub('([a-zA-Z])', lambda x: x.groups()[0].upper(), tag, 1)
     return tag
         
 def find_xml_with_tag(xml_element, search_tag, found_elem):
@@ -28,9 +31,9 @@ def find_xml_with_tag(xml_element, search_tag, found_elem):
     if found_elem is not None:
         return found_elem
     for i_elem in xml_element:
-        # print i_elem.tag
         tag = clean_tag(i_elem.tag)
-        # print tag
+##        print 'search_tag: ',search_tag
+##        print 'tag:        ',tag
         if search_tag == tag:
             found_elem = i_elem
             break
@@ -58,7 +61,9 @@ the key is the tag from xml the value the method to process the xml")
         """
         for i_elem in xml_element:
             self.tag = clean_tag(i_elem.tag)
+##            print(self.tag)
             if self.tag2process.has_key(self.tag):
                 a_process = self.tag2process[self.tag]
+##                print(a_process)
                 a_process(i_elem)
             

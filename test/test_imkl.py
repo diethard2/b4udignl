@@ -141,7 +141,7 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
         unit test to test reading OlieGasChemicalienPijpleiding XML
         """
         # read the file
-        xml_file = open("data/18G007160_1/BuisGevaarlijkeInhoud.xml")
+        xml_file = open("data/18G007160_1/imkl_elements/BuisGevaarlijkeInhoud.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "OlieGasChemicalienPijpleiding", None)
         self.buisGevaarlijkeInhoud = imkl.olieGasChemicalienPijpleiding()
@@ -187,7 +187,7 @@ class ExtraGeometrieTestCase(unittest.TestCase):
         unit test to test imkl.ExtraGeometrie
         """
         # read the file
-        xml_file = open("data/18G007160_1/BuisGevaarlijkeInhoud.xml")
+        xml_file = open("data/18G007160_1/imkl_elements/ExtraGeometrie.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "ExtraGeometrie",
                                                        None)

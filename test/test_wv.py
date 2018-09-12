@@ -139,9 +139,29 @@ class DocTestCaseV1_5(unittest.TestCase):
                           'AN_water_Vitens_0000552354_14G166926.png'])
         
     
-_suite_wv_doc = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV1_5)
+_suite_wv_doc_1_5 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV1_5)
 
-unit_test_suites = [_suite_wv_doc]
+class DocTestCaseV2_1(unittest.TestCase):
+    """
+    unittests to test wv.Doc object, holds full klic message provided in IMKL
+    version 1.5 (valid till 1-1-2019).
+    """
+    def setUp(self):
+        """
+        For each test create a woonplaats read from xml file woonplaats.xml
+        """
+        # read the file
+        klic_msg_dir = "../test/data/18G007160_1"
+        self.doc = Doc(klic_msg_dir)
+        self.maxDiff = None
+
+    def test_version(self):
+        self.assertEqual(self.doc.version, '2.1')
+
+_suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)
+
+
+unit_test_suites = [_suite_wv_doc_1_5, _suite_wv_doc_2_1]
 
 def main():
     wv_test_suite = unittest.TestSuite(unit_test_suites)

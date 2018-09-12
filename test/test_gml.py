@@ -60,9 +60,10 @@ class LineStringTestCase(unittest.TestCase):
         """
         xml_file = open("data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
-        self.xml_geometry = xml_utils.find_xml_with_tag(root, "LineString", None)
+        self.xml_element = xml_utils.find_xml_with_tag(root, "LineString",
+                                                        None)
         self.linestring = gml.LineString()
-        self.linestring.process(self.xml_geometry)
+        self.linestring.process(self.xml_element)
         xml_file.close()        
 
     def test_coords(self):
@@ -196,7 +197,7 @@ class Polygon3DTestCase(unittest.TestCase):
         """
         xml_file = open("data/gml/pand.xml")
         root = ET.fromstring(xml_file.read())
-        self.xml_geometry = xml_utils.find_xml_with_tag(root, "pandGeometrie", None)
+        self.xml_geometry = xml_utils.find_xml_with_tag(root, "PandGeometrie", None)
         self.polygon = gml.Polygon()
         self.polygon.process(self.xml_geometry)
         xml_file.close()        
