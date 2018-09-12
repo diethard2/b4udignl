@@ -24,7 +24,7 @@ import unittest
 from core import imkl, gml, xml_utils
 import xml.etree.ElementTree as ET
 
-class LeveringsInformatieTestCase(unittest.TestCase):
+class LeveringsInformatieTestCaseV1_5(unittest.TestCase):
 
     def setUp(self):
         """
@@ -132,7 +132,88 @@ class LeveringsInformatieTestCase(unittest.TestCase):
                           'BL_Vitens_0000552354_14G166926_BriefAlgemeenMetOverzichtskaart.pdf'
                           ])
      
-_suite_leveringsInformatie = unittest.TestLoader().loadTestsFromTestCase(LeveringsInformatieTestCase)
+_suite_leveringsInformatieV1_5 = unittest.TestLoader().loadTestsFromTestCase(LeveringsInformatieTestCaseV1_5)
+
+class LeveringsInformatieTestCaseV2_1(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test reading LeveringsInformatie xml-tag
+        this is part of the new klic message (after 01-01-2019).
+        """
+        # read the file
+        xml_file = open("../test/data/18G007160_1/LI_18G007160_1.xml")
+        self.xml_element = ET.fromstring(xml_file.read())
+        self.leveringsinformatie = imkl.leveringsinformatie()
+        self.leveringsinformatie.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.leveringsinformatie.field_names(),
+                         ['version', 'klicnummer', 'ordernummer',
+                          'meldingsoort','datumTijdAanvraag',
+                          'klantReferentie', 'graafpolygoon'])
+
+    def test_field_values(self):
+        self.assertEqual(self.leveringsinformatie.field_values(),
+                         ['2.1', None, None, None, None, None, None])
+        
+    def test_pngFormaat(self):
+        obj = self.leveringsinformatie
+        omsluitende_rechthoek = obj.field("pngFormaat").value
+        self.assertEqual(omsluitende_rechthoek.field_values(),
+                         ['Polygon((154980.0 387980.0, 154980.0 388140.0, \
+155120.0 388140.0, 155120.0 387980.0, 154980.0 387980.0))', '1960', '2240'])
+
+    def test_bijlagenPerLevering(self):
+        obj = self.leveringsinformatie
+        bijlagen = obj.field("bijlagenPerLevering").value
+        soort_lokatie = []
+        for bijlage in bijlagen:
+            soort = bijlage.field("soort_bijlage").value
+            lokatie = bijlage.field("bestandlocatie").value
+            soort_lokatie.append((soort,lokatie))
+        self.assertEqual(soort_lokatie,
+                         [("achtergrondkaart", "bronnen/GB_18G007160.png"),
+                          ("geselecteerdGebied", "bronnen/SEL_18G007160.png"),
+                          ('leveringsbrief', 'LI_18G007160_1.pdf'),
+                          ('gebiedsinformatieLevering',
+                           'GI_gebiedsinformatielevering_18G007160_1.xml')
+                          ])
+
+    def test_belanghebbenden(self):
+        obj = self.leveringsinformatie
+        belanghebbenden = obj.field("belanghebbenden").value
+        bronhoudercodes = []
+        for belanghebbende in belanghebbenden:
+            code = belanghebbende.field("bronhoudercode").value
+            bronhoudercodes.append(code)
+        self.assertEqual(bronhoudercodes,
+                         ['nbact2', 'nbact3', 'nbact4',
+                          'nbact1', 'KL1031', 'KN1100'])
+        
+    def test_bijlagenPerNetbeheerder(self):
+        obj = self.leveringsinformatie
+        belanghebbenden = obj.field("belanghebbenden").value
+        soort_lokatie = []
+        for belanghebbende in belanghebbenden:
+            bijlagen = belanghebbende.field("bijlagen").value
+            if bijlagen is not None:
+                for bijlage in bijlagen:
+                    soort = bijlage.field("soort_bijlage").value
+                    lokatie = bijlage.field("bestandlocatie").value
+                    soort_lokatie.append((soort,lokatie))
+        self.assertEqual(soort_lokatie,
+                         [('algemeen',
+                           'bronnen/nbact2/nl.imkl-nbact2_18G007160.algemeen.pdf'),
+                          ('nietBetrokken',
+                           'bronnen/nbact2/nl.imkl-nbact2_18G007160.nietBetrokken.pdf'),
+                          ('algemeen',
+                           'bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf'),
+                          ('eigenTopo',
+                           'bronnen/nbact1/ET_Netbeheerder+Actualiseren01_0000949099_18G007160.png')])
+     
+_suite_leveringsInformatieV2_1 = unittest.TestLoader().loadTestsFromTestCase(LeveringsInformatieTestCaseV2_1)
 
 class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
 
@@ -141,7 +222,7 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
         unit test to test reading OlieGasChemicalienPijpleiding XML
         """
         # read the file
-        xml_file = open("data/18G007160_1/imkl_elements/BuisGevaarlijkeInhoud.xml")
+        xml_file = open("data/imkl/BuisGevaarlijkeInhoud.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "OlieGasChemicalienPijpleiding", None)
         self.buisGevaarlijkeInhoud = imkl.olieGasChemicalienPijpleiding()
@@ -187,7 +268,7 @@ class ExtraGeometrieTestCase(unittest.TestCase):
         unit test to test imkl.ExtraGeometrie
         """
         # read the file
-        xml_file = open("data/18G007160_1/imkl_elements/ExtraGeometrie.xml")
+        xml_file = open("data/imkl/ExtraGeometrie.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "ExtraGeometrie",
                                                        None)
@@ -221,7 +302,7 @@ nl.imkl-nbact1.un00057;Polygon((155052.000 388010.000, \
     
 _suite_extraGeometrie = unittest.TestLoader().loadTestsFromTestCase(ExtraGeometrieTestCase)
 
-unit_test_suites = [_suite_leveringsInformatie,
+unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2_1,
                     _suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie]
 
 def main():

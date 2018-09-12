@@ -29,7 +29,7 @@ class B_Field(object):
     ALL_TYPES = GEOMETRY_TYPES + VALUE_TYPES+ OBJECT_TYPES
 
     def __init__(self, field_name, field_type, from_tag, from_attribute=None, to_object=None, is_mandatory=True,
-                 is_key_field=False):
+                 is_key_field=False, is_virtual=False):
         """create field object
 
         name: is name used in target table or CSV header
@@ -49,6 +49,7 @@ class B_Field(object):
         self.__to_object = to_object
         self.__is_mandatory = is_mandatory
         self.__is_key_field = is_key_field
+        self.__is_virtual = is_virtual
         self.__sql_template = None
         self.__value = None
         # set type using property set function, will also set __sql_template!
@@ -82,13 +83,19 @@ class B_Field(object):
         return self.__is_key_field
 
     is_key_field = property(fget=_is_key_field,
-                    doc="Is this a key field --> boolean")
+                            doc="Is this a key field --> boolean")
+
+    def _is_virtual(self):
+        return self.__is_virtual
+
+    is_virtual = property(fget=_is_virtual,
+                          doc="Is this a virtual field --> boolean")
 
     def _is_mandatory(self):
         return self.__is_mandatory
 
     is_mandatory = property(fget=_is_mandatory,
-                    doc="Is this a mandatory field --> boolean")
+                            doc="Is this a mandatory field --> boolean")
 
     def _from_tag(self):
         return self.__from_tag
@@ -209,11 +216,14 @@ class B_Object(B_XmlProcessor):
         a_field = self.tag2field[self.tag]
         if a_field.is_object_type():
             if a_field.type == "CONTAINER":
-                for i_elem in xml_element:
-                    an_object = a_field.to_object()
-                    tag = clean_tag(i_elem.tag)
-                    if an_object.name == tag:
-                        self.process_object_field(i_elem)
+                if a_field.is_virtual:
+                    self.process_object_field(xml_element)
+                else:
+                    for i_elem in xml_element:
+                        an_object = a_field.to_object()
+                        tag = clean_tag(i_elem.tag)
+                        if an_object.name == tag:
+                            self.process_object_field(i_elem)
             else:
                 self.process_object_field(xml_element)
         else:

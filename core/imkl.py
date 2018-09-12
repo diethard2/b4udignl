@@ -37,11 +37,23 @@ def leveringsinformatie():
     obj.add_field(B_Field("klantReferentie", "TEXT", "KlantReferentie"))
     obj.add_field(B_Field("graafpolygoon", "POLYGON", "Locatie",
                           to_object=gml.Polygon))
+    # imkl version 1.5
     obj.add_field(B_Field("omsluitendeRechthoek", "OBJECT", "Pngformaat",
                           to_object=pngformaat))
     obj.add_field(B_Field("netbeheerderLeveringen", "CONTAINER",
                           "NetbeheerderLeveringen",
                           to_object=netbeheerderLevering))
+    # imkl version 2.1
+    obj.add_field(B_Field("bijlagenPerLevering", "CONTAINER",
+                          "BijlagePerLevering",
+                          to_object=bijlagePerLevering,
+                          is_virtual=True))
+    obj.add_field(B_Field("pngFormaat", "OBJECT", "PngFormaat",
+                          to_object=pngformaat))
+    obj.add_field(B_Field("belanghebbenden", "CONTAINER",
+                          "Belanghebbende",
+                          to_object=belanghebbende,
+                          is_virtual=True))
     obj.add_tags_to_process()
     return obj
 
@@ -205,8 +217,7 @@ def utiliteitsnet():
     obj.add_tags_to_process()
     return obj
 
-
-def bijlage_per_levering():
+def bijlagePerLevering():
     a_bijlage = B_Object("BijlagePerLevering")
     a_bijlage.add_field(B_Field("soort_bijlage", "TEXT", "SoortBijlage"))
     a_bijlage.add_field(B_Field("bestandlocatie", "TEXT", "BestandLocatie"))
@@ -214,9 +225,20 @@ def bijlage_per_levering():
     a_bijlage.add_tags_to_process()
     return a_bijlage
 
-def bijlage_per_netbeheerder():
-    a_bijlage = bijlage_per_levering()
+def bijlagePerNetbeheerder():
+    a_bijlage = bijlagePerLevering()
     a_bijlage.name = "BijlagePerNetbeheerder"
+    return a_bijlage
+
+def belanghebbende():
+    obj = B_Object("Belanghebbende")
+    obj.add_field(B_Field("bronhoudercode", "TEXT", "Bronhoudercode"))
+    obj.add_field(B_Field("bijlagen", "CONTAINER",
+                          "BijlagePerNetbeheerder",
+                          to_object=bijlagePerNetbeheerder,
+                          is_virtual=True))
+    obj.add_tags_to_process()
+    return obj
 
 def sql_creation_statements():
     sql_statements = []
