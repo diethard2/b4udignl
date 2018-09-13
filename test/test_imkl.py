@@ -212,6 +212,49 @@ class LeveringsInformatieTestCaseV2_1(unittest.TestCase):
                            'bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf'),
                           ('eigenTopo',
                            'bronnen/nbact1/ET_Netbeheerder+Actualiseren01_0000949099_18G007160.png')])
+
+    def test_themabijlagenPerNetbeheerder(self):
+        self.maxDiff = None
+        obj = self.leveringsinformatie
+        thema_soort_lokatie = []
+        belanghebbenden = obj.field("belanghebbenden").value
+        for belanghebbende in belanghebbenden:
+            beheerdersinformatie = belanghebbende.field("beheerdersinformatie").value
+            if beheerdersinformatie is not None:
+                for informatie in beheerdersinformatie:
+                    thema = informatie.field("thema").value
+                    thema = thema.split('/')[-1]
+                    themabijlagen = informatie.field("themaBijlagen").value
+                    for bijlage in themabijlagen:
+                        soort = bijlage.field("soort_bijlage").value
+                        lokatie = bijlage.field("bestandlocatie").value
+                        thema_soort_lokatie.append((thema,soort,lokatie))
+        self.assertEqual(thema_soort_lokatie,
+                         [("rioolOnderOverOfOnderdruk","ligging","bronnen/nbact1/LG_rioolOnderOverOfOnderdruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png"),
+                          ("buisleidingGevaarlijkeInhoud","ligging","bronnen/nbact1/LG_buisleidingGevaarlijkeInhoud_Netbeheerder+Actualiseren01_0000949099_18G007160.png"),
+                          ('hoogspanning','ligging','bronnen/nbact1/LG_hoogspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('middenspanning','annotatie','bronnen/nbact1/AN_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('middenspanning','ligging','bronnen/nbact1/LG_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('gasLageDruk','ligging','bronnen/nbact1/LG_gasLageDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('water','ligging','bronnen/nbact1/LG_water_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('petrochemie','ligging','bronnen/nbact1/LG_petrochemie_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('datatransport','ligging','bronnen/nbact1/LG_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('datatransport','annotatie','bronnen/nbact1/AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('datatransport','maatvoering','bronnen/nbact1/MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('datatransport','aansluiting','bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf'),
+                          ('datatransport','profielschets','bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf'),
+                          ('datatransport','overig','bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf'),
+                          ('gasHogeDruk','ligging','bronnen/nbact1/LG_gasHogeDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('gasHogeDruk','eisVoorzorgsmaatregel','bronnen/nbact1/nl.imkl-nbact1_18G007160.EV_gasHogeDruk_T_risicoHoog_gasHogeDruk.pdf'),
+                          ('overig','ligging','bronnen/nbact1/LG_overig_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('warmte','ligging','bronnen/nbact1/LG_warmte_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('rioolVrijverval','ligging','bronnen/nbact1/LG_rioolVrijverval_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('laagspanning','ligging','bronnen/nbact1/LG_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('laagspanning','annotatie','bronnen/nbact1/AN_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('wees','ligging','bronnen/nbact1/LG_wees_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('landelijkHoogspanningsnet','ligging','bronnen/nbact1/LG_landelijkHoogspanningsnet_Netbeheerder+Actualiseren01_0000949099_18G007160.png'),
+                          ('water', 'ligging', 'bronnen/KN1100/LG_water_PWN4_0000950324_18G007160.png')])
+
      
 _suite_leveringsInformatieV2_1 = unittest.TestLoader().loadTestsFromTestCase(LeveringsInformatieTestCaseV2_1)
 

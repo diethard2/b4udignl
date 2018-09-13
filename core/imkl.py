@@ -237,8 +237,30 @@ def belanghebbende():
                           "BijlagePerNetbeheerder",
                           to_object=bijlagePerNetbeheerder,
                           is_virtual=True))
+    obj.add_field(B_Field("beheerdersinformatie", "CONTAINER",
+                          "Beheerdersinformatie",
+                          to_object=beheerdersinformatie,
+                          is_virtual=True))
     obj.add_tags_to_process()
     return obj
+
+def beheerdersinformatie():
+    obj = B_Object("Beheerdersinformatie")
+    obj.add_field(B_Field("thema", "TEXT", "Thema",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("eisVoorzorgmaatregel", "TEXT",
+                          "EisVoorzorgmaatregel"))
+    obj.add_field(B_Field("themaBijlagen", "CONTAINER",
+                          "ThemabijlagePerNetbeheerder",
+                          to_object=themabijlagePerNetbeheerder,
+                          is_virtual=True))
+    obj.add_tags_to_process()
+    return obj
+
+def themabijlagePerNetbeheerder():
+    a_bijlage = bijlagePerLevering()
+    a_bijlage.name = "ThemabijlagePerNetbeheerder"
+    return a_bijlage
 
 def sql_creation_statements():
     sql_statements = []
