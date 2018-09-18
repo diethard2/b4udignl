@@ -25,7 +25,8 @@ from PyQt4.QtGui import QDialog, QFileDialog, QMessageBox, QListWidgetItem, \
 import qgis
 from qgis.core import QgsProject
 from ui_B4UdigNL import Ui_B4UdigNL
-import wv, ifaceqgis, os
+import ifaceqgis, os
+from core import wv
 import unzip, zipfile, pickle
 
 

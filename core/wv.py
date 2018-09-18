@@ -38,7 +38,6 @@ import os, wv
 import xml.etree.ElementTree as ET
 import imkl, xml_utils
 from wv_storage import Storage1, Storage2
-from qgis.core import QgsGeometry
 
 
 WIN = "startfile" in dir(os)
@@ -54,6 +53,7 @@ testfolder and this module attribute msg_dir will be set. Then used in doc_tests
 """
 
 class Doc():
+    
     def __init__(self, path_message):
         """path_message = full path to directory which holds result of WION message.
         Creates instance of Doc which holds all information of WION result.
@@ -62,16 +62,20 @@ class Doc():
         Interface to GIS is delegated to attribute iface.
         """
 
+        self._tag2function = {imkl.AANDUIDINGEISVOORZORGSMAATREGEL: imkl.aanduidingEisVoorzorgsmaatregel,
+                              imkl.BOUNDEDBY: imkl.boundedBy,
+                              imkl.EXTRAGEOMETRY: imkl.extraGeometrie,
+                              imkl.LEVERINGSINFORMATIE: imkl.leveringsinformatie,
+                              imkl.OLIEGASCHEMICALIENPIJPLEIDING: imkl.olieGasChemicalienPijpleiding,
+                              imkl.UTILITEITSNET: imkl.utiliteitsnet}
+        
         # holds folder used to create whole structure
         self.__path = os.path.realpath(path_message)
         # holds interface to gis.   
         self.__iface = None
         self.imkls = {}
         self.storage = None
-##        self.layers = []
         self.__version = None
-##        self.netOwners = []
-##        self.pdfFiles = []
         self.layerGroups = {}
         self.__themes = {}
         # find and read xml file holding metadata
@@ -109,8 +113,8 @@ class Doc():
         """the first time the version is requested, find out the
         version from imkl elements"""
         version = None
-        if self.imkls.has_key("Leveringsinformatie"):
-            imkl_obj = self.imkls["Leveringsinformatie"][0]
+        if self.imkls.has_key(imkl.LEVERINGSINFORMATIE):
+            imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
             version = imkl_obj.field("version").value
             if version is None:
                 version = imkl_obj.field("version2").value
@@ -165,11 +169,11 @@ class Doc():
     
     pdfFiles = property(fget=_pdfFiles)
 
-    def _layerGroups(self):
+    def _layers(self):
         """return private attribute layerGroups from storage"""
-        return self.storage.layerGroups
+        return self.storage.layers
     
-    layerGroups = property(fget=_layerGroups)
+    layers = property(fget=_layers)
 
     def _xml_files(self):
         """gives back xml_files containing metadata"""
@@ -195,9 +199,9 @@ class Doc():
         xml_element = ET.fromstring(xml_stream.read())
         tag = xml_utils.clean_tag(xml_element.tag)
 ##        print "tag = ", tag
-        if tag == "Leveringsinformatie":
+        if tag == imkl.LEVERINGSINFORMATIE:
             self._process_tag_to_object(xml_element)
-        elif tag == "FeatureCollection":
+        elif tag == imkl.FEATURECOLLECTION:
             for i_elem in xml_element:
                 self._process_feature_member(i_elem)
         else:
@@ -210,8 +214,8 @@ class Doc():
                 
     def _process_tag_to_object(self, xml_element):
         tag = xml_utils.clean_tag(xml_element.tag)
-        if self.tag2function.has_key(tag):
-            function = self.tag2function[tag]
+        if self._tag2function.has_key(tag):
+            function = self._tag2function[tag]
             obj = function()
             obj.process(xml_element)
             self._add_obj_to_imkl(tag, obj)
@@ -227,106 +231,7 @@ class Doc():
             self.storage = Storage1(self)
         else:
             self.storage = Storage2(self)
-
         self.storage.fill()
-
-##    def _set_from_imkl(self, imkl_obj):
-##        print "in _set_from_old_imkl()"
-##        self.klicnummer = imkl_obj.field("klicnummer").value
-##        self.meldingsoort = imkl_obj.field("meldingsoort").value
-##        self.polygon = imkl_obj.field("graafpolygoon").value
-##        omsluitende_rechthoek = imkl_obj.field("omsluitendeRechthoek").value
-##        wkt = omsluitende_rechthoek.field("omsluitendeRechthoek").value
-##        width = omsluitende_rechthoek.field("pixelsBreed").value
-##        height = omsluitende_rechthoek.field("pixelsHoog").value
-##        self.rectangle = Rectangle()
-##        self.rectangle.setFromWkt(wkt)
-##        self.rectangle.pixelsWidth = int(width)
-##        self.rectangle.pixelsHeight = int(height)
-##        netowner_deliveries = imkl_obj.field("netbeheerderLeveringen").value
-##        for netowner_delivery in netowner_deliveries:
-##            self._process_netowner_delivery(netowner_delivery)
-##
-##    def _process_netowner_delivery(self, netowner):
-##        print "in _process_netowner_delivery()"
-##        netOwner = Company()
-##        netOwner.name = netowner.field("bedrijfsnaam").value
-##        netOwner.shortName = netowner.field("bedrijfsnaam").value
-##        netOwner.telNrProblemIT = netowner.field("storingsnummer").value
-##        netOwner.telNrDamage = netowner.field("beschadigingsnummer").value
-##        
-##        contactpersoon = netowner.field("contactpersoon").value
-##        if contactpersoon is not None:
-##            person = self._process_person(contactpersoon)
-##            netOwner.contactPerson = person
-##            
-##        imkl_themes = netowner.field("themas").value
-##        if imkl_themes is not None:
-##            themes = self._process_themes(imkl_themes)
-##            netOwner.themes = themes
-##
-##        imkl_docs = netowner.field("bijlagen").value
-##        if imkl_docs is not None:
-##            docs = self._process_imkl_docs(imkl_docs)
-##            self.pdfFiles.extend(docs)
-##
-##        for topo_name in ("topo", "plan_topo"):
-##            imkl_topo = netowner.field(topo_name).value
-##            if imkl_topo is not None:
-##                filename = imkl_topo.field("bestandsnaam").value
-##                layer_file = os.path.join(self.path, filename)
-##                self.layers.append(Layer(self, layer_file))
-##
-##        self.netOwners.append(netOwner)
-##
-##    def _process_person(self, imkl_person):
-##        person = None
-##        if imkl_person is not None:
-##            person = Person()
-##            person.name = imkl_person.field("naam").value
-##            person.telephone = imkl_person.field("telefoon").value
-##            person.email = imkl_person.field("email").value
-##            person.fax = imkl_person.field("fax").value
-##        return person
-##                
-##    def _process_themes(self, imkl_themes):
-##        """
-##        process a list of imkl_themes and return a list of wv.Theme objects
-##        """
-##        themes = []
-##        for imkl_theme in imkl_themes:
-##            theme = self._process_theme(imkl_theme)
-##            themes.append(theme)
-##        return themes
-##
-##    def _process_theme(self, imkl_theme):
-##        theme = Theme(self)
-##        theme.name = imkl_theme.field("themanaam").value
-##        theme.supervisionNecessary = imkl_theme.field("eisVoorzorgmaatregel").value
-##        imkl_toezichthouders = imkl_theme.field("toezichthouders").value
-##        if imkl_toezichthouders is not None:
-##            persons = self._process_persons(imkl_toezichthouders)
-##            theme.supervisors = persons
-##        theme._set_theme_layers(self.path, imkl_theme)
-##        theme._set_theme_docs(self.path, imkl_theme)
-##        return theme
-##
-##    def _process_persons(self, imkl_persons):
-##        persons = []
-##        for imkl_person in imkl_persons:
-##            person = self._process_person(imkl_person)
-##            persons.append(person)
-##        return persons
-##
-##    def _process_imkl_docs(self, imkl_docs):
-##        docs = []
-##        for imkl_doc in imkl_docs:
-##            pdf_name = imkl_doc.field("bestandsnaam").value
-##            pdf_file = PdfFile(pdf_name)
-##            pdf_file.type = imkl_doc.name
-##            pdf_file.filePath = os.path.join(self.path, pdf_name)
-##            docs.append(pdf_file)
-##        return docs
 
     def _setLayers(self):
         """

@@ -22,18 +22,18 @@ doc attributes in a different way.
 
 Author: Diethard Jansen, 15-9-2018
 """
-from wv import Rectangle, Company, Person, Theme, PdfFile, Layer
+import os
+from core.wv_objects import Rectangle, Company, Person, Theme, PdfFile, Layer
 
 class Storage(object):
     def __init__(self, parent):
-        "Superclass for storing common objects for all Klic IMKL versions
+        """Superclass for storing common objects for all Klic IMKL versions"""
         self.__parent = parent
         self.__klicnummer = None
         self.__meldingsoort = None
         self.__netOwners = []
         self.__pdfFiles = []
         self.__layers = []
-##        self.__themes = {}
 
     '''parent properties, only use get functions'''
         
@@ -61,25 +61,41 @@ class Storage(object):
         """return private attribute klicnummer"""
         return self.__klicnummer
 
-    klicnummer = property(fget=_klicnummer)
+    def _set_klicnummer(self, value):
+        """return private attribute klicnummer"""
+        self.__klicnummer = value
+        
+    klicnummer = property(fget=_klicnummer, fset=_set_klicnummer)
     
     def _meldingsoort(self):
         """return private attribute meldingsoort"""
         return self.__meldingsoort
 
-    meldingsoort = property(fget=_meldingsoort)
+    def _set_meldingsoort(self, value):
+        """set private attribute meldingsoort"""
+        self.__meldingsoort = value
+        
+    meldingsoort = property(fget=_meldingsoort, fset=_set_meldingsoort)
 
     def _rectangle(self):
         """return private attribute rectangle"""
         return self.__rectangle
 
-    rectangle = property(fget=_rectangle)
+    def _set_rectangle(self, value):
+        """set private attribute rectangle"""
+        self.__rectangle = value
+        
+    rectangle = property(fget=_rectangle, fset=_set_rectangle)
     
     def _graafpolygoon(self):
         """return private attribute graafpolygoon"""
         return self.__graafpolygoon
 
-    graafpolygoon = property(fget=_graafpolygoon)
+    def _set_graafpolygoon(self, value):
+        """set private attribute graafpolygoon"""
+        self.__graafpolygoon = value
+        
+    graafpolygoon = property(fget=_graafpolygoon, fset=_set_graafpolygoon)
     
     def _netOwners(self):
         """return private attribute netOwners"""
@@ -99,41 +115,29 @@ class Storage(object):
     
     layers = property(fget=_layers)
 
-##    def _themes(self):
-##        """return private attribute themes"""
-##        return self.__themes
-##    
-##    themes = property(fget=_themes)
-
     def fill(self):
         """fills the storage attributes from imkl objects retrieved
         from parent.
 
         this super method is called from children to set common attributes"""
-        self._set_klicnummer()
-        self._set_meldingsoort()
-        self._set_rectangle()
-        self._set_graafpolygoon()
+        self._fill_klicnummer()
+        self._fill_meldingsoort()
+        self._fill_rectangle()
+        self._fill_graafpolygoon()
+        self._fill_netowners()
 
-    def self._set_klicnummer(self):
+    def _fill_klicnummer(self):
         pass
-    def self._set_meldingsoort(self):
+    def _fill_meldingsoort(self):
         pass
-    def self._set_rectangle(self):
+    def _fill_rectangle(self):
         pass
-    def self._set_graafpolygoon(self):
+    def _fill_graafpolygoon(self):
+        pass
+    def _fill_netowners(self):
         pass
 
-    def _set_klicnummer(self):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
-        self.__klicnummer = imkl_obj.field("klicnummer").value        
-
-    def _set_meldingsoort(self):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
-        self.__meldingsoort = imkl_obj.field("meldingsoort").value
-
-    def _set_rectangle(self, imkl_obj=None):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
+    def _fill_rectangle(self, imkl_obj=None):
         wkt = imkl_obj.field("omsluitendeRechthoek").value
         width = imkl_obj.field("pixelsBreed").value
         height = imkl_obj.field("pixelsHoog").value
@@ -146,33 +150,32 @@ class Storage(object):
 class Storage1(Storage):
 
     def __init__(self, parent):
-        super(Storage1, self).__init(parent)
+        super(Storage1, self).__init__(parent)
 
-    def _set_klicnummer(self):
+    def _fill_klicnummer(self):
         imkl_obj = self.imkls["Leveringsinformatie"][0]
-        self.__klicnummer = imkl_obj.field("klicnummer").value        
+        self.klicnummer = imkl_obj.field("klicnummer").value        
 
-    def _set_meldingsoort(self):
+    def _fill_meldingsoort(self):
         imkl_obj = self.imkls["Leveringsinformatie"][0]
-        self.__meldingsoort = imkl_obj.field("meldingsoort").value
+        self.meldingsoort = imkl_obj.field("meldingsoort").value
 
-    def _set_rectangle(self):
+    def _fill_rectangle(self):
         imkl_obj = self.imkls["Leveringsinformatie"][0]
         imkl_obj = imkl_obj.field("omsluitendeRechthoek").value
-        super(Storage1, self)._set_rectangle(self, imkl_obj)
+        super(Storage1, self)._fill_rectangle(imkl_obj)
             
-    def _set_graafpolygoon(self):
+    def _fill_graafpolygoon(self):
         imkl_obj = self.imkls["Leveringsinformatie"][0]
         self.__graafpolygoon = imkl_obj.field("graafpolygoon").value
 
-    def _set_netowners(self):
+    def _fill_netowners(self):
         imkl_obj = self.imkls["Leveringsinformatie"][0]
         netowner_deliveries = imkl_obj.field("netbeheerderLeveringen").value
         for netowner_delivery in netowner_deliveries:
             self._process_netowner_delivery(netowner_delivery)
 
     def _process_netowner_delivery(self, netowner):
-##        print "in _process_netowner_delivery()"
         netOwner = Company()
         netOwner.name = netowner.field("bedrijfsnaam").value
         netOwner.shortName = netowner.field("bedrijfsnaam").value
@@ -255,18 +258,9 @@ class Storage1(Storage):
 class Storage2(Storage):
 
     def __init__(self, parent):
-        super(Storage2, self).__init(parent):
+        super(Storage2, self).__init__(parent)
 
-            # holds all information in imkl objects
-        self.tag2function = {"AanduidingEisVoorzorgsmaatregel": imkl.aanduidingEisVoorzorgsmaatregel,
-                             "boundedBy": imkl.boundedBy,
-                             "ExtraGeometrie": imkl.extraGeometrie,
-                             "Leveringsinformatie": imkl.leveringsinformatie,
-                             "OlieGasChemicalienPijpleiding": imkl.olieGasChemicalienPijpleiding,
-                             "utiliteitsnet": imkl.utiliteitsnet}
-
-
-    def _set_rectangle(self):
+    def _fill_rectangle(self):
         imkl_obj = self.imkls["Leveringsinformatie"][0]
         imkl_obj = imkl_obj.field("pngFormaat").value
-        super(Storage2, self)._set_rectangle(self, imkl_obj)
+        super(Storage2, self)._set_rectangle(imkl_obj)

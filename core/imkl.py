@@ -25,6 +25,14 @@ import gml
 from basis import B_Object, B_Field
 from xml_utils import B_XmlProcessor, clean_tag
 
+AANDUIDINGEISVOORZORGSMAATREGEL = "AanduidingEisVoorzorgsmaatregel"
+BOUNDEDBY = "boundedBy"
+EXTRAGEOMETRY = "ExtraGeometrie"
+FEATURECOLLECTION = "FeatureCollection"
+LEVERINGSINFORMATIE = "Leveringsinformatie"
+OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
+UTILITEITSNET = "utiliteitsnet"
+
 # for old version of IMKL messages (before 1-1-2019)
 def leveringsinformatie():
     obj = B_Object("LeveringsInformatie")

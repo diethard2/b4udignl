@@ -21,7 +21,7 @@ path_core = os.path.join(os.path.dirname(__file__), '..')
 sys.path.append(path_core)
 
 import unittest
-from wv import Doc, Company
+from core.wv import Doc, Company
 
 class DocTestCaseV1_5(unittest.TestCase):
     """
