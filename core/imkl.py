@@ -31,7 +31,8 @@ EXTRAGEOMETRY = "ExtraGeometrie"
 FEATURECOLLECTION = "FeatureCollection"
 LEVERINGSINFORMATIE = "Leveringsinformatie"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
-UTILITEITSNET = "utiliteitsnet"
+UTILITEITSNET = "Utiliteitsnet"
+GRAAFPOLYGOON = "Graafpolygoon"
 
 # for old version of IMKL messages (before 1-1-2019)
 def leveringsinformatie():
@@ -179,6 +180,73 @@ def extraGeometrie():
     obj.add_tags_to_process()
     return obj
 
+def gebiedsinformatieAanvraag():
+    obj = B_Object("GebiedsinformatieAanvraag")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("beginLifespanVersion", "TEXT",
+                          "BeginLifespanVersion"))
+    obj.add_field(B_Field("ordernummer", "TEXT",
+                          "Ordernummer"))
+    obj.add_field(B_Field("positienummer", "TEXT",
+                          "Positienummer"))
+    obj.add_field(B_Field("klicMeldnummer", "TEXT",
+                          "KlicMeldnummer"))
+    obj.add_field(B_Field("aanvragers", "CONTAINER",
+                          "Aanvrager", to_object=aanvrager))
+    obj.add_field(B_Field("referentie", "TEXT",
+                          "Referentie"))
+    obj.add_tags_to_process()
+    return obj
+
+def aanvrager():
+    obj = B_Object("Aanvrager")
+    obj.add_field(B_Field("contactpersoon", "OBJECT", "Contactpersoon",
+                          to_object=contactpersoon))
+    obj.add_field(B_Field("organisatie", "CONTAINER", "Organisatie",
+                          to_object=organisatie))
+    obj.add_tags_to_process()
+    return obj
+
+def contactpersoon():
+    obj = B_Object("Contactpersoon")
+    obj.add_field(B_Field("contact", "OBJECT", "Contact",
+                          to_object=contact))
+    obj.add_tags_to_process()
+    return obj
+
+def organisatie():
+    obj = B_Object("Organisatie")
+    obj.add_field(B_Field("bezoekadres", "OBJECT", "BezoekAdres",
+                          to_object=bezoekadres))
+    obj.add_tags_to_process()
+    return obj
+
+def bezoekadres():
+    obj = B_Object("BezoekAdres")
+    obj.add_field(B_Field("adres", "OBJECT", "Adres",
+                          to_object=adres))
+    obj.add_tags_to_process()
+    return obj
+
+def adres():
+    obj = B_Object("Adres")
+    obj.add_field(B_Field("openbareRuimte", "TEXT", "OpenbareRuimteNaam"))
+    obj.add_field(B_Field("huisnummer", "TEXT", "Huisnummer"))
+    obj.add_field(B_Field("woonplaats", "TEXT", "WoonplaatsNaam"))
+    obj.add_field(B_Field("postcode", "TEXT", "Postcode"))
+    obj.add_field(B_Field("landcode", "TEXT", "Landcode"))
+    obj.add_tags_to_process()
+    return obj
+
+def graafpolygoon():
+    obj = B_Object("Graafpolygoon")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("geometrie", "POLYGON", "Geometrie",
+                          to_object=gml.Polygon))
+    obj.add_tags_to_process()
+    return obj
 
 def olieGasChemicalienPijpleiding():
     obj = B_Object("OlieGasChemicalienPijpleiding")

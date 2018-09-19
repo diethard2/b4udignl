@@ -345,8 +345,118 @@ nl.imkl-nbact1.un00057;Polygon((155052.000 388010.000, \
     
 _suite_extraGeometrie = unittest.TestLoader().loadTestsFromTestCase(ExtraGeometrieTestCase)
 
+class GraafpolygoonTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.graafpolygoon
+        """
+        # read the file
+        xml_file = open("data/imkl/graafpolygoon.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Graafpolygoon",
+                                                       None)
+        self.imkl_obj = imkl.graafpolygoon()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'geometrie'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-KA0000._Graafpolygoon_18G007160',
+                          'Polygon((154980.0 387980.0, 155120.0 387980.0, \
+155120.0 388140.0, 154980.0 388140.0, 154980.0 387980.0))'])
+
+_suite_GraafpolygoonTestCase = unittest.TestLoader().loadTestsFromTestCase(GraafpolygoonTestCase)
+
+class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.gebiedsinformatieAanvraag
+        """
+        # read the file
+        xml_file = open("data/imkl/gebiedsinformatieAanvraag.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "GebiedsinformatieAanvraag",
+                                                       None)
+        self.imkl_obj = imkl.gebiedsinformatieAanvraag()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'beginLifespanVersion','ordernummer',
+                          'positienummer', 'klicMeldnummer', 'referentie'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-KA0000._GebiedsinformatieAanvraag_18G007160',
+                          '2018-07-19T12:02:03.000+02:00','9806758830',
+                          '0000000010','18G007160','Tbv Klicviewer - Graaf'])
+
+    def test_contact_persoon(self):
+        aanvragen = self.imkl_obj.field("aanvragers").value
+        aanvraag = aanvragen[0]
+        persoon = aanvraag.field("contactpersoon").value
+        contact = persoon.field("contact").value
+        naam = contact.field("naam").value
+        telefoon = contact.field("telefoon").value
+        email = contact.field("email").value
+        self.assertEqual((naam,telefoon,email),
+                         ('Niet beschikbaar - TODO','0881234566',
+                          'klic.testers@kadaster.nl'))
+
+    def test_contact_organisatie(self):
+        aanvragen = self.imkl_obj.field("aanvragers").value
+        aanvraag = aanvragen[0]
+        organisatie = aanvraag.field("organisatie").value
+        organisatie = organisatie[0]
+        bezoekadres = organisatie.field("bezoekadres").value
+        adres = bezoekadres.field("adres").value
+        straat = adres.field("openbareRuimte").value
+        huisnummer = adres.field("huisnummer").value
+        woonplaats = adres.field("woonplaats").value
+        postcode = adres.field("postcode").value
+        landcode = adres.field("landcode").value
+        self.assertEqual((straat,huisnummer,postcode,woonplaats,landcode),
+                         ('Laan van Westenenk','701',
+                          '7334DP', 'APELDOORN', 'NL'))
+        
+_suite_GebiedsinformatieAanvraagTestCase = unittest.TestLoader().loadTestsFromTestCase(GebiedsinformatieAanvraagTestCase)
+
+##class TestCase(unittest.TestCase):
+##
+##    def setUp(self):
+##        """
+##        unit test to test imkl.?
+##        """
+##        # read the file
+##        xml_file = open("data/imkl/.xml")
+##        root = ET.fromstring(xml_file.read())
+##        self.xml_element = xml_utils.find_xml_with_tag(root, "",
+##                                                       None)
+##        self.imkl_obj = imkl.()
+##        self.imkl_obj.process(self.xml_element)
+##        xml_file.close()
+##
+##    def test_field_names(self):
+##        self.assertEqual(self.imkl_obj.field_names(),
+##                         ['id', ''])
+##
+##    def test_field_values(self):
+##        self.assertEqual(self.imkl_obj.field_values(),
+##                         ['',
+##                          ''])
+##
+##_suite_TestCase = unittest.TestLoader().loadTestsFromTestCase(TestCase)
+
 unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2_1,
-                    _suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie]
+                    _suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie,
+                    _suite_GraafpolygoonTestCase, _suite_GebiedsinformatieAanvraagTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
