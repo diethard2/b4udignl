@@ -389,7 +389,7 @@ class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'beginLifespanVersion','ordernummer',
+                         ['id', 'registratiedatum','ordernummer',
                           'positienummer', 'klicMeldnummer', 'referentie'])
 
     def test_field_values(self):
@@ -428,6 +428,125 @@ class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
         
 _suite_GebiedsinformatieAanvraagTestCase = unittest.TestLoader().loadTestsFromTestCase(GebiedsinformatieAanvraagTestCase)
 
+class AanduidingEVTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.AanduidingEisVoorzorgsmaatregel
+        """
+        # read the file
+        xml_file = open("data/imkl/aanduiding_ev.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "AanduidingEisVoorzorgsmaatregel",
+                                                       None)
+        self.imkl_obj = imkl.aanduidingEisVoorzorgsmaatregel()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'label',
+                          'network_id', 'eisVoorzorgsmaatregel',
+                          'netbeheerderNetOmschrijving','netbeheerderWerkAanduiding',
+                          'geometrie'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.EV1','2001-12-17T09:30:47.00+01:00',
+                          'EisVoorzorgsmaatregel GHD-leiding Best-west',
+                          'nl.imkl-nbact1.un00054', 'GHD-T-W3',
+                          'EV1-gebied transport hoofdleiding','W3-hoog',
+                          'Polygon((155104 388038, 155098 388046, 155088 388043, \
+155088 388032, 155098 388029, 155104 388038))'])
+        
+    def test_contact_voorzorgsmaatregel(self):
+        contactpersoon = self.imkl_obj.field('contactVoorzorgsmaatregel').value
+        contact = contactpersoon.field('contact').value
+        naam = contact.field("naam").value
+        telefoon = contact.field("telefoon").value
+        email = contact.field("email").value
+        self.assertEqual((naam,telefoon,email),
+                         ('Contactnaam EV1','088-183 1111',
+                          'EV1@nbact1.nl'))
+  
+_suite_AanduidingEVTestCase = unittest.TestLoader().loadTestsFromTestCase(AanduidingEVTestCase)
+
+class BelanghebbendeTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.belanghebbende
+        """
+        # read the file
+        xml_file = open("data/imkl/belanghebbende.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Belanghebbende",
+                                                       None)
+        self.imkl_obj = imkl.belanghebbende()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'bronhoudercode', 'registratiedatum',
+                          'beheerdersinformatieGeleverd','betrokkenBijAanvraag',
+                          'eisVoorzorgsmaatregel','netbeheerderNetOmschrijving',
+                          'idGeraaktBelang','idNetbeheerder'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact2._Belanghebbende_18G007160-1',None,
+                          '2018-07-19T12:04:10.000+02:00','true',
+                          'false','false',None,
+                          'nl.imkl-nbact2._Belang_5012613-300',
+                          'nl.imkl-nbact2._Beheerder'])
+
+_suite_BelanghebbendeTestCase = unittest.TestLoader().loadTestsFromTestCase(BelanghebbendeTestCase)
+
+class BelangTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.belang
+        """
+        # read the file
+        xml_file = open("data/imkl/belang.xml")
+        root = ET.fromstring(xml_file.read())
+        tag = imkl.BELANG
+        self.xml_element = xml_utils.find_xml_with_tag(root, tag,
+                                                       None)
+        self.imkl_obj = imkl.belang()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','omschrijving'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact2._Belang_5012613-300',
+                          '2016-08-09T00:00:00.000+02:00',
+                          '02 in best'])
+        
+    def test_contactAanvraag(self):
+        contactAanvraag = self.imkl_obj.field("contactAanvraag").value
+        contact = contactAanvraag.field("aanvraagSoortContact").value
+        naam = contact.field("naam").value
+        telefoon = contact.field("telefoon").value
+        email = contact.field("email").value
+        self.assertEqual((naam,telefoon,email),
+                         ('BMK Netbeheerder Actualiseren02','0887891325',
+                          'klic_levering@integratie.kadaster.nl'))
+        
+        
+    def test_contactNetinformatie(self):
+        pass
+    def test_contactBeschadiging(self):
+        pass
+
+_suite_BelangTestCase = unittest.TestLoader().loadTestsFromTestCase(BelangTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -456,7 +575,9 @@ _suite_GebiedsinformatieAanvraagTestCase = unittest.TestLoader().loadTestsFromTe
 
 unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2_1,
                     _suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie,
-                    _suite_GraafpolygoonTestCase, _suite_GebiedsinformatieAanvraagTestCase]
+                    _suite_GraafpolygoonTestCase, _suite_GebiedsinformatieAanvraagTestCase,
+                    _suite_AanduidingEVTestCase, _suite_BelanghebbendeTestCase,
+                    _suite_BelangTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

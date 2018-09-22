@@ -26,13 +26,16 @@ from basis import B_Object, B_Field
 from xml_utils import B_XmlProcessor, clean_tag
 
 AANDUIDINGEISVOORZORGSMAATREGEL = "AanduidingEisVoorzorgsmaatregel"
+BELANG = "Belang"
+BELANGHEBBENDE = "Belanghebbende"
 BOUNDEDBY = "boundedBy"
 EXTRAGEOMETRY = "ExtraGeometrie"
 FEATURECOLLECTION = "FeatureCollection"
+GRAAFPOLYGOON = "Graafpolygoon"
 LEVERINGSINFORMATIE = "Leveringsinformatie"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
 UTILITEITSNET = "Utiliteitsnet"
-GRAAFPOLYGOON = "Graafpolygoon"
+
 
 # for old version of IMKL messages (before 1-1-2019)
 def leveringsinformatie():
@@ -158,8 +161,20 @@ def aanduidingEisVoorzorgsmaatregel():
     obj = B_Object("AanduidingEisVoorzorgsmaatregel")
     obj.add_field(B_Field("id", "TEXT", "Identificatie",
                           to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("eisVoorzorgsmaatregel", "TEXT", "EisVoorzorgsmaatregel"))
+    obj.add_field(B_Field("contactVoorzorgsmaatregel", "OBJECT",
+                          "ContactVoorzorgsmaatregel",to_object=contactpersoon))
+    obj.add_field(B_Field("netbeheerderNetOmschrijving", "TEXT", "NetbeheerderNetOmschrijving"))
+    obj.add_field(B_Field("netbeheerderWerkAanduiding", "TEXT", "NetbeheerderWerkAanduiding"))
+    obj.add_field(B_Field("geometrie", "POLYGON", "Geometrie",
+                          to_object=gml.Polygon))
     obj.add_tags_to_process()
     return obj
+
 
 def boundedBy():
     obj = B_Object("boundedBy")
@@ -184,7 +199,7 @@ def gebiedsinformatieAanvraag():
     obj = B_Object("GebiedsinformatieAanvraag")
     obj.add_field(B_Field("id", "TEXT", "Identificatie",
                           to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("beginLifespanVersion", "TEXT",
+    obj.add_field(B_Field("registratiedatum", "TEXT",
                           "BeginLifespanVersion"))
     obj.add_field(B_Field("ordernummer", "TEXT",
                           "Ordernummer"))
@@ -308,7 +323,23 @@ def bijlagePerNetbeheerder():
 
 def belanghebbende():
     obj = B_Object("Belanghebbende")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
     obj.add_field(B_Field("bronhoudercode", "TEXT", "Bronhoudercode"))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("beheerdersinformatieGeleverd", "TEXT",
+                          "BeheerdersinformatieGeleverd"))
+    obj.add_field(B_Field("betrokkenBijAanvraag", "TEXT",
+                          "BetrokkenBijAanvraag"))
+    obj.add_field(B_Field("eisVoorzorgsmaatregel", "TEXT", "EisVoorzorgsmaatregel"))
+    obj.add_field(B_Field("contactVoorzorgsmaatregel", "OBJECT",
+                          "ContactVoorzorgsmaatregel",to_object=contactpersoon))
+    obj.add_field(B_Field("netbeheerderNetOmschrijving", "TEXT", "NetbeheerderNetOmschrijving"))
+    obj.add_field(B_Field("idGeraaktBelang", "TEXT",
+                          "GeraaktBelangBijGraafpolygoon",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("idNetbeheerder", "TEXT", "Netbeheerder",
+                          from_attribute='Href'))
     obj.add_field(B_Field("bijlagen", "CONTAINER",
                           "BijlagePerNetbeheerder",
                           to_object=bijlagePerNetbeheerder,
@@ -317,6 +348,29 @@ def belanghebbende():
                           "Beheerdersinformatie",
                           to_object=beheerdersinformatie,
                           is_virtual=True))
+    obj.add_tags_to_process()
+    return obj
+
+def belang():
+    obj = B_Object("Belang")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_field(B_Field("contactAanvraag", "OBJECT",
+                          "ContactAanvraag",to_object=contactAanvraag))
+    obj.add_field(B_Field("contactNetinformatie", "OBJECT",
+                          "ContactNetinformatie",to_object=contactAanvraag))
+    obj.add_field(B_Field("contactBeschadiging", "OBJECT",
+                          "ContactBeschadiging",to_object=contact))
+    obj.add_tags_to_process()
+    return obj
+
+def contactAanvraag():
+    obj = B_Object("ContactAanvraag")
+    obj.add_field(B_Field("aanvraagSoortContact", "OBJECT",
+                          "AanvraagSoortContact",
+                          to_object=contact))
     obj.add_tags_to_process()
     return obj
 
@@ -367,6 +421,8 @@ class IMKL_Id(B_XmlProcessor):
             if tag == 'Namespace':
                 self._process_namespace(i_elem)
             elif tag in ('LokaalID', 'LocalId'):
+                self._process_localId(i_elem)
+            elif tag == 'Versie':
                 self._process_localId(i_elem)
 
     def _process_namespace(self, elem):
