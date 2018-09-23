@@ -321,25 +321,25 @@ class ExtraGeometrieTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.extraGeometrie.field_names(),
-                         ['id','registratiedatum','network_id',
-                          'vlakgeometrie'])
+                         ['id', 'registratiedatum', 'vervaldatum',
+                          'network_id', 'vlakgeometrie'])
 
     def test_field_values(self):
         self.assertEqual(self.extraGeometrie.field_values(),
                          ['nl.imkl-nbact1.xg00009','2015-10-19T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00057',
+                          '9999-01-01T09:30:47.0','nl.imkl-nbact1.un00057',
                           'Polygon((155052.000 388010.000, \
 155050.000 388008.000, 155048.000 388010.000, 155050.000 388012.000, \
 155052.000 388010.000))'])
 
     def test_csv_header(self):
         self.assertEqual(self.extraGeometrie.csv_header(),
-                         'id;registratiedatum;network_id;vlakgeometrie')
+                         'id;registratiedatum;vervaldatum;network_id;vlakgeometrie')
 
     def test_as_csv(self):
         self.assertEqual(self.extraGeometrie.as_csv(),
                          'nl.imkl-nbact1.xg00009;2015-10-19T09:30:47.0Z;\
-nl.imkl-nbact1.un00057;Polygon((155052.000 388010.000, \
+9999-01-01T09:30:47.0;nl.imkl-nbact1.un00057;Polygon((155052.000 388010.000, \
 155050.000 388008.000, 155048.000 388010.000, 155050.000 388012.000, \
 155052.000 388010.000))')
     
@@ -389,13 +389,13 @@ class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum','ordernummer',
-                          'positienummer', 'klicMeldnummer', 'referentie'])
+                         ['id','registratiedatum','vervaldatum','ordernummer',
+                          'positienummer','klicMeldnummer','referentie'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-KA0000._GebiedsinformatieAanvraag_18G007160',
-                          '2018-07-19T12:02:03.000+02:00','9806758830',
+                          '2018-07-19T12:02:03.000+02:00',None,'9806758830',
                           '0000000010','18G007160','Tbv Klicviewer - Graaf'])
 
     def test_contact_persoon(self):
@@ -445,7 +445,7 @@ class AanduidingEVTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'label',
+                         ['id', 'registratiedatum', 'vervaldatum', 'label',
                           'network_id', 'eisVoorzorgsmaatregel',
                           'netbeheerderNetOmschrijving','netbeheerderWerkAanduiding',
                           'geometrie'])
@@ -453,6 +453,7 @@ class AanduidingEVTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-nbact1.EV1','2001-12-17T09:30:47.00+01:00',
+                          None,
                           'EisVoorzorgsmaatregel GHD-leiding Best-west',
                           'nl.imkl-nbact1.un00054', 'GHD-T-W3',
                           'EV1-gebied transport hoofdleiding','W3-hoog',
@@ -488,15 +489,15 @@ class BelanghebbendeTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'bronhoudercode', 'registratiedatum',
+                         ['id','registratiedatum','vervaldatum','bronhoudercode',
                           'beheerdersinformatieGeleverd','betrokkenBijAanvraag',
                           'eisVoorzorgsmaatregel','netbeheerderNetOmschrijving',
                           'idGeraaktBelang','idNetbeheerder'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact2._Belanghebbende_18G007160-1',None,
-                          '2018-07-19T12:04:10.000+02:00','true',
+                         ['nl.imkl-nbact2._Belanghebbende_18G007160-1',
+                          '2018-07-19T12:04:10.000+02:00',None,None,'true',
                           'false','false',None,
                           'nl.imkl-nbact2._Belang_5012613-300',
                           'nl.imkl-nbact2._Beheerder'])
@@ -521,12 +522,12 @@ class BelangTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','omschrijving'])
+                         ['id','registratiedatum','vervaldatum','omschrijving'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-nbact2._Belang_5012613-300',
-                          '2016-08-09T00:00:00.000+02:00',
+                          '2016-08-09T00:00:00.000+02:00',None,
                           '02 in best'])
         
     def test_contactAanvraag(self):
@@ -616,15 +617,14 @@ class GebiedsinformatieLeveringTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'leveringsvolgnummer',
-                          'datumLeveringSamengesteld',
+                         ['id', 'registratiedatum', 'vervaldatum',
+                          'leveringsvolgnummer','datumLeveringSamengesteld',
                           'indicatieLeveringCompleet'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-KA0000._GebiedsinformatieLevering_18G007160-1',
-                          '2018-07-19T12:07:09.449+02:00',
-                          '1',
+                          '2018-07-19T12:07:09.449+02:00',None,'1',
                           '2018-07-19T12:07:09.449+02:00',
                           'true'])
 
@@ -700,14 +700,14 @@ class BijlageTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'bijlageType',
-                          'bestandlocatie', 'bestandMediaType',
+                         ['id', 'registratiedatum', 'vervaldatum',
+                          'bijlageType', 'bestandlocatie', 'bestandMediaType',
                           'bestandIdentificator'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-nbact2.algemeen',
-                          '2001-12-17T09:30:47.0Z',
+                          '2001-12-17T09:30:47.0Z', None,
                           'http://definities.geostandaarden.nl/imkl2015/id/\
 waarde/BijlageTypeValue/algemeen', 'bronnen/nbact2/nl.imkl-nbact2_18G007160.algemeen.pdf',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF',

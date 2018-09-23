@@ -163,10 +163,8 @@ def thema():
 
 # for new version of IMKL messages (after 1-1-2019)
 def aanduidingEisVoorzorgsmaatregel():
-    obj = B_Object("AanduidingEisVoorzorgsmaatregel")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj = imkl_basis()
+    obj.name = "AanduidingEisVoorzorgsmaatregel"
     obj.add_field(B_Field("label", "TEXT", "Label"))
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
                           from_attribute='Href'))
@@ -201,11 +199,8 @@ def appurtenance():
     return obj
 
 def annotatie():
-    obj = B_Object("Annotatie")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
-    obj.add_field(B_Field("vervaldatum", "TEXT", "EndLifespanVersion"))
+    obj = imkl_basis()
+    obj.name = "Annotatie"
     obj.add_field(B_Field("label", "TEXT", "Label"))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
@@ -221,10 +216,8 @@ def annotatie():
     return obj
 
 def bijlage_v2():
-    obj = B_Object("Bijlage")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj = imkl_basis()
+    obj.name = "Bijlage"
     obj.add_field(B_Field("bijlageType", "TEXT", "BijlageType",
                           from_attribute='Href'))
     obj.add_field(B_Field("bestandlocatie", "TEXT", "BestandLocatie"))
@@ -243,10 +236,8 @@ def boundedBy():
     return obj
 
 def extraGeometrie():
-    obj = B_Object("ExtraGeometrie")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj = imkl_basis()
+    obj.name = "ExtraGeometrie"
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
                           from_attribute='Href'))
     obj.add_field(B_Field("vlakgeometrie", "POLYGON", "Vlakgeometrie2D",
@@ -255,11 +246,8 @@ def extraGeometrie():
     return obj
 
 def gebiedsinformatieAanvraag():
-    obj = B_Object("GebiedsinformatieAanvraag")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT",
-                          "BeginLifespanVersion"))
+    obj = imkl_basis()
+    obj.name = "GebiedsinformatieAanvraag"
     obj.add_field(B_Field("ordernummer", "TEXT",
                           "Ordernummer"))
     obj.add_field(B_Field("positienummer", "TEXT",
@@ -274,11 +262,8 @@ def gebiedsinformatieAanvraag():
     return obj
 
 def gebiedsinformatieLevering():
-    obj = B_Object("GebiedsinformatieLevering")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT",
-                          "BeginLifespanVersion"))
+    obj = imkl_basis()
+    obj.name = "GebiedsinformatieLevering"
     obj.add_field(B_Field("leveringsvolgnummer", "INTEGER",
                           "Leveringsvolgnummer"))
     obj.add_field(B_Field("datumLeveringSamengesteld", "TEXT",
@@ -406,11 +391,9 @@ def bijlagePerNetbeheerder():
     return a_bijlage
 
 def belanghebbende():
-    obj = B_Object("Belanghebbende")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
+    obj = imkl_basis()
+    obj.name = "Belanghebbende"
     obj.add_field(B_Field("bronhoudercode", "TEXT", "Bronhoudercode"))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
     obj.add_field(B_Field("beheerdersinformatieGeleverd", "TEXT",
                           "BeheerdersinformatieGeleverd"))
     obj.add_field(B_Field("betrokkenBijAanvraag", "TEXT",
@@ -436,10 +419,8 @@ def belanghebbende():
     return obj
 
 def belang():
-    obj = B_Object("Belang")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj = imkl_basis()
+    obj.name = "Belang"
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("contactAanvraag", "OBJECT",
                           "ContactAanvraag",to_object=contactAanvraag))
@@ -493,6 +474,14 @@ def sql_creation_statements():
     for i_object in imkl_objects.values():
         sql_statements.extend(i_object.sql_create_table_statements())
     return sql_statements
+
+def imkl_basis():
+    obj = B_Object("imkl_basis")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("vervaldatum", "TEXT", "EndLifespanVersion"))
+    return obj
 
 class IMKL_Id(B_XmlProcessor):
     """ To process xml_element with tag identifier or NEN3610ID
