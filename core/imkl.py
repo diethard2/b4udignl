@@ -26,6 +26,7 @@ from basis import B_Object, B_Field
 from xml_utils import B_XmlProcessor, clean_tag
 
 AANDUIDINGEISVOORZORGSMAATREGEL = "AanduidingEisVoorzorgsmaatregel"
+APPURTENANCE = "Appurtenance"
 BELANG = "Belang"
 BELANGHEBBENDE = "Belanghebbende"
 BOUNDEDBY = "boundedBy"
@@ -172,6 +173,26 @@ def aanduidingEisVoorzorgsmaatregel():
     obj.add_field(B_Field("netbeheerderWerkAanduiding", "TEXT", "NetbeheerderWerkAanduiding"))
     obj.add_field(B_Field("geometrie", "POLYGON", "Geometrie",
                           to_object=gml.Polygon))
+    obj.add_tags_to_process()
+    return obj
+
+def appurtenance():
+    obj = B_Object("Appurtenance")
+    obj.add_field(B_Field("id", "TEXT", "InspireId",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("currentStatus", "TEXT", "CurrentStatus",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
+    obj.add_field(B_Field("validTo", "TEXT", "ValidTo"))
+    obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
+    obj.add_field(B_Field("appurtenanceType", "TEXT", "AppurtenanceType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    obj.add_field(B_Field("geometry", "POINT", "Geometry",
+                          to_object=gml.Point))
     obj.add_tags_to_process()
     return obj
 
@@ -362,15 +383,16 @@ def belang():
     obj.add_field(B_Field("contactNetinformatie", "OBJECT",
                           "ContactNetinformatie",to_object=contactAanvraag))
     obj.add_field(B_Field("contactBeschadiging", "OBJECT",
-                          "ContactBeschadiging",to_object=contact))
+                          "ContactBeschadiging",to_object=contactAanvraag))
     obj.add_tags_to_process()
     return obj
 
 def contactAanvraag():
     obj = B_Object("ContactAanvraag")
     obj.add_field(B_Field("aanvraagSoortContact", "OBJECT",
-                          "AanvraagSoortContact",
-                          to_object=contact))
+                          "AanvraagSoortContact", to_object=contact))
+    obj.add_field(B_Field("contact", "OBJECT",
+                          "Contact", to_object=contact))
     obj.add_tags_to_process()
     return obj
 

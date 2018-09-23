@@ -68,7 +68,7 @@ class GmlBase(B_XmlProcessor):
                 is_3d = True
         return is_3d
 
-class Point(B_XmlProcessor):
+class Point(GmlBase):
 
     def __init__(self):
         B_XmlProcessor.__init__(self)

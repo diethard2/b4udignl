@@ -539,13 +539,65 @@ class BelangTestCase(unittest.TestCase):
                          ('BMK Netbeheerder Actualiseren02','0887891325',
                           'klic_levering@integratie.kadaster.nl'))
         
-        
     def test_contactNetinformatie(self):
-        pass
+        contactNetinformatie = self.imkl_obj.field("contactNetinformatie").value
+        contact = contactNetinformatie.field("aanvraagSoortContact").value
+        naam = contact.field("naam").value
+        telefoon = contact.field("telefoon").value
+        email = contact.field("email").value
+        self.assertEqual((naam,telefoon,email),
+                         ('Contact Netinformatie Naam DUMMY','1234567890',
+                          'ContactNetinformatieEmailDummy@kadaster.nl'))
+    
     def test_contactBeschadiging(self):
-        pass
+        contactBeschadiging = self.imkl_obj.field("contactBeschadiging").value
+        contact = contactBeschadiging.field("contact").value
+        naam = contact.field("naam").value
+        telefoon = contact.field("telefoon").value
+        email = contact.field("email").value
+        self.assertEqual((naam,telefoon,email),
+                         ('Contact Beschadiging Naam DUMMY','1234567890',
+                          'ContactBeschadigingEmailDummy@kadaster.nl'))
 
 _suite_BelangTestCase = unittest.TestLoader().loadTestsFromTestCase(BelangTestCase)
+
+class AppurtenanceTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.appurtenance
+        """
+        # read the file
+        xml_file = open("data/imkl/appurtenance.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Appurtenance",
+                                                       None)
+        self.imkl_obj = imkl.appurtenance()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'network_id',
+                          'currentStatus', 'validFrom', 'validTo',
+                          'verticalPosition', 'appurtenanceType',
+                          'label', 'geometry'])
+
+    def test_field_values(self):
+        self.maxDiff = None
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.app00001',
+                          '2001-12-17T09:30:47.0Z',
+                          'nl.imkl-nbact1.un00007',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
+                          '2001-12-17T09:30:47.0Z',
+                          '2001-12-17T09:30:47.0Z',
+                          'onGroundSurface',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/ElectricityAppurtenanceTypeIMKLValue/aarding',
+                          '',
+                          'Point(155000.000 388090.000)'])
+
+_suite_AppurtenanceTestCase = unittest.TestLoader().loadTestsFromTestCase(AppurtenanceTestCase)
 
 ##class TestCase(unittest.TestCase):
 ##
@@ -577,7 +629,7 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie,
                     _suite_GraafpolygoonTestCase, _suite_GebiedsinformatieAanvraagTestCase,
                     _suite_AanduidingEVTestCase, _suite_BelanghebbendeTestCase,
-                    _suite_BelangTestCase]
+                    _suite_BelangTestCase, _suite_AppurtenanceTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
