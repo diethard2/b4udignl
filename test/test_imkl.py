@@ -599,6 +599,48 @@ class AppurtenanceTestCase(unittest.TestCase):
 
 _suite_AppurtenanceTestCase = unittest.TestLoader().loadTestsFromTestCase(AppurtenanceTestCase)
 
+class GebiedsinformatieLeveringTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.gebiedsinformatieLevering
+        """
+        # read the file
+        xml_file = open("data/imkl/gebiedsinformatieLevering.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "GebiedsinformatieLevering",
+                                                       None)
+        self.imkl_obj = imkl.gebiedsinformatieLevering()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'leveringsvolgnummer',
+                          'datumLeveringSamengesteld',
+                          'indicatieLeveringCompleet'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-KA0000._GebiedsinformatieLevering_18G007160-1',
+                          '2018-07-19T12:07:09.449+02:00',
+                          '1',
+                          '2018-07-19T12:07:09.449+02:00',
+                          'true'])
+
+    def test_achtergrondkaart(self):
+        kaarten = self.imkl_obj.field("achtergrondkaarten").value
+        kaart = kaarten[0]
+        soort_ref = kaart.field('achtergrondkaartSoort').value
+        i = soort_ref.rindex('/')
+        soort = soort_ref[i+1:]
+        bron = kaart.field('kaartreferentie').value
+        self.assertEqual((soort, bron),
+                         ('bgtBestaand','bronnen/GB_18G007160.png'))
+
+_suite_GebiedsinformatieLeveringTestCase = unittest.TestLoader().loadTestsFromTestCase(GebiedsinformatieLeveringTestCase)
+
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -629,7 +671,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie,
                     _suite_GraafpolygoonTestCase, _suite_GebiedsinformatieAanvraagTestCase,
                     _suite_AanduidingEVTestCase, _suite_BelanghebbendeTestCase,
-                    _suite_BelangTestCase, _suite_AppurtenanceTestCase]
+                    _suite_BelangTestCase, _suite_AppurtenanceTestCase,
+                    _suite_GebiedsinformatieLeveringTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

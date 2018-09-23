@@ -32,6 +32,8 @@ BELANGHEBBENDE = "Belanghebbende"
 BOUNDEDBY = "boundedBy"
 EXTRAGEOMETRY = "ExtraGeometrie"
 FEATURECOLLECTION = "FeatureCollection"
+GEBIEDSINFORMATIEAANVRAAG = "GebiedsinformatieAanvraag"
+GEBIEDSINFORMATIELEVERING = "GebiedsinformatieLevering"
 GRAAFPOLYGOON = "Graafpolygoon"
 LEVERINGSINFORMATIE = "Leveringsinformatie"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
@@ -235,12 +237,37 @@ def gebiedsinformatieAanvraag():
     obj.add_tags_to_process()
     return obj
 
+def gebiedsinformatieLevering():
+    obj = B_Object("GebiedsinformatieLevering")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT",
+                          "BeginLifespanVersion"))
+    obj.add_field(B_Field("leveringsvolgnummer", "INTEGER",
+                          "Leveringsvolgnummer"))
+    obj.add_field(B_Field("datumLeveringSamengesteld", "TEXT",
+                          "DatumLeveringSamengesteld"))
+    obj.add_field(B_Field("indicatieLeveringCompleet", "TEXT",
+                          "IndicatieLeveringCompleet"))
+    obj.add_field(B_Field("achtergrondkaarten", "CONTAINER",
+                          "Achtergrondkaart", to_object=achtergrondkaart))
+    obj.add_tags_to_process()
+    return obj
+
 def aanvrager():
     obj = B_Object("Aanvrager")
     obj.add_field(B_Field("contactpersoon", "OBJECT", "Contactpersoon",
                           to_object=contactpersoon))
     obj.add_field(B_Field("organisatie", "CONTAINER", "Organisatie",
                           to_object=organisatie))
+    obj.add_tags_to_process()
+    return obj
+
+def achtergrondkaart():
+    obj = B_Object("Achtergrondkaart")
+    obj.add_field(B_Field("achtergrondkaartSoort", "TEXT",
+                                "AchtergrondkaartSoort", from_attribute='Href'))
+    obj.add_field(B_Field("kaartreferentie", "TEXT", "Kaartreferentie"))
     obj.add_tags_to_process()
     return obj
 
