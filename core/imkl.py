@@ -30,6 +30,7 @@ ANNOTATIE = "Annotatie"
 APPURTENANCE = "Appurtenance"
 BELANG = "Belang"
 BELANGHEBBENDE = "Belanghebbende"
+BIJLAGE = "Bijlage"
 BOUNDEDBY = "boundedBy"
 EXTRAGEOMETRY = "ExtraGeometrie"
 FEATURECOLLECTION = "FeatureCollection"
@@ -216,6 +217,21 @@ def annotatie():
                           "Labelpositie", to_object=labelpositie))
     obj.add_field(B_Field("geometry", "POINT", "Ligging",
                           to_object=gml.Point))
+    obj.add_tags_to_process()
+    return obj
+
+def bijlage_v2():
+    obj = B_Object("Bijlage")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("bijlageType", "TEXT", "BijlageType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("bestandlocatie", "TEXT", "BestandLocatie"))
+    obj.add_field(B_Field("bestandMediaType", "TEXT", "BestandMediaType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("bestandIdentificator", "TEXT",
+                          "BestandIdentificator"))
     obj.add_tags_to_process()
     return obj
 

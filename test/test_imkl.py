@@ -683,6 +683,37 @@ class AnnotatieTestCase(unittest.TestCase):
 
 _suite_AnnotatieTestCase = unittest.TestLoader().loadTestsFromTestCase(AnnotatieTestCase)
 
+class BijlageTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.bijlage
+        """
+        # read the file
+        xml_file = open("data/imkl/bijlage.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Bijlage",
+                                                       None)
+        self.imkl_obj = imkl.bijlage_v2()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'bijlageType',
+                          'bestandlocatie', 'bestandMediaType',
+                          'bestandIdentificator'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact2.algemeen',
+                          '2001-12-17T09:30:47.0Z',
+                          'http://definities.geostandaarden.nl/imkl2015/id/\
+waarde/BijlageTypeValue/algemeen', 'bronnen/nbact2/nl.imkl-nbact2_18G007160.algemeen.pdf',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF',
+                          'nl.imkl-nbact2.algemeen'])
+
+_suite_BijlageTestCase = unittest.TestLoader().loadTestsFromTestCase(BijlageTestCase)
 
 ##class TestCase(unittest.TestCase):
 ##
@@ -715,7 +746,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_GraafpolygoonTestCase, _suite_GebiedsinformatieAanvraagTestCase,
                     _suite_AanduidingEVTestCase, _suite_BelanghebbendeTestCase,
                     _suite_BelangTestCase, _suite_AppurtenanceTestCase,
-                    _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase]
+                    _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase,
+                    _suite_BijlageTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
