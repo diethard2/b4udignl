@@ -26,6 +26,7 @@ from basis import B_Object, B_Field
 from xml_utils import B_XmlProcessor, clean_tag
 
 AANDUIDINGEISVOORZORGSMAATREGEL = "AanduidingEisVoorzorgsmaatregel"
+ANNOTATIE = "Annotatie"
 APPURTENANCE = "Appurtenance"
 BELANG = "Belang"
 BELANGHEBBENDE = "Belanghebbende"
@@ -198,6 +199,25 @@ def appurtenance():
     obj.add_tags_to_process()
     return obj
 
+def annotatie():
+    obj = B_Object("Annotatie")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("vervaldatum", "TEXT", "EndLifespanVersion"))
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("annotatieType", "TEXT", "AnnotatieType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("rotatiehoek", "TEXT", "Rotatiehoek"))
+    obj.add_field(B_Field("labelpositie", "CONTAINER",
+                          "Labelpositie", to_object=labelpositie))
+    obj.add_field(B_Field("geometry", "POINT", "Ligging",
+                          to_object=gml.Point))
+    obj.add_tags_to_process()
+    return obj
 
 def boundedBy():
     obj = B_Object("boundedBy")
@@ -433,6 +453,17 @@ def beheerdersinformatie():
                           "ThemabijlagePerNetbeheerder",
                           to_object=themabijlagePerNetbeheerder,
                           is_virtual=True))
+    obj.add_tags_to_process()
+    return obj
+
+def labelpositie():
+    obj = B_Object("Labelpositie")
+    obj.add_field(B_Field("aangrijpingHorizontaal", "TEXT",
+                          "AangrijpingHorizontaal",
+                          from_attribute="Href"))
+    obj.add_field(B_Field("aangrijpingVerticaal", "TEXT",
+                          "AangrijpingVerticaal",
+                          from_attribute="Href"))
     obj.add_tags_to_process()
     return obj
 

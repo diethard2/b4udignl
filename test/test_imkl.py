@@ -640,6 +640,49 @@ class GebiedsinformatieLeveringTestCase(unittest.TestCase):
 
 _suite_GebiedsinformatieLeveringTestCase = unittest.TestLoader().loadTestsFromTestCase(GebiedsinformatieLeveringTestCase)
 
+class AnnotatieTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.annotatie
+        """
+        # read the file
+        xml_file = open("data/imkl/annotatie.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Annotatie",
+                                                       None)
+        self.imkl_obj = imkl.annotatie()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'vervaldatum', 'label',
+                          'omschrijving', 'network_id', 'annotatieType',
+                          'rotatiehoek', 'geometry'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.an00001','1996-05-08T00:00:00+02:00',
+                          '9999-01-01T00:00:00+01:00', 'annotatieLabel',
+                          'Omschrijving Annotatie nl.imkl-nbact1.an00001',
+                          'nl.imkl-nbact1.un00002',
+                          'http://definities.geostandaarden.nl/imkl2015/id\
+/waarde/AnnotatieTypeValue/annotatiepijlpunt', '45.0',
+                          'Point(155000.000 388030.000)'])
+        
+    def test_label_positie(self):
+        obj = self.imkl_obj.field("labelpositie").value[0]
+        values = []
+        for field_name in ("aangrijpingHorizontaal","aangrijpingVerticaal"):
+            value = obj.field(field_name).value
+            i = value.rindex('/')
+            values.append(value[i+1:])
+        self.assertEqual(values, ['0.5','0'])
+            
+
+_suite_AnnotatieTestCase = unittest.TestLoader().loadTestsFromTestCase(AnnotatieTestCase)
+
 
 ##class TestCase(unittest.TestCase):
 ##
@@ -672,7 +715,7 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_GraafpolygoonTestCase, _suite_GebiedsinformatieAanvraagTestCase,
                     _suite_AanduidingEVTestCase, _suite_BelanghebbendeTestCase,
                     _suite_BelangTestCase, _suite_AppurtenanceTestCase,
-                    _suite_GebiedsinformatieLeveringTestCase]
+                    _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
