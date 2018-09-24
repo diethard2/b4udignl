@@ -715,6 +715,76 @@ waarde/BijlageTypeValue/algemeen', 'bronnen/nbact2/nl.imkl-nbact2_18G007160.alge
 
 _suite_BijlageTestCase = unittest.TestLoader().loadTestsFromTestCase(BijlageTestCase)
 
+class DiepteTovMaaiveldTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.?
+        """
+        # read the file
+        xml_file = open("data/imkl/diepte.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "DiepteTovMaaiveld",
+                                                       None)
+        self.imkl_obj = imkl.diepteTovMaaiveld()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'vervaldatum','label',
+                          'omschrijving','network_id','diepteNauwkeurigheid',
+                          'dieptePeil','datumOpmetingDieptePeil',
+                          'diepteAangrijpingspunt','geometry'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.dmaai00001','2001-12-17T09:30:47',
+                          '2031-12-17T09:30:48','','','nl.imkl-nbact1.un00039',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidDiepteValue/tot50cm',
+                          '2.43','2015-12-17T09:30:47',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/DiepteAangrijpingspuntValue/bovenkant',
+                          'Point(155030.000 388050.000)'])
+
+_suite_DiepteTovMaaiveldTestCase = unittest.TestLoader().loadTestsFromTestCase(DiepteTovMaaiveldTestCase)
+
+class DiepteNAPTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.?
+        """
+        # read the file
+        xml_file = open("data/imkl/diepte.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "DiepteNAP",
+                                                       None)
+        self.imkl_obj = imkl.diepteNAP()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'vervaldatum','label',
+                          'omschrijving','network_id','diepteNauwkeurigheid',
+                          'dieptePeil','datumOpmetingDieptePeil',
+                          'diepteAangrijpingspunt','geometry', 'maaiveldPeil',
+                          'datumOpmetingMaaiveldPeil'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.dnap00001',
+                          '2001-12-17T09:30:47','2031-12-17T09:30:48',
+                          'Label DiepteNap','Omschrijving DiepteNap',
+                          'nl.imkl-nbact1.un00038',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidDiepteValue/tot50cm',
+                          '2.43','2015-12-17T09:30:47',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/DiepteAangrijpingspuntValue/bovenkant',
+                          'Point(155030.000 388040.000)',
+                          '5.55','2015-11-16T08:00:00'])
+
+_suite_DiepteNAPTestCase = unittest.TestLoader().loadTestsFromTestCase(DiepteNAPTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -747,7 +817,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_AanduidingEVTestCase, _suite_BelanghebbendeTestCase,
                     _suite_BelangTestCase, _suite_AppurtenanceTestCase,
                     _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase,
-                    _suite_BijlageTestCase]
+                    _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
+                    _suite_DiepteNAPTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

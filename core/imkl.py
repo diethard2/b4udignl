@@ -31,7 +31,9 @@ APPURTENANCE = "Appurtenance"
 BELANG = "Belang"
 BELANGHEBBENDE = "Belanghebbende"
 BIJLAGE = "Bijlage"
-BOUNDEDBY = "boundedBy"
+BOUNDEDBY = "BoundedBy"
+DIEPTETOVMAAIVELD = "DiepteTovMaaiveld"
+DIEPTENAP = "DiepteNAP"
 EXTRAGEOMETRY = "ExtraGeometrie"
 FEATURECOLLECTION = "FeatureCollection"
 GEBIEDSINFORMATIEAANVRAAG = "GebiedsinformatieAanvraag"
@@ -232,6 +234,39 @@ def boundedBy():
     obj = B_Object("boundedBy")
     obj.add_field(B_Field("envelope", "POLYGON", "Envelope",
                           to_object=gml.Envelope))
+    obj.add_tags_to_process()
+    return obj
+
+def diepte():
+    obj = imkl_basis()
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("diepteNauwkeurigheid", "TEXT", "DiepteNauwkeurigheid",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("dieptePeil", "TEXT", "DieptePeil"))
+    obj.add_field(B_Field("datumOpmetingDieptePeil", "TEXT",
+                          "DatumOpmetingDieptePeil"))
+    obj.add_field(B_Field("diepteAangrijpingspunt", "TEXT",
+                          "DiepteAangrijpingspunt",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("geometry", "POINT", "Ligging",
+                          to_object=gml.Point))
+    return obj
+
+def diepteTovMaaiveld():
+    obj = diepte()
+    obj.name = "DiepteTovMaaiveld"
+    obj.add_tags_to_process()
+    return obj
+    
+def diepteNAP():
+    obj = diepte()
+    obj.name = "DiepteNAP"
+    obj.add_field(B_Field("maaiveldPeil", "TEXT", "MaaiveldPeil"))
+    obj.add_field(B_Field("datumOpmetingMaaiveldPeil", "TEXT",
+                          "DatumOpmetingMaaiveldPeil"))
     obj.add_tags_to_process()
     return obj
 
