@@ -681,6 +681,47 @@ class AnnotatieTestCase(unittest.TestCase):
 
 _suite_AnnotatieTestCase = unittest.TestLoader().loadTestsFromTestCase(AnnotatieTestCase)
 
+class MaatvoeringTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.maatvoering
+        """
+        # read the file
+        xml_file = open("data/imkl/maatvoering.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Maatvoering",
+                                                       None)
+        self.imkl_obj = imkl.maatvoering()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'vervaldatum', 'label',
+                          'omschrijving', 'network_id', 'maatvoeringsType',
+                          'rotatiehoek', 'geometry'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.mv00002','2001-12-17T09:30:47.0Z',
+                          '2021-12-17T09:30:47.0Z','maatvoeringsLabel',
+                          'Omschrijving Maatvoering','nl.imkl-nbact1.un00050',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/MaatvoeringsTypeValue/maatvoeringslabel',
+                          '45.0','Point(155040.000 388070.000)'])
+        
+    def test_label_positie(self):
+        obj = self.imkl_obj.field("labelpositie").value[0]
+        values = []
+        for field_name in ("aangrijpingHorizontaal","aangrijpingVerticaal"):
+            value = obj.field(field_name).value
+            i = value.rindex('/')
+            values.append(value[i+1:])
+        self.assertEqual(values, ['0.5','0'])
+            
+
+_suite_MaatvoeringTestCase = unittest.TestLoader().loadTestsFromTestCase(MaatvoeringTestCase)
+
 class BijlageTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -1093,7 +1134,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_GraafpolygoonTestCase, _suite_GebiedsinformatieAanvraagTestCase,
                     _suite_AanduidingEVTestCase, _suite_BelanghebbendeTestCase,
                     _suite_BelangTestCase, _suite_AppurtenanceTestCase,
-                    _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase,
+                    _suite_GebiedsinformatieLeveringTestCase,
+                    _suite_AnnotatieTestCase, _suite_MaatvoeringTestCase,
                     _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
                     _suite_DiepteNAPTestCase, _suite_DuctTestCase,
                     _suite_KabelbedTestCase, _suite_KastTestCase,

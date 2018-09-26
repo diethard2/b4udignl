@@ -223,6 +223,24 @@ def annotatie():
     obj.add_tags_to_process()
     return obj
 
+def maatvoering():
+    obj = imkl_basis()
+    obj.name = "Maatvoering"
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("maatvoeringsType", "TEXT", "MaatvoeringsType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("rotatiehoek", "TEXT", "Rotatiehoek"))
+    obj.add_field(B_Field("labelpositie", "CONTAINER",
+                          "Labelpositie", to_object=labelpositie))
+    obj.add_field(B_Field("geometry", "POINT", "Ligging",
+                          to_object=gml.Point))
+    obj.add_tags_to_process()
+    return obj
+
+
 def bijlage_basis():
     obj = imkl_basis()
     obj.name = "BijlageBasis"
