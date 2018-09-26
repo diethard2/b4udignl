@@ -818,6 +818,41 @@ class DuctTestCase(unittest.TestCase):
 
 _suite_DuctTestCase = unittest.TestLoader().loadTestsFromTestCase(DuctTestCase)
 
+class KabelbedTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.kabelbed
+        """
+        # read the file
+        xml_file = open("data/imkl/kabelbed.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Kabelbed",
+                                                       None)
+        self.imkl_obj = imkl.kabelbed()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'warningType','ductWidth',
+                          'omschrijving'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.kbed00001','2001-12-17T09:30:47.0Z',
+                          'nl.imkl-nbact1.un00047','nl.imkl-nbact1.ul00003',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
+                          '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
+                          'underground','nl.imkl-nbact1.xg00004',
+                          'Label KabelBed',
+                          'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
+                          '0','Omschrijving Kabelbed'])
+
+_suite_KabelbedTestCase = unittest.TestLoader().loadTestsFromTestCase(KabelbedTestCase)
+
 class EigenTopografieTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -967,6 +1002,32 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
 
 _suite_ExtraDetailinfoTestCase = unittest.TestLoader().loadTestsFromTestCase(ExtraDetailinfoTestCase)
 
+class BoundsTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.?
+        """
+        # read the file
+        xml_file = open("data/imkl/gml_envelope.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "BoundedBy",
+                                                       None)
+        self.imkl_obj = imkl.boundedBy()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['envelope'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['Polygon((154980.0 387980.0, 154980.0 388140.0, \
+155120.0 388140.0, 155120.0 387980.0, 154980.0 387980.0))'])
+
+_suite_BoundsTestCase = unittest.TestLoader().loadTestsFromTestCase(BoundsTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -1001,9 +1062,9 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase,
                     _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
                     _suite_DiepteNAPTestCase, _suite_DuctTestCase,
-                    _suite_EigenTopografieTestCase,
+                    _suite_KabelbedTestCase, _suite_EigenTopografieTestCase,
                     _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase,
-                    _suite_ExtraDetailinfoTestCase]
+                    _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

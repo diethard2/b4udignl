@@ -335,6 +335,17 @@ def elektriciteitskabel():
     obj.add_tags_to_process()
     return obj
 
+def kabelbed():
+    obj = kabelOfLeiding()
+    obj.name = "Kabelbed"
+    obj.add_field(B_Field("warningType", "TEXT", "WarningType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("ductWidth", "REAL", "DuctWidth"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_tags_to_process()
+    return obj
+    
+
 def olieGasChemicalienPijpleiding():
     obj = kabelOfLeiding()
     obj.name = "OlieGasChemicalienPijpleiding"
