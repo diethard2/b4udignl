@@ -47,6 +47,8 @@ GRAAFPOLYGOON = "Graafpolygoon"
 KABELBED = "Kabelbed"
 KAST = "Kast"
 LEVERINGSINFORMATIE = "Leveringsinformatie"
+MAATVOERING = "Maatvoering"
+MANGAT = "Mangat"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
 UTILITEITSNET = "Utiliteitsnet"
 
@@ -364,18 +366,6 @@ def kabelbed():
     obj.add_tags_to_process()
     return obj
 
-def kast():
-    # seems a bit weird but only the timestamp of registration is missing
-    # from kabelOfLeiding in kast. OK for me to inherit.
-    obj = kabelOfLeiding()
-    obj.name = "Kast"
-    obj.add_field(B_Field("bovengrondsZichtbaar", "TEXT", "BovengrondsZichtbaar"))
-    obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
-                          from_attribute='Href'))   
-    obj.add_tags_to_process()
-    return obj
-    
-
 def olieGasChemicalienPijpleiding():
     obj = kabelOfLeiding()
     obj.name = "OlieGasChemicalienPijpleiding"
@@ -383,6 +373,43 @@ def olieGasChemicalienPijpleiding():
     obj.add_field(B_Field("druk", "REAL", "Pressure"))
     obj.add_field(B_Field("fluid", "TEXT", "OilGasChemicalsProductType",
                           from_attribute='Href'))
+    obj.add_tags_to_process()
+    return obj
+
+def PuntOpNet():
+    obj = B_Object("PuntOpNet")
+    obj.add_field(B_Field("id", "TEXT", "InspireId",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("status", "TEXT", "CurrentStatus",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
+    obj.add_field(B_Field("validTo", "TEXT", "ValidTo"))
+    obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
+    obj.add_field(B_Field("geometry", "POINT", "Geometry",
+                          to_object=gml.Point))
+    obj.add_field(B_Field("geom_id", "TEXT", "ExtraGeometrie",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    return obj
+
+def kast():
+    # seems a bit weird but only the timestamp of registration is missing
+    # from kabelOfLeiding in kast. OK for me to inherit.
+    obj = PuntOpNet()
+    obj.name = "Kast"
+    obj.add_field(B_Field("bovengrondsZichtbaar", "TEXT", "BovengrondsZichtbaar"))
+    obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
+                          from_attribute='Href'))   
+    obj.add_tags_to_process()
+    return obj
+
+def mangat():
+    # seems a bit weird but only the timestamp of registration is missing
+    # from kabelOfLeiding in kast. OK for me to inherit.
+    obj = PuntOpNet()
+    obj.name = "Mangat"
     obj.add_tags_to_process()
     return obj
 

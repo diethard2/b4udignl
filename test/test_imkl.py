@@ -911,22 +911,51 @@ class KastTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
-                          'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'bovengrondsZichtbaar',
-                          'geoNauwkeurigheidXY'])
+                         ['id','network_id','status', 'validFrom','validTo',
+                          'verticalPosition','geometry','geom_id', 'label',
+                          'bovengrondsZichtbaar','geoNauwkeurigheidXY'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.kast00001',None,
-                          'nl.imkl-nbact1.un00048',None,
+                         ['nl.imkl-nbact1.kast00001','nl.imkl-nbact1.un00048',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '1996-05-08T00:00:00+02:00',
                           '9999-01-01T00:00:00+01:00','onGroundSurface',
+                          'Point(155040.000 388040.000)',
                           'nl.imkl-nbact1.xg00005','','true',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidValue/tot100cm'])
 
 _suite_KastTestCase = unittest.TestLoader().loadTestsFromTestCase(KastTestCase)
+
+class MangatTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.mangat
+        """
+        # read the file
+        xml_file = open("data/imkl/mangat.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Mangat",
+                                                       None)
+        self.imkl_obj = imkl.mangat()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','network_id','status', 'validFrom','validTo',
+                          'verticalPosition','geometry','geom_id', 'label'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.mgat00001','nl.imkl-nbact1.un00054',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
+                          '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
+                          'onGroundSurface','Point(155040.000 388110.000)',
+                          'nl.imkl-nbact1.xg00006',''])
+
+_suite_MangatTestCase = unittest.TestLoader().loadTestsFromTestCase(MangatTestCase)
 
 class EigenTopografieTestCase(unittest.TestCase):
 
@@ -1139,7 +1168,7 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
                     _suite_DiepteNAPTestCase, _suite_DuctTestCase,
                     _suite_KabelbedTestCase, _suite_KastTestCase,
-                    _suite_EigenTopografieTestCase,
+                    _suite_MangatTestCase, _suite_EigenTopografieTestCase,
                     _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase,
                     _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase]
 
