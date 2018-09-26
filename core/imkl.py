@@ -38,6 +38,7 @@ DUCT="Duct"
 EIGENTOPOGRAFIE="EigenTopografie"
 ELEKTRICITEITSKABEL="Elektriciteitskabel"
 EXTRAGEOMETRY = "ExtraGeometrie"
+EXTRADETAILINFO = "ExtraDetailinfo"
 EVBIJLAGE = "eisVoorzorgsmaatregelBijlage"
 FEATURECOLLECTION = "FeatureCollection"
 GEBIEDSINFORMATIEAANVRAAG = "GebiedsinformatieAanvraag"
@@ -366,6 +367,25 @@ def extraGeometrie():
                           from_attribute='Href'))
     obj.add_field(B_Field("vlakgeometrie", "POLYGON", "Vlakgeometrie2D",
                           to_object=gml.Polygon))
+    obj.add_tags_to_process()
+    return obj
+
+def extraDetailinfo():
+    obj = imkl_basis()
+    obj.name = "ExtraDetailinfo"
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("adres", "CONTAINER", "Adres",
+                          to_object=adres))
+    obj.add_field(B_Field("extraInfoType", "TEXT",
+                          "ExtraInfoType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("bestandIdentificator", "TEXT",
+                          "BestandIdentificator"))
+    obj.add_field(B_Field("ligging", "POINT", "Ligging",
+                          to_object=gml.Point))
     obj.add_tags_to_process()
     return obj
 

@@ -923,6 +923,50 @@ class EVbijlageTestCase(unittest.TestCase):
 
 _suite_EVbijlageTestCase = unittest.TestLoader().loadTestsFromTestCase(EVbijlageTestCase)
 
+class ExtraDetailinfoTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.extraDetailinfo
+        """
+        # read the file
+        xml_file = open("data/imkl/extra_detail_info.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "ExtraDetailinfo",
+                                                       None)
+        self.imkl_obj = imkl.extraDetailinfo()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'vervaldatum',
+                          'label','omschrijving','network_id','extraInfoType',
+                          'bestandIdentificator','ligging'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.edi00001','2015-10-15T09:30:47.0Z',
+                          '9999-01-01T10:30:47.0Z','Label ExtraDetailInfo',
+                          'Omschrijving ExtraDetailInfo',
+                          'nl.imkl-nbact1.un00042',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/ExtraDetailInfoTypeValue/aansluiting',
+                          'nl.imkl-nbact1.filename',
+                          'Point(155030.000 388110.000)'])
+
+    def test_adres(self):
+        adres = self.imkl_obj.field("adres").value
+        adres = adres[0]
+        straat = adres.field("openbareRuimte").value
+        huisnummer = adres.field("huisnummer").value
+        woonplaats = adres.field("woonplaats").value
+        postcode = adres.field("postcode").value
+        self.assertEqual((straat,huisnummer,postcode,woonplaats),
+                         ('Een openbareruimte naam','701',
+                          '7334DP', 'Apeldoorn'))        
+
+_suite_ExtraDetailinfoTestCase = unittest.TestLoader().loadTestsFromTestCase(ExtraDetailinfoTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -958,7 +1002,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
                     _suite_DiepteNAPTestCase, _suite_DuctTestCase,
                     _suite_EigenTopografieTestCase,
-                    _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase]
+                    _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase,
+                    _suite_ExtraDetailinfoTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
