@@ -366,6 +366,17 @@ def kabelbed():
     obj.add_tags_to_process()
     return obj
 
+def mantelbuis():
+    obj = kabelOfLeiding()
+    obj.name = "Mantelbuis"
+    obj.add_field(B_Field("warningType", "TEXT", "WarningType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
+    obj.add_field(B_Field("materiaal", "TEXT", "BuismateriaalType",
+                          from_attribute='Href'))
+    obj.add_tags_to_process()
+    return obj
+
 def olieGasChemicalienPijpleiding():
     obj = kabelOfLeiding()
     obj.name = "OlieGasChemicalienPijpleiding"

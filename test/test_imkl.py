@@ -1026,6 +1026,41 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
 
 _suite_ElektriciteitskabelTestCase = unittest.TestLoader().loadTestsFromTestCase(ElektriciteitskabelTestCase)
 
+class MantelbuisTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.Mantelbuis
+        """
+        # read the file
+        xml_file = open("data/imkl/mantelbuis.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Mantelbuis",
+                                                       None)
+        self.imkl_obj = imkl.mantelbuis()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'warningType',
+                          'diameter','materiaal'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.mb00001','2001-12-17T09:30:47.0Z',
+                          'nl.imkl-nbact1.un00055','nl.imkl-nbact1.ul00004',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
+                          '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
+                          'underground','nl.imkl-nbact1.xg00007','',
+                          'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
+                          '100',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/PipeMaterialTypeIMKLValue/asbestos-cement'])
+
+_suite_MantelbuisTestCase = unittest.TestLoader().loadTestsFromTestCase(MantelbuisTestCase)
+
 class EVbijlageTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -1170,7 +1205,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_KabelbedTestCase, _suite_KastTestCase,
                     _suite_MangatTestCase, _suite_EigenTopografieTestCase,
                     _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase,
-                    _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase]
+                    _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase,
+                    _suite_MantelbuisTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
