@@ -887,6 +887,42 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
 
 _suite_ElektriciteitskabelTestCase = unittest.TestLoader().loadTestsFromTestCase(ElektriciteitskabelTestCase)
 
+class EVbijlageTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.eisVoorzorgsmaatregelBijlage
+        """
+        # read the file
+        xml_file = open("data/imkl/ev_bijlage.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "EisVoorzorgsmaatregelBijlage",
+                                                       None)
+        self.imkl_obj = imkl.eisVoorzorgsmaatregelBijlage()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'vervaldatum',
+                          'bijlageType', 'bestandlocatie', 'bestandMediaType',
+                          'bestandIdentificator','thema',
+                          'eisVoorzorgsmaatregel', 'toelichting'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1._EisVoorzorgsmaatregelBijlage_18G007160_gasHogeDruk',
+                          '2018-07-19T12:04:12.376+02:00',None,
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/BijlageTypeValue/eisVoorzorgsmaatregel',
+                          'bronnen/nbact1/nl.imkl-nbact1_18G007160.EV_gasHogeDruk_T_risicoHoog_gasHogeDruk.pdf',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF',
+                          'nl.imkl-nbact1.EV_gasHogeDruk_T_risicoHoog_gasHogeDruk',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/gasHogeDruk',
+                          'GHD-T-W3',
+                          'transport_hoofdleiding risico HOOG (bij deze werkzaamheden)'])
+
+_suite_EVbijlageTestCase = unittest.TestLoader().loadTestsFromTestCase(EVbijlageTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -922,7 +958,7 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
                     _suite_DiepteNAPTestCase, _suite_DuctTestCase,
                     _suite_EigenTopografieTestCase,
-                    _suite_ElektriciteitskabelTestCase]
+                    _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

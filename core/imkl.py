@@ -25,7 +25,7 @@ import gml
 from basis import B_Object, B_Field
 from xml_utils import B_XmlProcessor, clean_tag
 
-AANDUIDINGEISVOORZORGSMAATREGEL = "AanduidingEisVoorzorgsmaatregel"
+AANDUIDINGEV = "AanduidingEisVoorzorgsmaatregel"
 ANNOTATIE = "Annotatie"
 APPURTENANCE = "Appurtenance"
 BELANG = "Belang"
@@ -38,6 +38,7 @@ DUCT="Duct"
 EIGENTOPOGRAFIE="EigenTopografie"
 ELEKTRICITEITSKABEL="Elektriciteitskabel"
 EXTRAGEOMETRY = "ExtraGeometrie"
+EVBIJLAGE = "eisVoorzorgsmaatregelBijlage"
 FEATURECOLLECTION = "FeatureCollection"
 GEBIEDSINFORMATIEAANVRAAG = "GebiedsinformatieAanvraag"
 GEBIEDSINFORMATIELEVERING = "GebiedsinformatieLevering"
@@ -220,9 +221,9 @@ def annotatie():
     obj.add_tags_to_process()
     return obj
 
-def bijlage_v2():
+def bijlage_basis():
     obj = imkl_basis()
-    obj.name = "Bijlage"
+    obj.name = "BijlageBasis"
     obj.add_field(B_Field("bijlageType", "TEXT", "BijlageType",
                           from_attribute='Href'))
     obj.add_field(B_Field("bestandlocatie", "TEXT", "BestandLocatie"))
@@ -230,6 +231,23 @@ def bijlage_v2():
                           from_attribute='Href'))
     obj.add_field(B_Field("bestandIdentificator", "TEXT",
                           "BestandIdentificator"))
+    return obj
+
+def bijlage_v2():
+    obj = bijlage_basis()
+    obj.name = "Bijlage"
+    obj.add_tags_to_process()
+    return obj
+
+def eisVoorzorgsmaatregelBijlage():
+    obj = bijlage_basis()
+    obj.name = "EisVoorzorgsmaatregelBijlage"
+    obj.add_field(B_Field("thema", "TEXT", "Thema",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("eisVoorzorgsmaatregel", "TEXT",
+                          "EisVoorzorgsmaatregel"))
+    obj.add_field(B_Field("toelichting", "TEXT",
+                          "Toelichting"))
     obj.add_tags_to_process()
     return obj
 
