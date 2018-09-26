@@ -853,6 +853,40 @@ class KabelbedTestCase(unittest.TestCase):
 
 _suite_KabelbedTestCase = unittest.TestLoader().loadTestsFromTestCase(KabelbedTestCase)
 
+class KastTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.kast
+        """
+        # read the file
+        xml_file = open("data/imkl/kast.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Kast",
+                                                       None)
+        self.imkl_obj = imkl.kast()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'bovengrondsZichtbaar',
+                          'geoNauwkeurigheidXY'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.kast00001',None,
+                          'nl.imkl-nbact1.un00048',None,
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
+                          '1996-05-08T00:00:00+02:00',
+                          '9999-01-01T00:00:00+01:00','onGroundSurface',
+                          'nl.imkl-nbact1.xg00005','','true',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidValue/tot100cm'])
+
+_suite_KastTestCase = unittest.TestLoader().loadTestsFromTestCase(KastTestCase)
+
 class EigenTopografieTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -1062,7 +1096,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase,
                     _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
                     _suite_DiepteNAPTestCase, _suite_DuctTestCase,
-                    _suite_KabelbedTestCase, _suite_EigenTopografieTestCase,
+                    _suite_KabelbedTestCase, _suite_KastTestCase,
+                    _suite_EigenTopografieTestCase,
                     _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase,
                     _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase]
 

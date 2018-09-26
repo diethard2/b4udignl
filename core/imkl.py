@@ -44,10 +44,11 @@ FEATURECOLLECTION = "FeatureCollection"
 GEBIEDSINFORMATIEAANVRAAG = "GebiedsinformatieAanvraag"
 GEBIEDSINFORMATIELEVERING = "GebiedsinformatieLevering"
 GRAAFPOLYGOON = "Graafpolygoon"
+KABELBED = "Kabelbed"
+KAST = "Kast"
 LEVERINGSINFORMATIE = "Leveringsinformatie"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
 UTILITEITSNET = "Utiliteitsnet"
-
 
 # for old version of IMKL messages (before 1-1-2019)
 def leveringsinformatie():
@@ -342,6 +343,17 @@ def kabelbed():
                           from_attribute='Href'))
     obj.add_field(B_Field("ductWidth", "REAL", "DuctWidth"))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_tags_to_process()
+    return obj
+
+def kast():
+    # seems a bit weird but only the timestamp of registration is missing
+    # from kabelOfLeiding in kast. OK for me to inherit.
+    obj = kabelOfLeiding()
+    obj.name = "Kast"
+    obj.add_field(B_Field("bovengrondsZichtbaar", "TEXT", "BovengrondsZichtbaar"))
+    obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
+                          from_attribute='Href'))   
     obj.add_tags_to_process()
     return obj
     
