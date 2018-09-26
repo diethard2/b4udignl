@@ -35,6 +35,8 @@ BOUNDEDBY = "BoundedBy"
 DIEPTETOVMAAIVELD = "DiepteTovMaaiveld"
 DIEPTENAP = "DiepteNAP"
 DUCT="Duct"
+EIGENTOPOGRAFIE="EigenTopografie"
+ELEKTRICITEITSKABEL="Elektriciteitskabel"
 EXTRAGEOMETRY = "ExtraGeometrie"
 FEATURECOLLECTION = "FeatureCollection"
 GEBIEDSINFORMATIEAANVRAAG = "GebiedsinformatieAanvraag"
@@ -298,6 +300,19 @@ def duct():
     obj.add_field(B_Field("warningType", "TEXT", "WarningType",
                           from_attribute='Href'))
     obj.add_field(B_Field("ductWidth", "REAL", "DuctWidth"))
+    obj.add_tags_to_process()
+    return obj
+
+def elektriciteitskabel():
+    obj = kabelOfLeiding()
+    obj.name = "Elektriciteitskabel"
+    obj.add_field(B_Field("warningType", "TEXT", "WarningType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("operatingVoltage", "TEXT", "OperatingVoltage"))
+    obj.add_field(B_Field("nominalVoltage", "TEXT", "NominalVoltage"))
+    obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("kabelDiameter", "REAL", "KabelDiameter"))
     obj.add_tags_to_process()
     return obj
 

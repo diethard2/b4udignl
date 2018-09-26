@@ -850,6 +850,43 @@ class EigenTopografieTestCase(unittest.TestCase):
 
 _suite_EigenTopografieTestCase = unittest.TestLoader().loadTestsFromTestCase(EigenTopografieTestCase)
 
+class ElektriciteitskabelTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.elektriciteitskabel
+        """
+        # read the file
+        xml_file = open("data/imkl/elec_kabel.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Elektriciteitskabel",
+                                                       None)
+        self.imkl_obj = imkl.elektriciteitskabel()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'warningType',
+                          'operatingVoltage','nominalVoltage',
+                          'geoNauwkeurigheidXY', 'kabelDiameter'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.el00001','2001-12-17T09:30:47.0Z',
+                          'nl.imkl-nbact1.un00041','nl.imkl-nbact1.ul00002',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
+                          '2001-12-17T09:30:47.0Z',None,'underground',
+                          'nl.imkl-nbact1.xg00002',None,
+                          'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
+                          '0.3','100000.0',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/onbekend',
+                          '30.0'])
+
+_suite_ElektriciteitskabelTestCase = unittest.TestLoader().loadTestsFromTestCase(ElektriciteitskabelTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -884,7 +921,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase,
                     _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
                     _suite_DiepteNAPTestCase, _suite_DuctTestCase,
-                    _suite_EigenTopografieTestCase]
+                    _suite_EigenTopografieTestCase,
+                    _suite_ElektriciteitskabelTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
