@@ -274,33 +274,31 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.field_names(),
-                         ['id','registratiedatum','network_id',
-                          'link_id', 'status', 'aanwezig_vanaf',
-                          'vertical_position','diameter','druk',
-                          'fluid', 'geom_id', 'label'])
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label','diameter','druk', 'fluid'])
 
     def test_field_values(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.field_values(),
                          ['nl.imkl-nbact1.ogc00001','2001-12-17T09:30:47.0Z',
                           'nl.imkl-nbact1.un00057','nl.imkl-nbact1.ul00005',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
-                          '2001-12-17T09:30:47.0Z','underground','0.0','0.0',
-                          'http://inspire.ec.europa.eu/codelist/OilGasChemicalsProductTypeValue/naturalGas',
-                          'nl.imkl-nbact1.xg00009',''])
+                          '2001-12-17T09:30:47.0Z',None,'underground',
+                          'nl.imkl-nbact1.xg00009','','0.0','0.0',
+                          'http://inspire.ec.europa.eu/codelist/OilGasChemicalsProductTypeValue/naturalGas'])
 
     def test_csv_header(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.csv_header(),
                          'id;registratiedatum;network_id;link_id;status;\
-aanwezig_vanaf;vertical_position;diameter;druk;fluid;geom_id;label')
+validFrom;validTo;verticalPosition;geom_id;label;diameter;druk;fluid')
 
     def test_as_csv(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.as_csv(),
                          'nl.imkl-nbact1.ogc00001;2001-12-17T09:30:47.0Z;\
 nl.imkl-nbact1.un00057;nl.imkl-nbact1.ul00005;\
 http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused;\
-2001-12-17T09:30:47.0Z;underground;0.0;0.0;http:\
-//inspire.ec.europa.eu/codelist/OilGasChemicalsProductTypeValue/naturalGas;\
-nl.imkl-nbact1.xg00009;')
+2001-12-17T09:30:47.0Z;None;underground;nl.imkl-nbact1.xg00009;;0.0;0.0;http:\
+//inspire.ec.europa.eu/codelist/OilGasChemicalsProductTypeValue/naturalGas')
     
 _suite_olieGasChemicalienPijpleiding = unittest.TestLoader().loadTestsFromTestCase(OlieGasChemicalienPijpleidingTestCase)
 
@@ -785,6 +783,73 @@ class DiepteNAPTestCase(unittest.TestCase):
 
 _suite_DiepteNAPTestCase = unittest.TestLoader().loadTestsFromTestCase(DiepteNAPTestCase)
 
+class DuctTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.duct
+        """
+        # read the file
+        xml_file = open("data/imkl/duct.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Duct",
+                                                       None)
+        self.imkl_obj = imkl.duct()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'utilityDeliveryType',
+                          'warningType','ductWidth'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.duct00001','2001-12-17T09:30:47.0Z',
+                          'nl.imkl-nbact1.un00040','nl.imkl-nbact1.ul00001',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
+                          '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
+                          'underground','nl.imkl-nbact1.xg00001','',
+                          'http://inspire.ec.europa.eu/codelist/UtilityNetworkTypeValue/electricity',
+                          'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
+                          '1.5'])
+
+_suite_DuctTestCase = unittest.TestLoader().loadTestsFromTestCase(DuctTestCase)
+
+class EigenTopografieTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.eigenTopografie
+        """
+        # read the file
+        xml_file = open("data/imkl/eigen_topo.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "EigenTopografie",
+                                                       None)
+        self.imkl_obj = imkl.eigenTopografie()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'vervaldatum','label',
+                          'omschrijving','status', 'typeTopografischObject',
+                          'ligging'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.et00001','2001-12-17T09:30:47.0Z',
+                          '9999-01-01T09:30:47.0','Label EigenTopografie',
+                          'Omschrijving EigenTopografie',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/EigenTopografieStatusValue/bestaand',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/TopografischObjectTypeValue/hectometerpaal',
+                          'Point(155030.000 388070.000)'])
+
+_suite_EigenTopografieTestCase = unittest.TestLoader().loadTestsFromTestCase(EigenTopografieTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -818,7 +883,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_BelangTestCase, _suite_AppurtenanceTestCase,
                     _suite_GebiedsinformatieLeveringTestCase, _suite_AnnotatieTestCase,
                     _suite_BijlageTestCase, _suite_DiepteTovMaaiveldTestCase,
-                    _suite_DiepteNAPTestCase]
+                    _suite_DiepteNAPTestCase, _suite_DuctTestCase,
+                    _suite_EigenTopografieTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

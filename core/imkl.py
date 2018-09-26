@@ -34,6 +34,7 @@ BIJLAGE = "Bijlage"
 BOUNDEDBY = "BoundedBy"
 DIEPTETOVMAAIVELD = "DiepteTovMaaiveld"
 DIEPTENAP = "DiepteNAP"
+DUCT="Duct"
 EXTRAGEOMETRY = "ExtraGeometrie"
 FEATURECOLLECTION = "FeatureCollection"
 GEBIEDSINFORMATIEAANVRAAG = "GebiedsinformatieAanvraag"
@@ -270,6 +271,61 @@ def diepteNAP():
     obj.add_tags_to_process()
     return obj
 
+def kabelOfLeiding():
+    obj = B_Object("KabelOfLeiding")
+    obj.add_field(B_Field("id", "TEXT", "InspireId",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("link_id", "TEXT", "Link",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("status", "TEXT", "CurrentStatus",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
+    obj.add_field(B_Field("validTo", "TEXT", "ValidTo"))
+    obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
+    obj.add_field(B_Field("geom_id", "TEXT", "ExtraGeometrie",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    return obj
+
+def duct():
+    obj = kabelOfLeiding()
+    obj.name = "Duct"
+    obj.add_field(B_Field("utilityDeliveryType", "TEXT", "UtilityDeliveryType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("warningType", "TEXT", "WarningType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("ductWidth", "REAL", "DuctWidth"))
+    obj.add_tags_to_process()
+    return obj
+
+def olieGasChemicalienPijpleiding():
+    obj = kabelOfLeiding()
+    obj.name = "OlieGasChemicalienPijpleiding"
+    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("fluid", "TEXT", "OilGasChemicalsProductType",
+                          from_attribute='Href'))
+    obj.add_tags_to_process()
+    return obj
+
+def eigenTopografie():
+    obj = imkl_basis()
+    obj.name = "EigenTopografie"
+    obj.add_field(B_Field("label", "TEXT", "Label"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_field(B_Field("status", "TEXT", "Status",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("typeTopografischObject", "TEXT",
+                          "TypeTopografischObject",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("ligging", "POINT", "Ligging",
+                          to_object=gml.Point))
+    obj.add_tags_to_process()
+    return obj
+
 def extraGeometrie():
     obj = imkl_basis()
     obj.name = "ExtraGeometrie"
@@ -367,34 +423,6 @@ def graafpolygoon():
     obj.add_tags_to_process()
     return obj
 
-def olieGasChemicalienPijpleiding():
-    obj = B_Object("OlieGasChemicalienPijpleiding")
-    obj.add_field(B_Field("id", "TEXT", "InspireId",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
-    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
-                          from_attribute='Href'))
-    obj.add_field(B_Field("link_id", "TEXT", "Link",
-                          from_attribute='Href'))
-    obj.add_field(B_Field("status", "TEXT", "CurrentStatus",
-                          from_attribute='Href'))
-    obj.add_field(B_Field("aanwezig_vanaf", "TEXT", "ValidFrom"))
-    obj.add_field(B_Field("vertical_position", "TEXT", "VerticalPosition"))
-    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
-##TODO maybe later, now I can not handle attribute and values in 1 XML-element
-##     and output these in two separate fields.
-##    obj.add_field(B_Field("diameter_eenheid", "TEXT", "pipeDiameter",
-##                          from_attribute='uom'))
-    obj.add_field(B_Field("druk", "REAL", "Pressure"))
-##    obj.add_field(B_Field("druk_eenheid", "TEXT", "pressure",
-##                          from_attribute='uom'))
-    obj.add_field(B_Field("fluid", "TEXT", "OilGasChemicalsProductType",
-                          from_attribute='Href'))
-    obj.add_field(B_Field("geom_id", "TEXT", "ExtraGeometrie",
-                          from_attribute='Href'))
-    obj.add_field(B_Field("label", "TEXT", "Label"))
-    obj.add_tags_to_process()
-    return obj
 
 def utiliteitsnet():
     obj = B_Object("utiliteitsnet")

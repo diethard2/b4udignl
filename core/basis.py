@@ -296,7 +296,14 @@ class B_Object(B_XmlProcessor):
 
     def as_csv(self):
         '''Returns CSV line to write a record for current object.'''
-        return ";".join(self.field_values())
+        values = self.field_values()
+        csv_values = []
+        for value in values:
+            if value is None:
+                csv_values.append('None')
+            else:
+                csv_values.append(value) 
+        return ";".join(csv_values)
 
     def as_sql(self):
         '''Gives SQL insert statement to insert record for current object'''
