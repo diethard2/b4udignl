@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="nl.imkl-KA0000._FeatureCollection_18G007160-1" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+    <gml:featureMember>
+        <imkl:Maatvoering gml:id="nl.imkl-nbact1.mv00002">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>nbact1.mv00002</imkl:lokaalID>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2001-12-17T09:30:47.0Z</imkl:beginLifespanVersion>
+            <imkl:endLifespanVersion>2021-12-17T09:30:47.0Z</imkl:endLifespanVersion>
+            <imkl:label>maatvoeringsLabel</imkl:label>
+            <imkl:omschrijving>Omschrijving Maatvoering</imkl:omschrijving>
+            <imkl:inNetwork xlink:href="nl.imkl-nbact1.un00050"></imkl:inNetwork>
+            <imkl:maatvoeringsType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/MaatvoeringsTypeValue/maatvoeringslabel"></imkl:maatvoeringsType>
+            <imkl:rotatiehoek uom="urn:ogc:def:uom:OGC::deg">45.0</imkl:rotatiehoek>
+            <imkl:labelpositie>
+                <imkl:Labelpositie>
+                    <imkl:aangrijpingHorizontaal xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/LabelpositieValue/0.5"></imkl:aangrijpingHorizontaal>
+                    <imkl:aangrijpingVerticaal xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/LabelpositieValue/0"></imkl:aangrijpingVerticaal>
+                </imkl:Labelpositie>
+            </imkl:labelpositie>
+            <imkl:ligging>
+                <gml:Point gml:id="Point_45" srsName="urn:ogc:def:crs:EPSG::28992">
+                    <gml:pos>155040.000 388070.000</gml:pos>
+                </gml:Point>
+            </imkl:ligging>
+        </imkl:Maatvoering>
+    </gml:featureMember>
+</gml:FeatureCollection>

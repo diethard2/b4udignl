@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="nl.imkl-KA0000._FeatureCollection_18G007160-1" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+    <gml:featureMember>
+        <imkl:GebiedsinformatieAanvraag gml:id="nl.imkl-KA0000._GebiedsinformatieAanvraag_18G007160">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>KA0000._GebiedsinformatieAanvraag_18G007160</imkl:lokaalID>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2018-07-19T12:02:03.000+02:00</imkl:beginLifespanVersion>
+            <imkl:ordernummer>9806758830</imkl:ordernummer>
+            <imkl:positienummer>0000000010</imkl:positienummer>
+            <imkl:klicMeldnummer>18G007160</imkl:klicMeldnummer>
+            <imkl:aanvrager>
+                <imkl:Aanvrager>
+                    <imkl:contactpersoon>
+                        <imkl:Contact>
+                            <imkl:naam>Niet beschikbaar - TODO</imkl:naam>
+                            <imkl:telefoon>0881234566</imkl:telefoon>
+                            <imkl:email>klic.testers@kadaster.nl</imkl:email>
+                        </imkl:Contact>
+                    </imkl:contactpersoon>
+                    <imkl:organisatie>
+                        <imkl:Organisatie>
+                            <imkl:naam>Grondroerder01</imkl:naam>
+                            <imkl:bezoekAdres>
+                                <imkl:Adres>
+                                    <imkl:openbareRuimteNaam>Laan van Westenenk</imkl:openbareRuimteNaam>
+                                    <imkl:huisnummer>701</imkl:huisnummer>
+                                    <imkl:woonplaatsNaam>APELDOORN</imkl:woonplaatsNaam>
+                                    <imkl:postcode>7334DP</imkl:postcode>
+                                    <imkl:landcode>NL</imkl:landcode>
+                                </imkl:Adres>
+                            </imkl:bezoekAdres>
+                        </imkl:Organisatie>
+                    </imkl:organisatie>
+                </imkl:Aanvrager>
+            </imkl:aanvrager>
+            <imkl:referentie>Tbv Klicviewer - Graaf</imkl:referentie>
+            <imkl:opdrachtgever>
+                <imkl:Opdrachtgever>
+                    <imkl:contactpersoon>
+                        <imkl:Contact>
+                            <imkl:naam>BMK Grondroerder01</imkl:naam>
+                            <imkl:telefoon>0881234566</imkl:telefoon>
+                            <imkl:email>klic.testers@kadaster.nl</imkl:email>
+                        </imkl:Contact>
+                    </imkl:contactpersoon>
+                    <imkl:organisatie>
+                        <imkl:Organisatie>
+                            <imkl:naam>Grondroerder01</imkl:naam>
+                            <imkl:bezoekAdres>
+                                <imkl:Adres>
+                                    <imkl:openbareRuimteNaam>Laan van Westenenk</imkl:openbareRuimteNaam>
+                                    <imkl:huisnummer>701</imkl:huisnummer>
+                                    <imkl:woonplaatsNaam>Apeldoorn</imkl:woonplaatsNaam>
+                                    <imkl:postcode>7334DP</imkl:postcode>
+                                    <imkl:landcode>NL</imkl:landcode>
+                                </imkl:Adres>
+                            </imkl:bezoekAdres>
+                        </imkl:Organisatie>
+                    </imkl:organisatie>
+                </imkl:Opdrachtgever>
+            </imkl:opdrachtgever>
+            <imkl:aanvraagSoort xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/AanvraagSoortValue/graafmelding"/>
+            <imkl:aanvraagDatum>2018-07-19T12:02:03.000+02:00</imkl:aanvraagDatum>
+            <imkl:soortWerkzaamheden xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/SoortWerkzaamhedenValue/bestratingswerk"/>
+            <imkl:soortWerkzaamheden xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/SoortWerkzaamhedenValue/funderingswerk"/>
+            <imkl:soortWerkzaamheden xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/SoortWerkzaamhedenValue/heien"/>
+            <imkl:locatieWerkzaamheden>Zonnedauw 10 5688HM Oirschot NL</imkl:locatieWerkzaamheden>
+            <imkl:startDatum>2018-07-20</imkl:startDatum>
+            <imkl:eindDatum>2018-07-21</imkl:eindDatum>
+            <imkl:graafpolygoon xlink:href="nl.imkl-KA0000._Graafpolygoon_18G007160"/>
+        </imkl:GebiedsinformatieAanvraag>
+    </gml:featureMember>
+</gml:FeatureCollection>

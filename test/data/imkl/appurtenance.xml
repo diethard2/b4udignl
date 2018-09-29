@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="nl.imkl-KA0000._FeatureCollection_18G007160-1" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+<gml:featureMember>
+   <imkl:Appurtenance gml:id="nl.imkl-nbact1.app00001">
+        <net:beginLifespanVersion>2001-12-17T09:30:47.0Z</net:beginLifespanVersion>
+        <net:inspireId>
+            <base:Identifier>
+                <base:localId>nbact1.app00001</base:localId>
+                <base:namespace>nl.imkl</base:namespace>
+            </base:Identifier>
+        </net:inspireId>
+        <net:inNetwork xlink:href="nl.imkl-nbact1.un00007"></net:inNetwork>
+        <net:geometry>
+            <gml:Point gml:id="Point_5" srsName="urn:ogc:def:crs:EPSG::28992">
+                <gml:pos>155000.000 388090.000</gml:pos>
+            </gml:Point>
+        </net:geometry>
+        <us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused"></us-net-common:currentStatus>
+        <us-net-common:validFrom>2001-12-17T09:30:47.0Z</us-net-common:validFrom>
+        <us-net-common:validTo>2001-12-17T09:30:47.0Z</us-net-common:validTo>
+        <us-net-common:verticalPosition>onGroundSurface</us-net-common:verticalPosition>
+        <us-net-common:appurtenanceType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/ElectricityAppurtenanceTypeIMKLValue/aarding"></us-net-common:appurtenanceType>
+        <imkl:label></imkl:label>
+    </imkl:Appurtenance>
+</gml:featureMember>
+</gml:FeatureCollection>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="nl.imkl-KA0000._FeatureCollection_18G007160-1" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+    <gml:featureMember>
+        <us-net-common:UtilityLink gml:id="nl.imkl-nbact1.ul00001">
+            <net:beginLifespanVersion>2001-12-17T09:30:47.0Z</net:beginLifespanVersion>
+            <net:inspireId>
+                <base:Identifier>
+                    <base:localId>nbact1.ul00001</base:localId>
+                    <base:namespace>nl.imkl</base:namespace>
+                </base:Identifier>
+            </net:inspireId>
+            <net:inNetwork xlink:href="nl.imkl-nbact1.un00040"></net:inNetwork>
+            <net:centrelineGeometry>
+                <gml:LineString gml:id="Line_1" srsName="urn:ogc:def:crs:EPSG::28992">
+                    <gml:posList>155038.000 388060.000 155022.000 388060.000</gml:posList>
+                </gml:LineString>
+            </net:centrelineGeometry>
+            <net:fictitious>false</net:fictitious>
+            <us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused"></us-net-common:currentStatus>
+            <us-net-common:validFrom>2001-12-17T09:30:47.0Z</us-net-common:validFrom>
+            <us-net-common:verticalPosition nilReason="daarom" xsi:nil="true"></us-net-common:verticalPosition>
+        </us-net-common:UtilityLink>
+    </gml:featureMember>
+</gml:FeatureCollection>

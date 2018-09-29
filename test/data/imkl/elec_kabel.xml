@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="nl.imkl-KA0000._FeatureCollection_18G007160-1" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+<gml:featureMember>
+<imkl:Elektriciteitskabel gml:id="nl.imkl-nbact1.el00001">
+            <net:beginLifespanVersion>2001-12-17T09:30:47.0Z</net:beginLifespanVersion>
+            <net:inspireId>
+                <base:Identifier>
+                    <base:localId>nbact1.el00001</base:localId>
+                    <base:namespace>nl.imkl</base:namespace>
+                </base:Identifier>
+            </net:inspireId>
+            <net:inNetwork xlink:href="nl.imkl-nbact1.un00041"></net:inNetwork>
+            <net:link xlink:href="nl.imkl-nbact1.ul00002"></net:link>
+            <us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused"></us-net-common:currentStatus>
+            <us-net-common:validFrom>2001-12-17T09:30:47.0Z</us-net-common:validFrom>
+            <us-net-common:verticalPosition>underground</us-net-common:verticalPosition>
+            <us-net-common:warningType xlink:href="http://inspire.ec.europa.eu/codelist/WarningTypeValue/net"></us-net-common:warningType>
+            <us-net-el:operatingVoltage uom="urn:ogc:def:uom:OGC::V">0.3</us-net-el:operatingVoltage>
+            <us-net-el:nominalVoltage uom="urn:ogc:def:uom:OGC::V">100000.0</us-net-el:nominalVoltage>
+            <imkl:geoNauwkeurigheidXY xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/onbekend"></imkl:geoNauwkeurigheidXY>
+            <imkl:extraGeometrie xlink:href="nl.imkl-nbact1.xg00002"></imkl:extraGeometrie>
+            <imkl:kabelDiameter uom="urn:ogc:def:uom:OGC::mm">30.0</imkl:kabelDiameter>
+        </imkl:Elektriciteitskabel>
+</gml:featureMember>
+</gml:FeatureCollection>

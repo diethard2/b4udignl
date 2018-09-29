@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="nl.imkl-KA0000._FeatureCollection_18G007160-1" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+  <gml:featureMember>
+    <imkl:EisVoorzorgsmaatregelBijlage gml:id="nl.imkl-nbact1._EisVoorzorgsmaatregelBijlage_18G007160_gasHogeDruk">
+      <imkl:identificatie>
+        <imkl:NEN3610ID>
+          <imkl:namespace>nl.imkl</imkl:namespace>
+          <imkl:lokaalID>nbact1._EisVoorzorgsmaatregelBijlage_18G007160_gasHogeDruk</imkl:lokaalID>
+        </imkl:NEN3610ID>
+      </imkl:identificatie>
+      <imkl:beginLifespanVersion>2018-07-19T12:04:12.376+02:00</imkl:beginLifespanVersion>
+      <imkl:bijlageType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BijlageTypeValue/eisVoorzorgsmaatregel"/>
+      <imkl:bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.EV_gasHogeDruk_T_risicoHoog_gasHogeDruk.pdf</imkl:bestandLocatie>
+      <imkl:bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+      <imkl:bestandIdentificator>nl.imkl-nbact1.EV_gasHogeDruk_T_risicoHoog_gasHogeDruk</imkl:bestandIdentificator>
+      <imkl:thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/gasHogeDruk"/>
+      <imkl:eisVoorzorgsmaatregel>GHD-T-W3</imkl:eisVoorzorgsmaatregel>
+      <imkl:toelichting>transport_hoofdleiding risico HOOG (bij deze werkzaamheden)</imkl:toelichting>
+    </imkl:EisVoorzorgsmaatregelBijlage>
+  </gml:featureMember>
+</gml:FeatureCollection>

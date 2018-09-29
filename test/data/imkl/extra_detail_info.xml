@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="nl.imkl-KA0000._FeatureCollection_18G007160-1" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+<gml:featureMember>
+<imkl:ExtraDetailinfo gml:id="nl.imkl-nbact1.edi00001">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>nbact1.edi00001</imkl:lokaalID>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2015-10-15T09:30:47.0Z</imkl:beginLifespanVersion>
+            <imkl:endLifespanVersion>9999-01-01T10:30:47.0Z</imkl:endLifespanVersion>
+            <imkl:label>Label ExtraDetailInfo</imkl:label>
+            <imkl:omschrijving>Omschrijving ExtraDetailInfo</imkl:omschrijving>
+            <imkl:inNetwork xlink:href="nl.imkl-nbact1.un00042"/>
+            <imkl:adres>
+                <imkl:Adres>
+                    <imkl:openbareRuimteNaam>Een openbareruimte naam</imkl:openbareRuimteNaam>
+                    <imkl:huisnummer>701</imkl:huisnummer>
+                    <imkl:woonplaatsNaam>Apeldoorn</imkl:woonplaatsNaam>
+                    <imkl:postcode>7334DP</imkl:postcode>
+                </imkl:Adres>
+            </imkl:adres>
+            <imkl:extraInfoType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/ExtraDetailInfoTypeValue/aansluiting"/><imkl:bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf</imkl:bestandLocatie>
+            <imkl:bestandIdentificator>nl.imkl-nbact1.filename</imkl:bestandIdentificator>
+            <imkl:ligging>
+                <gml:Point gml:id="Point_39" srsName="urn:ogc:def:crs:EPSG::28992">
+                    <gml:pos>155030.000 388110.000</gml:pos>
+                </gml:Point>
+            </imkl:ligging>
+        </imkl:ExtraDetailinfo>
+</gml:featureMember>
+</gml:FeatureCollection>

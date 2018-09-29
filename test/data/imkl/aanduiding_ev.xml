@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="nl.imkl-KA0000._FeatureCollection_18G007160-1" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+<gml:featureMember>
+<imkl:AanduidingEisVoorzorgsmaatregel gml:id="nl.imkl-nbact1.EV1">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>nbact1.EV1</imkl:lokaalID>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2001-12-17T09:30:47.00+01:00</imkl:beginLifespanVersion>
+            <imkl:label>EisVoorzorgsmaatregel GHD-leiding Best-west</imkl:label>
+            <imkl:inNetwork xlink:href="nl.imkl-nbact1.un00054"/>
+            <imkl:eisVoorzorgsmaatregel>GHD-T-W3</imkl:eisVoorzorgsmaatregel>
+            <imkl:contactVoorzorgsmaatregel>
+                <imkl:Contact>
+                    <imkl:naam>Contactnaam EV1</imkl:naam>
+                    <imkl:telefoon>088-183 1111</imkl:telefoon>
+                    <imkl:email>EV1@nbact1.nl</imkl:email>
+                </imkl:Contact>
+            </imkl:contactVoorzorgsmaatregel>
+            <imkl:netbeheerderNetOmschrijving>EV1-gebied transport hoofdleiding</imkl:netbeheerderNetOmschrijving><imkl:netbeheerderNetAanduiding>transport_hoofdleiding</imkl:netbeheerderNetAanduiding>
+            <imkl:netbeheerderWerkAanduiding>W3-hoog</imkl:netbeheerderWerkAanduiding>
+            <imkl:geometrie>
+              <gml:Polygon gml:id="id_nl.imkl-nbact1.EV1" srsName="urn:ogc:def:crs:EPSG::28992">
+                 <gml:exterior>
+                    <gml:LinearRing>
+                       <gml:posList srsDimension="2">155104 388038 155098 388046 155088 388043 155088 388032 155098 388029 155104 388038</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+              </gml:Polygon>
+           </imkl:geometrie>
+        </imkl:AanduidingEisVoorzorgsmaatregel>
+  </gml:featureMember>
+</gml:FeatureCollection>
