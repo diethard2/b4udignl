@@ -749,18 +749,26 @@ def themabijlagePerNetbeheerder():
     a_bijlage.name = "ThemabijlagePerNetbeheerder"
     return a_bijlage
 
-def sql_creation_statements():
-    sql_statements = []
-    for i_object in imkl_objects.values():
-        sql_statements.extend(i_object.sql_create_table_statements())
-    return sql_statements
-
 def imkl_basis():
     obj = B_Object("imkl_basis")
     obj.add_field(B_Field("id", "TEXT", "Identificatie",
                           to_object=IMKL_Id, is_key_field=True))
     obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
     obj.add_field(B_Field("vervaldatum", "TEXT", "EndLifespanVersion"))
+    return obj
+
+def utiliteitsnet():
+    obj = B_Object("Utiliteitsnet")
+    obj.add_field(B_Field("id", "TEXT", "Identificatie",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("utilityNetworkType", "TEXT", "UtilityNetworkType",
+                          from_attribute="Href"))
+    obj.add_field(B_Field("authorityRole", "TEXT", "AuthorityRole"))
+    obj.add_field(B_Field("thema", "TEXT", "Thema", from_attribute="Href"))
+    obj.add_field(B_Field("standaardDieptelegging", "REAL",
+                          "StandaardDieptelegging"))
+    obj.add_tags_to_process()
     return obj
 
 class IMKL_Id(B_XmlProcessor):

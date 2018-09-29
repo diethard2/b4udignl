@@ -1415,6 +1415,35 @@ class BoundsTestCase(unittest.TestCase):
 
 _suite_BoundsTestCase = unittest.TestLoader().loadTestsFromTestCase(BoundsTestCase)
 
+class UtiliteitsnetTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.utiliteitsnet
+        """
+        # read the file
+        xml_file = open("data/imkl/utiliteitsnet.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Utiliteitsnet",
+                                                       None)
+        self.imkl_obj = imkl.utiliteitsnet()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum','utilityNetworkType',
+                          'authorityRole','thema','standaardDieptelegging'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.un00003','2001-12-17T09:30:47.0Z',
+                          'http://inspire.ec.europa.eu/codelist/UtilityNetworkTypeValue/telecommunications',
+                          '','http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/datatransport',
+                          '0.63'])
+
+_suite_UtiliteitsnetTestCase = unittest.TestLoader().loadTestsFromTestCase(UtiliteitsnetTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -1458,7 +1487,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_OverigTestCase, _suite_RioolleidingTestCase,
                     _suite_TechnischGebouwTestCase, _suite_TorenTestCase,
                     _suite_TelecommunicatiekabelTestCase,
-                    _suite_ThermischePijpleidingTestCase]
+                    _suite_ThermischePijpleidingTestCase,
+                    _suite_UtiliteitsnetTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
