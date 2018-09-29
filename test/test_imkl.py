@@ -1089,6 +1089,48 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
 
 _suite_ElektriciteitskabelTestCase = unittest.TestLoader().loadTestsFromTestCase(ElektriciteitskabelTestCase)
 
+class TelecommunicatiekabelTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.telecomKabel
+        """
+        # read the file
+        xml_file = open("data/imkl/telecom_kabel.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Telecommunicatiekabel",
+                                                       None)
+        self.imkl_obj = imkl.telecomKabel()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+        self.maxDiff = None
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'utilityFacilityReference',
+                          'utilityDeliveryType', 'geoNauwkeurigheidXY',
+                          'warningType', 'materiaal', 'diameter',
+                          'omschrijving', 'toelichting'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.tc00001','2001-12-17T09:30:47.0',
+                          'nl.imkl-nbact1.un00060','nl.imkl-nbact1.ul00007',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
+                          '2001-12-17T09:30:47.0','2021-12-17T09:30:47.0',
+                          'underground',None,'','',
+                          'http://inspire.ec.europa.eu/codelist/UtilityDeliveryTypeValue/private',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/tot100cm',
+                          'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/TelecommunicationsCableMaterialTypeIMKLValue/coaxial',
+                          '2',
+                          'Omschrijving Telecommunicatiekabel nl.imkl-nbact1.tc00001',
+                          'Toelichting op Telecom kabel nl.imkl-nbact1.tc00001'])
+
+_suite_TelecommunicatiekabelTestCase = unittest.TestLoader().loadTestsFromTestCase(TelecommunicatiekabelTestCase)
+
 class MantelbuisTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -1344,7 +1386,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase,
                     _suite_MantelbuisTestCase, _suite_MastTestCase,
                     _suite_OverigTestCase, _suite_RioolleidingTestCase,
-                    _suite_TechnischGebouwTestCase]
+                    _suite_TechnischGebouwTestCase,
+                    _suite_TelecommunicatiekabelTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

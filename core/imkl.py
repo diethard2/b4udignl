@@ -55,6 +55,7 @@ OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
 OVERIG = "Overig"
 RIOOLLEIDING = "Rioolleiding"
 TECHNISCHGEBOUW = "TechnischGebouw"
+TELECOMMUNICATIEKABEL = "Telecommunicatiekabel"
 UTILITEITSNET = "Utiliteitsnet"
 
 # for old version of IMKL messages (before 1-1-2019)
@@ -417,6 +418,26 @@ def rioolleiding():
     obj.add_field(B_Field("druk", "REAL", "Pressure"))
     obj.add_field(B_Field("fluid", "TEXT", "SewerWaterType",
                           from_attribute='Href'))
+    obj.add_tags_to_process()
+    return obj
+
+def telecomKabel():
+    obj = kabelOfLeiding()
+    obj.name = "Telecommunicatiekabel"
+    obj.add_field(B_Field("utilityFacilityReference", "TEXT",
+                          "UtilityFacilityReference"))
+    obj.add_field(B_Field("utilityDeliveryType", "TEXT", "UtilityDeliveryType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("warningType", "TEXT", "WarningType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("materiaal", "TEXT",
+                          "TelecommunicationsCableMaterialType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("diameter", "REAL", "KabelDiameter"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_field(B_Field("toelichting", "TEXT", "Toelichting"))
     obj.add_tags_to_process()
     return obj
 
