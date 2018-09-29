@@ -49,6 +49,8 @@ KAST = "Kast"
 LEVERINGSINFORMATIE = "Leveringsinformatie"
 MAATVOERING = "Maatvoering"
 MANGAT = "Mangat"
+MANTELBUIS = "Mantelbuis"
+MAST = "Mast"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
 UTILITEITSNET = "Utiliteitsnet"
 
@@ -421,6 +423,15 @@ def mangat():
     # from kabelOfLeiding in kast. OK for me to inherit.
     obj = PuntOpNet()
     obj.name = "Mangat"
+    obj.add_tags_to_process()
+    return obj
+
+def mast():
+    # seems a bit weird but only the timestamp of registration is missing
+    # from kabelOfLeiding in kast. OK for me to inherit.
+    obj = PuntOpNet()
+    obj.name = "Mast"
+    obj.add_field(B_Field("poleHeight", "TEXT", "PoleHeight"))
     obj.add_tags_to_process()
     return obj
 
