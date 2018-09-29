@@ -54,6 +54,7 @@ MAST = "Mast"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
 OVERIG = "Overig"
 RIOOLLEIDING = "Rioolleiding"
+TECHNISCHGEBOUW = "TechnischGebouw"
 UTILITEITSNET = "Utiliteitsnet"
 
 # for old version of IMKL messages (before 1-1-2019)
@@ -463,6 +464,13 @@ def mast():
     obj.name = "Mast"
     obj.add_field(B_Field("poleHeight", "TEXT", "PoleHeight"))
     obj.add_tags_to_process()
+    return obj
+
+def technischGebouw():
+    # seems a bit weird but only the timestamp of registration is missing
+    # from kabelOfLeiding in kast. OK for me to inherit.
+    obj = kast()
+    obj.name = "TechnischGebouw"
     return obj
 
 def eigenTopografie():
