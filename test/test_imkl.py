@@ -1239,6 +1239,45 @@ class RioolleidingTestCase(unittest.TestCase):
 
 _suite_RioolleidingTestCase = unittest.TestLoader().loadTestsFromTestCase(RioolleidingTestCase)
 
+class ThermischePijpleidingTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.thermischePijpleiding
+        """
+        # read the file
+        xml_file = open("data/imkl/thermischePijpleiding.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "ThermischePijpleiding",
+                                                       None)
+        self.imkl_obj = imkl.thermischePijpleiding()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'warningType','diameter',
+                          'druk','producttype','geoNauwkeurigheidXY',
+                          'omschrijving','toelichting'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.th00001','2001-12-17T09:30:47.0',
+                          'nl.imkl-nbact1.un00075','nl.imkl-nbact1.ul00022',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
+                          '2001-12-17T09:30:47.0','2021-12-17T09:30:47.0',
+                          'underground','nl.imkl-nbact1.xg00012',
+                          'Label Thermische Pijpleiding',
+                          'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
+                          '0','450','',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/tot100cm',
+                          'Omschrijving Thermische Pijpleiding',
+                          'Toelichting Thermische Pijpleiding nl.imkl-nbact1.th00001'])
+
+_suite_ThermischePijpleidingTestCase = unittest.TestLoader().loadTestsFromTestCase(ThermischePijpleidingTestCase)
+
 class EVbijlageTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -1387,7 +1426,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_MantelbuisTestCase, _suite_MastTestCase,
                     _suite_OverigTestCase, _suite_RioolleidingTestCase,
                     _suite_TechnischGebouwTestCase,
-                    _suite_TelecommunicatiekabelTestCase]
+                    _suite_TelecommunicatiekabelTestCase,
+                    _suite_ThermischePijpleidingTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)

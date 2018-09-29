@@ -56,6 +56,7 @@ OVERIG = "Overig"
 RIOOLLEIDING = "Rioolleiding"
 TECHNISCHGEBOUW = "TechnischGebouw"
 TELECOMMUNICATIEKABEL = "Telecommunicatiekabel"
+THERMISCHEPIJPLEIDING = "ThermischePijpleiding"
 UTILITEITSNET = "Utiliteitsnet"
 
 # for old version of IMKL messages (before 1-1-2019)
@@ -436,6 +437,21 @@ def telecomKabel():
                           "TelecommunicationsCableMaterialType",
                           from_attribute='Href'))
     obj.add_field(B_Field("diameter", "REAL", "KabelDiameter"))
+    obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
+    obj.add_field(B_Field("toelichting", "TEXT", "Toelichting"))
+    obj.add_tags_to_process()
+    return obj
+
+def thermischePijpleiding():
+    obj = kabelOfLeiding()
+    obj.name = "ThermischePijpleiding"
+    obj.add_field(B_Field("warningType", "TEXT", "WarningType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("producttype", "TEXT", "ThermalProductType"))
+    obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
+                          from_attribute='Href'))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("toelichting", "TEXT", "Toelichting"))
     obj.add_tags_to_process()
