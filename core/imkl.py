@@ -53,6 +53,7 @@ MANTELBUIS = "Mantelbuis"
 MAST = "Mast"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
 OVERIG = "Overig"
+RIOOLLEIDING = "Rioolleiding"
 UTILITEITSNET = "Utiliteitsnet"
 
 # for old version of IMKL messages (before 1-1-2019)
@@ -403,6 +404,18 @@ def overig():
     obj.add_field(B_Field("buisDiameter", "REAL", "PipeDiameter"))
     obj.add_field(B_Field("druk", "REAL", "Pressure"))
     obj.add_field(B_Field("producttype", "TEXT", "Producttype"))
+    obj.add_tags_to_process()
+    return obj
+
+def rioolleiding():
+    obj = kabelOfLeiding()
+    obj.name = "Rioolleiding"
+    obj.add_field(B_Field("warningType", "TEXT", "WarningType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("fluid", "TEXT", "SewerWaterType",
+                          from_attribute='Href'))
     obj.add_tags_to_process()
     return obj
 
