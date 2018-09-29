@@ -1092,6 +1092,44 @@ class MantelbuisTestCase(unittest.TestCase):
 
 _suite_MantelbuisTestCase = unittest.TestLoader().loadTestsFromTestCase(MantelbuisTestCase)
 
+class OverigTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.overig
+        """
+        # read the file
+        xml_file = open("data/imkl/overig.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Overig",
+                                                       None)
+        self.imkl_obj = imkl.overig()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'warningType',
+                          'geoNauwkeurigheidXY','kabelDiameter','materiaal',
+                          'buisDiameter','druk','producttype'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.overig00001','2017-04-24T09:30:47.0Z',
+                          'nl.imkl-nbact1.un00079','nl.imkl-nbact1.ul00024',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
+                          '2017-04-24T09:30:47.0Z','2020-04-24T09:30:47.0Z',
+                          'underground','nl.imkl-nbact1.xg00015','Label Overig',
+                          'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/tot100cm',
+                          '2','http://definities.geostandaarden.nl/imkl2015/id/waarde/PipeMaterialTypeIMKLValue/polyester',
+                          '12.5','5.3',
+                          'Bierleiding van brouwerij naar grootafnemer'])
+
+_suite_OverigTestCase = unittest.TestLoader().loadTestsFromTestCase(OverigTestCase)
+
 class EVbijlageTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -1237,7 +1275,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_MangatTestCase, _suite_EigenTopografieTestCase,
                     _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase,
                     _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase,
-                    _suite_MantelbuisTestCase, _suite_MastTestCase]
+                    _suite_MantelbuisTestCase, _suite_MastTestCase,
+                    _suite_OverigTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
