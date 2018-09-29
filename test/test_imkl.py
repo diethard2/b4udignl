@@ -1008,7 +1008,7 @@ class MastTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','network_id','status', 'validFrom','validTo',
                           'verticalPosition','geometry','geom_id', 'label',
-                          'poleHeight'])
+                          'hoogte'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -1019,6 +1019,37 @@ class MastTestCase(unittest.TestCase):
                           'nl.imkl-nbact1.xg00008','','100.0'])
 
 _suite_MastTestCase = unittest.TestLoader().loadTestsFromTestCase(MastTestCase)
+
+class TorenTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.toren
+        """
+        # read the file
+        xml_file = open("data/imkl/toren.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Toren",
+                                                       None)
+        self.imkl_obj = imkl.toren()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','network_id','status', 'validFrom','validTo',
+                          'verticalPosition','geometry','geom_id', 'label',
+                          'hoogte'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.toren00001','nl.imkl-nbact1.un00076',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
+                          '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
+                          'onGroundSurface','Point(155060.000 388080.000)',
+                          'nl.imkl-nbact1.xg00013','','100.0'])
+
+_suite_TorenTestCase = unittest.TestLoader().loadTestsFromTestCase(TorenTestCase)
 
 class EigenTopografieTestCase(unittest.TestCase):
 
@@ -1425,7 +1456,7 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase,
                     _suite_MantelbuisTestCase, _suite_MastTestCase,
                     _suite_OverigTestCase, _suite_RioolleidingTestCase,
-                    _suite_TechnischGebouwTestCase,
+                    _suite_TechnischGebouwTestCase, _suite_TorenTestCase,
                     _suite_TelecommunicatiekabelTestCase,
                     _suite_ThermischePijpleidingTestCase]
 

@@ -476,8 +476,6 @@ def PuntOpNet():
     return obj
 
 def kast():
-    # seems a bit weird but only the timestamp of registration is missing
-    # from kabelOfLeiding in kast. OK for me to inherit.
     obj = PuntOpNet()
     obj.name = "Kast"
     obj.add_field(B_Field("bovengrondsZichtbaar", "TEXT", "BovengrondsZichtbaar"))
@@ -487,27 +485,28 @@ def kast():
     return obj
 
 def mangat():
-    # seems a bit weird but only the timestamp of registration is missing
-    # from kabelOfLeiding in kast. OK for me to inherit.
     obj = PuntOpNet()
     obj.name = "Mangat"
     obj.add_tags_to_process()
     return obj
 
 def mast():
-    # seems a bit weird but only the timestamp of registration is missing
-    # from kabelOfLeiding in kast. OK for me to inherit.
     obj = PuntOpNet()
     obj.name = "Mast"
-    obj.add_field(B_Field("poleHeight", "TEXT", "PoleHeight"))
+    obj.add_field(B_Field("hoogte", "REAL", "PoleHeight"))
     obj.add_tags_to_process()
     return obj
 
 def technischGebouw():
-    # seems a bit weird but only the timestamp of registration is missing
-    # from kabelOfLeiding in kast. OK for me to inherit.
     obj = kast()
     obj.name = "TechnischGebouw"
+    return obj
+
+def toren():
+    obj = PuntOpNet()
+    obj.name = "Toren"
+    obj.add_field(B_Field("hoogte", "REAL", "TowerHeight"))
+    obj.add_tags_to_process()
     return obj
 
 def eigenTopografie():
