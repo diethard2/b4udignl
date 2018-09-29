@@ -58,6 +58,7 @@ TECHNISCHGEBOUW = "TechnischGebouw"
 TELECOMMUNICATIEKABEL = "Telecommunicatiekabel"
 THERMISCHEPIJPLEIDING = "ThermischePijpleiding"
 UTILITEITSNET = "Utiliteitsnet"
+UTILITYLINK = "UtilityLink"
 
 # for old version of IMKL messages (before 1-1-2019)
 def leveringsinformatie():
@@ -454,6 +455,22 @@ def thermischePijpleiding():
                           from_attribute='Href'))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("toelichting", "TEXT", "Toelichting"))
+    obj.add_tags_to_process()
+    return obj
+
+def utilityLink():
+    obj = B_Object("UtilityLink")
+    obj.add_field(B_Field("id", "TEXT", "InspireId",
+                          to_object=IMKL_Id, is_key_field=True))
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("status", "TEXT", "CurrentStatus",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
+    obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
+    obj.add_field(B_Field("geometry", "LINESTRING", "CentrelineGeometry",
+                          to_object=gml.LineString))
     obj.add_tags_to_process()
     return obj
 

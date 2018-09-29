@@ -1309,6 +1309,36 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
 
 _suite_ThermischePijpleidingTestCase = unittest.TestLoader().loadTestsFromTestCase(ThermischePijpleidingTestCase)
 
+class UtilityLinkTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.utilityLink
+        """
+        # read the file
+        xml_file = open("data/imkl/utilityLink.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "UtilityLink",
+                                                       None)
+        self.imkl_obj = imkl.utilityLink()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'status',
+                          'validFrom', 'verticalPosition','geometry'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.ul00001','2001-12-17T09:30:47.0Z',
+                          'nl.imkl-nbact1.un00040',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
+                          '2001-12-17T09:30:47.0Z','',
+                          'LineString(155038.000 388060.000, 155022.000 388060.000)'])
+
+_suite_UtilityLinkTestCase = unittest.TestLoader().loadTestsFromTestCase(UtilityLinkTestCase)
+
 class EVbijlageTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -1488,7 +1518,7 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_TechnischGebouwTestCase, _suite_TorenTestCase,
                     _suite_TelecommunicatiekabelTestCase,
                     _suite_ThermischePijpleidingTestCase,
-                    _suite_UtiliteitsnetTestCase]
+                    _suite_UtiliteitsnetTestCase, _suite_UtilityLinkTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
