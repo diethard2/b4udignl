@@ -158,6 +158,49 @@ class DocTestCaseV2_1(unittest.TestCase):
     def test_version(self):
         self.assertEqual(self.doc.version, '2.1')
 
+    def test_imkl_elements(self):
+        self.assertEqual(sorted(self.doc.imkls.keys()),
+                         ['AanduidingEisVoorzorgsmaatregel','Annotatie',
+                          'Appurtenance','Beheerder','Belang','Belanghebbende',
+                          'Bijlage','BoundedBy','DiepteNAP','DiepteTovMaaiveld','Duct',
+                          'EigenTopografie','EisVoorzorgsmaatregelBijlage',
+                          'Elektriciteitskabel','ExtraDetailinfo',
+                          'ExtraGeometrie','GebiedsinformatieAanvraag',
+                          'GebiedsinformatieLevering','Graafpolygoon',
+                          'Kabelbed','Kast','Leveringsinformatie','Maatvoering',
+                          'Mangat','Mantelbuis','Mast',
+                          'OlieGasChemicalienPijpleiding','Overig',
+                          'Rioolleiding','TechnischGebouw',
+                          'Telecommunicatiekabel','ThermischePijpleiding',
+                          'Toren','Utiliteitsnet','UtilityLink','Waterleiding'])
+        
+    def test_imkl_count_elements(self):
+        key_count = []
+        for key in sorted(self.doc.imkls.keys()):
+            objects = self.doc.imkls[key]
+            key_count.append((key,len(objects)))
+        self.assertEqual(key_count,
+                         [('AanduidingEisVoorzorgsmaatregel', 1),
+                          ('Annotatie', 5),('Appurtenance', 31),
+                          ('Beheerder', 6),('Belang', 8),('Belanghebbende', 6),
+                          ('Bijlage', 3),('BoundedBy', 1),('DiepteNAP', 1),
+                          ('DiepteTovMaaiveld', 1),('Duct', 1),
+                          ('EigenTopografie', 5),
+                          ('EisVoorzorgsmaatregelBijlage', 1),
+                          ('Elektriciteitskabel', 1),('ExtraDetailinfo', 3),
+                          ('ExtraGeometrie', 15),
+                          ('GebiedsinformatieAanvraag', 1),
+                          ('GebiedsinformatieLevering', 1),('Graafpolygoon', 1),
+                          ('Kabelbed', 1),('Kast', 1),
+                          ('Leveringsinformatie', 1),('Maatvoering', 5),
+                          ('Mangat', 1),('Mantelbuis', 1),('Mast', 1),
+                          ('OlieGasChemicalienPijpleiding', 1),('Overig', 1),
+                          ('Rioolleiding', 1),('TechnischGebouw', 1),
+                          ('Telecommunicatiekabel', 15),
+                          ('ThermischePijpleiding', 1),('Toren', 1),
+                          ('Utiliteitsnet', 77),('UtilityLink', 25),
+                          ('Waterleiding', 2)])
+
 _suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)
 
 

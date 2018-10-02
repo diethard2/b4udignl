@@ -62,13 +62,7 @@ class Doc():
         Interface to GIS is delegated to attribute iface.
         """
 
-        self._tag2function = {imkl.AANDUIDINGEISVOORZORGSMAATREGEL: imkl.aanduidingEisVoorzorgsmaatregel,
-                              imkl.BOUNDEDBY: imkl.boundedBy,
-                              imkl.EXTRAGEOMETRY: imkl.extraGeometrie,
-                              imkl.LEVERINGSINFORMATIE: imkl.leveringsinformatie,
-                              imkl.OLIEGASCHEMICALIENPIJPLEIDING: imkl.olieGasChemicalienPijpleiding,
-                              imkl.UTILITEITSNET: imkl.utiliteitsnet}
-        
+        self._tag2function = imkl.tag2function()        
         # holds folder used to create whole structure
         self.__path = os.path.realpath(path_message)
         # holds interface to gis.   
@@ -116,8 +110,6 @@ class Doc():
         if self.imkls.has_key(imkl.LEVERINGSINFORMATIE):
             imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
             version = imkl_obj.field("version").value
-            if version is None:
-                version = imkl_obj.field("version2").value
         return version
         
     def _path(self):
@@ -195,6 +187,7 @@ class Doc():
 
     def _parse_xml(self, xmlFile):
         """fill attributes of Doc from a given xml file"""
+##        print xmlFile
         xml_stream = open(xmlFile)
         xml_element = ET.fromstring(xml_stream.read())
         tag = xml_utils.clean_tag(xml_element.tag)
@@ -203,22 +196,30 @@ class Doc():
             self._process_tag_to_object(xml_element)
         elif tag == imkl.FEATURECOLLECTION:
             for i_elem in xml_element:
-                self._process_feature_member(i_elem)
+                tag = xml_utils.clean_tag(i_elem.tag)
+                if tag == imkl.BOUNDEDBY:
+                    self._process_tag_to_object(i_elem)
+                else:
+                    self._process_feature_member(i_elem)
         else:
             print "not processed tag: ", tag
         xml_stream.close()
 
     def _process_feature_member(self, xml_element):
         for i_elem in xml_element:
-            self._process_tag_to_object(xml_element)
+            tag = xml_utils.clean_tag(i_elem.tag)
+            self._process_tag_to_object(i_elem)
                 
     def _process_tag_to_object(self, xml_element):
         tag = xml_utils.clean_tag(xml_element.tag)
+##        print tag
         if self._tag2function.has_key(tag):
             function = self._tag2function[tag]
             obj = function()
             obj.process(xml_element)
             self._add_obj_to_imkl(tag, obj)
+        else:
+            print "not processed tag: ", tag
 
     def _add_obj_to_imkl(self, tag, obj):
         if self.imkls.has_key(tag):
