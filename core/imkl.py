@@ -28,6 +28,7 @@ from xml_utils import B_XmlProcessor, clean_tag
 AANDUIDINGEV = "AanduidingEisVoorzorgsmaatregel"
 ANNOTATIE = "Annotatie"
 APPURTENANCE = "Appurtenance"
+BEHEERDER = "Beheerder"
 BELANG = "Belang"
 BELANGHEBBENDE = "Belanghebbende"
 BIJLAGE = "Bijlage"
@@ -37,9 +38,9 @@ DIEPTENAP = "DiepteNAP"
 DUCT="Duct"
 EIGENTOPOGRAFIE="EigenTopografie"
 ELEKTRICITEITSKABEL="Elektriciteitskabel"
-EXTRAGEOMETRY = "ExtraGeometrie"
+EVBIJLAGE = "EisVoorzorgsmaatregelBijlage"
 EXTRADETAILINFO = "ExtraDetailinfo"
-EVBIJLAGE = "eisVoorzorgsmaatregelBijlage"
+EXTRAGEOMETRY = "ExtraGeometrie"
 FEATURECOLLECTION = "FeatureCollection"
 GEBIEDSINFORMATIEAANVRAAG = "GebiedsinformatieAanvraag"
 GEBIEDSINFORMATIELEVERING = "GebiedsinformatieLevering"
@@ -57,8 +58,49 @@ RIOOLLEIDING = "Rioolleiding"
 TECHNISCHGEBOUW = "TechnischGebouw"
 TELECOMMUNICATIEKABEL = "Telecommunicatiekabel"
 THERMISCHEPIJPLEIDING = "ThermischePijpleiding"
+TOREN = "Toren"
 UTILITEITSNET = "Utiliteitsnet"
 UTILITYLINK = "UtilityLink"
+WATERLEIDING = "Waterleiding"
+
+
+def tag2function():
+    return {AANDUIDINGEV: aanduidingEisVoorzorgsmaatregel,
+            ANNOTATIE: annotatie,
+            APPURTENANCE: appurtenance,
+            BELANG: belang,
+            BELANGHEBBENDE: belanghebbende,
+            BEHEERDER: beheerder,
+            BIJLAGE: bijlage,
+            BOUNDEDBY: boundedBy,
+            DIEPTETOVMAAIVELD: diepteTovMaaiveld,
+            DIEPTENAP: diepteNAP,
+            DUCT: duct,
+            EIGENTOPOGRAFIE: eigenTopografie,
+            ELEKTRICITEITSKABEL: elektriciteitskabel,
+            EVBIJLAGE: eisVoorzorgsmaatregelBijlage,
+            EXTRADETAILINFO: extraDetailinfo,
+            EXTRAGEOMETRY: extraGeometrie,
+            GEBIEDSINFORMATIEAANVRAAG: gebiedsinformatieAanvraag,
+            GEBIEDSINFORMATIELEVERING: gebiedsinformatieLevering,
+            GRAAFPOLYGOON: graafpolygoon,
+            KABELBED: kabelbed,
+            KAST: kast,
+            LEVERINGSINFORMATIE: leveringsinformatie,
+            MAATVOERING: maatvoering,
+            MANGAT: mangat,
+            MANTELBUIS: mantelbuis,
+            MAST: mast,
+            OLIEGASCHEMICALIENPIJPLEIDING: olieGasChemicalienPijpleiding,
+            OVERIG: overig,
+            RIOOLLEIDING: rioolleiding,
+            TECHNISCHGEBOUW: technischGebouw,
+            TELECOMMUNICATIEKABEL: telecomKabel,
+            THERMISCHEPIJPLEIDING: thermischePijpleiding,
+            TOREN: toren,
+            UTILITEITSNET: utiliteitsnet,
+            UTILITYLINK: utilityLink,
+            WATERLEIDING: waterleiding}
 
 # for old version of IMKL messages (before 1-1-2019)
 def leveringsinformatie():
@@ -338,6 +380,8 @@ def kabelOfLeiding():
     obj.add_field(B_Field("geom_id", "TEXT", "ExtraGeometrie",
                           from_attribute='Href'))
     obj.add_field(B_Field("label", "TEXT", "Label"))
+    obj.add_field(B_Field("geometry", "LINESTRING", "CentrelineGeometry",
+                          to_object=gml.LineString))
     return obj
 
 def duct():
@@ -455,6 +499,18 @@ def thermischePijpleiding():
                           from_attribute='Href'))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("toelichting", "TEXT", "Toelichting"))
+    obj.add_tags_to_process()
+    return obj
+
+def waterleiding():
+    obj = kabelOfLeiding()
+    obj.name = "Waterleiding"
+    obj.add_field(B_Field("warningType", "TEXT", "WarningType",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("fluid", "TEXT", "WaterType",
+                          from_attribute='Href'))
     obj.add_tags_to_process()
     return obj
 
@@ -600,6 +656,14 @@ def gebiedsinformatieLevering():
     obj.add_tags_to_process()
     return obj
 
+def beheerder():
+    obj = imkl_basis()
+    obj.name = "GebiedsinformatieLevering"
+    obj.add_field(B_Field("organisatie", "CONTAINER",
+                          "Organisatie", to_object=organisatie2))
+    obj.add_tags_to_process()
+    return obj
+
 def aanvrager():
     obj = B_Object("Aanvrager")
     obj.add_field(B_Field("contactpersoon", "OBJECT", "Contactpersoon",
@@ -628,6 +692,12 @@ def organisatie():
     obj = B_Object("Organisatie")
     obj.add_field(B_Field("bezoekadres", "OBJECT", "BezoekAdres",
                           to_object=bezoekadres))
+    obj.add_tags_to_process()
+    return obj
+
+def organisatie2():
+    obj = B_Object("Organisatie")
+    obj.add_field(B_Field("naam", "TEXT", "Naam"))
     obj.add_tags_to_process()
     return obj
 

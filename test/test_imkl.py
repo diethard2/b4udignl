@@ -276,7 +276,8 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
         self.assertEqual(self.buisGevaarlijkeInhoud.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label','diameter','druk', 'fluid'])
+                          'geom_id', 'label','geometry', 'diameter','druk',
+                          'fluid'])
 
     def test_field_values(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.field_values(),
@@ -284,20 +285,20 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
                           'nl.imkl-nbact1.un00057','nl.imkl-nbact1.ul00005',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z',None,'underground',
-                          'nl.imkl-nbact1.xg00009','','0.0','0.0',
+                          'nl.imkl-nbact1.xg00009','',None,'0.0','0.0',
                           'http://inspire.ec.europa.eu/codelist/OilGasChemicalsProductTypeValue/naturalGas'])
 
     def test_csv_header(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.csv_header(),
                          'id;registratiedatum;network_id;link_id;status;\
-validFrom;validTo;verticalPosition;geom_id;label;diameter;druk;fluid')
+validFrom;validTo;verticalPosition;geom_id;label;geometry;diameter;druk;fluid')
 
     def test_as_csv(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.as_csv(),
                          'nl.imkl-nbact1.ogc00001;2001-12-17T09:30:47.0Z;\
 nl.imkl-nbact1.un00057;nl.imkl-nbact1.ul00005;\
 http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused;\
-2001-12-17T09:30:47.0Z;None;underground;nl.imkl-nbact1.xg00009;;0.0;0.0;http:\
+2001-12-17T09:30:47.0Z;None;underground;nl.imkl-nbact1.xg00009;;None;0.0;0.0;http:\
 //inspire.ec.europa.eu/codelist/OilGasChemicalsProductTypeValue/naturalGas')
     
 _suite_olieGasChemicalienPijpleiding = unittest.TestLoader().loadTestsFromTestCase(OlieGasChemicalienPijpleidingTestCase)
@@ -843,7 +844,7 @@ class DuctTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'utilityDeliveryType',
+                          'geom_id', 'label', 'geometry', 'utilityDeliveryType',
                           'warningType','ductWidth'])
 
     def test_field_values(self):
@@ -852,7 +853,7 @@ class DuctTestCase(unittest.TestCase):
                           'nl.imkl-nbact1.un00040','nl.imkl-nbact1.ul00001',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
-                          'underground','nl.imkl-nbact1.xg00001','',
+                          'underground','nl.imkl-nbact1.xg00001','',None,
                           'http://inspire.ec.europa.eu/codelist/UtilityNetworkTypeValue/electricity',
                           'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
                           '1.5'])
@@ -878,7 +879,7 @@ class KabelbedTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'warningType','ductWidth',
+                          'geom_id', 'label', 'geometry','warningType','ductWidth',
                           'omschrijving'])
 
     def test_field_values(self):
@@ -888,7 +889,7 @@ class KabelbedTestCase(unittest.TestCase):
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'underground','nl.imkl-nbact1.xg00004',
-                          'Label KabelBed',
+                          'Label KabelBed',None,
                           'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
                           '0','Omschrijving Kabelbed'])
 
@@ -1102,7 +1103,7 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'warningType',
+                          'geom_id', 'label', 'geometry', 'warningType',
                           'operatingVoltage','nominalVoltage',
                           'geoNauwkeurigheidXY', 'kabelDiameter'])
 
@@ -1112,7 +1113,7 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
                           'nl.imkl-nbact1.un00041','nl.imkl-nbact1.ul00002',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z',None,'underground',
-                          'nl.imkl-nbact1.xg00002',None,
+                          'nl.imkl-nbact1.xg00002',None,None,
                           'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
                           '0.3','100000.0',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/onbekend',
@@ -1140,7 +1141,7 @@ class TelecommunicatiekabelTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'utilityFacilityReference',
+                          'geom_id', 'label', 'geometry', 'utilityFacilityReference',
                           'utilityDeliveryType', 'geoNauwkeurigheidXY',
                           'warningType', 'materiaal', 'diameter',
                           'omschrijving', 'toelichting'])
@@ -1151,7 +1152,7 @@ class TelecommunicatiekabelTestCase(unittest.TestCase):
                           'nl.imkl-nbact1.un00060','nl.imkl-nbact1.ul00007',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '2001-12-17T09:30:47.0','2021-12-17T09:30:47.0',
-                          'underground',None,'','',
+                          'underground',None,'',None,'',
                           'http://inspire.ec.europa.eu/codelist/UtilityDeliveryTypeValue/private',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/tot100cm',
                           'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
@@ -1181,7 +1182,7 @@ class MantelbuisTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'warningType',
+                          'geom_id', 'label', 'geometry', 'warningType',
                           'diameter','materiaal'])
 
     def test_field_values(self):
@@ -1190,7 +1191,7 @@ class MantelbuisTestCase(unittest.TestCase):
                           'nl.imkl-nbact1.un00055','nl.imkl-nbact1.ul00004',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
-                          'underground','nl.imkl-nbact1.xg00007','',
+                          'underground','nl.imkl-nbact1.xg00007','', None,
                           'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
                           '100',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/PipeMaterialTypeIMKLValue/asbestos-cement'])
@@ -1216,7 +1217,7 @@ class OverigTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'warningType',
+                          'geom_id', 'label', 'geometry', 'warningType',
                           'geoNauwkeurigheidXY','kabelDiameter','materiaal',
                           'buisDiameter','druk','producttype'])
 
@@ -1227,6 +1228,7 @@ class OverigTestCase(unittest.TestCase):
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '2017-04-24T09:30:47.0Z','2020-04-24T09:30:47.0Z',
                           'underground','nl.imkl-nbact1.xg00015','Label Overig',
+                          None,
                           'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/tot100cm',
                           '2','http://definities.geostandaarden.nl/imkl2015/id/waarde/PipeMaterialTypeIMKLValue/polyester',
@@ -1254,8 +1256,8 @@ class RioolleidingTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'warningType','diameter',
-                          'druk','fluid'])
+                          'geom_id', 'label', 'geometry', 'warningType',
+                          'diameter', 'druk', 'fluid'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -1263,7 +1265,7 @@ class RioolleidingTestCase(unittest.TestCase):
                           'nl.imkl-nbact1.un00058','nl.imkl-nbact1.ul00006',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0Z','2031-12-17T09:30:47.0Z',
-                          'underground','nl.imkl-nbact1.xg00010','',
+                          'underground','nl.imkl-nbact1.xg00010','',None,
                           'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
                           '0','0',
                           'http://inspire.ec.europa.eu/codelist/SewerWaterTypeValue/storm'])
@@ -1289,9 +1291,9 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'geom_id', 'label', 'warningType','diameter',
-                          'druk','producttype','geoNauwkeurigheidXY',
-                          'omschrijving','toelichting'])
+                          'geom_id', 'label', 'geometry', 'warningType',
+                          'diameter', 'druk', 'producttype',
+                          'geoNauwkeurigheidXY','omschrijving','toelichting'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -1300,7 +1302,7 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0','2021-12-17T09:30:47.0',
                           'underground','nl.imkl-nbact1.xg00012',
-                          'Label Thermische Pijpleiding',
+                          'Label Thermische Pijpleiding', None,
                           'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
                           '0','450','',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidXYvalue/tot100cm',
@@ -1308,6 +1310,41 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
                           'Toelichting Thermische Pijpleiding nl.imkl-nbact1.th00001'])
 
 _suite_ThermischePijpleidingTestCase = unittest.TestLoader().loadTestsFromTestCase(ThermischePijpleidingTestCase)
+
+class WaterleidingTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.waterleiding
+        """
+        # read the file
+        xml_file = open("data/imkl/waterleiding.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Waterleiding",
+                                                       None)
+        self.imkl_obj = imkl.waterleiding()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id','registratiedatum','network_id', 'link_id',
+                          'status', 'validFrom','validTo', 'verticalPosition',
+                          'geom_id', 'label', 'geometry', 'warningType',
+                          'diameter', 'druk', 'fluid'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact1.wl00001','2001-12-17T09:30:47.0Z',
+                          'nl.imkl-nbact1.un00078','nl.imkl-nbact1.ul00023',
+                          'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
+                          '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
+                          'underground','nl.imkl-nbact1.xg00014','',None,
+                          'http://inspire.ec.europa.eu/codelist/WarningTypeValue/net',
+                          '0','450',
+                          'http://inspire.ec.europa.eu/codelist/WaterTypeValue/potable'])
+
+_suite_WaterleidingTestCase = unittest.TestLoader().loadTestsFromTestCase(WaterleidingTestCase)
 
 class UtilityLinkTestCase(unittest.TestCase):
 
@@ -1474,6 +1511,38 @@ class UtiliteitsnetTestCase(unittest.TestCase):
 
 _suite_UtiliteitsnetTestCase = unittest.TestLoader().loadTestsFromTestCase(UtiliteitsnetTestCase)
 
+class BeheerderTestCase(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.beheerder
+        """
+        # read the file
+        xml_file = open("data/imkl/beheerder.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Beheerder",
+                                                       None)
+        self.imkl_obj = imkl.beheerder()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['id', 'registratiedatum', 'vervaldatum'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         ['nl.imkl-nbact2._Beheerder',
+                          '2000-01-01T00:00:00.000+01:00',None])
+
+    def test_name_organisation(self):
+        orgs = self.imkl_obj.field("organisatie").value
+        org = orgs[0]
+        field = org.field("naam")
+        self.assertEqual(field.value, 'Netbeheerder Actualiseren02')
+
+_suite_BeheerderTestCase = unittest.TestLoader().loadTestsFromTestCase(BeheerderTestCase)
+
 ##class TestCase(unittest.TestCase):
 ##
 ##    def setUp(self):
@@ -1518,7 +1587,8 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_TechnischGebouwTestCase, _suite_TorenTestCase,
                     _suite_TelecommunicatiekabelTestCase,
                     _suite_ThermischePijpleidingTestCase,
-                    _suite_UtiliteitsnetTestCase, _suite_UtilityLinkTestCase]
+                    _suite_UtiliteitsnetTestCase, _suite_UtilityLinkTestCase,
+                    _suite_BeheerderTestCase, _suite_WaterleidingTestCase]
 
 def main():
     imkl_test_suite = unittest.TestSuite(unit_test_suites)
