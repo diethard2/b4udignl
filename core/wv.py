@@ -239,6 +239,7 @@ class Doc():
     def _post_process_imkl(self):
         self._fill_keyed_imkl_set()
         self._set_geometry_pipes()
+        self._set_themes_imkl_objects()
 
     def _fill_keyed_imkl_set(self):
         for imkl_set in self.imkls.values():
@@ -255,6 +256,26 @@ class Doc():
                 link_id = imkl_object.field("link_id").value
                 utility_link = self.imkls_on_id[link_id]
                 geom_field.value = utility_link.field("geometry").value                    
+
+    def _set_themes_imkl_objects(self):
+        for tag in self.imkls.keys():
+            imkl_set = self.imkls[tag]
+            for imkl_object in imkl_set:
+                if imkl_object.field("geometry") is None:
+                    break
+                theme_field = imkl_object.field("thema")
+                if theme_field is None:
+                    break
+                network_id = imkl_object.field("network_id").value
+                network = self.imkls_on_id[network_id]
+                url_theme = network.field("thema").value
+                theme = self._get_last_value_from_url(url_theme)
+                theme_field.value = theme
+
+    def _get_last_value_from_url(self, url):
+        i = url.rindex('/')
+        value = url[i+1:]
+        return value
 
     def _setLayers(self):
         """

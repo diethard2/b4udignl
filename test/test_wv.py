@@ -221,6 +221,13 @@ class DocTestCaseV2_1(unittest.TestCase):
                          ('nl.imkl-nbact1.ul00006',
                           'LineString(155058.000 388020.000, 155042.000 388020.000)'))
 
+    def test_thema_kast(self):
+        kast = self.doc.imkls[imkl.KAST][0]
+        network_id = kast.field("network_id").value
+        thema = kast.field("thema").value
+        self.assertEqual((network_id,thema),
+                         ('nl.imkl-nbact1.un00048', 'datatransport'))
+
 _suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)
 
 

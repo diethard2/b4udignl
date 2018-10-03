@@ -243,26 +243,6 @@ def aanduidingEisVoorzorgsmaatregel():
     obj.add_tags_to_process()
     return obj
 
-def appurtenance():
-    obj = B_Object("Appurtenance")
-    obj.add_field(B_Field("id", "TEXT", "InspireId",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
-    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
-                          from_attribute='Href'))
-    obj.add_field(B_Field("currentStatus", "TEXT", "CurrentStatus",
-                          from_attribute='Href'))
-    obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
-    obj.add_field(B_Field("validTo", "TEXT", "ValidTo"))
-    obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
-    obj.add_field(B_Field("appurtenanceType", "TEXT", "AppurtenanceType",
-                          from_attribute='Href'))
-    obj.add_field(B_Field("label", "TEXT", "Label"))
-    obj.add_field(B_Field("geometry", "POINT", "Geometry",
-                          to_object=gml.Point))
-    obj.add_tags_to_process()
-    return obj
-
 def annotatie():
     obj = imkl_basis()
     obj.name = "Annotatie"
@@ -275,6 +255,7 @@ def annotatie():
     obj.add_field(B_Field("rotatiehoek", "TEXT", "Rotatiehoek"))
     obj.add_field(B_Field("labelpositie", "CONTAINER",
                           "Labelpositie", to_object=labelpositie))
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
     obj.add_field(B_Field("geometry", "POINT", "Ligging",
                           to_object=gml.Point))
     obj.add_tags_to_process()
@@ -292,6 +273,7 @@ def maatvoering():
     obj.add_field(B_Field("rotatiehoek", "TEXT", "Rotatiehoek"))
     obj.add_field(B_Field("labelpositie", "CONTAINER",
                           "Labelpositie", to_object=labelpositie))
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
     obj.add_field(B_Field("geometry", "POINT", "Ligging",
                           to_object=gml.Point))
     obj.add_tags_to_process()
@@ -349,6 +331,7 @@ def diepte():
     obj.add_field(B_Field("diepteAangrijpingspunt", "TEXT",
                           "DiepteAangrijpingspunt",
                           from_attribute='Href'))
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
     obj.add_field(B_Field("geometry", "POINT", "Ligging",
                           to_object=gml.Point))
     return obj
@@ -382,6 +365,7 @@ def kabelOfLeiding():
     obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
     obj.add_field(B_Field("validTo", "TEXT", "ValidTo"))
     obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
     obj.add_field(B_Field("geom_id", "TEXT", "ExtraGeometrie",
                           from_attribute='Href'))
     obj.add_field(B_Field("label", "TEXT", "Label"))
@@ -546,12 +530,41 @@ def PuntOpNet():
     obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
     obj.add_field(B_Field("validTo", "TEXT", "ValidTo"))
     obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
     obj.add_field(B_Field("geometry", "POINT", "Geometry",
                           to_object=gml.Point))
     obj.add_field(B_Field("geom_id", "TEXT", "ExtraGeometrie",
                           from_attribute='Href'))
     obj.add_field(B_Field("label", "TEXT", "Label"))
     return obj
+
+def appurtenance():
+    obj = PuntOpNet()
+    obj.name = "Appurtenance"
+    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+    obj.add_field(B_Field("appurtenanceType", "TEXT", "AppurtenanceType",
+                          from_attribute='Href'))
+    obj.add_tags_to_process()
+    return obj
+
+##def appurtenance():
+##    obj = B_Object("Appurtenance")
+##    obj.add_field(B_Field("id", "TEXT", "InspireId",
+##                          to_object=IMKL_Id, is_key_field=True))
+##    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
+##    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
+##                          from_attribute='Href'))
+##    obj.add_field(B_Field("currentStatus", "TEXT", "CurrentStatus",
+##                          from_attribute='Href'))
+##    obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
+##    obj.add_field(B_Field("validTo", "TEXT", "ValidTo"))
+##    obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
+##    obj.add_field(B_Field("label", "TEXT", "Label"))
+##    obj.add_field(B_Field("geometry", "POINT", "Geometry",
+##                          to_object=gml.Point))
+##    obj.add_tags_to_process()
+##    return obj
+
 
 def kast():
     obj = PuntOpNet()
