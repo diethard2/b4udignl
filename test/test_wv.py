@@ -22,6 +22,7 @@ sys.path.append(path_core)
 
 import unittest
 from core.wv import Doc, Company
+from core import imkl
 
 class DocTestCaseV1_5(unittest.TestCase):
     """
@@ -200,6 +201,25 @@ class DocTestCaseV2_1(unittest.TestCase):
                           ('ThermischePijpleiding', 1),('Toren', 1),
                           ('Utiliteitsnet', 77),('UtilityLink', 25),
                           ('Waterleiding', 2)])
+        
+    def test_all_imkl_pipes_have_geometry(self):
+        all_ok = True
+        for tag in imkl.tags_pipes_and_cables():
+            imkl_set = self.doc.imkls[tag]
+            for imkl_object in imkl_set:
+                if imkl_object.field("geometry").value is None:
+                    all_ok = False
+                    print(imkl_object.name)
+                    break        
+        self.assertEqual(all_ok, True)
+
+    def test_geometry_rioolleiding(self):
+        leiding = self.doc.imkls[imkl.RIOOLLEIDING][0]
+        link_id = leiding.field("link_id").value
+        geom = leiding.field("geometry").value
+        self.assertEqual((link_id,geom),
+                         ('nl.imkl-nbact1.ul00006',
+                          'LineString(155058.000 388020.000, 155042.000 388020.000)'))
 
 _suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)
 

@@ -102,6 +102,11 @@ def tag2function():
             UTILITYLINK: utilityLink,
             WATERLEIDING: waterleiding}
 
+def tags_pipes_and_cables():
+    return (DUCT,ELEKTRICITEITSKABEL,KABELBED,OLIEGASCHEMICALIENPIJPLEIDING,
+            OVERIG,RIOOLLEIDING,TELECOMMUNICATIEKABEL,THERMISCHEPIJPLEIDING,
+            WATERLEIDING)
+
 # for old version of IMKL messages (before 1-1-2019)
 def leveringsinformatie():
     obj = B_Object("LeveringsInformatie")
