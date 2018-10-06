@@ -389,7 +389,7 @@ class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','vervaldatum','ordernummer',
-                          'positienummer','klicMeldnummer','referentie',
+                          'positienummer','klicnummer','referentie',
                           'aanvraagsoort','aanvraagdatum','soortWerkzaamheden',
                           'locatieWerkzaamheden','startDatum','eindDatum'])
 

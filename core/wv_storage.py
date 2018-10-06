@@ -24,6 +24,7 @@ Author: Diethard Jansen, 15-9-2018
 """
 import os
 from core.wv_objects import Rectangle, Company, Person, Theme, PdfFile, Layer
+from core import imkl
 
 class Storage(object):
     def __init__(self, parent):
@@ -153,24 +154,24 @@ class Storage1(Storage):
         super(Storage1, self).__init__(parent)
 
     def _fill_klicnummer(self):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
+        imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
         self.klicnummer = imkl_obj.field("klicnummer").value        
 
     def _fill_meldingsoort(self):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
+        imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
         self.meldingsoort = imkl_obj.field("meldingsoort").value
 
     def _fill_rectangle(self):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
+        imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
         imkl_obj = imkl_obj.field("omsluitendeRechthoek").value
         super(Storage1, self)._fill_rectangle(imkl_obj)
             
     def _fill_graafpolygoon(self):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
+        imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
         self.__graafpolygoon = imkl_obj.field("graafpolygoon").value
 
     def _fill_netowners(self):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
+        imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
         netowner_deliveries = imkl_obj.field("netbeheerderLeveringen").value
         for netowner_delivery in netowner_deliveries:
             self._process_netowner_delivery(netowner_delivery)
@@ -260,7 +261,17 @@ class Storage2(Storage):
     def __init__(self, parent):
         super(Storage2, self).__init__(parent)
 
+    def _fill_klicnummer(self):
+        imkl_obj = self.imkls[imkl.GEBIEDSINFORMATIEAANVRAAG][0]
+        self.klicnummer = imkl_obj.field("klicnummer").value        
+
+    def _fill_meldingsoort(self):
+        imkl_obj = self.imkls[imkl.GEBIEDSINFORMATIEAANVRAAG][0]
+        self.meldingsoort = imkl_obj.field("aanvraagsoort").value
+
     def _fill_rectangle(self):
-        imkl_obj = self.imkls["Leveringsinformatie"][0]
+        imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
         imkl_obj = imkl_obj.field("pngFormaat").value
-        super(Storage2, self)._set_rectangle(imkl_obj)
+        super(Storage2, self)._fill_rectangle(imkl_obj)
+
+        

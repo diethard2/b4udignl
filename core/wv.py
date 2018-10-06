@@ -239,6 +239,7 @@ class Doc():
     def _post_process_imkl(self):
         self._fill_keyed_imkl_set()
         self._set_geometry_pipes()
+        self._set_short_values_from_url()
         self._set_themes_imkl_objects()
 
     def _fill_keyed_imkl_set(self):
@@ -255,7 +256,16 @@ class Doc():
                 geom_field = imkl_object.field("geometry")
                 link_id = imkl_object.field("link_id").value
                 utility_link = self.imkls_on_id[link_id]
-                geom_field.value = utility_link.field("geometry").value                    
+                geom_field.value = utility_link.field("geometry").value
+
+    def _set_short_values_from_url(self):
+        for imkl_set in self.imkls.values():
+            for imkl_object in imkl_set:
+                for imkl_field in imkl_object.attribute_fields():
+                     if imkl_field.from_attribute == 'Href' and imkl_field.value is not None:
+                        url_value = imkl_field.value
+                        short_value = self._get_last_value_from_url(url_value)
+                        imkl_field.value = short_value        
 
     def _set_themes_imkl_objects(self):
         for tag in self.imkls.keys():
@@ -268,13 +278,15 @@ class Doc():
                     break
                 network_id = imkl_object.field("network_id").value
                 network = self.imkls_on_id[network_id]
-                url_theme = network.field("thema").value
-                theme = self._get_last_value_from_url(url_theme)
+                theme = network.field("thema").value
                 theme_field.value = theme
 
     def _get_last_value_from_url(self, url):
-        i = url.rindex('/')
-        value = url[i+1:]
+        value = url
+        if url is not None:
+            if '/' in url:
+                i = url.rindex('/')
+                value = url[i+1:]
         return value
 
     def _setLayers(self):

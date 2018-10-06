@@ -234,22 +234,22 @@ class DocTestCaseV2_1(unittest.TestCase):
     def test_meldingsoort(self):
         self.assertEqual(self.doc.meldingsoort, 'graafmelding')
                              
+    def test_pixel_width_heigth(self):
+        rectangle = self.doc.rectangle
+        self.assertEqual((rectangle.pixelsWidth,rectangle.pixelsHeight),
+                         (1960,2240))
+
+    def test_rectangle(self):
+        rectangle = self.doc.rectangle
+        self.assertEqual(repr(rectangle),
+                         'Rectangle(Coord(154980.00, 387980.00), Coord(155120.00, 388140.00))')
+
 ##    def test_netOwner_names(self):
 ##        netowner_names = [netowner.name for netowner in self.doc.netOwners]
 ##        self.assertEqual(netowner_names,
 ##                         ['Liander', 'APELDOORN','Eurofiber', 'KPN',
 ##                          'Reggefiber', 'Tele2', 'trent', 'upc', 'Vitens'])
-##
-##    def test_pixel_width_heigth(self):
-##        rectangle = self.doc.rectangle
-##        self.assertEqual((rectangle.pixelsWidth,rectangle.pixelsHeight),
-##                         (1624,910))
-##
-##    def test_rectange(self):
-##        rectangle = self.doc.rectangle
-##        self.assertEqual(repr(rectangle),
-##                         'Rectangle(Coord(194154.00, 465849.00), Coord(194270.00, 465914.00))')
-##
+
 ##    def test_themes(self):
 ##        netowner = self.doc.netOwners[0]
 ##        theme_names = []

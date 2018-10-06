@@ -630,7 +630,7 @@ def gebiedsinformatieAanvraag():
     obj.name = "GebiedsinformatieAanvraag"
     obj.add_field(B_Field("ordernummer", "TEXT","Ordernummer"))
     obj.add_field(B_Field("positienummer", "TEXT","Positienummer"))
-    obj.add_field(B_Field("klicMeldnummer", "TEXT","KlicMeldnummer"))
+    obj.add_field(B_Field("klicnummer", "TEXT","KlicMeldnummer"))
     obj.add_field(B_Field("aanvragers", "CONTAINER","Aanvrager",
                           to_object=aanvrager))
     obj.add_field(B_Field("referentie", "TEXT", "Referentie"))
