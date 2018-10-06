@@ -228,6 +228,36 @@ class DocTestCaseV2_1(unittest.TestCase):
         self.assertEqual((network_id,thema),
                          ('nl.imkl-nbact1.un00048', 'datatransport'))
 
+    def test_klicnummer(self):
+        self.assertEqual(self.doc.klicnummer, '18G007160')
+        
+    def test_meldingsoort(self):
+        self.assertEqual(self.doc.meldingsoort, 'graafmelding')
+                             
+##    def test_netOwner_names(self):
+##        netowner_names = [netowner.name for netowner in self.doc.netOwners]
+##        self.assertEqual(netowner_names,
+##                         ['Liander', 'APELDOORN','Eurofiber', 'KPN',
+##                          'Reggefiber', 'Tele2', 'trent', 'upc', 'Vitens'])
+##
+##    def test_pixel_width_heigth(self):
+##        rectangle = self.doc.rectangle
+##        self.assertEqual((rectangle.pixelsWidth,rectangle.pixelsHeight),
+##                         (1624,910))
+##
+##    def test_rectange(self):
+##        rectangle = self.doc.rectangle
+##        self.assertEqual(repr(rectangle),
+##                         'Rectangle(Coord(194154.00, 465849.00), Coord(194270.00, 465914.00))')
+##
+##    def test_themes(self):
+##        netowner = self.doc.netOwners[0]
+##        theme_names = []
+##        for theme in netowner.themes:
+##            theme_names.append(theme.name)
+##        self.assertEqual(theme_names,['middenspanning', 'gas lage druk', 'laagspanning'])
+
+
 _suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)
 
 

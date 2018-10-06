@@ -389,13 +389,20 @@ class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id','registratiedatum','vervaldatum','ordernummer',
-                          'positienummer','klicMeldnummer','referentie'])
+                          'positienummer','klicMeldnummer','referentie',
+                          'aanvraagsoort','aanvraagdatum','soortWerkzaamheden',
+                          'locatieWerkzaamheden','startDatum','eindDatum'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-KA0000._GebiedsinformatieAanvraag_18G007160',
                           '2018-07-19T12:02:03.000+02:00',None,'9806758830',
-                          '0000000010','18G007160','Tbv Klicviewer - Graaf'])
+                          '0000000010','18G007160','Tbv Klicviewer - Graaf',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/AanvraagSoortValue/graafmelding',
+                          '2018-07-19T12:02:03.000+02:00',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/SoortWerkzaamhedenValue/heien',
+                          'Zonnedauw 10 5688HM Oirschot NL',
+                          '2018-07-20','2018-07-21'])
 
     def test_contact_persoon(self):
         aanvragen = self.imkl_obj.field("aanvragers").value

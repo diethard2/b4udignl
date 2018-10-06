@@ -229,7 +229,7 @@ def thema():
 # for new version of IMKL messages (after 1-1-2019)
 def aanduidingEisVoorzorgsmaatregel():
     obj = imkl_basis()
-    obj.name = "AanduidingEisVoorzorgsmaatregel"
+    obj.name = "EisVoorzorgsmaatregel"
     obj.add_field(B_Field("label", "TEXT", "Label"))
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
                           from_attribute='Href'))
@@ -540,31 +540,12 @@ def PuntOpNet():
 
 def appurtenance():
     obj = PuntOpNet()
-    obj.name = "Appurtenance"
+    obj.name = "Leidingelement"
     obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
     obj.add_field(B_Field("appurtenanceType", "TEXT", "AppurtenanceType",
                           from_attribute='Href'))
     obj.add_tags_to_process()
     return obj
-
-##def appurtenance():
-##    obj = B_Object("Appurtenance")
-##    obj.add_field(B_Field("id", "TEXT", "InspireId",
-##                          to_object=IMKL_Id, is_key_field=True))
-##    obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
-##    obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
-##                          from_attribute='Href'))
-##    obj.add_field(B_Field("currentStatus", "TEXT", "CurrentStatus",
-##                          from_attribute='Href'))
-##    obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
-##    obj.add_field(B_Field("validTo", "TEXT", "ValidTo"))
-##    obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
-##    obj.add_field(B_Field("label", "TEXT", "Label"))
-##    obj.add_field(B_Field("geometry", "POINT", "Geometry",
-##                          to_object=gml.Point))
-##    obj.add_tags_to_process()
-##    return obj
-
 
 def kast():
     obj = PuntOpNet()
@@ -647,16 +628,22 @@ def extraDetailinfo():
 def gebiedsinformatieAanvraag():
     obj = imkl_basis()
     obj.name = "GebiedsinformatieAanvraag"
-    obj.add_field(B_Field("ordernummer", "TEXT",
-                          "Ordernummer"))
-    obj.add_field(B_Field("positienummer", "TEXT",
-                          "Positienummer"))
-    obj.add_field(B_Field("klicMeldnummer", "TEXT",
-                          "KlicMeldnummer"))
-    obj.add_field(B_Field("aanvragers", "CONTAINER",
-                          "Aanvrager", to_object=aanvrager))
-    obj.add_field(B_Field("referentie", "TEXT",
-                          "Referentie"))
+    obj.add_field(B_Field("ordernummer", "TEXT","Ordernummer"))
+    obj.add_field(B_Field("positienummer", "TEXT","Positienummer"))
+    obj.add_field(B_Field("klicMeldnummer", "TEXT","KlicMeldnummer"))
+    obj.add_field(B_Field("aanvragers", "CONTAINER","Aanvrager",
+                          to_object=aanvrager))
+    obj.add_field(B_Field("referentie", "TEXT", "Referentie"))
+    obj.add_field(B_Field("opdrachtgevers", "CONTAINER", "Opdrachtgever",
+                          to_object=opdrachtgever))
+    obj.add_field(B_Field("aanvraagsoort", "TEXT", "AanvraagSoort",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("aanvraagdatum", "TEXT", "AanvraagDatum"))
+    obj.add_field(B_Field("soortWerkzaamheden", "TEXT", "SoortWerkzaamheden",
+                          from_attribute='Href'))
+    obj.add_field(B_Field("locatieWerkzaamheden", "TEXT", "LocatieWerkzaamheden"))
+    obj.add_field(B_Field("startDatum", "TEXT", "StartDatum"))
+    obj.add_field(B_Field("eindDatum", "TEXT", "EindDatum"))
     obj.add_tags_to_process()
     return obj
 
@@ -689,6 +676,11 @@ def aanvrager():
     obj.add_field(B_Field("organisatie", "CONTAINER", "Organisatie",
                           to_object=organisatie))
     obj.add_tags_to_process()
+    return obj
+
+def opdrachtgever():
+    obj = aanvrager()
+    obj.name = "Opdrachtgever"
     return obj
 
 def achtergrondkaart():
