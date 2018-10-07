@@ -22,6 +22,7 @@ wv.objects.
 Author: Diethard Jansen, 16-9-2018
 """
 from qgis.core import QgsGeometry
+from core import imkl
 import os
 
 class Layer:
@@ -292,6 +293,21 @@ class Company:
     def __repr__(self):
         return "Company('%s')" % self.name
 
+    def process_imkl_object(self, imkl_object):
+        name = imkl_object.name
+        if name == 'Beheerder':
+            organisation = imkl_object.field("organisatie").value[0]
+            self.name = organisation.field("naam").value            
+        elif name == 'Belang':
+            contactBeschadiging = imkl_object.field("contactBeschadiging").value
+            contactNetinformatie = imkl_object.field("contactNetinformatie").value
+            if contactBeschadiging is not None:
+                contact = contactBeschadiging.field("contact").value
+                self.telNrDamage = contact.field("telefoon").value
+            if contactNetinformatie is not None:
+                contact = contactNetinformatie.field("aanvraagSoortContact").value
+                self.telNrProblemIT = contact.field("telefoon").value
+            
 class Person:
     def __init__(self, name=None):
         """Person which can be a contactperson from the netowner.

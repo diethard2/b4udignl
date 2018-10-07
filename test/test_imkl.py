@@ -321,7 +321,7 @@ class ExtraGeometrieTestCase(unittest.TestCase):
     def test_field_names(self):
         self.assertEqual(self.extraGeometrie.field_names(),
                          ['id', 'registratiedatum', 'vervaldatum',
-                          'network_id', 'vlakgeometrie'])
+                          'network_id', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.extraGeometrie.field_values(),
@@ -333,7 +333,7 @@ class ExtraGeometrieTestCase(unittest.TestCase):
 
     def test_csv_header(self):
         self.assertEqual(self.extraGeometrie.csv_header(),
-                         'id;registratiedatum;vervaldatum;network_id;vlakgeometrie')
+                         'id;registratiedatum;vervaldatum;network_id;geometry')
 
     def test_as_csv(self):
         self.assertEqual(self.extraGeometrie.as_csv(),
@@ -361,7 +361,7 @@ class GraafpolygoonTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'geometrie'])
+                         ['id', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -1073,7 +1073,7 @@ class EigenTopografieTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id', 'registratiedatum', 'vervaldatum','label',
                           'omschrijving','status', 'typeTopografischObject',
-                          'ligging'])
+                          'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -1433,7 +1433,7 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id', 'registratiedatum', 'vervaldatum',
                           'label','omschrijving','network_id','extraInfoType',
-                          'bestandIdentificator','ligging'])
+                          'bestandIdentificator','geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -1530,12 +1530,12 @@ class BeheerderTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum'])
+                         ['id', 'registratiedatum', 'vervaldatum','bronhoudercode'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-nbact2._Beheerder',
-                          '2000-01-01T00:00:00.000+01:00',None])
+                          '2000-01-01T00:00:00.000+01:00',None,'nbact2'])
 
     def test_name_organisation(self):
         orgs = self.imkl_obj.field("organisatie").value

@@ -591,7 +591,7 @@ def eigenTopografie():
     obj.add_field(B_Field("typeTopografischObject", "TEXT",
                           "TypeTopografischObject",
                           from_attribute='Href'))
-    obj.add_field(B_Field("ligging", "POINT", "Ligging",
+    obj.add_field(B_Field("geometry", "POINT", "Ligging",
                           to_object=gml.Point))
     obj.add_tags_to_process()
     return obj
@@ -601,7 +601,7 @@ def extraGeometrie():
     obj.name = "ExtraGeometrie"
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
                           from_attribute='Href'))
-    obj.add_field(B_Field("vlakgeometrie", "POLYGON", "Vlakgeometrie2D",
+    obj.add_field(B_Field("geometry", "POLYGON", "Vlakgeometrie2D",
                           to_object=gml.Polygon))
     obj.add_tags_to_process()
     return obj
@@ -620,7 +620,7 @@ def extraDetailinfo():
                           from_attribute='Href'))
     obj.add_field(B_Field("bestandIdentificator", "TEXT",
                           "BestandIdentificator"))
-    obj.add_field(B_Field("ligging", "POINT", "Ligging",
+    obj.add_field(B_Field("geometry", "POINT", "Ligging",
                           to_object=gml.Point))
     obj.add_tags_to_process()
     return obj
@@ -663,7 +663,9 @@ def gebiedsinformatieLevering():
 
 def beheerder():
     obj = imkl_basis()
-    obj.name = "GebiedsinformatieLevering"
+    obj.name = "Beheerder"
+    obj.add_field(B_Field("bronhoudercode", "TEXT",
+                          "Bronhoudercode"))
     obj.add_field(B_Field("organisatie", "CONTAINER",
                           "Organisatie", to_object=organisatie2))
     obj.add_tags_to_process()
@@ -732,7 +734,7 @@ def graafpolygoon():
     obj = B_Object("Graafpolygoon")
     obj.add_field(B_Field("id", "TEXT", "Identificatie",
                           to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("geometrie", "POLYGON", "Geometrie",
+    obj.add_field(B_Field("geometry", "POLYGON", "Geometrie",
                           to_object=gml.Polygon))
     obj.add_tags_to_process()
     return obj

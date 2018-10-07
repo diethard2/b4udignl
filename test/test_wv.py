@@ -244,18 +244,36 @@ class DocTestCaseV2_1(unittest.TestCase):
         self.assertEqual(repr(rectangle),
                          'Rectangle(Coord(154980.00, 387980.00), Coord(155120.00, 388140.00))')
 
-##    def test_netOwner_names(self):
-##        netowner_names = [netowner.name for netowner in self.doc.netOwners]
-##        self.assertEqual(netowner_names,
-##                         ['Liander', 'APELDOORN','Eurofiber', 'KPN',
-##                          'Reggefiber', 'Tele2', 'trent', 'upc', 'Vitens'])
+    def test_graafpolygoon(self):
+        self.assertEqual(self.doc.graafpolygoon,
+                         'Polygon((154980.0 387980.0, 155120.0 387980.0, \
+155120.0 388140.0, 154980.0 388140.0, 154980.0 387980.0))')
 
-##    def test_themes(self):
-##        netowner = self.doc.netOwners[0]
-##        theme_names = []
-##        for theme in netowner.themes:
-##            theme_names.append(theme.name)
-##        self.assertEqual(theme_names,['middenspanning', 'gas lage druk', 'laagspanning'])
+    def test_netOwner_names(self):
+        netowner_names = [netowner.name for netowner in self.doc.netOwners]
+        self.assertEqual(netowner_names,
+                         ['Netbeheerder Actualiseren02',
+                          'Netbeheerder Actualiseren03',
+                          'Netbeheerder Actualiseren04',
+                          'Afd. KLIC Beheer nbact1','Enexis 01','PWN4'])
+
+    def test_netOwner_telephone_numbers(self):
+        telephone_nrs = [(netowner.telNrDamage, netowner.telNrProblemIT) \
+                         for netowner in self.doc.netOwners]
+        self.assertEqual(telephone_nrs,
+                         [('1234567890', '1234567890'),
+                          ('1234567890', '1234567890'),
+                          ('1234567890', '1234567890'),
+                          ('1234567890', '1234567890'),
+                          ('1234567890', '1234567890'),
+                          ('1234567890', '1234567890')])
+
+    def test_themes(self):
+        netowner = self.doc.netOwners[0]
+        theme_names = []
+        for theme in netowner.themes:
+            theme_names.append(theme.name)
+        self.assertEqual(theme_names,['', '', ''])
 
 
 _suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)

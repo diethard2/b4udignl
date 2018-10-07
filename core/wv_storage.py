@@ -32,6 +32,7 @@ class Storage(object):
         self.__parent = parent
         self.__klicnummer = None
         self.__meldingsoort = None
+        self.__graafpolygoon = None
         self.__netOwners = []
         self.__pdfFiles = []
         self.__layers = []
@@ -56,6 +57,15 @@ class Storage(object):
         return self.__parent.imkls
 
     imkls = property(fget=_imkls)
+
+    def _imkls_on_id(self):
+        """return private attribute imkls_on_id of parent wv
+
+        purpose is to have access to imkl elements by keyvalue,
+        allready gathered by wv.doc!"""
+        return self.__parent.imkls_on_id
+
+    imkls_on_id = property(fget=_imkls_on_id)
 
     '''my properties, all set from fill, use get functions to provide'''
     def _klicnummer(self):
@@ -168,7 +178,7 @@ class Storage1(Storage):
             
     def _fill_graafpolygoon(self):
         imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
-        self.__graafpolygoon = imkl_obj.field("graafpolygoon").value
+        self.graafpolygoon = imkl_obj.field("graafpolygoon").value
 
     def _fill_netowners(self):
         imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
@@ -274,4 +284,24 @@ class Storage2(Storage):
         imkl_obj = imkl_obj.field("pngFormaat").value
         super(Storage2, self)._fill_rectangle(imkl_obj)
 
+    def _fill_graafpolygoon(self):
+        imkl_obj = self.imkls[imkl.GRAAFPOLYGOON][0]
+        self.graafpolygoon = imkl_obj.field("geometry").value
+
+    def _fill_netowners(self):
+        belanghebbenden = self.imkls[imkl.BELANGHEBBENDE]
+        for belanghebbende in belanghebbenden:
+            self._process_belanghebbende(belanghebbende)
+
+    def _process_belanghebbende(self, belanghebbende):
+        id_beheerder = belanghebbende.field("idNetbeheerder").value
+        id_belang = belanghebbende.field("idGeraaktBelang").value
+        beheerder = self.imkls_on_id[id_beheerder]
+        belang = self.imkls_on_id[id_belang]
         
+        netOwner = Company()
+        netOwner.process_imkl_object(beheerder)
+        netOwner.process_imkl_object(belang)
+        
+        bronhoudercode = belanghebbende.field("bronhoudercode").value
+        self.netOwners.append(netOwner)        
