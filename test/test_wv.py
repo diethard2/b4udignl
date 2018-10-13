@@ -21,7 +21,7 @@ path_core = os.path.join(os.path.dirname(__file__), '..')
 sys.path.append(path_core)
 
 import unittest
-from core.wv import Doc, Company
+from core.wv import Doc
 from core import imkl
 
 class DocTestCaseV1_5(unittest.TestCase):
@@ -114,7 +114,9 @@ class DocTestCaseV1_5(unittest.TestCase):
                          ['HA_laagspanning_Liander_0000574962_14G166926_7334DP_701.pdf'])
 
     def test_layer_names(self):
-        layer_names = [layer.layerName() for layer in self.doc.layers]
+        layers = [layer for layer in self.doc.layers.values()]
+        layers.sort()
+        layer_names = [layer.layerName for layer in layers]
         self.assertEqual(layer_names,
                          ['GB_14G166926.png',
                           'ET_KPN_0000546663_14G166926.png',
@@ -250,12 +252,35 @@ class DocTestCaseV2_1(unittest.TestCase):
 155120.0 388140.0, 154980.0 388140.0, 154980.0 387980.0))')
 
     def test_netOwner_names(self):
-        netowner_names = [netowner.name for netowner in self.doc.netOwners]
+        netowner_names = [(netowner.bronhoudercode, netowner.name) \
+                          for netowner in self.doc.netOwners]
         self.assertEqual(netowner_names,
-                         ['Netbeheerder Actualiseren02',
-                          'Netbeheerder Actualiseren03',
-                          'Netbeheerder Actualiseren04',
-                          'Afd. KLIC Beheer nbact1','Enexis 01','PWN4'])
+                         [('nbact2','Netbeheerder Actualiseren02'),
+                          ('nbact3','Netbeheerder Actualiseren03'),
+                          ('nbact4','Netbeheerder Actualiseren04'),
+                          ('nbact1','Afd. KLIC Beheer nbact1'),
+                          ('KL1031','Enexis 01'),('KN1100','PWN4')])
+
+    def test_netOwner_contact_persons(self):
+        contact_list = []
+        for netowner in self.doc.netOwners:
+            contact = netowner.contactPerson
+            name = contact.name
+            tel = contact.telephone
+            email = contact.email
+            contact_list.append((name, tel, email))
+        self.assertEqual(contact_list,
+                         [('BMK Netbeheerder Actualiseren02','0887891325',
+                           'klic_levering@integratie.kadaster.nl'),
+                          ('BMK Netbeheerder Actualiseren03','0884891567',
+                           'klic_levering@integratie.kadaster.nl'),
+                          ('BMK Netbeheerder Actualiseren04','0887895461',
+                           'klic_levering@integratie.kadaster.nl'),
+                          ('BMK Netbeheerder Actualiseren01', '0885468791',
+                           'klic.testers@kadaster.nl'),
+                          ('Bmk Enexis 01', '0503091234',
+                           'klic.testers@kadaster.nl'),
+                          ('Bmk Pwn4', '0881234567', 'klic.testers@kadaster.nl')])
 
     def test_netOwner_telephone_numbers(self):
         telephone_nrs = [(netowner.telNrDamage, netowner.telNrProblemIT) \
@@ -268,13 +293,43 @@ class DocTestCaseV2_1(unittest.TestCase):
                           ('1234567890', '1234567890'),
                           ('1234567890', '1234567890')])
 
+    def test_netOwner_on_code(self):
+        netOwners_dict = self.doc.storage.netOwners_on_code
+        netOwner = netOwners_dict['nbact1']
+        self.assertEqual(netOwner.name,'Afd. KLIC Beheer nbact1')
+        
+        
     def test_themes(self):
-        netowner = self.doc.netOwners[0]
+        netowners = self.doc.netOwners
+        netowner = None
+        for a_netowner in netowners:
+            if a_netowner.bronhoudercode == 'KN1100':
+                netowner = a_netowner
+                break
         theme_names = []
         for theme in netowner.themes:
             theme_names.append(theme.name)
-        self.assertEqual(theme_names,['', '', ''])
+        self.assertEqual((netowner.bronhoudercode,theme_names),
+                         ('KN1100',['water']))
 
+    def test_riool_layer(self):
+        layers = self.doc.layers
+        riool_layer = layers['Rioolleiding']
+        field_names = [field.name() for field in riool_layer.fields]
+        attributes = [feature.attributes() for feature in riool_layer.features]
+        self.assertEqual((riool_layer.layerName, field_names, attributes),
+                         ('Rioolleiding',
+                          [u'id',u'registratiedatum',u'network_id',
+                           u'link_id', u'status', u'validFrom', u'validTo',
+                           u'verticalPosition', u'thema', u'geom_id', u'label',
+                           u'warningType', u'diameter', u'druk', u'fluid'],
+                          [[u'nl.imkl-nbact1.rl00001',
+                            u'2001-12-17T09:30:47.0Z',u'nl.imkl-nbact1.un00058',
+                            u'nl.imkl-nbact1.ul00006', u'projected',
+                            u'2001-12-17T09:30:47.0Z',u'2031-12-17T09:30:47.0Z',
+                            u'underground',u'laagspanning',
+                            u'nl.imkl-nbact1.xg00010',u'',u'net',u'0',u'0',
+                            u'storm']]))
 
 _suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)
 

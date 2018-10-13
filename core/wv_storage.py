@@ -22,9 +22,11 @@ doc attributes in a different way.
 
 Author: Diethard Jansen, 15-9-2018
 """
-import os
-from core.wv_objects import Rectangle, Company, Person, Theme, PdfFile, Layer
-from core import imkl
+import os, imkl
+from wv_objects import Rectangle, Company, Person, Theme, PdfFile, Layer
+from PyQt4.QtCore import QVariant
+from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsGeometry
+
 
 class Storage(object):
     def __init__(self, parent):
@@ -34,10 +36,18 @@ class Storage(object):
         self.__meldingsoort = None
         self.__graafpolygoon = None
         self.__netOwners = []
+        self.__netOwners_on_code = {}
         self.__pdfFiles = []
-        self.__layers = []
+        self.__layers = {}
 
     '''parent properties, only use get functions'''
+    def _parent(self):
+        """return private attribute path of parent wv
+
+        purpose is to use it to set some properties owned by Storage"""
+        return self.__parent
+
+    parent = property(fget=_parent)
         
     def _path(self):
         """return private attribute path of parent wv
@@ -47,6 +57,14 @@ class Storage(object):
 
     path = property(fget=_path)
 
+    def _iface(self):
+        """return private attribute iface of parent wv
+
+        purpose is to have access to to wv.iface so you can use it!"""
+        return self.__parent.iface
+
+    iface = property(fget=_iface)
+    
     def _imkls(self):
         """return private attribute imkls of parent wv
 
@@ -114,6 +132,12 @@ class Storage(object):
     
     netOwners = property(fget=_netOwners)
 
+    def _netOwners_on_code(self):
+        """return private attribute netOwners_on_code"""
+        return self.__netOwners_on_code
+    
+    netOwners_on_code = property(fget=_netOwners_on_code)
+
     def _pdfFiles(self):
         """return private attribute pdfFiles"""
         return self.__pdfFiles
@@ -123,8 +147,11 @@ class Storage(object):
     def _layers(self):
         """return private attribute layers"""
         return self.__layers
+
+    def _set_layers(self, layers):
+        self.__layers = layers
     
-    layers = property(fget=_layers)
+    layers = property(fget=_layers, fset= _set_layers)
 
     def fill(self):
         """fills the storage attributes from imkl objects retrieved
@@ -136,6 +163,7 @@ class Storage(object):
         self._fill_rectangle()
         self._fill_graafpolygoon()
         self._fill_netowners()
+        self._fill_layers()
 
     def _fill_klicnummer(self):
         pass
@@ -146,6 +174,8 @@ class Storage(object):
     def _fill_graafpolygoon(self):
         pass
     def _fill_netowners(self):
+        pass
+    def _fill_layers(self):
         pass
 
     def _fill_rectangle(self, imkl_obj=None):
@@ -213,8 +243,9 @@ class Storage1(Storage):
             if imkl_topo is not None:
                 filename = imkl_topo.field("bestandsnaam").value
                 layer_file = os.path.join(self.path, filename)
-                self.layers.append(Layer(self, layer_file))
-
+                layer = Layer(self, layer_file)
+                self.layers[layer.layerName] = layer
+   
         self.netOwners.append(netOwner)
         
     def _process_themes(self, imkl_themes):
@@ -292,16 +323,78 @@ class Storage2(Storage):
         belanghebbenden = self.imkls[imkl.BELANGHEBBENDE]
         for belanghebbende in belanghebbenden:
             self._process_belanghebbende(belanghebbende)
+        for netOwner in self.netOwners:
+            code = netOwner.bronhoudercode
+            self.netOwners_on_code[code] = netOwner
 
+    def _fill_layers(self):
+        ## all imkl objects that have a field geometry and theme
+        ## should be added to netowner..
+        for layer_name, imkl_set in self.imkls.items():
+            for imkl_object in imkl_set:
+                has_geometry = imkl_object.field("geometry") is not None
+                if has_geometry:
+                    has_theme = imkl_object.field("thema") is not None
+                    if has_theme:
+                        self._add_feature_to_layer(imkl_object)            
+ 
     def _process_belanghebbende(self, belanghebbende):
         id_beheerder = belanghebbende.field("idNetbeheerder").value
         id_belang = belanghebbende.field("idGeraaktBelang").value
         beheerder = self.imkls_on_id[id_beheerder]
         belang = self.imkls_on_id[id_belang]
-        
         netOwner = Company()
         netOwner.process_imkl_object(beheerder)
         netOwner.process_imkl_object(belang)
+        utility_nets = self.imkls[imkl.UTILITEITSNET]
+        self.process_themes(netOwner, utility_nets)
+        self.netOwners.append(netOwner)
+
+    def process_themes(self, netOwner, utility_nets):
+        search_string_in_id = 'nl.imkl-'+ netOwner.bronhoudercode + '.'
+        theme_names = []
+        for utility_net in utility_nets:
+            id_utility_net = utility_net.field('id').value
+            if search_string_in_id in id_utility_net:
+                theme_name = utility_net.field('thema').value
+                if theme_name not in theme_names:
+                    theme_names.append(theme_name)
+        for theme_name in theme_names:
+            netOwner.themes.append(Theme(self.parent, theme_name))
+                    
+    def _add_feature_to_layer(self, imkl_object):
+##        print "add_feature:", imkl_object.name
+        if not self.layers.has_key(imkl_object.name):
+            self._create_layer_from_imkl(imkl_object)
+        layer = self.layers[imkl_object.name]
+        feature = QgsFeature()
+        fields = imkl_object.attribute_fields()
+        geom_field = imkl_object.geometry_field()
+        if geom_field.value is not None:
+            feature.setGeometry(QgsGeometry.fromWkt(geom_field.value))
+            values = [field.value for field in fields]
+            feature.setAttributes(values)
+            layer.features.append(feature)
+
+    def _create_layer_from_imkl(self, imkl_object):
+        """create a layer from imkl and add it to self.layers"""
+        layer = Layer(self)
+        name = imkl_object.name
+        layer.layerName = name
+        vector_type = imkl_object.geometry_field().type
+        layer.vectorType = vector_type
+        uri = layer.qgisVectorType() + '?crs=epsg:28992'
+        layer.layer = QgsVectorLayer(uri, name, "memory")
+        # now insert the fields..
+        field_types = {"TEXT": QVariant.String,
+                       "INTEGER": QVariant.Int,
+                       "REAL": QVariant.Double}
+        fields = imkl_object.attribute_fields()
+        geom_field = imkl_object.geometry_field()
+        for field in fields:
+            field = QgsField(field.name, field_types[field.type])
+            layer.fields.append(field)
+        self.layers[name] = layer
         
-        bronhoudercode = belanghebbende.field("bronhoudercode").value
-        self.netOwners.append(netOwner)        
+                
+        

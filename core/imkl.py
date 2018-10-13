@@ -664,8 +664,7 @@ def gebiedsinformatieLevering():
 def beheerder():
     obj = imkl_basis()
     obj.name = "Beheerder"
-    obj.add_field(B_Field("bronhoudercode", "TEXT",
-                          "Bronhoudercode"))
+    obj.add_field(B_Field("bronhoudercode", "TEXT", "Bronhoudercode"))
     obj.add_field(B_Field("organisatie", "CONTAINER",
                           "Organisatie", to_object=organisatie2))
     obj.add_tags_to_process()

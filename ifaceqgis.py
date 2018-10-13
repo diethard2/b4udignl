@@ -60,8 +60,19 @@ class Iface:
 
     def loadLayer(self, wvLayer):
         """load given layer, and return reference of layer"""
-        layerFile = wvLayer.layerFile
-        layer = self.iface.addRasterLayer(layerFile)
+        if wvLayer.is_vector():
+            layer = wvLayer.layer
+            provider = layer.dataProvider()
+            provider.addAttributes(wvLayer.fields)
+            layer.updateFields()                        
+            layer.dataProvider().addFeatures(wvLayer.features)
+            layer.updateExtents()
+            registry = core.QgsMapLayerRegistry.instance()
+            registry.addMapLayer(layer)
+            layer = registry.mapLayersByName(wvLayer.layerName)
+        else:
+            layerFile = wvLayer.layerFile
+            layer = self.iface.addRasterLayer(layerFile)
         return layer 
 
     def getLayerIdForLayer(self, wvLayer):

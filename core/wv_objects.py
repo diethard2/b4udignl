@@ -21,9 +21,8 @@ wv.objects.
 
 Author: Diethard Jansen, 16-9-2018
 """
-from qgis.core import QgsGeometry
-from core import imkl
-import os
+from qgis.core import QgsGeometry, QgsVectorLayer
+import imkl, basis, os
 
 class Layer:
 
@@ -33,13 +32,17 @@ class Layer:
                       "Maatvoering": ("MV_",),
                       "Annotatie": ("AN_",)}
         
-    def __init__(self, owner, raster_file_name):
+    def __init__(self, owner, raster_file_name = None):
         self.owner = owner
+        self.__vectorType = None
         self.__file = raster_file_name
         self.__layer = None # reference to realised layer in GIS
         self.__layerId = None # reference to layerID in GIS
         self.__visible = False # state in GIS
         self.__layerName = None # holds layername
+        self.fields = []
+        self.features = []
+        self._setLayerNameFromFile()
 
 # defining access to attributes of class Layer
 
@@ -49,6 +52,16 @@ class Layer:
 
     layerFile = property(fget=_layerFile)
 
+    def _vectorType(self):
+        """return private attribute vectorType"""
+        return self.__vectorType
+
+    def _setVectorType(self, a_type):
+        """set private attribute vectorType"""
+        self.__vectorType = a_type
+
+    vectorType = property(fget=_vectorType, fset=_setVectorType)
+
     def _layer(self):
         """return private attribute layer"""
         return self.__layer
@@ -56,10 +69,22 @@ class Layer:
     def _setLayer(self, layer):
         """set private attribute layer"""
         # set it only once
-        if self.__layer == None:
+        if self.__layer is None:
             self.__layer = layer
 
     layer = property(fget=_layer, fset=_setLayer)
+
+    def _layername(self):
+        """return private attribute layerName"""
+        return self.__layerName
+
+    def _setLayername(self, layer):
+        """set private attribute layerName"""
+        # set it only once
+        if self.__layerName == None:
+            self.__layerName = layerName
+
+    layerName = property(fget=_layername, fset=_setLayername)
 
     def _layerId(self):
         """ get private attribute layer id"""
@@ -82,34 +107,49 @@ class Layer:
         """sort layers on prefix name"""
         if other is None:
             return 1
-        l_this_name = self.layerName()
-        l_other_name = other.layerName()
-        l_this_index = 0
-        l_other_index = 0
-        l_index=0
-        for compareStr in self.layerPriority:
-            if l_this_name.startswith(compareStr):
-                l_this_index = l_index
-            if l_other_name.startswith(compareStr):
-                l_other_index = l_index
-            l_index += 1
-        l_order_ok = -1
-        if l_this_index > l_other_index:
-            l_order_ok = 1
-        elif l_this_index == l_other_index and l_this_name > l_other_name:
-            l_order_ok = 1
-        elif l_this_index == l_other_index and l_this_name == l_other_name:
-            l_order_ok = 0
-                
-        return l_order_ok
+        # raster below vector
+        if self.is_vector() and not other.is_vector():
+            return 1
+        if not self.is_vector() and other.is_vector():
+            return 0
+        # same type... both vector or raster
+        this_name = self.layerName
+        other_name = other.layerName
+        this_index = 0
+        other_index = 0
+        index=0
+        order_ok = -1
+        # when vector point above line above area
+        if self.is_vector():
+            geometry_types = basis.B_Field.GEOMETRY_TYPES
+            this_index = geometry_types.index(self.vectorType)
+            other_index = geometry_types.index(self.vectorType)
+        else:
+            for compareStr in self.layerPriority:
+                if this_name.startswith(compareStr):
+                    this_index = index
+                if other_name.startswith(compareStr):
+                    other_index = index
+                index += 1
+        if this_index > other_index:
+            order_ok = 1
+        elif this_index == other_index and this_name > other_name:
+            order_ok = 1
+        elif this_index == other_index and this_name == other_name:
+            order_ok = 0
+
+        return order_ok
+
+    def _setLayerNameFromFile(self):
+        """set layer namer from filename without path"""
+        if self.layerName is None:
+            if self.layerFile is not None:
+                i = self.layerFile.rindex(os.sep)
+                self.layerName = self.layerFile[i+1:]
 
 # Public methods of class Layer
-    def layerName(self):
-        """return filename without path"""
-        if self.__layerName is None:
-            i = self.layerFile.rindex(os.sep)
-            self.__layerName = self.layerFile[i+1:]
-        return self.__layerName
+    def is_vector(self):
+        return self.vectorType is not None
 
     def load(self):
         """
@@ -186,13 +226,29 @@ class Layer:
         returns name of group this layer belongs to being one of
         Ligging, Maatvoering, Annotatie or Topo
         """
-        l_groupName = ""
-        l_prefix = self.layerName()[:3]
-        for i_groupName, i_prefixes in self.layerGroupNames.iteritems():
-            if l_prefix in i_prefixes:
-                l_groupName = i_groupName
-                break
-        return l_groupName
+        group_name = ""
+        layer_name = self.layerName
+        if self.vectorType:
+            if layer_name in ('Annotatie', 'Maatvoering'):
+                group_name = layer_name
+            elif layer_name =='EigenTopografie':
+                group_name = 'Topo'
+            else:
+                group_name = 'Ligging'
+        else:
+            prefix = self.layerName[:3]
+            for groupName, prefixes in self.layerGroupNames.iteritems():
+                if prefix in prefixes:
+                    group_name = groupName
+                    break
+        return group_name
+
+    def qgisVectorType(self):
+        qgisVectorTypes = {'POLYGON': 'Polygon',
+                           'LINESTRING': 'LineString',
+                           'POINT': 'Point'}
+        return qgisVectorTypes[self.vectorType]
+        
 
 class Coord:
     def __init__(self, p_x=0, p_y=0):
@@ -281,6 +337,7 @@ class Company:
         rasters with positions of pipeline, pdf's with accompanying letters
         additional drawings etcetera...
         """
+        self.bronhoudercode = None
         self.name = name
         self.shortName = None
         self.telNrProblemIT = None
@@ -297,10 +354,17 @@ class Company:
         name = imkl_object.name
         if name == 'Beheerder':
             organisation = imkl_object.field("organisatie").value[0]
-            self.name = organisation.field("naam").value            
+            self.name = organisation.field("naam").value
+            self.bronhoudercode = imkl_object.field("bronhoudercode").value
         elif name == 'Belang':
+            contactAanvraag = imkl_object.field("contactAanvraag").value
             contactBeschadiging = imkl_object.field("contactBeschadiging").value
             contactNetinformatie = imkl_object.field("contactNetinformatie").value
+            if contactAanvraag is not None:
+                contact = contactAanvraag.field("aanvraagSoortContact").value
+                person = Person()
+                person.process_imkl_object(contact)
+                self.contactPerson = person
             if contactBeschadiging is not None:
                 contact = contactBeschadiging.field("contact").value
                 self.telNrDamage = contact.field("telefoon").value
@@ -321,6 +385,10 @@ class Person:
     def __repr__(self):
         return "Person('%s')" % self.name
 
+    def process_imkl_object(self, imkl_object):
+        self.name = imkl_object.field("naam").value
+        self.telephone = imkl_object.field("telefoon").value
+        self.email = imkl_object.field("email").value
 
 class Theme:
     visibilities = ("None", "Some", "All")

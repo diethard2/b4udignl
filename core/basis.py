@@ -23,7 +23,7 @@ import gml
 class B_Field(object):
     """general attribute object, fields are created for target collection"""
 
-    GEOMETRY_TYPES = ("POINT","LINESTRING","POLYGON","MULTIPOLYGON")
+    GEOMETRY_TYPES = ("MULTIPOLYGON","POLYGON","LINESTRING","POINT")
     VALUE_TYPES = ("TEXT", "INTEGER", "REAL")
     OBJECT_TYPES = ("OBJECT", "CONTAINER")
     ALL_TYPES = GEOMETRY_TYPES + VALUE_TYPES+ OBJECT_TYPES
