@@ -371,10 +371,12 @@ class Storage2(Storage):
         fields = imkl_object.attribute_fields()
         geom_field = imkl_object.geometry_field()
         if geom_field.value is not None:
-            feature.setGeometry(QgsGeometry.fromWkt(geom_field.value))
-            values = [field.value for field in fields]
-            feature.setAttributes(values)
-            layer.features.append(feature)
+            try:
+                feature.setGeometry(QgsGeometry.fromWkt(geom_field.value))
+                values = [field.value for field in fields]
+                feature.setAttributes(values)
+                layer.features.append(feature)
+            except TypeError: pass
 
     def _create_layer_from_imkl(self, imkl_object):
         """create a layer from imkl and add it to self.layers"""

@@ -277,9 +277,12 @@ class Doc():
                 theme_field = imkl_object.field("thema")
                 if theme_field is None:
                     break
-                network_id = imkl_object.field("network_id").value
-                network = self.imkls_on_id[network_id]
-                theme = network.field("thema").value
+                if imkl_object.name == imkl.EIGENTOPOGRAFIE:
+                    theme = "topo"
+                else:
+                    network_id = imkl_object.field("network_id").value
+                    network = self.imkls_on_id[network_id]
+                    theme = network.field("thema").value
                 theme_field.value = theme
 
     def _get_last_value_from_url(self, url):

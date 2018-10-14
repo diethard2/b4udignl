@@ -321,24 +321,26 @@ class ExtraGeometrieTestCase(unittest.TestCase):
     def test_field_names(self):
         self.assertEqual(self.extraGeometrie.field_names(),
                          ['id', 'registratiedatum', 'vervaldatum',
-                          'network_id', 'geometry'])
+                          'network_id', 'thema', 'object', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.extraGeometrie.field_values(),
                          ['nl.imkl-nbact1.xg00009','2015-10-19T09:30:47.0Z',
                           '9999-01-01T09:30:47.0','nl.imkl-nbact1.un00057',
+                          None,None,
                           'Polygon((155052.000 388010.000, \
 155050.000 388008.000, 155048.000 388010.000, 155050.000 388012.000, \
 155052.000 388010.000))'])
 
     def test_csv_header(self):
         self.assertEqual(self.extraGeometrie.csv_header(),
-                         'id;registratiedatum;vervaldatum;network_id;geometry')
+                         'id;registratiedatum;vervaldatum;network_id;thema;\
+object;geometry')
 
     def test_as_csv(self):
         self.assertEqual(self.extraGeometrie.as_csv(),
                          'nl.imkl-nbact1.xg00009;2015-10-19T09:30:47.0Z;\
-9999-01-01T09:30:47.0;nl.imkl-nbact1.un00057;Polygon((155052.000 388010.000, \
+9999-01-01T09:30:47.0;nl.imkl-nbact1.un00057;None;None;Polygon((155052.000 388010.000, \
 155050.000 388008.000, 155048.000 388010.000, 155050.000 388012.000, \
 155052.000 388010.000))')
     
@@ -1071,14 +1073,14 @@ class EigenTopografieTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum','label',
-                          'omschrijving','status', 'typeTopografischObject',
-                          'geometry'])
+                         ['id', 'registratiedatum', 'vervaldatum','thema',
+                          'label', 'omschrijving', 'status',
+                          'typeTopografischObject', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-nbact1.et00001','2001-12-17T09:30:47.0Z',
-                          '9999-01-01T09:30:47.0','Label EigenTopografie',
+                          '9999-01-01T09:30:47.0',None,'Label EigenTopografie',
                           'Omschrijving EigenTopografie',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/EigenTopografieStatusValue/bestaand',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/TopografischObjectTypeValue/hectometerpaal',
@@ -1431,14 +1433,15 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum',
-                          'label','omschrijving','network_id','extraInfoType',
-                          'bestandIdentificator','geometry'])
+                         ['id', 'registratiedatum', 'vervaldatum','thema',
+                          'object', 'label','omschrijving','network_id',
+                          'extraInfoType','bestandIdentificator','geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-nbact1.edi00001','2015-10-15T09:30:47.0Z',
-                          '9999-01-01T10:30:47.0Z','Label ExtraDetailInfo',
+                          '9999-01-01T10:30:47.0Z',None,None,
+                          'Label ExtraDetailInfo',
                           'Omschrijving ExtraDetailInfo',
                           'nl.imkl-nbact1.un00042',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/ExtraDetailInfoTypeValue/aansluiting',

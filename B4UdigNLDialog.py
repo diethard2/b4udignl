@@ -543,8 +543,8 @@ class B4UdigNLDialog(QDialog):
         l_list = l_ui.msgListWidget
         l_list.clear()
         for i_doc in self.__wvs:
-            QMessageBox.information(self, "Add message",
-                                    "Add klic message" + i_doc.klicnummer)
+##            QMessageBox.information(self, "Add message",
+##                                    "Add klic message" + i_doc.klicnummer)
             l_klicnummer = i_doc.klicnummer
             l_item = QListWidgetItem(l_klicnummer)
             l_list.addItem(l_item)

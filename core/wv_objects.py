@@ -104,7 +104,9 @@ class Layer:
         return "Layer('%s')" % (self.layerName())
     
     def __cmp__(self, other):
-        """sort layers on prefix name"""
+        """sort layers on vector/raster, for raster on prefix name for
+        vector on geometry and when they are the same on name.
+        """
         if other is None:
             return 1
         # raster below vector
@@ -117,14 +119,13 @@ class Layer:
         other_name = other.layerName
         this_index = 0
         other_index = 0
-        index=0
-        order_ok = -1
         # when vector point above line above area
         if self.is_vector():
             geometry_types = basis.B_Field.GEOMETRY_TYPES
             this_index = geometry_types.index(self.vectorType)
-            other_index = geometry_types.index(self.vectorType)
+            other_index = geometry_types.index(other.vectorType)
         else:
+            index=0
             for compareStr in self.layerPriority:
                 if this_name.startswith(compareStr):
                     this_index = index
@@ -132,13 +133,15 @@ class Layer:
                     other_index = index
                 index += 1
         if this_index > other_index:
-            order_ok = 1
-        elif this_index == other_index and this_name > other_name:
-            order_ok = 1
-        elif this_index == other_index and this_name == other_name:
-            order_ok = 0
-
-        return order_ok
+            return 1
+        elif this_index < other_index:
+            return -1
+        elif this_name < other_name:
+            return 1
+        elif this_name > other_name:
+            return -1
+        else:
+            return 0
 
     def _setLayerNameFromFile(self):
         """set layer namer from filename without path"""

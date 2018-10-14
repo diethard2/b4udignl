@@ -584,6 +584,7 @@ def toren():
 def eigenTopografie():
     obj = imkl_basis()
     obj.name = "EigenTopografie"
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
     obj.add_field(B_Field("label", "TEXT", "Label"))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("status", "TEXT", "Status",
@@ -601,6 +602,8 @@ def extraGeometrie():
     obj.name = "ExtraGeometrie"
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
                           from_attribute='Href'))
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
+    obj.add_field(B_Field("object", "TEXT", "Object"))
     obj.add_field(B_Field("geometry", "POLYGON", "Vlakgeometrie2D",
                           to_object=gml.Polygon))
     obj.add_tags_to_process()
@@ -609,6 +612,8 @@ def extraGeometrie():
 def extraDetailinfo():
     obj = imkl_basis()
     obj.name = "ExtraDetailinfo"
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
+    obj.add_field(B_Field("object", "TEXT", "Object"))
     obj.add_field(B_Field("label", "TEXT", "Label"))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
