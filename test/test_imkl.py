@@ -1434,13 +1434,13 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['id', 'registratiedatum', 'vervaldatum','thema',
-                          'object', 'label','omschrijving','network_id',
+                          'label','omschrijving','network_id',
                           'extraInfoType','bestandIdentificator','geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-nbact1.edi00001','2015-10-15T09:30:47.0Z',
-                          '9999-01-01T10:30:47.0Z',None,None,
+                          '9999-01-01T10:30:47.0Z',None,
                           'Label ExtraDetailInfo',
                           'Omschrijving ExtraDetailInfo',
                           'nl.imkl-nbact1.un00042',

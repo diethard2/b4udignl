@@ -254,25 +254,30 @@ class Doc():
         for tag in imkl.tags_pipes_and_cables():
             imkl_set = self.imkls[tag]
             for imkl_object in imkl_set:
-                geom_field = imkl_object.field("geometry")
+                geom_field = imkl_object.geometry_field()
                 link_id = imkl_object.field("link_id").value
                 utility_link = self.imkls_on_id[link_id]
-                geom_field.value = utility_link.field("geometry").value
+                geom_field.value = utility_link.geometry_field().value
 
     def _set_short_values_from_url(self):
         for imkl_set in self.imkls.values():
             for imkl_object in imkl_set:
                 for imkl_field in imkl_object.attribute_fields():
                      if imkl_field.from_attribute == 'Href' and imkl_field.value is not None:
-                        url_value = imkl_field.value
-                        short_value = self._get_last_value_from_url(url_value)
-                        imkl_field.value = short_value        
+                         url_value = imkl_field.value
+                         short_value = self._get_last_value_from_url(url_value)
+                         imkl_field.value = short_value
+                     if imkl_field.name == "geom_id":
+                         geom_id = imkl_field.value
+                         if geom_id is not None and self.imkls_on_id.has_key(geom_id):
+                             geom_object = self.imkls_on_id[geom_id]
+                             geom_object.field("object").value = imkl_object.name
 
     def _set_themes_imkl_objects(self):
         for tag in self.imkls.keys():
             imkl_set = self.imkls[tag]
             for imkl_object in imkl_set:
-                if imkl_object.field("geometry") is None:
+                if imkl_object.geometry_field() is None:
                     break
                 theme_field = imkl_object.field("thema")
                 if theme_field is None:
@@ -284,6 +289,7 @@ class Doc():
                     network = self.imkls_on_id[network_id]
                     theme = network.field("thema").value
                 theme_field.value = theme
+        
 
     def _get_last_value_from_url(self, url):
         value = url

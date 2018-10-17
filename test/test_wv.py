@@ -331,6 +331,25 @@ class DocTestCaseV2_1(unittest.TestCase):
                             u'nl.imkl-nbact1.xg00010',u'',u'net',u'0',u'0',
                             u'storm']]))
 
+    def test_mantelbuis_layer(self):
+        layers = self.doc.layers
+        layer = layers['Mantelbuis']
+        field_names = [field.name() for field in layer.fields]
+        attributes = [feature.attributes() for feature in layer.features]
+        self.assertEqual((layer.layerName, field_names, attributes),
+                         ('Mantelbuis',
+                          [u'id',u'registratiedatum',u'network_id',
+                           u'link_id', u'status', u'validFrom', u'validTo',
+                           u'verticalPosition', u'thema', u'geom_id', u'label',
+                           u'warningType', u'diameter', u'materiaal'],
+                          [[u'nl.imkl-nbact1.mb00001',
+                            u'2001-12-17T09:30:47.0Z',u'nl.imkl-nbact1.un00055',
+                            u'nl.imkl-nbact1.ul00004', u'projected',
+                            u'2001-12-17T09:30:47.0Z',u'2001-12-17T09:30:47.0Z',
+                            u'underground',u'petrochemie',
+                            u'nl.imkl-nbact1.xg00007',u'',u'net',u'100',
+                            u'asbestos-cement']]))
+
 _suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)
 
 

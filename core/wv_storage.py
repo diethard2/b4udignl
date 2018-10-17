@@ -392,7 +392,6 @@ class Storage2(Storage):
                        "INTEGER": QVariant.Int,
                        "REAL": QVariant.Double}
         fields = imkl_object.attribute_fields()
-        geom_field = imkl_object.geometry_field()
         for field in fields:
             field = QgsField(field.name, field_types[field.type])
             layer.fields.append(field)

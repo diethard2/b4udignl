@@ -103,9 +103,9 @@ def tag2function():
             WATERLEIDING: waterleiding}
 
 def tags_pipes_and_cables():
-    return (DUCT,ELEKTRICITEITSKABEL,KABELBED,OLIEGASCHEMICALIENPIJPLEIDING,
-            OVERIG,RIOOLLEIDING,TELECOMMUNICATIEKABEL,THERMISCHEPIJPLEIDING,
-            WATERLEIDING)
+    return (DUCT,ELEKTRICITEITSKABEL,KABELBED,MANTELBUIS,
+            OLIEGASCHEMICALIENPIJPLEIDING,OVERIG,RIOOLLEIDING,
+            TELECOMMUNICATIEKABEL,THERMISCHEPIJPLEIDING,WATERLEIDING)
 
 # for old version of IMKL messages (before 1-1-2019)
 def leveringsinformatie():
@@ -380,7 +380,7 @@ def duct():
                           from_attribute='Href'))
     obj.add_field(B_Field("warningType", "TEXT", "WarningType",
                           from_attribute='Href'))
-    obj.add_field(B_Field("ductWidth", "REAL", "DuctWidth"))
+    obj.add_field(B_Field("ductWidth", "TEXT", "DuctWidth"))
     obj.add_tags_to_process()
     return obj
 
@@ -393,7 +393,7 @@ def elektriciteitskabel():
     obj.add_field(B_Field("nominalVoltage", "TEXT", "NominalVoltage"))
     obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
                           from_attribute='Href'))
-    obj.add_field(B_Field("kabelDiameter", "REAL", "KabelDiameter"))
+    obj.add_field(B_Field("kabelDiameter", "TEXT", "KabelDiameter"))
     obj.add_tags_to_process()
     return obj
 
@@ -402,7 +402,7 @@ def kabelbed():
     obj.name = "Kabelbed"
     obj.add_field(B_Field("warningType", "TEXT", "WarningType",
                           from_attribute='Href'))
-    obj.add_field(B_Field("ductWidth", "REAL", "DuctWidth"))
+    obj.add_field(B_Field("ductWidth", "TEXT", "DuctWidth"))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_tags_to_process()
     return obj
@@ -412,7 +412,7 @@ def mantelbuis():
     obj.name = "Mantelbuis"
     obj.add_field(B_Field("warningType", "TEXT", "WarningType",
                           from_attribute='Href'))
-    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
+    obj.add_field(B_Field("diameter", "TEXT", "PipeDiameter"))
     obj.add_field(B_Field("materiaal", "TEXT", "BuismateriaalType",
                           from_attribute='Href'))
     obj.add_tags_to_process()
@@ -421,8 +421,8 @@ def mantelbuis():
 def olieGasChemicalienPijpleiding():
     obj = kabelOfLeiding()
     obj.name = "OlieGasChemicalienPijpleiding"
-    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
-    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("diameter", "TEXT", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "TEXT", "Pressure"))
     obj.add_field(B_Field("fluid", "TEXT", "OilGasChemicalsProductType",
                           from_attribute='Href'))
     obj.add_tags_to_process()
@@ -435,11 +435,11 @@ def overig():
                           from_attribute='Href'))
     obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
                           from_attribute='Href'))
-    obj.add_field(B_Field("kabelDiameter", "REAL", "KabelDiameter"))
+    obj.add_field(B_Field("kabelDiameter", "TEXT", "KabelDiameter"))
     obj.add_field(B_Field("materiaal", "TEXT", "BuismateriaalType",
                           from_attribute='Href'))
-    obj.add_field(B_Field("buisDiameter", "REAL", "PipeDiameter"))
-    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("buisDiameter", "TEXT", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "TEXT", "Pressure"))
     obj.add_field(B_Field("producttype", "TEXT", "Producttype"))
     obj.add_tags_to_process()
     return obj
@@ -449,8 +449,8 @@ def rioolleiding():
     obj.name = "Rioolleiding"
     obj.add_field(B_Field("warningType", "TEXT", "WarningType",
                           from_attribute='Href'))
-    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
-    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("diameter", "TEXT", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "TEXT", "Pressure"))
     obj.add_field(B_Field("fluid", "TEXT", "SewerWaterType",
                           from_attribute='Href'))
     obj.add_tags_to_process()
@@ -470,7 +470,7 @@ def telecomKabel():
     obj.add_field(B_Field("materiaal", "TEXT",
                           "TelecommunicationsCableMaterialType",
                           from_attribute='Href'))
-    obj.add_field(B_Field("diameter", "REAL", "KabelDiameter"))
+    obj.add_field(B_Field("diameter", "TEXT", "KabelDiameter"))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("toelichting", "TEXT", "Toelichting"))
     obj.add_tags_to_process()
@@ -481,8 +481,8 @@ def thermischePijpleiding():
     obj.name = "ThermischePijpleiding"
     obj.add_field(B_Field("warningType", "TEXT", "WarningType",
                           from_attribute='Href'))
-    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
-    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("diameter", "TEXT", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "TEXT", "Pressure"))
     obj.add_field(B_Field("producttype", "TEXT", "ThermalProductType"))
     obj.add_field(B_Field("geoNauwkeurigheidXY", "TEXT", "GeoNauwkeurigheidXY",
                           from_attribute='Href'))
@@ -496,8 +496,8 @@ def waterleiding():
     obj.name = "Waterleiding"
     obj.add_field(B_Field("warningType", "TEXT", "WarningType",
                           from_attribute='Href'))
-    obj.add_field(B_Field("diameter", "REAL", "PipeDiameter"))
-    obj.add_field(B_Field("druk", "REAL", "Pressure"))
+    obj.add_field(B_Field("diameter", "TEXT", "PipeDiameter"))
+    obj.add_field(B_Field("druk", "TEXT", "Pressure"))
     obj.add_field(B_Field("fluid", "TEXT", "WaterType",
                           from_attribute='Href'))
     obj.add_tags_to_process()
@@ -565,7 +565,7 @@ def mangat():
 def mast():
     obj = PuntOpNet()
     obj.name = "Mast"
-    obj.add_field(B_Field("hoogte", "REAL", "PoleHeight"))
+    obj.add_field(B_Field("hoogte", "TEXT", "PoleHeight"))
     obj.add_tags_to_process()
     return obj
 
@@ -577,7 +577,7 @@ def technischGebouw():
 def toren():
     obj = PuntOpNet()
     obj.name = "Toren"
-    obj.add_field(B_Field("hoogte", "REAL", "TowerHeight"))
+    obj.add_field(B_Field("hoogte", "TEXT", "TowerHeight"))
     obj.add_tags_to_process()
     return obj
 
@@ -613,7 +613,6 @@ def extraDetailinfo():
     obj = imkl_basis()
     obj.name = "ExtraDetailinfo"
     obj.add_field(B_Field("thema", "TEXT", "Theme"))
-    obj.add_field(B_Field("object", "TEXT", "Object"))
     obj.add_field(B_Field("label", "TEXT", "Label"))
     obj.add_field(B_Field("omschrijving", "TEXT", "Omschrijving"))
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
@@ -869,7 +868,7 @@ def utiliteitsnet():
                           from_attribute="Href"))
     obj.add_field(B_Field("authorityRole", "TEXT", "AuthorityRole"))
     obj.add_field(B_Field("thema", "TEXT", "Thema", from_attribute="Href"))
-    obj.add_field(B_Field("standaardDieptelegging", "REAL",
+    obj.add_field(B_Field("standaardDieptelegging", "TEXT",
                           "StandaardDieptelegging"))
     obj.add_tags_to_process()
     return obj
