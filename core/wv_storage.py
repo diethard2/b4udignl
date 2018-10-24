@@ -278,10 +278,7 @@ class Storage1(Storage):
             if imkl_layer is not None:
                 layer_file = imkl_layer.field('bestandsnaam').value
                 layer_file = os.path.join(self.path, layer_file)
-##                print layer_file
                 layer = Layer(self, raster_file_name = layer_file)
-                if layer.layerName is None:
-                    print layer_file
                 theme.layers.append(layer)
 
     def _set_theme_docs(self, theme, imkl_theme):
@@ -289,9 +286,7 @@ class Storage1(Storage):
         pdf_fields = ("detailkaarten", "huisaansluitschetsen", "themaBijlagen")
         for pdf_field in pdf_fields:
             a_container = imkl_theme.field(pdf_field).value
-##            print pdf_field, a_container
             if a_container is not None:
-##                print a_container
                 for pdf_object in a_container:
                     file_name = pdf_object.field("bestandsnaam").value
                     pdfFile = PdfFile(file_name)
@@ -409,12 +404,14 @@ class Storage2(Storage):
         for bijlage in bijlagen:
             soort = bijlage.field("soort_bijlage").value
             lokatie = bijlage.field("bestandlocatie").value
-            if soort == 'eigenTopo':
-                # add to theme
-                pass
-            else:
-                # add to PDF
-                pass
+            file_type = bijlage.field("bestandstype").value
+            file_type = file_type.split('/')[-1]
+            if file_type == 'PNG':
+                theme = self._get_create_theme_netowner(netowner, 'topo')
+                self._add_layer_to_theme(theme, bijlage)
+            elif file_type == 'PDF':
+                pdfFile = self._create_doc_from_imkl(bijlage)
+                self.pdfFiles.append(pdfFile)
                     
     def _process_bijlagen_beheerdersinfo(self, netowner, beheerdersinfo):
         if beheerdersinfo is None:
@@ -422,20 +419,23 @@ class Storage2(Storage):
         for informatie in beheerdersinfo:
             theme_name = informatie.field("thema").value
             theme_name = theme_name.split('/')[-1]
-            theme = netowner.get_theme(theme_name)
-            if theme is None:
-                theme = Theme(self, theme_name)
-                netowner.themes.append(theme)
-##            print theme
+            theme = self._get_create_theme_netowner(netowner, theme_name)
             themabijlagen = informatie.field("themaBijlagen").value
-##            print themabijlagen
             for bijlage in themabijlagen:
                 file_type = bijlage.field("bestandstype").value
                 file_type = file_type.split('/')[-1]
                 if file_type == 'PNG':
                     self._add_layer_to_theme(theme, bijlage)
                 elif file_type == 'PDF':
-                    self._add_doc_to_theme(theme, bijlage)
+                    pdfFile = self._add_doc_to_theme(theme, bijlage)
+            self.pdfFiles.extend(theme.pdf_docs)
+
+    def _get_create_theme_netowner(self, netowner, theme_name):
+        theme = netowner.get_theme(theme_name)
+        if theme is None:
+            theme = Theme(self, theme_name)
+            netowner.themes.append(theme)
+        return theme
 
     def _add_layer_to_theme(self, theme, imkl_object):
         file_location = imkl_object.field("bestandlocatie").value
@@ -444,13 +444,17 @@ class Storage2(Storage):
         theme.layers.append(layer)
                     
     def _add_doc_to_theme(self, theme, imkl_object):
+        pdfFile = self._create_doc_from_imkl(imkl_object)
+        theme.pdf_docs.append(pdfFile)
+
+    def _create_doc_from_imkl(self, imkl_object):
         soort = imkl_object.field("soort_bijlage").value
         file_location = imkl_object.field("bestandlocatie").value
         file_name = file_location.split('/')[-1]
         pdfFile = PdfFile(file_name)
         pdfFile.type = soort
         pdfFile.filePath = os.path.join(self.path, file_location)
-        theme.pdf_docs.append(pdfFile)  
+        return pdfFile
                     
     def _add_feature_to_layer(self, imkl_object):
 ##        print "add_feature:", imkl_object.name

@@ -24,6 +24,9 @@ Author: Diethard Jansen, 16-9-2018
 from qgis.core import QgsGeometry, QgsVectorLayer
 import imkl, basis, os
 
+WIN = "startfile" in dir(os)
+Ubuntu = os.environ.get('GNOME_DESKTOP_SESSION_ID') != None
+
 class Layer:
 
     layerPriority=("GB_", "ET_", "PT_", "LG_" ,"MV_", "AN_")
@@ -527,6 +530,7 @@ class PdfFile:
     
     def openPdf(self):
         """open the pdf file"""
+        global WIN, Ubuntu
         l_file = self.filePath
         if WIN:
             os.startfile(l_file)

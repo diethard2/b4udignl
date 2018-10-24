@@ -40,19 +40,6 @@ import imkl, xml_utils
 from wv_storage import Storage1, Storage2
 from wv_objects import Theme, Layer
 
-
-WIN = "startfile" in dir(os)
-Ubuntu = os.environ.get('GNOME_DESKTOP_SESSION_ID') != None
-
-
-##msg_dir = os.path.join(os.path.dirname(wv.__file__), "testMsg\\09G267447_1")
-"""hold path to directory with test message, to be used for testing purposes only!!
-
-using doc_test with >> python wv.py -v
-official test result message is downloaded from www.klicviewer.nl, unpacked in
-testfolder and this module attribute msg_dir will be set. Then used in doc_tests..
-"""
-
 class Doc():
     
     def __init__(self, path_message):
