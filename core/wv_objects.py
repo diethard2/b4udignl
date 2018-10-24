@@ -113,7 +113,7 @@ class Layer:
         if self.is_vector() and not other.is_vector():
             return 1
         if not self.is_vector() and other.is_vector():
-            return 0
+            return -1
         # same type... both vector or raster
         this_name = self.layerName
         other_name = other.layerName
@@ -145,10 +145,17 @@ class Layer:
 
     def _setLayerNameFromFile(self):
         """set layer namer from filename without path"""
+        layerFile = self.layerFile
         if self.layerName is None:
-            if self.layerFile is not None:
-                i = self.layerFile.rindex(os.sep)
-                self.layerName = self.layerFile[i+1:]
+            if layerFile is not None:
+                seperator = '/'
+                if seperator not in layerFile:
+                    seperator = '\\'
+                if seperator in layerFile:
+                    i = layerFile.rindex(seperator)
+                    self.layerName = layerFile[i+1:]
+                else:
+                    self.layerName = layerFile
 
 # Public methods of class Layer
     def is_vector(self):
@@ -231,6 +238,7 @@ class Layer:
         """
         group_name = ""
         layer_name = self.layerName
+##        print "layer_name:", layer_name
         if self.vectorType:
             if layer_name in ('Annotatie', 'Maatvoering'):
                 group_name = layer_name
@@ -239,7 +247,7 @@ class Layer:
             else:
                 group_name = 'Ligging'
         else:
-            prefix = self.layerName[:3]
+            prefix = layer_name[:3]
             for groupName, prefixes in self.layerGroupNames.iteritems():
                 if prefix in prefixes:
                     group_name = groupName
@@ -352,6 +360,12 @@ class Company:
 
     def __repr__(self):
         return "Company('%s')" % self.name
+
+    def get_theme(self, name):
+        for theme in self.themes:
+            if theme.name == name:
+                return theme
+        return None
 
     def process_imkl_object(self, imkl_object):
         name = imkl_object.name
@@ -481,31 +495,6 @@ class Theme:
         # refresh state of visibility and return!
         # Result value should be 0 (all off) or 2 (all on)
         return self.checkVisible()
-
-    def _set_theme_layers(self, msg_dir, imkl_theme):
-        layer_names = [name.lower() for name in Layer.layerGroupNames.keys()]
-        layer_names.remove("topo")
-        for layer_name in layer_names:
-            imkl_layer = imkl_theme.field(layer_name).value
-            if imkl_layer is not None:
-                layer_file = imkl_layer.field('bestandsnaam').value
-                layer_file = os.path.join(msg_dir, layer_file)
-                self.layers.append(Layer(self.owner, layer_file))
-
-    def _set_theme_docs(self, msg_dir, imkl_theme):
-        pdf_files = []
-        pdf_fields = ("detailkaarten", "huisaansluitschetsen", "themaBijlagen")
-        for pdf_field in pdf_fields:
-            a_container = imkl_theme.field(pdf_field).value
-##            print pdf_field, a_container
-            if a_container is not None:
-##                print a_container
-                for pdf_object in a_container:
-                    file_name = pdf_object.field("bestandsnaam").value
-                    pdfFile = PdfFile(file_name)
-                    pdfFile.type = pdf_object.name
-                    pdfFile.filePath = os.path.join(msg_dir, file_name)
-                    self.pdf_docs.append(pdfFile)     
 
 class PdfFile:
     def __init__(self, name=None):

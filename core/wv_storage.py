@@ -266,9 +266,38 @@ class Storage1(Storage):
         if imkl_toezichthouders is not None:
             persons = self._process_persons(imkl_toezichthouders)
             theme.supervisors = persons
-        theme._set_theme_layers(self.path, imkl_theme)
-        theme._set_theme_docs(self.path, imkl_theme)
+        self._set_theme_layers(theme, imkl_theme)
+        self._set_theme_docs(theme, imkl_theme)
         return theme
+
+    def _set_theme_layers(self, theme, imkl_theme):
+        layer_names = [name.lower() for name in Layer.layerGroupNames.keys()]
+        layer_names.remove("topo")
+        for layer_name in layer_names:
+            imkl_layer = imkl_theme.field(layer_name).value
+            if imkl_layer is not None:
+                layer_file = imkl_layer.field('bestandsnaam').value
+                layer_file = os.path.join(self.path, layer_file)
+##                print layer_file
+                layer = Layer(self, raster_file_name = layer_file)
+                if layer.layerName is None:
+                    print layer_file
+                theme.layers.append(layer)
+
+    def _set_theme_docs(self, theme, imkl_theme):
+        pdf_files = []
+        pdf_fields = ("detailkaarten", "huisaansluitschetsen", "themaBijlagen")
+        for pdf_field in pdf_fields:
+            a_container = imkl_theme.field(pdf_field).value
+##            print pdf_field, a_container
+            if a_container is not None:
+##                print a_container
+                for pdf_object in a_container:
+                    file_name = pdf_object.field("bestandsnaam").value
+                    pdfFile = PdfFile(file_name)
+                    pdfFile.type = pdf_object.name
+                    pdfFile.filePath = os.path.join(self.path, file_name)
+                    theme.pdf_docs.append(pdfFile)  
 
     def _process_persons(self, imkl_persons):
         persons = []
@@ -326,6 +355,7 @@ class Storage2(Storage):
         for netOwner in self.netOwners:
             code = netOwner.bronhoudercode
             self.netOwners_on_code[code] = netOwner
+        self._process_bijlagen_netbeheerders()
 
     def _fill_layers(self):
         ## all imkl objects that have a field geometry and theme
@@ -347,10 +377,10 @@ class Storage2(Storage):
         netOwner.process_imkl_object(beheerder)
         netOwner.process_imkl_object(belang)
         utility_nets = self.imkls[imkl.UTILITEITSNET]
-        self.process_themes(netOwner, utility_nets)
+        self._process_themes(netOwner, utility_nets)
         self.netOwners.append(netOwner)
 
-    def process_themes(self, netOwner, utility_nets):
+    def _process_themes(self, netOwner, utility_nets):
         search_string_in_id = 'nl.imkl-'+ netOwner.bronhoudercode + '.'
         theme_names = []
         for utility_net in utility_nets:
@@ -361,6 +391,66 @@ class Storage2(Storage):
                     theme_names.append(theme_name)
         for theme_name in theme_names:
             netOwner.themes.append(Theme(self.parent, theme_name))
+
+    def _process_bijlagen_netbeheerders(self):
+        leveringsinfo = self.imkls["Leveringsinformatie"][0]
+        belanghebbenden = leveringsinfo.field("belanghebbenden").value
+        for belanghebbende in belanghebbenden:
+            code = belanghebbende.field("bronhoudercode").value
+            netowner = self.netOwners_on_code[code]            
+            bijlagen = belanghebbende.field("bijlagen").value
+            beheerdersinfo = belanghebbende.field("beheerdersinformatie").value
+            self._process_bijlagen_belanghebbende(netowner, bijlagen)
+            self._process_bijlagen_beheerdersinfo(netowner, beheerdersinfo)
+            
+    def _process_bijlagen_belanghebbende(self, netowner, bijlagen):
+        if bijlagen is None:
+            return
+        for bijlage in bijlagen:
+            soort = bijlage.field("soort_bijlage").value
+            lokatie = bijlage.field("bestandlocatie").value
+            if soort == 'eigenTopo':
+                # add to theme
+                pass
+            else:
+                # add to PDF
+                pass
+                    
+    def _process_bijlagen_beheerdersinfo(self, netowner, beheerdersinfo):
+        if beheerdersinfo is None:
+            return
+        for informatie in beheerdersinfo:
+            theme_name = informatie.field("thema").value
+            theme_name = theme_name.split('/')[-1]
+            theme = netowner.get_theme(theme_name)
+            if theme is None:
+                theme = Theme(self, theme_name)
+                netowner.themes.append(theme)
+##            print theme
+            themabijlagen = informatie.field("themaBijlagen").value
+##            print themabijlagen
+            for bijlage in themabijlagen:
+                file_type = bijlage.field("bestandstype").value
+                file_type = file_type.split('/')[-1]
+                if file_type == 'PNG':
+                    self._add_layer_to_theme(theme, bijlage)
+                elif file_type == 'PDF':
+                    self._add_doc_to_theme(theme, bijlage)
+
+    def _add_layer_to_theme(self, theme, imkl_object):
+        file_location = imkl_object.field("bestandlocatie").value
+        layer_file = os.path.join(self.path, file_location)
+        layer = Layer(self, layer_file)
+        theme.layers.append(layer)
+                    
+    def _add_doc_to_theme(self, theme, imkl_object):
+        soort = imkl_object.field("soort_bijlage").value
+        file_location = imkl_object.field("bestandlocatie").value
+        file_name = file_location.split('/')[-1]
+        pdfFile = PdfFile(file_name)
+        pdfFile.type = soort
+        pdfFile.filePath = os.path.join(self.path, file_location)
+        theme.pdf_docs.append(pdfFile)  
                     
     def _add_feature_to_layer(self, imkl_object):
 ##        print "add_feature:", imkl_object.name

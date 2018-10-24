@@ -763,6 +763,8 @@ def bijlagePerLevering():
     a_bijlage = B_Object("BijlagePerLevering")
     a_bijlage.add_field(B_Field("soort_bijlage", "TEXT", "SoortBijlage"))
     a_bijlage.add_field(B_Field("bestandlocatie", "TEXT", "BestandLocatie"))
+    a_bijlage.add_field(B_Field("bestandstype", "TEXT", "BestandMediaType",
+                                from_attribute='Href'))
     a_bijlage.add_field(B_Field("bestandidentificator", "TEXT", "BestandIdentificator"))
     a_bijlage.add_tags_to_process()
     return a_bijlage

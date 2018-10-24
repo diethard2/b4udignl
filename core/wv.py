@@ -354,7 +354,7 @@ class Doc():
                     # now traverse all my layers to add layer to this theme.
                     findString = nameTheme.replace(' ', '+')
                     for layername, layer in self.layers.items():
-                        if findString in layername:
+                        if layername is not None and findString in layername:
                             self.themes[nameTheme].layers.append(layer)
         self._setLayerGroupThemes()
 
