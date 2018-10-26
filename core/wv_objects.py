@@ -29,8 +29,8 @@ Ubuntu = os.environ.get('GNOME_DESKTOP_SESSION_ID') != None
 
 class Layer:
 
-    layerPriority=("GB_", "ET_", "PT_", "LG_" ,"MV_", "AN_")
-    layerGroupNames= {"Topo": ("GB_", "ET_", "PT_"),
+    layerPriority=("GB_", "SEL", "ET_", "PT_", "LG_" ,"MV_", "AN_")
+    layerGroupNames= {"Topo": ("GB_", "SEL", "ET_", "PT_"),
                       "Ligging": ("LG_",),
                       "Maatvoering": ("MV_",),
                       "Annotatie": ("AN_",)}

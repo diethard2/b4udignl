@@ -164,6 +164,7 @@ class Storage(object):
         self._fill_graafpolygoon()
         self._fill_netowners()
         self._fill_layers()
+        self._fill_pdf_files()
 
     def _fill_klicnummer(self):
         pass
@@ -175,8 +176,25 @@ class Storage(object):
         pass
     def _fill_netowners(self):
         pass
+    
     def _fill_layers(self):
-        pass
+        # find pgn files in themes
+        layers = []
+        for netowner in self.netOwners:
+            for theme in netowner.themes:
+                layers.extend(theme.layers)
+        self._extend_layers(layers)
+
+    def _fill_pdf_files(self):
+        for netOwner in self.netOwners:
+            for theme in netOwner.themes:
+               self.pdfFiles.extend(theme.pdf_docs)
+        self.pdfFiles.sort()
+        
+    def _extend_layers(self, layers):
+        for layer in layers:
+            name = layer.layerName
+            self.layers[layer.layerName] = layer
 
     def _fill_rectangle(self, imkl_obj=None):
         wkt = imkl_obj.field("omsluitendeRechthoek").value
@@ -320,7 +338,16 @@ class Storage1(Storage):
             pdf_file.filePath = os.path.join(self.path, pdf_name)
             docs.append(pdf_file)
         return docs
-        
+
+    def _fill_layers(self):
+        super(Storage1, self)._fill_layers()
+        layers = []
+        kadaster_png =  'GB_' + self.klicnummer + '.png'
+        file_png = os.path.join(self.path, kadaster_png)
+        layer = Layer(self, file_png)
+        layers.append(layer)
+        self._extend_layers(layers)
+                
 class Storage2(Storage):
 
     def __init__(self, parent):
@@ -361,8 +388,38 @@ class Storage2(Storage):
                 if has_geometry:
                     has_theme = imkl_object.field("thema") is not None
                     if has_theme:
-                        self._add_feature_to_layer(imkl_object)            
+                        self._add_feature_to_layer(imkl_object)
+        super(Storage2, self)._fill_layers()
+        layers = []
+        bijlagen = self._get_bijlagen_from_leveringsinfo()
+        for bijlage in bijlagen:
+            bijlage_type = self._get_type_from_bijlage(bijlage)
+            if bijlage_type == 'PNG':
+                location = bijlage.field("bestandlocatie").value
+                file_png = os.path.join(self.path, location)
+                layer = Layer(self, file_png)
+                layers.append(layer)
+        self._extend_layers(layers)
+
+    def _fill_pdf_files(self):        
+        bijlagen = self._get_bijlagen_from_leveringsinfo()
+        for bijlage in bijlagen:
+            bijlage_type = self._get_type_from_bijlage(bijlage)
+            if bijlage_type == 'PDF':
+                pdfFile = self._create_doc_from_imkl(bijlage)
+                self.pdfFiles.append(pdfFile)
+        super(Storage2, self)._fill_pdf_files()
  
+    def _get_bijlagen_from_leveringsinfo(self):
+        leveringsinfo = self.imkls[imkl.LEVERINGSINFORMATIE][0]
+        bijlagen = leveringsinfo.field("bijlagenPerLevering").value
+        return bijlagen
+            
+    def _get_type_from_bijlage(self, bijlage):        
+        bijlage_type = bijlage.field("bestandstype").value
+        bijlage_type = bijlage_type.split('/')[-1]
+        return bijlage_type
+
     def _process_belanghebbende(self, belanghebbende):
         id_beheerder = belanghebbende.field("idNetbeheerder").value
         id_belang = belanghebbende.field("idGeraaktBelang").value
@@ -428,7 +485,7 @@ class Storage2(Storage):
                     self._add_layer_to_theme(theme, bijlage)
                 elif file_type == 'PDF':
                     pdfFile = self._add_doc_to_theme(theme, bijlage)
-            self.pdfFiles.extend(theme.pdf_docs)
+##            self.pdfFiles.extend(theme.pdf_docs)
 
     def _get_create_theme_netowner(self, netowner, theme_name):
         theme = netowner.get_theme(theme_name)

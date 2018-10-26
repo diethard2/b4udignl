@@ -38,7 +38,7 @@ import os
 import xml.etree.ElementTree as ET
 import imkl, xml_utils
 from wv_storage import Storage1, Storage2
-from wv_objects import Theme, Layer
+from wv_objects import Theme, Layer, PdfFile
 
 class Doc():
     
@@ -65,9 +65,7 @@ class Doc():
         xml_files = self._xml_files()
         self._parse_xml_files(xml_files)
         self._set_attributes_from_imkl()
-        # set layers and create world files
-        self._setLayers()
-        self._setAdditionalFiles()
+        # set themes and create world files
         self._setThemes()
         self._createWorldFiles()
 
@@ -286,44 +284,6 @@ class Doc():
                 value = url[i+1:]
         return value
 
-    def _setLayers(self):
-        """
-        using set attribute path of dig alert message find all
-        image files of type png, then sort them into the right layer
-        priority so when we load them they are loaded in exactly
-        the right order. 
-        """
-        # find pgn files in themes
-        layers = []
-        for netowner in self.netOwners:
-            for theme in netowner.themes:
-                layers.extend(theme.layers)
-        # add 1 layer not included in xml (but it should be included!)
-        if self.version == "1.5":
-            kadaster_png =  'GB_' + self.klicnummer + '.png'
-            file_png = os.path.join(self.path, kadaster_png)
-            layer = Layer(self, file_png)
-            layers.append(layer)
-        self._extend_layers(layers)
-        # set attribute layers with sorted list op PNG files.
-##        self.layers.sort()
-
-    def _extend_layers(self, layers):
-        for layer in layers:
-            name = layer.layerName
-            self.layers[layer.layerName] = layer
-        
-    def _setAdditionalFiles(self):
-        """
-        using set attribute path of dig alert message find all
-        pdf files that we want to list and show to user.
-        Again these are sorted in groups so it will be easy for
-        user to find quickly right document.
-        """
-        # find pdf files in themes
-        for theme in self.themes:
-            self.pdFiles.extend(theme.pdf_files)
-        self.pdfFiles.sort()
 
     def _setThemes(self):
         """
