@@ -215,12 +215,32 @@ class Doc():
             self.imkls[tag] = [obj]
 
     def _set_attributes_from_imkl(self):
-        if int(self.version.split('.')[0]) == 1:
+        storage_version = self._storage_version_to_use()
+        if storage_version == 1:
             self.storage = Storage1(self)
-        else:
+        elif storage_version == 2:
             self._post_process_imkl()
             self.storage = Storage2(self)
+        else:
+            return
         self.storage.fill()
+
+    def _storage_version_to_use(self):
+        storage_version = 0
+        version = self.version
+        if version is not None:
+            if int(version.split('.')[0]) == 1:
+                storage_version = 1
+            else:
+                storage_version = 2
+        else:
+            # no version.. we have got no leveringsinfo, but this
+            # could be a test message voor 2.1 so let us try a bit further
+            infotag = imkl.GEBIEDSINFORMATIEAANVRAAG
+            if self.imkls.has_key(infotag):
+                storage_version = 2
+        return storage_version
+        
 
     def _post_process_imkl(self):
         self._fill_keyed_imkl_set()
@@ -237,12 +257,13 @@ class Doc():
 
     def _set_geometry_pipes(self):
         for tag in imkl.tags_pipes_and_cables():
-            imkl_set = self.imkls[tag]
-            for imkl_object in imkl_set:
-                geom_field = imkl_object.geometry_field()
-                link_id = imkl_object.field("link_id").value
-                utility_link = self.imkls_on_id[link_id]
-                geom_field.value = utility_link.geometry_field().value
+            if self.imkls.has_key(tag):
+                imkl_set = self.imkls[tag]
+                for imkl_object in imkl_set:
+                    geom_field = imkl_object.geometry_field()
+                    link_id = imkl_object.field("link_id").value
+                    utility_link = self.imkls_on_id[link_id]
+                    geom_field.value = utility_link.geometry_field().value
 
     def _set_short_values_from_url(self):
         for imkl_set in self.imkls.values():

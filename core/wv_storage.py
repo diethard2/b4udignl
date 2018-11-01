@@ -196,7 +196,9 @@ class Storage(object):
             name = layer.layerName
             self.layers[layer.layerName] = layer
 
-    def _fill_rectangle(self, imkl_obj=None):
+    def _fill_rectangle(self, imkl_obj):
+        if imkl_obj == None:
+            return
         wkt = imkl_obj.field("omsluitendeRechthoek").value
         width = imkl_obj.field("pixelsBreed").value
         height = imkl_obj.field("pixelsHoog").value
@@ -362,9 +364,10 @@ class Storage2(Storage):
         self.meldingsoort = imkl_obj.field("aanvraagsoort").value
 
     def _fill_rectangle(self):
-        imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
-        imkl_obj = imkl_obj.field("pngFormaat").value
-        super(Storage2, self)._fill_rectangle(imkl_obj)
+        if self.imkls.has_key(imkl.LEVERINGSINFORMATIE):
+            imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
+            imkl_obj = imkl_obj.field("pngFormaat").value
+            super(Storage2, self)._fill_rectangle(imkl_obj)
 
     def _fill_graafpolygoon(self):
         imkl_obj = self.imkls[imkl.GRAAFPOLYGOON][0]
@@ -392,6 +395,8 @@ class Storage2(Storage):
         super(Storage2, self)._fill_layers()
         layers = []
         bijlagen = self._get_bijlagen_from_leveringsinfo()
+        if bijlagen is None:
+            return
         for bijlage in bijlagen:
             bijlage_type = self._get_type_from_bijlage(bijlage)
             if bijlage_type == 'PNG':
@@ -403,6 +408,8 @@ class Storage2(Storage):
 
     def _fill_pdf_files(self):        
         bijlagen = self._get_bijlagen_from_leveringsinfo()
+        if bijlagen is None:
+            return
         for bijlage in bijlagen:
             bijlage_type = self._get_type_from_bijlage(bijlage)
             if bijlage_type == 'PDF':
@@ -411,8 +418,10 @@ class Storage2(Storage):
         super(Storage2, self)._fill_pdf_files()
  
     def _get_bijlagen_from_leveringsinfo(self):
-        leveringsinfo = self.imkls[imkl.LEVERINGSINFORMATIE][0]
-        bijlagen = leveringsinfo.field("bijlagenPerLevering").value
+        bijlagen = None
+        if self.imkls.has_key(imkl.LEVERINGSINFORMATIE):
+            leveringsinfo = self.imkls[imkl.LEVERINGSINFORMATIE][0]
+            bijlagen = leveringsinfo.field("bijlagenPerLevering").value
         return bijlagen
             
     def _get_type_from_bijlage(self, bijlage):        
@@ -428,8 +437,9 @@ class Storage2(Storage):
         netOwner = Company()
         netOwner.process_imkl_object(beheerder)
         netOwner.process_imkl_object(belang)
-        utility_nets = self.imkls[imkl.UTILITEITSNET]
-        self._process_themes(netOwner, utility_nets)
+        if self.imkls.has_key(imkl.UTILITEITSNET):
+            utility_nets = self.imkls[imkl.UTILITEITSNET]
+            self._process_themes(netOwner, utility_nets)
         self.netOwners.append(netOwner)
 
     def _process_themes(self, netOwner, utility_nets):
@@ -445,8 +455,12 @@ class Storage2(Storage):
             netOwner.themes.append(Theme(self.parent, theme_name))
 
     def _process_bijlagen_netbeheerders(self):
+        if not self.imkls.has_key(imkl.LEVERINGSINFORMATIE):
+            return
         leveringsinfo = self.imkls["Leveringsinformatie"][0]
         belanghebbenden = leveringsinfo.field("belanghebbenden").value
+        if belanghebbenden is None:
+            return
         for belanghebbende in belanghebbenden:
             code = belanghebbende.field("bronhoudercode").value
             netowner = self.netOwners_on_code[code]            
