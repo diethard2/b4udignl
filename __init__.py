@@ -19,11 +19,21 @@ email                : diethard.jansen at gmail.com
  ***************************************************************************/
  This script initializes the plugin, making it known to QGIS.
 """
+import os
+from PyQt4.QtCore import QSettings
+
+plugin_path = os.path.dirname(os.path.realpath(__file__))
+svg_path = os.path.join(plugin_path, 'styles', 'svg')
+svg_paths = QSettings().value('svg/searchPathsForSVG')
+if svg_path not in svg_paths:
+    QSettings().setValue('svg/searchPathsForSVG', svg_paths + '|' + svg_path)
 
 def classFactory(iface): 
     # load B4UdigNL class from file B4UdigNL
     from B4UdigNL import B4UdigNL
     return B4UdigNL(iface)
+
+
 
     
     

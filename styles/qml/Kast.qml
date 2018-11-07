@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="2.14.6-Essen" minimumScale="0" maximumScale="10000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="1" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+<qgis version="2.14.6-Essen" minimumScale="-4.65661e-10" maximumScale="10000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="1" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
   <edittypes>
     <edittype widgetv2type="TextEdit" name="id">
       <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -51,20 +51,20 @@
       <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'water'" key="{3ad0bee4-823d-4327-a653-52a1cf5b003f}" symbol="11" scalemindenom="1" label="water 1"/>
       <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'wees'" key="{e0dac0a4-10ee-4196-96f6-9d5273302916}" symbol="12" scalemindenom="1" label="wees 1"/>
       <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'overig'" key="{416e7cca-a25f-43b9-8470-416e9bd5b3c6}" symbol="13" scalemindenom="1" label="overig 1"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'datatransport'" key="{52c983aa-97f0-4cfd-a3fe-66bbf46170b8}" symbol="14" scalemindenom="1500" label="datatransport 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'gasLageDruk'" key="{d2b197e1-6d0d-4875-9552-4431eaf3b707}" symbol="15" scalemindenom="1500" label="gasLageDruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'gasHogeDruk'" key="{a0d48d21-18a5-423c-a98b-233c26101c43}" symbol="16" scalemindenom="1500" label="gasHogeDruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'buisleidingGevaarlijkeInhoud'" key="{71dcea28-e129-439a-8ce4-ba7d721297bf}" symbol="17" scalemindenom="1500" label="buisleidingGevaarlijkeInhoud 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  in ('hoogspanning', 'landelijkHoogspanningsnet')" key="{b5554bb8-aba3-4d2a-9cb0-9d7327cfa328}" symbol="18" scalemindenom="1500" label="hoogspanning 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'middenspanning'" key="{57f95030-8c72-4c5a-8715-790eac066660}" symbol="19" scalemindenom="1500" label="middenspanning 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'laagspanning'" key="{3b333a56-9d10-4ac7-a22a-a7f3db22f999}" symbol="20" scalemindenom="1500" label="laagspanning 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'petrochemie'" key="{4770242f-e95a-4c6e-8f64-a5165ca39d2e}" symbol="21" scalemindenom="1500" label="petrochemie 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'rioolVrijverval'" key="{a5766e91-7c92-4f49-91a2-99a37f270393}" symbol="22" scalemindenom="1500" label="rioolVrijverval 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'rioolOnderOverOfOnderdruk'" key="{60ad4301-9a3d-40a7-9dc5-a1fa4a59f635}" symbol="23" scalemindenom="1500" label="rioolOnderOverOfOnderdruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'warmte'" key="{90b7e110-27dc-47ca-bd10-1868bcd770f1}" symbol="24" scalemindenom="1500" label="warmte 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'water'" key="{dc00d393-0294-4156-903d-b353ebdfc447}" symbol="25" scalemindenom="1500" label="water 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'wees'" key="{0ffe55d0-7ab3-4a62-a642-87794a833492}" symbol="26" scalemindenom="1500" label="wees 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'overig'" key="{51039d1b-ae9b-4063-932e-f69061bc0f80}" symbol="27" scalemindenom="1500" label="overig 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'datatransport'" key="{52c983aa-97f0-4cfd-a3fe-66bbf46170b8}" symbol="14" scalemindenom="500" label="datatransport 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'gasLageDruk'" key="{d2b197e1-6d0d-4875-9552-4431eaf3b707}" symbol="15" scalemindenom="500" label="gasLageDruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'gasHogeDruk'" key="{a0d48d21-18a5-423c-a98b-233c26101c43}" symbol="16" scalemindenom="500" label="gasHogeDruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'buisleidingGevaarlijkeInhoud'" key="{71dcea28-e129-439a-8ce4-ba7d721297bf}" symbol="17" scalemindenom="500" label="buisleidingGevaarlijkeInhoud 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  in ('hoogspanning', 'landelijkHoogspanningsnet')" key="{b5554bb8-aba3-4d2a-9cb0-9d7327cfa328}" symbol="18" scalemindenom="500" label="hoogspanning 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'middenspanning'" key="{57f95030-8c72-4c5a-8715-790eac066660}" symbol="19" scalemindenom="500" label="middenspanning 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'laagspanning'" key="{3b333a56-9d10-4ac7-a22a-a7f3db22f999}" symbol="20" scalemindenom="500" label="laagspanning 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'petrochemie'" key="{4770242f-e95a-4c6e-8f64-a5165ca39d2e}" symbol="21" scalemindenom="500" label="petrochemie 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'rioolVrijverval'" key="{a5766e91-7c92-4f49-91a2-99a37f270393}" symbol="22" scalemindenom="500" label="rioolVrijverval 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'rioolOnderOverOfOnderdruk'" key="{60ad4301-9a3d-40a7-9dc5-a1fa4a59f635}" symbol="23" scalemindenom="500" label="rioolOnderOverOfOnderdruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'warmte'" key="{90b7e110-27dc-47ca-bd10-1868bcd770f1}" symbol="24" scalemindenom="500" label="warmte 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'water'" key="{dc00d393-0294-4156-903d-b353ebdfc447}" symbol="25" scalemindenom="500" label="water 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'wees'" key="{0ffe55d0-7ab3-4a62-a642-87794a833492}" symbol="26" scalemindenom="500" label="wees 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'overig'" key="{51039d1b-ae9b-4063-932e-f69061bc0f80}" symbol="27" scalemindenom="500" label="overig 2"/>
       <rule scalemaxdenom="2500" filter="&quot;thema&quot;  =  'datatransport'" key="{b59cd211-8c7c-40ed-9956-965a2628071e}" symbol="28" scalemindenom="1250" label="datatransport 3"/>
       <rule scalemaxdenom="2500" filter="&quot;thema&quot;  =  'gasLageDruk'" key="{72b43f4c-0fde-4e39-8544-b44b8aa4723e}" symbol="29" scalemindenom="1250" label="gasLageDruk 3"/>
       <rule scalemaxdenom="2500" filter="&quot;thema&quot;  =  'gasHogeDruk'" key="{cc6b9aa5-896b-4db2-bf29-f09cf554f620}" symbol="30" scalemindenom="1250" label="gasHogeDruk 3"/>
@@ -1426,7 +1426,7 @@
     <selectedonly on=""/>
   </labelattributes>
   <SingleCategoryDiagramRenderer diagramType="Pie">
-    <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+    <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
       <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
       <attribute field="" color="#000000" label=""/>
     </DiagramCategory>

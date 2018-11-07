@@ -20,16 +20,23 @@ email                : diethard.jansen at gmail.com
 
 from PyQt4 import QtCore, QtGui
 from qgis import core, gui
+import os
 
 class Iface:
     def __init__(self, iface):
         self.__iface = iface
+        self.__path = os.path.dirname(os.path.realpath(__file__))
 
     def _iface(self):
         """return private attribute iface"""
         return self.__iface
 
     iface = property(fget=_iface)
+
+    def _path(self):
+        return self.__path
+
+    path = property(fget=_path)
 
     def visibleLayers(self):
         """return list of current visible layer Ids"""
@@ -70,10 +77,18 @@ class Iface:
             registry = core.QgsMapLayerRegistry.instance()
             registry.addMapLayer(layer)
             layer = registry.mapLayersByName(wvLayer.layerName)
+            self.styleLayer(layer[0])
         else:
             layerFile = wvLayer.layerFile
             layer = self.iface.addRasterLayer(layerFile)
-        return layer 
+        return layer
+
+    def styleLayer(self, a_layer):
+        qml_path = os.path.join(self.path, 'styles', 'qml')
+        qml_file = os.path.join(qml_path, a_layer.name()) + '.qml'
+        if os.path.exists(qml_file):
+            a_layer.loadNamedStyle(qml_file)
+        return a_layer
 
     def getLayerIdForLayer(self, wvLayer):
         """get LayerId for given wv.Layer"""

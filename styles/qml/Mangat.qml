@@ -45,20 +45,20 @@
       <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'water'" key="{3087616f-2971-4b86-93ae-ad340455e399}" symbol="11" scalemindenom="1" label="water 1"/>
       <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'wees'" key="{d1c62b51-fac6-45e8-af6a-f0ff75138d9d}" symbol="12" scalemindenom="1" label="wees 1"/>
       <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'overig'" key="{6e3a94ff-5e0a-40bf-9eb0-d1a604ac4c65}" symbol="13" scalemindenom="1" label="overig 1"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'datatransport'" key="{41a89a07-dfd8-4c15-96b5-a6e6484b22b3}" symbol="14" scalemindenom="1500" label="datatransport 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'gasLageDruk'" key="{652eed1e-a70f-4b05-9807-42cd4f1e0260}" symbol="15" scalemindenom="1500" label="gasLageDruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'gasHogeDruk'" key="{56fec982-8865-4802-9e9e-12a466842f67}" symbol="16" scalemindenom="1500" label="gasHogeDruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'buisleidingGevaarlijkeInhoud'" key="{848985dc-4ac4-4d5b-9141-55e7a090f7de}" symbol="17" scalemindenom="1500" label="buisleidingGevaarlijkeInhoud 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  in ('hoogspanning', 'landelijkHoogspanningsnet')" key="{2d1f4e37-42c8-4d7a-a184-085f53f64d19}" symbol="18" scalemindenom="1500" label="hoogspanning 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'middenspanning'" key="{a1db72d5-bf6b-406a-8dd3-191dfd57c2b0}" symbol="19" scalemindenom="1500" label="middenspanning 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'laagspanning'" key="{505bbc84-cba6-412c-9314-aae3c867cf6c}" symbol="20" scalemindenom="1500" label="laagspanning 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'petrochemie'" key="{c6539e0c-2ad2-40d0-9a46-a268a36e949a}" symbol="21" scalemindenom="1500" label="petrochemie 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'rioolVrijverval'" key="{cf0e4632-3e21-4ac3-abff-597fba239f36}" symbol="22" scalemindenom="1500" label="rioolVrijverval 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'rioolOnderOverOfOnderdruk'" key="{483e448f-7c2d-4c10-abdb-0cf4d499479a}" symbol="23" scalemindenom="1500" label="rioolOnderOverOfOnderdruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'warmte'" key="{46e678ac-f5e9-418c-8920-7f242975197d}" symbol="24" scalemindenom="1500" label="warmte 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'water'" key="{f3dfcc17-676f-40a8-9316-a539ed618d23}" symbol="25" scalemindenom="1500" label="water 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'wees'" key="{f3e8f24a-e534-4c2b-8648-1c89a17a412d}" symbol="26" scalemindenom="1500" label="wees 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'overig'" key="{d66528db-982f-489a-b0c6-e5ff31c87819}" symbol="27" scalemindenom="1500" label="overig 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'datatransport'" key="{41a89a07-dfd8-4c15-96b5-a6e6484b22b3}" symbol="14" scalemindenom="500" label="datatransport 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'gasLageDruk'" key="{652eed1e-a70f-4b05-9807-42cd4f1e0260}" symbol="15" scalemindenom="500" label="gasLageDruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'gasHogeDruk'" key="{56fec982-8865-4802-9e9e-12a466842f67}" symbol="16" scalemindenom="500" label="gasHogeDruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'buisleidingGevaarlijkeInhoud'" key="{848985dc-4ac4-4d5b-9141-55e7a090f7de}" symbol="17" scalemindenom="500" label="buisleidingGevaarlijkeInhoud 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  in ('hoogspanning', 'landelijkHoogspanningsnet')" key="{2d1f4e37-42c8-4d7a-a184-085f53f64d19}" symbol="18" scalemindenom="500" label="hoogspanning 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'middenspanning'" key="{a1db72d5-bf6b-406a-8dd3-191dfd57c2b0}" symbol="19" scalemindenom="500" label="middenspanning 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'laagspanning'" key="{505bbc84-cba6-412c-9314-aae3c867cf6c}" symbol="20" scalemindenom="500" label="laagspanning 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'petrochemie'" key="{c6539e0c-2ad2-40d0-9a46-a268a36e949a}" symbol="21" scalemindenom="500" label="petrochemie 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'rioolVrijverval'" key="{cf0e4632-3e21-4ac3-abff-597fba239f36}" symbol="22" scalemindenom="500" label="rioolVrijverval 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'rioolOnderOverOfOnderdruk'" key="{483e448f-7c2d-4c10-abdb-0cf4d499479a}" symbol="23" scalemindenom="500" label="rioolOnderOverOfOnderdruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'warmte'" key="{46e678ac-f5e9-418c-8920-7f242975197d}" symbol="24" scalemindenom="500" label="warmte 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'water'" key="{f3dfcc17-676f-40a8-9316-a539ed618d23}" symbol="25" scalemindenom="500" label="water 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'wees'" key="{f3e8f24a-e534-4c2b-8648-1c89a17a412d}" symbol="26" scalemindenom="500" label="wees 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'overig'" key="{d66528db-982f-489a-b0c6-e5ff31c87819}" symbol="27" scalemindenom="500" label="overig 2"/>
       <rule scalemaxdenom="2500" filter="&quot;thema&quot;  =  'datatransport'" key="{06c674fd-762d-46db-ad4b-d214f22f9895}" symbol="28" scalemindenom="1250" label="datatransport 3"/>
       <rule scalemaxdenom="2500" filter="&quot;thema&quot;  =  'gasLageDruk'" key="{8dc49232-9966-4351-8b44-db3f298d46aa}" symbol="29" scalemindenom="1250" label="gasLageDruk 3"/>
       <rule scalemaxdenom="2500" filter="&quot;thema&quot;  =  'gasHogeDruk'" key="{1f3b5d49-993e-4827-bca4-dc00045fafac}" symbol="30" scalemindenom="1250" label="gasHogeDruk 3"/>
