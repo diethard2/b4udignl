@@ -238,7 +238,8 @@ def aanduidingEisVoorzorgsmaatregel():
                           "ContactVoorzorgsmaatregel",to_object=contactpersoon))
     obj.add_field(B_Field("netbeheerderNetOmschrijving", "TEXT", "NetbeheerderNetOmschrijving"))
     obj.add_field(B_Field("netbeheerderWerkAanduiding", "TEXT", "NetbeheerderWerkAanduiding"))
-    obj.add_field(B_Field("geometrie", "POLYGON", "Geometrie",
+    obj.add_field(B_Field("thema", "TEXT", "Theme"))
+    obj.add_field(B_Field("geometry", "POLYGON", "Geometrie",
                           to_object=gml.Polygon))
     obj.add_tags_to_process()
     return obj

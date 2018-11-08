@@ -456,7 +456,7 @@ class AanduidingEVTestCase(unittest.TestCase):
                          ['id', 'registratiedatum', 'vervaldatum', 'label',
                           'network_id', 'eisVoorzorgsmaatregel',
                           'netbeheerderNetOmschrijving','netbeheerderWerkAanduiding',
-                          'geometrie'])
+                          'thema', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -464,7 +464,7 @@ class AanduidingEVTestCase(unittest.TestCase):
                           None,
                           'EisVoorzorgsmaatregel GHD-leiding Best-west',
                           'nl.imkl-nbact1.un00054', 'GHD-T-W3',
-                          'EV1-gebied transport hoofdleiding','W3-hoog',
+                          'EV1-gebied transport hoofdleiding','W3-hoog', None,
                           'Polygon((155104 388038, 155098 388046, 155088 388043, \
 155088 388032, 155098 388029, 155104 388038))'])
         
