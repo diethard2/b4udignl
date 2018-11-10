@@ -383,15 +383,15 @@ class Storage2(Storage):
         self._process_bijlagen_netbeheerders()
 
     def _fill_layers(self):
-        ## all imkl objects that have a field geometry and theme
+        ## all imkl objects that have a field geometry
         ## should be added to netowner..
         for layer_name, imkl_set in self.imkls.items():
             for imkl_object in imkl_set:
-                has_geometry = imkl_object.field("geometry") is not None
-                if has_geometry:
-                    has_theme = imkl_object.field("thema") is not None
-                    if has_theme:
-                        self._add_feature_to_layer(imkl_object)
+                if imkl_object.name in ('UtilityLink','boundedBy',
+                                        'LeveringsInformatie'):
+                    continue
+                if imkl_object.geometry_field() is not None:
+                    self._add_feature_to_layer(imkl_object)
         super(Storage2, self)._fill_layers()
         layers = []
         bijlagen = self._get_bijlagen_from_leveringsinfo()

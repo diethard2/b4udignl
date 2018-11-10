@@ -363,11 +363,18 @@ class GraafpolygoonTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'geometry'])
+                         ['id', 'registratiedatum','vervaldatum','ordernummer',
+                          'positienummer','klicnummer','referentie',
+                          'aanvraagsoort','aanvraagdatum','soortWerkzaamheden',
+                          'locatieWerkzaamheden','startDatum','eindDatum',
+                          'leveringsvolgnummer','datumLeveringSamengesteld',
+                          'indicatieLeveringCompleet','geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          ['nl.imkl-KA0000._Graafpolygoon_18G007160',
+                          '2018-07-19T12:02:03.000+02:00',None,None,None,
+                          None,None,None,None,None,None,None,None,None,None,None,
                           'Polygon((154980.0 387980.0, 155120.0 387980.0, \
 155120.0 388140.0, 154980.0 388140.0, 154980.0 387980.0))'])
 

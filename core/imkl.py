@@ -630,9 +630,9 @@ def extraDetailinfo():
     obj.add_tags_to_process()
     return obj
 
-def gebiedsinformatieAanvraag():
+def gebiedsinformatie():
     obj = imkl_basis()
-    obj.name = "GebiedsinformatieAanvraag"
+    obj.name = "Gebiedsinformatie"
     obj.add_field(B_Field("ordernummer", "TEXT","Ordernummer"))
     obj.add_field(B_Field("positienummer", "TEXT","Positienummer"))
     obj.add_field(B_Field("klicnummer", "TEXT","KlicMeldnummer"))
@@ -649,6 +649,25 @@ def gebiedsinformatieAanvraag():
     obj.add_field(B_Field("locatieWerkzaamheden", "TEXT", "LocatieWerkzaamheden"))
     obj.add_field(B_Field("startDatum", "TEXT", "StartDatum"))
     obj.add_field(B_Field("eindDatum", "TEXT", "EindDatum"))
+    return obj
+
+def gebiedsinformatieAanvraag():
+    obj = gebiedsinformatie()
+    obj.name = "GebiedsinformatieAanvraag"
+    obj.add_tags_to_process()
+    return obj
+
+def graafpolygoon():
+    obj = gebiedsinformatie()
+    obj.name = "Graafpolygoon"
+    obj.add_field(B_Field("leveringsvolgnummer", "INTEGER",
+                          "Leveringsvolgnummer"))
+    obj.add_field(B_Field("datumLeveringSamengesteld", "TEXT",
+                          "DatumLeveringSamengesteld"))
+    obj.add_field(B_Field("indicatieLeveringCompleet", "TEXT",
+                          "IndicatieLeveringCompleet"))
+    obj.add_field(B_Field("geometry", "POLYGON", "Geometrie",
+                          to_object=gml.Polygon))
     obj.add_tags_to_process()
     return obj
 
@@ -733,16 +752,6 @@ def adres():
     obj.add_field(B_Field("landcode", "TEXT", "Landcode"))
     obj.add_tags_to_process()
     return obj
-
-def graafpolygoon():
-    obj = B_Object("Graafpolygoon")
-    obj.add_field(B_Field("id", "TEXT", "Identificatie",
-                          to_object=IMKL_Id, is_key_field=True))
-    obj.add_field(B_Field("geometry", "POLYGON", "Geometrie",
-                          to_object=gml.Polygon))
-    obj.add_tags_to_process()
-    return obj
-
 
 def utiliteitsnet():
     obj = B_Object("utiliteitsnet")
