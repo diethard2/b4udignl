@@ -247,6 +247,7 @@ class Doc():
         self._set_geometry_pipes()
         self._set_short_values_from_url()
         self._set_themes_imkl_objects()
+        self._fill_graaf_polygoon()
 
     def _fill_keyed_imkl_set(self):
         for imkl_set in self.imkls.values():
@@ -295,7 +296,34 @@ class Doc():
                     network = self.imkls_on_id[network_id]
                     theme = network.field("thema").value
                 theme_field.value = theme
-        
+
+    def _fill_graaf_polygoon(self):
+        graafpolygoon = self.imkls[imkl.GRAAFPOLYGOON][0]
+        aanvraag = self.imkls[imkl.GEBIEDSINFORMATIEAANVRAAG][0]
+        levering = self.imkls[imkl.GEBIEDSINFORMATIELEVERING][0]
+        field_names = ("registratiedatum", "vervaldatum",
+                       "ordernummer","positienummer","klicnummer",
+                       "referentie","aanvraagsoort","aanvraagdatum",
+                       "soortWerkzaamheden","locatieWerkzaamheden",
+                       "startDatum","eindDatum")
+        self._copy_field_values_from_to_imkl(aanvraag,graafpolygoon,field_names)
+        field_names = ("leveringsvolgnummer","datumLeveringSamengesteld",
+                       "indicatieLeveringCompleet")
+        self._copy_field_values_from_to_imkl(levering,graafpolygoon,field_names)        
+ 
+    def _copy_field_values_from_to_imkl(self ,from_imkl_object, to_imkl_object, field_names):
+        '''copies field values from imkl_object to imkl_object'''
+        for field_name in field_names:
+            self._copy_value_from_to_imkl(from_imkl_object, to_imkl_object,
+                                          field_name)
+            
+    def _copy_value_from_to_imkl(self, from_imkl_object, to_imkl_object, field_name):
+        '''copies field value from imkl_object to imkl_object'''
+        from_field = from_imkl_object.field(field_name)
+        to_field = to_imkl_object.field(field_name)
+        if from_field is not None and to_field is not None:
+            value = from_imkl_object.field(field_name).value
+            to_field.value = from_field.value
 
     def _get_last_value_from_url(self, url):
         value = url
