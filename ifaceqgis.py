@@ -77,10 +77,12 @@ class Iface:
             registry = core.QgsMapLayerRegistry.instance()
             registry.addMapLayer(layer)
             layer = registry.mapLayersByName(wvLayer.layerName)
-            self.styleLayer(layer[0])
+            layer = layer[0]
+            self.styleLayer(layer)
         else:
             layerFile = wvLayer.layerFile
             layer = self.iface.addRasterLayer(layerFile)
+        self.iface.legendInterface().setLayerExpanded(layer, False)
         return layer
 
     def styleLayer(self, a_layer):
