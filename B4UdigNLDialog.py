@@ -17,6 +17,11 @@ email                : diethard.jansen at gmail.com
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+ Include following statement in ui_B4UdigNL.py after updating with designer
+ from qgis.gui import QgsColorButton
+
+ and remove last line:
+ from qgscolorbutton import QgsColorButton
 """
 
 from PyQt4.QtCore import QSettings, SIGNAL, pyqtSignature
@@ -44,6 +49,7 @@ class B4UdigNLDialog(QDialog):
                   "elec_low": "laagspanning",
                   "elec_mid": "middenspanning",
                   "elec_high": "hoogspanning",
+                  "elec_land": "landelijk hoogspanningsnet",
                   "sewer_free": "riool vrijverval",
                   "sewer_pressure": "riool onder druk",
                   "heat": "warmte",
@@ -117,7 +123,7 @@ class B4UdigNLDialog(QDialog):
                          l_names["elec_low"]: l_ui.checkBoxElec_low,
                          l_names["elec_mid"]: l_ui.checkBoxElec_mid,
                          l_names["elec_high"]: l_ui.checkBoxElec_high,
-                         l_names["sewer_free"]: l_ui.checkBoxSewer_free,
+                         l_names["elec_land"]: l_ui.checkBoxElec_land,                        l_names["sewer_free"]: l_ui.checkBoxSewer_free,
                          l_names["sewer_pressure"]: l_ui.checkBoxSewer_pressure,
                          l_names["heat"]: l_ui.checkBoxHeat,
                          l_names["water"]: l_ui.checkBoxWater,
@@ -128,7 +134,6 @@ class B4UdigNLDialog(QDialog):
                          l_names["Maatvoering"]: l_ui.dimensioningCheckBox,
                          l_names["Ligging"]: l_ui.locationCheckBox,
                          l_names["Topo"]: l_ui.topoCheckBox}
-
             
     def updateUi(self):
         """use to translate/update visibility of buttons"""
@@ -165,6 +170,9 @@ class B4UdigNLDialog(QDialog):
         self.connect(self.ui.checkBoxElec_high,
                      SIGNAL("stateChanged(int)"),
                      self._checkBoxElecHighStateChanged)
+        self.connect(self.ui.checkBoxElec_land,
+                     SIGNAL("stateChanged(int)"),
+                     self._checkBoxElecLandStateChanged)
         self.connect(self.ui.checkBoxSewer_free,
                      SIGNAL("stateChanged(int)"),
                      self._checkBoxSewerFreeStateChanged)
@@ -198,6 +206,12 @@ class B4UdigNLDialog(QDialog):
         self.connect(self.ui.topoCheckBox,
                      SIGNAL("stateChanged(int)"),
                      self._topoCheckBoxStateChanged)
+        self.connect(self.ui.rasterCheckBox,
+                     SIGNAL("stateChanged(int)"),
+                     self._rasterCheckBoxStateChanged)
+        self.connect(self.ui.vectorCheckBox,
+                     SIGNAL("stateChanged(int)"),
+                     self._vectorCheckBoxStateChanged)
         self.connect(self.__iface,
                      SIGNAL("projectRead()"),
                      self.restoreMessages)
@@ -219,6 +233,8 @@ class B4UdigNLDialog(QDialog):
         self._themeStateChanged(self.themeNames["elec_mid"], p_state)
     def _checkBoxElecHighStateChanged(self, p_state):
         self._themeStateChanged(self.themeNames["elec_high"], p_state)
+    def _checkBoxElecLandStateChanged(self, p_state):
+        self._themeStateChanged(self.themeNames["elec_land"], p_state)
     def _checkBoxSewerFreeStateChanged(self, p_state):
         self._themeStateChanged(self.themeNames["sewer_free"], p_state)
     def _checkBoxSewerPressureStateChanged(self, p_state):
@@ -241,6 +257,12 @@ class B4UdigNLDialog(QDialog):
         self._themeStateChanged(self.themeNames["Ligging"], p_state)
     def _topoCheckBoxStateChanged(self, p_state):
         self._themeStateChanged(self.themeNames["Topo"], p_state)
+
+    def _rasterCheckBoxStateChanged(self, p_state):
+        pass
+
+    def _vectorCheckBoxStateChanged(self, p_state):
+        pass
 
     def _themeStateChanged(self, p_theme, p_state):
         """
@@ -278,6 +300,8 @@ class B4UdigNLDialog(QDialog):
             l_ui.openDocButton.setEnabled(False)
             l_ui.saveButton.setEnabled(False)
             l_ui.refreshButton.setEnabled(False)
+            l_ui.rasterCheckBox.setEnabled(False)
+            l_ui.vectorCheckBox.setEnabled(False)
         else:
             l_ui.gotoButton.setEnabled(True)
             l_ui.bestScaleButton.setEnabled(True)
@@ -285,9 +309,22 @@ class B4UdigNLDialog(QDialog):
             l_ui.openDocButton.setEnabled(True)
             l_ui.saveButton.setEnabled(True)
             l_ui.refreshButton.setEnabled(True)
+            # storage_version indicates if an imkl v1 or v2 is processed
+            # imkl v1 does not have vectors, so do not enable the buttons
+            # there are only rasters
+            storage_version = self.__wv._storage_version_to_use()
+            if storage_version == 2:
+                l_ui.rasterCheckBox.setEnabled(True)
+                l_ui.vectorCheckBox.setEnabled(True)
+            elif storage_version == 1:
+                l_ui.rasterCheckBox.setEnabled(False)
+                l_ui.vectorCheckBox.setEnabled(False)
+                l_ui.rasterCheckBox.setCheckState(1)
+                l_ui.vectorCheckBox.setCheckState(0)
         self._setVisibilitiesThemes()
 
     def _setVisibilitiesThemes(self):
+        l_ui = self.ui
         if self.__wv is None:
             for i_checkbox in self.__themes.itervalues():
                 i_checkbox.setEnabled(False)
@@ -502,6 +539,7 @@ class B4UdigNLDialog(QDialog):
         l_doc.loadLayers()
         l_iface.doRendering(False)
         l_iface.refreshMap()
+        l_iface.refreshLegend()
         self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
 

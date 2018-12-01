@@ -41,7 +41,7 @@ class Layer:
         self.__file = raster_file_name
         self.__layer = None # reference to realised layer in GIS
         self.__layerId = None # reference to layerID in GIS
-        self.__visible = False # state in GIS
+        self.__themes_visible = {} # visibility state of themes in layers
         self.__layerName = None # holds layername
         self.fields = []
         self.features = []
@@ -95,11 +95,11 @@ class Layer:
 
     layerId = property(fget=_layerId)
 
-    def _visible(self):
-        """return private attribute visible"""
-        return self.__visible
+    def _themes_visible(self):
+        """returns private attribute themes_visible"""
+        return self.__themes_visible
 
-    visible = property(fget=_visible)
+    themes_visible = property(fget=_themes_visible)
 
 # special methods of class Layer
     def __repr__(self):
@@ -185,28 +185,65 @@ class Layer:
         l_layer.__visible = self.__visible
         l_layer.__layerName = self.__layerName
         return l_layer
+
+    def addVisibility(self, theme_name):
+        if not self.themes_visible.has_key(theme_name):
+            self.themes_visible[theme_name] = False
         
-    def setVisibility(self, pVisibility):
+    def setVisibility(self, pVisibility, theme_name):
         """
         p_visibility = boolean used to set this layer 
         change visibility in set of layers
         """
+        if not self.themes_visible.has_key(theme_name):
+            return
         iface = self.owner.iface
         l_visible = self.isVisible()
         if iface != None and l_visible != pVisibility:
-            iface.setVisibilityForLayer(self, pVisibility)
-            self.__visible = pVisibility
+            iface.setVisibilityForLayer(self, pVisibility, theme_name)
+            self.themes_visible[theme_name] = pVisibility
 
-    def isVisible(self):
+    def isVisible(self, theme_name):
         """
         Checks if layer is visible, sets private __visible
         and returns boolean layer is visible or not
         """
+        visible = None
         iface = self.owner.iface
         if iface != None:
-            l_visible = iface.visibilityForLayer(self)
-            self__visible = l_visible
-        return l_visible
+            if theme_name is None:
+                # check all themes!
+                for theme_name in self.themes_visible.keys():
+                    visible = iface.visibilityForLayer(self, theme_name)
+                    self.themes_visible[theme_name] = visible
+                visible = self._all_themes_visible()
+            else:
+                visible = iface.visibilityForLayer(self, theme_name)
+                self.themes_visible[theme_name] = visible
+        return visible
+
+    def visible(self, theme_name):
+        """
+        return true if all values of cached theme_visibilities are true,
+        otherwise false.
+        """
+        visible = None
+        if theme_name is None:
+            visible = self._all_themes_visible()
+        else:
+            visible = self.themes_visible[theme_name]
+        return visible
+
+    def _all_themes_visible(self):
+        visible = None
+        n_themes = len(self.themes_visible)
+        values_visible = [value for value in self.themes_visible.values()]
+        n_visible = values_visible.count(True)
+        if n_visible == 0:
+            visible = False
+        elif n_visible == n_themes:
+            visible = True
+        return visible
 
     def goto(self):
         """
@@ -462,15 +499,25 @@ class Theme:
         of layers belonging to theme is actually checked otherwise
         recorded visible state of layers is used.
         """
-        l_len = len(self.layers)
+##        l_len = len(self.layers)
+        l_len = 0
         l_nVisible = 0
         l_visible = 0
         # using True == 1 for addition!
+        theme_name = self.name
+        # when it is a group name, check if layer is completely visible
+        if theme_name in Layer.layerGroupNames.keys():
+            theme_name = None
+        is_visible = None 
         for i_layer in self.layers:
             if p_actual:
-                l_nVisible += i_layer.isVisible()
+                is_visible = i_layer.isVisible(theme_name)
             else:
-                l_nVisible += i_layer.visible
+                is_visible = i_layer.visible(theme_name)
+            if is_visible is None:
+                continue
+                l_len += 1
+                l_nVisible += is_visible
         # now check result!!
         if l_nVisible == 0:
             l_visible = 0
@@ -490,7 +537,7 @@ class Theme:
         if iface != None:
             iface.doRendering(False)
         for i_layer in self.layers:
-            i_layer.setVisibility(p_visibility)
+            i_layer.setVisibility(p_visibility, self)
         if iface != None:
             iface.doRendering()
             iface.refreshMap()

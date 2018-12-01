@@ -58,6 +58,12 @@ class Iface:
         mapCanvas = self.iface.mapCanvas()
         mapCanvas.refresh()
 
+    def refreshLegend(self):
+        """refreshes legend"""
+        legend = self.iface.legendInterface()
+        for layer in self.loadedLayers().values():
+            legend.refreshLayerSymbology(layer)
+
     def loadedLayers(self):
         """return dictionary where key is layer id and element is layer"""
         #dicLayers --> key = LayerId, Value = Layer
@@ -102,21 +108,58 @@ class Iface:
                 break
         return layerId
 
-    def setVisibilityForLayer(self, wvLayer, visibility):
+    def setVisibilityForLayer(self, wvLayer, visibility, theme = None):
         """change the visibility for one layer"""
         l_legend = self.iface.legendInterface()
         # check current visibility
         l_layer = wvLayer.layer
-        if l_legend.isLayerVisible(l_layer) != visibility:
-            # different so set visibility 
-            l_legend.setLayerVisible(l_layer, visibility)
+        if theme is None:
+            if l_legend.isLayerVisible(l_layer) != visibility:
+                # different so set visibility 
+                l_legend.setLayerVisible(l_layer, visibility)
+        else:
+            renderer = l_layer.rendererV2()
+            rules = renderer.rootRule().children()
+            for rule in rules:
+                expression = rule.filterExpression()
+                if not 'NOT'in expression and theme in expression:
+                    if rule.checkState() != visibility:
+                        rule.setCheckState(visibility)
 
-    def visibilityForLayer(self, wvLayer):
+    def visibilityForLayer(self, wvLayer, theme = None):
         """returns boolean, true if layer is visible false if not"""
-        l_legend = self.iface.legendInterface()
+        visibility = None
         # check current visibility
-        l_layer = wvLayer.layer
-        return l_legend.isLayerVisible(l_layer)
+        layer = wvLayer.layer
+        if theme is None or (not wvLayer.is_vector()):
+            legend = self.iface.legendInterface()
+            visibility = legend.isLayerVisible(layer)
+        else:
+            visibility = self._visibility_for_layer_theme(layer, theme)
+        return visibility
+
+    def _visibility_for_layer_theme(self, layer, theme):
+        '''check visibility of all themes in layer.
+        If all are visible: return True
+        If none are visible: return False
+        If some are visible: return None
+        '''
+        renderer = layer.rendererV2()
+        rules = renderer.rootRule().children()
+        visibilies = []
+        for rule in rules:
+            expression = rule.filterExpression()
+            if not 'NOT'in expression and theme in expression:
+                visibilies.append(rule.checkState())
+        visibility = None
+        for v in visibilies:
+            if visibility is None:
+                visibility = v
+            else:
+                if visibility is not v:
+                    visibility = None
+                    break
+        return visibility
 
     def gotoLayer(self, wvLayer):
         """ goto extent of given layer """

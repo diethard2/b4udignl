@@ -299,6 +299,7 @@ class Storage1(Storage):
                 layer_file = imkl_layer.field('bestandsnaam').value
                 layer_file = os.path.join(self.path, layer_file)
                 layer = Layer(self, raster_file_name = layer_file)
+                layer.addVisibility(theme.name)
                 theme.layers.append(layer)
 
     def _set_theme_docs(self, theme, imkl_theme):
@@ -347,6 +348,7 @@ class Storage1(Storage):
         kadaster_png =  'GB_' + self.klicnummer + '.png'
         file_png = os.path.join(self.path, kadaster_png)
         layer = Layer(self, file_png)
+        layer.addVisibility('Topo')
         layers.append(layer)
         self._extend_layers(layers)
                 
@@ -512,6 +514,7 @@ class Storage2(Storage):
         file_location = imkl_object.field("bestandlocatie").value
         layer_file = os.path.join(self.path, file_location)
         layer = Layer(self, layer_file)
+        layer.addVisibility(theme.name)
         theme.layers.append(layer)
                     
     def _add_doc_to_theme(self, theme, imkl_object):
@@ -534,6 +537,9 @@ class Storage2(Storage):
         layer = self.layers[imkl_object.name]
         feature = QgsFeature()
         fields = imkl_object.attribute_fields()
+        theme_field = imkl_object.field("thema")
+        if theme_field is not None:
+            layer.addVisibility(theme_field.value)        
         geom_field = imkl_object.geometry_field()
         if geom_field.value is not None:
             try:
@@ -550,6 +556,9 @@ class Storage2(Storage):
         layer.layerName = name
         vector_type = imkl_object.geometry_field().type
         layer.vectorType = vector_type
+        theme_field = imkl_object.field("thema")
+        if theme_field is not None:
+            layer.addVisibility(theme_field.value)
         uri = layer.qgisVectorType() + '?crs=epsg:28992'
         layer.layer = QgsVectorLayer(uri, name, "memory")
         # now insert the fields..
