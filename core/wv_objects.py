@@ -171,7 +171,7 @@ class Layer:
         iface = self.owner.iface
         if iface != None:
             self.__layer = iface.loadLayer(self)
-            self.__layerId = unicode(iface.getLayerIdForLayer(self))
+            self.__layerId = unicode(self.__layer.id())
             self.__visible = True
 
     def pickle(self):

@@ -41,9 +41,9 @@ class Iface:
     def visibleLayers(self):
         """return list of current visible layer Ids"""
         mapCanvas = self.iface.mapCanvas()
-        mapRenderer = mapCanvas.mapRenderer()
-        visLayerIds = mapRenderer.layerSet()
-        return visLayerIds
+        mapSettings = mapCanvas.Settings()
+        layerIds = mapSettings.layers()
+        return layerIds
 
     def doRendering(self, p_render=True):
         """
@@ -98,16 +98,6 @@ class Iface:
             a_layer.loadNamedStyle(qml_file)
         return a_layer
 
-    def getLayerIdForLayer(self, wvLayer):
-        """get LayerId for given wv.Layer"""
-        layerId = None
-        lyrs = self.loadedLayers()
-        for i_id, i_lyr in lyrs.iteritems():
-            if i_lyr == wvLayer.layer:
-                layerId = i_id
-                break
-        return layerId
-
     def setVisibilityForLayer(self, wvLayer, visibility, theme = None):
         """change the visibility for one layer"""
         l_legend = self.iface.legendInterface()
@@ -129,14 +119,24 @@ class Iface:
     def visibilityForLayer(self, wvLayer, theme = None):
         """returns boolean, true if layer is visible false if not"""
         visibility = None
-        # check current visibility
         layer = wvLayer.layer
-        if theme is None or (not wvLayer.is_vector()):
-            legend = self.iface.legendInterface()
-            visibility = legend.isLayerVisible(layer)
-        else:
+        # check current visibility
+        if wvLayer.is_vector() and theme is not None:
             visibility = self._visibility_for_layer_theme(layer, theme)
+        else:
+            visibility = self.isLayerVisible(layer)
         return visibility
+
+    def isLayerVisible(self, layer):
+        root_group = iface.layerTreeView().layerTreeModel().rootGroup()
+        tree_layer = root_group.findLayer(layer.id())
+        value = tree_layer.visible()
+        visible = None
+        if value == 2:
+            visible = True
+        elif value == 0:
+            visible = False
+        return visible
 
     def _visibility_for_layer_theme(self, layer, theme):
         '''check visibility of all themes in layer.

@@ -78,8 +78,15 @@ class B4UdigNLDialog(QDialog):
         self._themes2checkboxes()
         self.updateUi()
         self.makeConnections()
-        self._setUnitToMeters()
         self.restoreMessages()
+
+    def doc(self):
+        return self.__wv
+
+    def _iface(self):
+        doc = self.doc()
+        if doc is not None:
+            return doc.iface
         
     def layerGroupNames(self):
         """returns dictionary with legend groups"""
@@ -292,45 +299,46 @@ class B4UdigNLDialog(QDialog):
             
     def _setVisibilities(self):
         """ update visibilities of buttons"""
-        l_ui = self.ui
-        if self.__wv is None:
-            l_ui.gotoButton.setEnabled(False)
-            l_ui.bestScaleButton.setEnabled(False)
-            l_ui.removeMsgButton.setEnabled(False)
-            l_ui.openDocButton.setEnabled(False)
-            l_ui.saveButton.setEnabled(False)
-            l_ui.refreshButton.setEnabled(False)
-            l_ui.rasterCheckBox.setEnabled(False)
-            l_ui.vectorCheckBox.setEnabled(False)
+        ui = self.ui
+        doc = self.doc()
+        if self.doc() is None:
+            ui.gotoButton.setEnabled(False)
+            ui.bestScaleButton.setEnabled(False)
+            ui.removeMsgButton.setEnabled(False)
+            ui.openDocButton.setEnabled(False)
+            ui.saveButton.setEnabled(False)
+            ui.refreshButton.setEnabled(False)
+            ui.rasterCheckBox.setEnabled(False)
+            ui.vectorCheckBox.setEnabled(False)
         else:
-            l_ui.gotoButton.setEnabled(True)
-            l_ui.bestScaleButton.setEnabled(True)
-            l_ui.removeMsgButton.setEnabled(True)
-            l_ui.openDocButton.setEnabled(True)
-            l_ui.saveButton.setEnabled(True)
-            l_ui.refreshButton.setEnabled(True)
+            ui.gotoButton.setEnabled(True)
+            ui.bestScaleButton.setEnabled(True)
+            ui.removeMsgButton.setEnabled(True)
+            ui.openDocButton.setEnabled(True)
+            ui.saveButton.setEnabled(True)
+            ui.refreshButton.setEnabled(True)
             # storage_version indicates if an imkl v1 or v2 is processed
             # imkl v1 does not have vectors, so do not enable the buttons
             # there are only rasters
-            storage_version = self.__wv._storage_version_to_use()
+            storage_version = doc._storage_version_to_use()
             if storage_version == 2:
-                l_ui.rasterCheckBox.setEnabled(True)
-                l_ui.vectorCheckBox.setEnabled(True)
+                ui.rasterCheckBox.setEnabled(True)
+                ui.vectorCheckBox.setEnabled(True)
             elif storage_version == 1:
-                l_ui.rasterCheckBox.setEnabled(False)
-                l_ui.vectorCheckBox.setEnabled(False)
-                l_ui.rasterCheckBox.setCheckState(1)
-                l_ui.vectorCheckBox.setCheckState(0)
+                ui.rasterCheckBox.setEnabled(False)
+                ui.vectorCheckBox.setEnabled(False)
+                ui.rasterCheckBox.setCheckState(1)
+                ui.vectorCheckBox.setCheckState(0)
         self._setVisibilitiesThemes()
 
     def _setVisibilitiesThemes(self):
-        l_ui = self.ui
-        if self.__wv is None:
+        doc = self.doc()
+        if doc is None:
             for i_checkbox in self.__themes.itervalues():
                 i_checkbox.setEnabled(False)
         else:
             for i_theme, i_checkbox in self.__themes.iteritems():
-                if self.__wv.themes.has_key(i_theme):
+                if doc.themes.has_key(i_theme):
                     i_checkbox.setEnabled(True)
                 else:
                     i_checkbox.setEnabled(False)
@@ -341,14 +349,14 @@ class B4UdigNLDialog(QDialog):
         When p_actual is used current state is checked
         which is slower. 
         """
-        l_doc = self.__wv
+        doc = self.doc()
         for i_theme, i_checkbox in self.__themes.iteritems():
-            if l_doc is None:
+            if doc is None:
                 i_checkbox.setCheckState(0)
             else:
                 l_theme = None
-                if l_doc.themes.has_key(i_theme):
-                    l_theme = l_doc.themes[i_theme]
+                if doc.themes.has_key(i_theme):
+                    l_theme = doc.themes[i_theme]
                 if l_theme is not None:
                     l_value = l_theme.checkVisible(p_actual)
                     i_checkbox.setCheckState(l_value)
@@ -471,8 +479,9 @@ class B4UdigNLDialog(QDialog):
     @pyqtSignature("")
     def on_gotoButton_clicked(self):
         """goto extent of map current message"""
-        if self.__wv != None:
-            self.__wv.goto()
+        doc = self.doc()
+        if doc is not None:
+            doc.goto()
 
     @pyqtSignature("")
     def on_removeMsgButton_clicked(self):
@@ -508,8 +517,9 @@ class B4UdigNLDialog(QDialog):
     @pyqtSignature("")
     def on_bestScaleButton_clicked(self):
         """set best scale for current message"""
-        if self.__wv != None:
-            self.__wv.bestScale()
+        doc = self.doc()
+        if doc is not None:
+            doc.bestScale()
 
     @pyqtSignature("")
     def on_optionMsgDirButton_clicked(self):
@@ -526,20 +536,20 @@ class B4UdigNLDialog(QDialog):
             self.ui.textEditDirPreffered.setText(l_dir_path)
 
     def _loadMsg(self):
-        l_doc = self._openMsg(unicode(self.__dir))
-        if l_doc is None:
+        doc = self._openMsg(unicode(self.__dir))
+        if doc is None:
             return
-        l_doc.iface = ifaceqgis.Iface(self.__iface)
-        self.__wv = l_doc
-        self.__wvs.append(l_doc)
+        doc.iface = ifaceqgis.Iface(self.__iface)
+        self.__wv = doc
+        self.__wvs.append(doc)
         self._populateMsgList()
         self._populateTree()
-        l_iface = l_doc.iface
-        l_iface.doRendering(False)
-        l_doc.loadLayers()
-        l_iface.doRendering(False)
-        l_iface.refreshMap()
-        l_iface.refreshLegend()
+        iface = doc.iface
+        iface.doRendering(False)
+        doc.loadLayers()
+        iface.doRendering(False)
+        iface.refreshMap()
+        iface.refreshLegend()
         self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
 
@@ -550,11 +560,11 @@ class B4UdigNLDialog(QDialog):
         found in given path.
         """
         try:
-            l_doc = wv.Doc(p_path)
+            doc = wv.Doc(p_path)
         except IOError:
             self._displayWrongMsg()
             return None
-        return l_doc
+        return doc
 
     def _displayWrongMsg(self):
         """
@@ -569,7 +579,8 @@ class B4UdigNLDialog(QDialog):
     def _openPdf(self, pdfItem):
         """use name of PDF to get right pdf and open it"""
         l_pdfName = unicode(pdfItem.text(0))
-        for i_pdf in self.__wv.pdfFiles:
+        doc = self.doc()
+        for i_pdf in doc.pdfFiles:
             if i_pdf.name == l_pdfName:
                 i_pdf.openPdf()
                 break
@@ -598,12 +609,13 @@ class B4UdigNLDialog(QDialog):
         l_ui = self.ui
         l_tree = l_ui.treeWidget
         l_tree.clear()
-        if self.__wv is None:
+        doc = self.doc()
+        if doc is None:
             return
         l_tree.setColumnCount(1)
         l_tree.setItemsExpandable(True)
         parentTypePdf = {}
-        for i_pdf in self.__wv.pdfFiles:
+        for i_pdf in doc.pdfFiles:
             parent = parentTypePdf.get(i_pdf.type)
             if parent is None:
                 parent = QTreeWidgetItem(l_tree,[i_pdf.type])
@@ -614,9 +626,9 @@ class B4UdigNLDialog(QDialog):
 
     def _changeDoc(self, p_currentItem):
         """When user selects other message change other plugin elements as well"""
-        l_doc = self._selectedMsg(p_currentItem)
-        if l_doc != None:
-            self.__wv = l_doc
+        doc = self._selectedMsg(p_currentItem)
+        if doc != None:
+            self.__wv = doc
             self._populateTree()
             self._setStateOfVisibilitiesThemes(True)
             self._setVisibilitiesThemes()
@@ -635,17 +647,6 @@ class B4UdigNLDialog(QDialog):
         starts the help manual which resides behind the help button
         """
         qgis.utils.showPluginHelp()
-
-    def _setUnitToMeters(self):
-        """
-        set the units to meters when this plugin is activated.
-        We do not want to bother user with setting mapunits from
-        degrees to meters everytime. Now user can start to measure
-        straight away distances in meters!
-        """
-        mapCanvas = self.__iface.mapCanvas()
-        mapRenderer = mapCanvas.mapRenderer()
-        mapRenderer.setMapUnits(0)
 
     def storeDialogPosition(self):
         """
