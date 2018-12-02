@@ -100,21 +100,23 @@ class Iface:
 
     def setVisibilityForLayer(self, wvLayer, visibility, theme = None):
         """change the visibility for one layer"""
-        l_legend = self.iface.legendInterface()
         # check current visibility
-        l_layer = wvLayer.layer
-        if theme is None:
-            if l_legend.isLayerVisible(l_layer) != visibility:
-                # different so set visibility 
-                l_legend.setLayerVisible(l_layer, visibility)
-        else:
-            renderer = l_layer.rendererV2()
-            rules = renderer.rootRule().children()
-            for rule in rules:
-                expression = rule.filterExpression()
-                if not 'NOT'in expression and theme in expression:
-                    if rule.checkState() != visibility:
-                        rule.setCheckState(visibility)
+        layer = wvLayer.layer
+        values_visibility = {True: 2,
+                             False: 0,
+                             None: 1}
+        value_visibility = values_visibility[visibility]
+        if not wvLayer.is_vector() or theme is None:
+            if self.isLayerVisible(layer) != visibility:
+                # different so set visibility
+                value = values_visibility[visibility]
+                self.setLayerVisible(layer, value_visibility)
+            else:
+                renderer = layer.rendererV2()
+                if renderer.isInstance(core.QgsRuleBasedRendererV2):
+                    visibility = self.set_visibility_rules_symbol(layer, theme)
+                elif renderer.isInstance(core.QgsSingleSymbolRendererV2):
+                    self.setLayerVisible(layer, value_visibility)
 
     def visibilityForLayer(self, wvLayer, theme = None):
         """returns boolean, true if layer is visible false if not"""
@@ -128,15 +130,17 @@ class Iface:
         return visibility
 
     def isLayerVisible(self, layer):
-        root_group = iface.layerTreeView().layerTreeModel().rootGroup()
-        tree_layer = root_group.findLayer(layer.id())
-        value = tree_layer.visible()
-        visible = None
-        if value == 2:
-            visible = True
-        elif value == 0:
-            visible = False
-        return visible
+        tree_layer = self._treeLayer(layer)
+        value = tree_layer.isVisible()
+        return value
+
+    def setLayerVisible(self, layer, visibility):
+        tree_layer = self._treeLayer(layer)
+        tree_layer.set_visible(visibility)
+
+    def _treeLayer(self, layer):
+        root_group = self.iface.layerTreeView().layerTreeModel().rootGroup()
+        return root_group.findLayer(layer.id())      
 
     def _visibility_for_layer_theme(self, layer, theme):
         '''check visibility of all themes in layer.
@@ -144,6 +148,14 @@ class Iface:
         If none are visible: return False
         If some are visible: return None
         '''
+        renderer = layer.rendererV2()
+        if renderer.isInstance(core.QgsRuleBasedRendererV2):
+            visibility = self.visibility_from_rules_symbol(layer, theme)
+        elif renderer.isInstance(core.QgsSingleSymbolRendererV2):
+            visibility = self.isLayerVisible(layer)
+        return visibility
+
+    def _visibility_from_rules_symbol(self, layer, theme):
         renderer = layer.rendererV2()
         rules = renderer.rootRule().children()
         visibilies = []
@@ -161,6 +173,15 @@ class Iface:
                     break
         return visibility
 
+    def _set_visibility_rules_symbol(self, layer, theme, visibility):
+        renderer = layer.rendererV2()
+        rules = renderer.rootRule().children()
+        for rule in rules:
+            expression = rule.filterExpression()
+            if not 'NOT'in expression and theme in expression:
+                if rule.checkState() != visibility:
+                    rule.setCheckState(visibility)
+        
     def gotoLayer(self, wvLayer):
         """ goto extent of given layer """
         lyr = wvLayer.layer

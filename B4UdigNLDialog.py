@@ -281,21 +281,8 @@ class B4UdigNLDialog(QDialog):
         if l_doc is not None:
             if l_doc.themes.has_key(p_theme):
                 l_theme = l_doc.themes[p_theme]
-                if p_state==0:
-                    l_theme.setVisibility(False)
-                    self._setStateOfVisibilitiesThemes(True)
-                elif p_state==1:
-                    #check if this is state is changed from
-                    #setting a layer in legend on/of if the
-                    #actual state of this theme is 0 then change
-                    #state of checkbox to 2! Makes behaviour of
-                    #theme checkboxes identical to layergroups checkboxes
-                    l_value = l_theme.checkVisible(True)
-                    if l_value == 0:
-                        self.__themes[p_theme].setCheckState(2)
-                elif p_state==2:
-                    l_theme.setVisibility(True)
-                    self._setStateOfVisibilitiesThemes(True)
+                l_theme.setVisibility(p_state)
+                self._setStateOfVisibilitiesThemes(p_state)
             
     def _setVisibilities(self):
         """ update visibilities of buttons"""
@@ -354,14 +341,12 @@ class B4UdigNLDialog(QDialog):
             if doc is None:
                 i_checkbox.setCheckState(0)
             else:
-                l_theme = None
+                theme = None
                 if doc.themes.has_key(i_theme):
-                    l_theme = doc.themes[i_theme]
-                if l_theme is not None:
-                    l_value = l_theme.checkVisible(p_actual)
-                    i_checkbox.setCheckState(l_value)
-                else:
-                    i_checkbox.setCheckState(0)
+                    theme = doc.themes[i_theme]
+                    if theme is not None:
+                        state = theme.checkVisible(p_actual)
+                        i_checkbox.setCheckState(state)
  
     @pyqtSignature("")
     def on_openMsgButton_clicked(self):
@@ -545,13 +530,14 @@ class B4UdigNLDialog(QDialog):
         self._populateMsgList()
         self._populateTree()
         iface = doc.iface
-        iface.doRendering(False)
+##        iface.doRendering(False)
         doc.loadLayers()
-        iface.doRendering(False)
-        iface.refreshMap()
+        self._displayThemesVisibilyMsg()
         iface.refreshLegend()
         self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
+##        iface.doRendering(True)
+##        iface.refreshMap()
 
     def _openMsg(self, p_path):
         """
@@ -575,6 +561,19 @@ class B4UdigNLDialog(QDialog):
         l_errorMsg = self.tr("Geselecteerde folder bevat geen goed\n\
         KLIC bericht of kan niet worden geopend!")
         QMessageBox.warning(self, l_titleMsg, l_errorMsg)
+
+    def _displayThemesVisibilyMsg(self):
+        title = u"ThemesVisibilities"
+        msg = u"Toon Visibilities Themes\n"
+        doc = self.doc()
+        for i_theme in self.__themes.keys():
+            theme = None
+            if doc.themes.has_key(i_theme):
+                theme = doc.themes[i_theme]
+                visible = theme.checkVisible(True)
+                theme_str = '%s: %i\n' % (str(i_theme), visible)
+                msg += theme_str
+        QMessageBox.information(self, title, msg)        
 
     def _openPdf(self, pdfItem):
         """use name of PDF to get right pdf and open it"""

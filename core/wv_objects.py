@@ -188,9 +188,9 @@ class Layer:
 
     def addVisibility(self, theme_name):
         if not self.themes_visible.has_key(theme_name):
-            self.themes_visible[theme_name] = False
+            self.themes_visible[theme_name] = 2
         
-    def setVisibility(self, pVisibility, theme_name):
+    def setVisibility(self, visibility, theme_name):
         """
         p_visibility = boolean used to set this layer 
         change visibility in set of layers
@@ -198,10 +198,10 @@ class Layer:
         if not self.themes_visible.has_key(theme_name):
             return
         iface = self.owner.iface
-        l_visible = self.isVisible()
-        if iface != None and l_visible != pVisibility:
-            iface.setVisibilityForLayer(self, pVisibility, theme_name)
-            self.themes_visible[theme_name] = pVisibility
+        visible = self.isVisible()
+        if iface != None and visible != visibility:
+            iface.setVisibilityForLayer(self, visibility, theme_name)
+            self.themes_visible[theme_name] = visibility
 
     def isVisible(self, theme_name):
         """
@@ -224,8 +224,8 @@ class Layer:
 
     def visible(self, theme_name):
         """
-        return true if all values of cached theme_visibilities are true,
-        otherwise false.
+        return 2 (all visible) if all values of cached theme_visibilities
+        are also 2, 0 is all not visible and 1 when some are visible.
         """
         visible = None
         if theme_name is None:
@@ -237,12 +237,14 @@ class Layer:
     def _all_themes_visible(self):
         visible = None
         n_themes = len(self.themes_visible)
-        values_visible = [value for value in self.themes_visible.values()]
-        n_visible = values_visible.count(True)
-        if n_visible == 0:
-            visible = False
-        elif n_visible == n_themes:
-            visible = True
+        value_visible = 0
+        for value in self.themes_visible.values():
+            value_visible += value_visible
+        if value_visible == 0:
+            visible = 0
+        else:
+            if n_themes > 0:
+                visible = visible / n_themes
         return visible
 
     def goto(self):
@@ -448,7 +450,6 @@ class Person:
         self.email = imkl_object.field("email").value
 
 class Theme:
-    visibilities = ("None", "Some", "All")
     
     def __init__(self, p_owner, p_name=None):
         """Theme presenting a kind of network, like water or datatransport
@@ -468,7 +469,7 @@ class Theme:
 
     def _visible(self):
         """return private attribute visible"""
-        return self.visibilities[self.__visible]
+        return self.__visible
 
     visible = property(fget=_visible)
 
@@ -499,7 +500,6 @@ class Theme:
         of layers belonging to theme is actually checked otherwise
         recorded visible state of layers is used.
         """
-##        l_len = len(self.layers)
         l_len = 0
         l_nVisible = 0
         l_visible = 0
@@ -521,11 +521,9 @@ class Theme:
         # now check result!!
         if l_nVisible == 0:
             l_visible = 0
-        elif l_nVisible == l_len:
-            l_visible = 2
         else:
-            l_visible = 1
-        self.__visible = l_visible    
+            l_visible =  l_nVisible / 2
+        self.__visible = l_visible
         return l_visible
 
     def setVisibility(self, p_visibility):
@@ -536,10 +534,9 @@ class Theme:
         iface = self.owner.iface
         if iface != None:
             iface.doRendering(False)
-        for i_layer in self.layers:
-            i_layer.setVisibility(p_visibility, self)
-        if iface != None:
-            iface.doRendering()
+            for i_layer in self.layers:
+                i_layer.setVisibility(p_visibility, self)
+            iface.doRendering(True)
             iface.refreshMap()
             
         # refresh state of visibility and return!
