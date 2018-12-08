@@ -108,9 +108,9 @@ class Iface:
                 self.setLayerVisible(layer, visibility)
             else:
                 renderer = layer.rendererV2()
-                if renderer.isInstance(core.QgsRuleBasedRendererV2):
+                if isinstance(renderer, core.QgsRuleBasedRendererV2):
                     visibility = self.set_visibility_rules_symbol(layer, theme)
-                elif renderer.isInstance(core.QgsSingleSymbolRendererV2):
+                elif isinstance(renderer, core.QgsSingleSymbolRendererV2):
                     self.setLayerVisible(layer, visibility)
 
     def visibilityForLayer(self, wvLayer, theme = None):
@@ -144,28 +144,29 @@ class Iface:
         If some are visible: return None
         '''
         renderer = layer.rendererV2()
-        if renderer.isInstance(core.QgsRuleBasedRendererV2):
-            visibility = self.visibility_from_rules_symbol(layer, theme)
-        elif renderer.isInstance(core.QgsSingleSymbolRendererV2):
+        visibility = 0
+        if isinstance(renderer, core.QgsRuleBasedRendererV2):
+            visibility = self._visibility_from_rules_symbol(layer, theme)
+        elif isinstance(renderer,core.QgsSingleSymbolRendererV2):
             visibility = self.isLayerVisible(layer)
         return visibility
 
     def _visibility_from_rules_symbol(self, layer, theme):
         renderer = layer.rendererV2()
         rules = renderer.rootRule().children()
-        visibilies = []
+        visibilities = []
         for rule in rules:
             expression = rule.filterExpression()
             if not 'NOT'in expression and theme in expression:
-                visibilies.append(rule.checkState())
-        visibility = None
-        for v in visibilies:
-            if visibility is None:
-                visibility = v
-            else:
-                if visibility is not v:
-                    visibility = None
-                    break
+                visibilities.append(rule.checkState())
+        visibility = sum(visibilities)/len(visibilities)
+##        for v in visibilies:
+##            if visibility is None:
+##                visibility = v
+##            else:
+##                if visibility is not v:
+##                    visibility = None
+##                    break
         return visibility
 
     def _set_visibility_rules_symbol(self, layer, theme, visibility):

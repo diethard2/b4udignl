@@ -278,9 +278,11 @@ class B4UdigNLDialog(QDialog):
         """
         doc = self.doc()
         if doc is not None and doc.themes.has_key(p_theme):
-            theme = doc.themes[p_theme]
-            theme.setVisibility(p_state)
-            self._setStateOfVisibilitiesTheme(p_theme, True)
+            if p_state <> 1:
+                theme = doc.themes[p_theme]
+                theme.setVisibility(p_state)
+    ##            self._setStateOfVisibilitiesTheme(p_theme, True)
+                self._setStateOfVisibilitiesThemes(True)
             
     def _setVisibilities(self):
         """ update visibilities of buttons"""
