@@ -102,21 +102,16 @@ class Iface:
         """change the visibility for one layer"""
         # check current visibility
         layer = wvLayer.layer
-        values_visibility = {True: 2,
-                             False: 0,
-                             None: 1}
-        value_visibility = values_visibility[visibility]
         if not wvLayer.is_vector() or theme is None:
             if self.isLayerVisible(layer) != visibility:
                 # different so set visibility
-                value = values_visibility[visibility]
-                self.setLayerVisible(layer, value_visibility)
+                self.setLayerVisible(layer, visibility)
             else:
                 renderer = layer.rendererV2()
                 if renderer.isInstance(core.QgsRuleBasedRendererV2):
                     visibility = self.set_visibility_rules_symbol(layer, theme)
                 elif renderer.isInstance(core.QgsSingleSymbolRendererV2):
-                    self.setLayerVisible(layer, value_visibility)
+                    self.setLayerVisible(layer, visibility)
 
     def visibilityForLayer(self, wvLayer, theme = None):
         """returns boolean, true if layer is visible false if not"""
@@ -136,7 +131,7 @@ class Iface:
 
     def setLayerVisible(self, layer, visibility):
         tree_layer = self._treeLayer(layer)
-        tree_layer.set_visible(visibility)
+        tree_layer.setVisible(visibility)
 
     def _treeLayer(self, layer):
         root_group = self.iface.layerTreeView().layerTreeModel().rootGroup()

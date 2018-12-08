@@ -336,7 +336,8 @@ class B4UdigNLDialog(QDialog):
         """
         for i_theme in self.__themes.keys():
             if self.doc() is None:
-                i_checkbox.setCheckState(0)
+                checkbox = self.__themes[i_theme]
+                checkbox.setCheckState(0)
             else:
                 self._setStateOfVisibilitiesTheme(i_theme, p_actual)
 
@@ -489,7 +490,6 @@ class B4UdigNLDialog(QDialog):
         l_mapCanvas.setRenderFlag(False)
         l_doc.removeLayers()
         l_mapCanvas.setRenderFlag(True)
-        l_mapCanvas.refresh()
         # remove doc, populate message list, populate tree when neccesary
         l_new_docs = []
         l_new_current_doc = None
@@ -537,14 +537,12 @@ class B4UdigNLDialog(QDialog):
         self._populateMsgList()
         self._populateTree()
         iface = doc.iface
-##        iface.doRendering(False)
+        iface.doRendering(False)
         doc.loadLayers()
-        self._displayThemesVisibilyMsg()
         iface.refreshLegend()
         self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
-##        iface.doRendering(True)
-##        iface.refreshMap()
+        iface.doRendering(True)
 
     def _openMsg(self, p_path):
         """

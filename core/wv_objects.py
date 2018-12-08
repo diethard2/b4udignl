@@ -190,11 +190,12 @@ class Layer:
         if not self.themes_visible.has_key(theme_name):
             self.themes_visible[theme_name] = 2
         
-    def setVisibility(self, visibility, theme_name):
+    def setVisibility(self, visibility, theme):
         """
         visibility = 0 or 2 (all visible) to change visibility in
         set of themes
         """
+        theme_name = theme.name
         iface = self.owner.iface
         if iface is None or visibility == 1:
             return
@@ -209,7 +210,7 @@ class Layer:
 
     def _setVisibilityTheme(self, visibility, theme_name):
         iface = self.owner.iface
-        visible = self.isVisible(i_theme_name)
+        visible = self.isVisible(theme_name)
         if visible != visibility:
             iface.setVisibilityForLayer(self, visibility, theme_name)
             self.themes_visible[theme_name] = visibility
