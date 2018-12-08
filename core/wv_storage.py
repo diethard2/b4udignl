@@ -349,7 +349,10 @@ class Storage1(Storage):
         file_png = os.path.join(self.path, kadaster_png)
         layer = Layer(self, file_png)
         layer.addVisibility('Topo')
+        theme = Theme(self)
+        theme.name = 'topo'
         layers.append(layer)
+        theme.layers.append(layer)
         self._extend_layers(layers)
                 
 class Storage2(Storage):

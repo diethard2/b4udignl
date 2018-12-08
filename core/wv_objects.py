@@ -192,35 +192,27 @@ class Layer:
         
     def setVisibility(self, visibility, theme_name):
         """
-        p_visibility = boolean used to set this layer 
-        change visibility in set of layers
+        visibility = 0 or 2 (all visible) to change visibility in
+        set of themes
         """
-        if not self.themes_visible.has_key(theme_name):
-            return
         iface = self.owner.iface
-        visible = self.isVisible()
-        if iface != None and visible != visibility:
+        if iface is None or visibility == 1:
+            return
+        if theme_name in Layer.layerGroupNames.keys():
+            # keys in themes_visibile are different from
+            # incoming group_theme_name. Just set the visibility
+            # of whole layer on or off.
+            for i_theme_name in self.themes_visible.keys():
+                self._setVisibilityTheme(visibility, i_theme_name)
+        elif self.themes_visible.has_key(theme_name):
+            self._setVisibilityTheme(visibility, theme_name)
+
+    def _setVisibilityTheme(self, visibility, theme_name):
+        iface = self.owner.iface
+        visible = self.isVisible(i_theme_name)
+        if visible != visibility:
             iface.setVisibilityForLayer(self, visibility, theme_name)
             self.themes_visible[theme_name] = visibility
-
-    def isVisible(self, theme_name):
-        """
-        Checks if layer is visible, sets private __visible
-        and returns boolean layer is visible or not
-        """
-        visible = None
-        iface = self.owner.iface
-        if iface != None:
-            if theme_name is None:
-                # check all themes!
-                for theme_name in self.themes_visible.keys():
-                    visible = iface.visibilityForLayer(self, theme_name)
-                    self.themes_visible[theme_name] = visible
-                visible = self._all_themes_visible()
-            else:
-                visible = iface.visibilityForLayer(self, theme_name)
-                self.themes_visible[theme_name] = visible
-        return visible
 
     def visible(self, theme_name):
         """
@@ -228,23 +220,52 @@ class Layer:
         are also 2, 0 is all not visible and 1 when some are visible.
         """
         visible = None
-        if theme_name is None:
-            visible = self._all_themes_visible()
+        if theme_name in Layer.layerGroupNames.keys():
+            visible = self._allVisible()
         else:
             visible = self.themes_visible[theme_name]
         return visible
 
-    def _all_themes_visible(self):
+    def isVisible(self, theme_name):
+        """
+        Checks if layer is visible, sets private __visible
+        and returns boolean layer is visible or not
+        """
         visible = None
-        n_themes = len(self.themes_visible)
+        if theme_name in Layer.layerGroupNames.keys():
+            visible = self._areAllVisible()
+        else:
+            visible = self._isVisible(theme_name)
+        return visible
+        
+    def _isVisible(self, theme_name):
+        """
+        Checks if layer is visible, sets private __visible
+        and returns boolean layer is visible or not
+        """
+        visible = 0
+        iface = self.owner.iface
+        if iface != None:
+            visible = iface.visibilityForLayer(self, theme_name)
+            self.themes_visible[theme_name] = visible
+        return visible
+
+    def _areAllVisible(self):
+        for theme in self.themes_visible.keys():
+            self._isVisible(theme)
+        visible = self._allVisible()
+        return visible
+
+    def _allVisible(self):
+        visible = 0
+        n_themes = 0
         value_visible = 0
         for value in self.themes_visible.values():
-            value_visible += value_visible
-        if value_visible == 0:
-            visible = 0
-        else:
-            if n_themes > 0:
-                visible = visible / n_themes
+            if value is not None:
+                n_themes += 1
+                value_visible += value
+        if n_themes > 0:
+            visible = value_visible / n_themes
         return visible
 
     def goto(self):
@@ -500,31 +521,20 @@ class Theme:
         of layers belonging to theme is actually checked otherwise
         recorded visible state of layers is used.
         """
-        l_len = 0
-        l_nVisible = 0
-        l_visible = 0
+        visible = 0
+        n_visible = 0
+        n_layers = len(self.layers)
         # using True == 1 for addition!
         theme_name = self.name
-        # when it is a group name, check if layer is completely visible
-        if theme_name in Layer.layerGroupNames.keys():
-            theme_name = None
-        is_visible = None 
-        for i_layer in self.layers:
+        for layer in self.layers:
             if p_actual:
-                is_visible = i_layer.isVisible(theme_name)
+                visible = layer.isVisible(theme_name)
             else:
-                is_visible = i_layer.visible(theme_name)
-            if is_visible is None:
-                continue
-                l_len += 1
-                l_nVisible += is_visible
-        # now check result!!
-        if l_nVisible == 0:
-            l_visible = 0
-        else:
-            l_visible =  l_nVisible / 2
-        self.__visible = l_visible
-        return l_visible
+                visible = layer.visible(theme_name)
+            n_visible += visible
+        visible = n_visible / n_layers
+            
+        return visible
 
     def setVisibility(self, p_visibility):
         """
@@ -537,7 +547,6 @@ class Theme:
             for i_layer in self.layers:
                 i_layer.setVisibility(p_visibility, self)
             iface.doRendering(True)
-            iface.refreshMap()
             
         # refresh state of visibility and return!
         # Result value should be 0 (all off) or 2 (all on)

@@ -146,11 +146,34 @@ class DocTestCaseV1_5(unittest.TestCase):
             visible = theme.visible
             key_values.append([key, visible])
         self.assertEqual(key_values,
-                         [['Annotatie', 'None'], ['Ligging', 'None'],
-                          ['Maatvoering', 'None'], ['Topo', 'None'],
-                          ['datatransport', 'None'], ['gas lage druk', 'None'],
-                          ['laagspanning', 'None'], ['middenspanning', 'None'],
-                          ['riool vrijverval', 'None'], ['water', 'None']])
+                         [['Annotatie', 0], ['Ligging', 0],
+                          ['Maatvoering', 0], ['Topo', 0],
+                          ['datatransport', 0], ['gas lage druk', 0],
+                          ['laagspanning', 0], ['middenspanning', 0],
+                          ['riool vrijverval', 0], ['water', 0]])
+
+    def test_layers_themes_visibility(self):
+        layers = [layer for layer in self.doc.layers.values()]
+        layers.sort()
+        layers_without_themes = []
+        for layer in layers:
+            if len(layer.themes_visible) == 0:
+                layers_without_themes.append(layer.layerName)
+        self.assertEqual(layers_without_themes, [])
+
+    def test_theme_checkVisible(self):
+        themes = self.doc.themes
+        themes_visible = []
+        for theme in themes.values():
+            visible = theme.checkVisible(False)
+            themes_visible.append([theme.name, visible])
+        self.assertEqual(themes_visible,
+                         [['riool vrijverval', 2], ['Topo', 2],
+                          ['laagspanning', 2], ['Ligging', 2],
+                          ['Annotatie', 2], ['water', 2],
+                          ['datatransport', 2], ['middenspanning', 2],
+                          ['gas lage druk', 2], ['Maatvoering', 2]])
+            
 
     def test_toezichthouders(self):
         personal_info = []

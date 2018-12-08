@@ -353,6 +353,13 @@ class Doc():
                         if layername is not None and findString in layername:
                             self.themes[nameTheme].layers.append(layer)
         self._setLayerGroupThemes()
+        self._allLayersHaveThemes()
+        
+    def _allLayersHaveThemes(self):
+        for theme in self.themes.values():
+            for layer in theme.layers:
+                if len(layer.themes_visible) == 0:
+                    layer.addVisibility(theme.name)                    
 
     def _setLayerGroupThemes(self):
         """

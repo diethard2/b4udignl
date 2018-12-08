@@ -276,13 +276,11 @@ class B4UdigNLDialog(QDialog):
         a theme has changed and now the visibility of layers belonging
         to that theme will change (when neccesary)
         """
-        l_theme = None
-        l_doc = self.__wv
-        if l_doc is not None:
-            if l_doc.themes.has_key(p_theme):
-                l_theme = l_doc.themes[p_theme]
-                l_theme.setVisibility(p_state)
-                self._setStateOfVisibilitiesThemes(p_state)
+        doc = self.doc()
+        if doc is not None and doc.themes.has_key(p_theme):
+            theme = doc.themes[p_theme]
+            theme.setVisibility(p_state)
+            self._setStateOfVisibilitiesTheme(p_theme, True)
             
     def _setVisibilities(self):
         """ update visibilities of buttons"""
@@ -314,7 +312,7 @@ class B4UdigNLDialog(QDialog):
             elif storage_version == 1:
                 ui.rasterCheckBox.setEnabled(False)
                 ui.vectorCheckBox.setEnabled(False)
-                ui.rasterCheckBox.setCheckState(1)
+                ui.rasterCheckBox.setCheckState(2)
                 ui.vectorCheckBox.setCheckState(0)
         self._setVisibilitiesThemes()
 
@@ -332,21 +330,30 @@ class B4UdigNLDialog(QDialog):
  
     def _setStateOfVisibilitiesThemes(self, p_actual=False):
         """
-        Set state of visibilies for themes.
-        When p_actual is used current state is checked
+        Set state of visibilies for themes in menu.
+        When actual is True actual state of visibilities is checked
+        which is slower. 
+        """
+        for i_theme in self.__themes.keys():
+            if self.doc() is None:
+                i_checkbox.setCheckState(0)
+            else:
+                self._setStateOfVisibilitiesTheme(i_theme, p_actual)
+
+    def _setStateOfVisibilitiesTheme(self, theme_name, actual):
+        """
+        Set state of visibilies for a theme.
+        When actual is True current state of visibility is checked
         which is slower. 
         """
         doc = self.doc()
-        for i_theme, i_checkbox in self.__themes.iteritems():
-            if doc is None:
-                i_checkbox.setCheckState(0)
-            else:
-                theme = None
-                if doc.themes.has_key(i_theme):
-                    theme = doc.themes[i_theme]
-                    if theme is not None:
-                        state = theme.checkVisible(p_actual)
-                        i_checkbox.setCheckState(state)
+        if doc.themes.has_key(theme_name):
+            theme = doc.themes[theme_name]
+            checkbox = self.__themes[theme_name]
+            if theme is not None:
+                state = theme.checkVisible(actual)
+                checkbox.setCheckState(state)
+
  
     @pyqtSignature("")
     def on_openMsgButton_clicked(self):
@@ -570,8 +577,14 @@ class B4UdigNLDialog(QDialog):
             theme = None
             if doc.themes.has_key(i_theme):
                 theme = doc.themes[i_theme]
-                visible = theme.checkVisible(True)
-                theme_str = '%s: %i\n' % (str(i_theme), visible)
+                theme.checkVisible()
+                layers = theme.layers
+                themes_vis = {}
+                for layer in layers:
+                    themes_vis[layer.layerName] = layer.themes_visible
+                theme_str = '%s: %i:\n%s \n' % (theme.name,
+                                                theme.visible,
+                                                themes_vis)
                 msg += theme_str
         QMessageBox.information(self, title, msg)        
 
