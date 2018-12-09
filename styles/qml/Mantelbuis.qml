@@ -46,88 +46,91 @@
   </edittypes>
   <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
     <rules key="{da6a7799-9fd9-4300-8aab-de51640155d1}">
-      <rule scalemaxdenom="500" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND &quot;status&quot; = 'functional'" key="{ada7f3e8-835c-4216-9aba-5ca0a9c54205}" symbol="0" scalemindenom="1" label="hoogspanning 1"/>
-      <rule scalemaxdenom="500" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND &quot;status&quot; = 'disused' " key="{5ac96037-8d2e-4392-82f4-82391ade568c}" symbol="1" scalemindenom="1" label="hoogspanning buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND  &quot;status&quot; =  'projected' " key="{9813324d-aa37-4a23-bdd3-3f4ecb43a975}" symbol="2" scalemindenom="1" label="hoogspanning geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'functional' " key="{33be922f-4a3f-42a1-aa69-220dc8ef47db}" symbol="3" scalemindenom="1" label="middenspanning 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'disused' " key="{3a265ab5-f6cc-4155-9afc-bee756b291d7}" symbol="4" scalemindenom="1" label="middenspanning buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'projected' " key="{37bd82de-7164-4da0-9c95-9527a1fe5d54}" symbol="5" scalemindenom="1" label="middenspanning geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter=" &quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'functional' " key="{ae69ba65-3641-4b44-9144-0ccd26fedd81}" symbol="6" scalemindenom="1" label="laagspanning 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'disused'" key="{8281e57c-daed-465b-8f2b-cb083dfa668d}" symbol="7" scalemindenom="1" label="laagspanning buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'projected'" key="{15422289-2c36-4035-a62f-637795bdee8a}" symbol="8" scalemindenom="1" label="laagspanning geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'datatransport' AND &quot;status&quot; = 'functional'" key="{24a2e855-1691-49b0-b5bc-92710bb3bc74}" symbol="9" scalemindenom="1" label="datatransport 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'datatransport' AND &quot;status&quot; = 'disused' " key="{1714ad8b-183c-477d-970b-615cfe68f9d0}" symbol="10" scalemindenom="1" label="datatransport buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'datatransport' AND  &quot;status&quot; =  'projected' " key="{39704849-9875-46e2-b565-71aa94ba0e54}" symbol="11" scalemindenom="1" label="datatransport geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasLageDruk' AND &quot;status&quot; = 'functional'" key="{24a2e855-1691-49b0-b5bc-92710bb3bc74}" symbol="12" scalemindenom="1" label="gasLageDruk 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasLageDruk' AND &quot;status&quot; = 'disused' " key="{1714ad8b-183c-477d-970b-615cfe68f9d0}" symbol="13" scalemindenom="1" label="gasLageDruk buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasLageDruk' AND  &quot;status&quot; =  'projected' " key="{39704849-9875-46e2-b565-71aa94ba0e54}" symbol="14" scalemindenom="1" label="gasLageDruk geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasHogeDruk' AND &quot;status&quot; = 'functional'" key="{24a2e855-1691-49b0-b5bc-92710bb3bc74}" symbol="15" scalemindenom="1" label="gasHogeDruk 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasHogeDruk'  AND &quot;status&quot; = 'disused' " key="{1714ad8b-183c-477d-970b-615cfe68f9d0}" symbol="16" scalemindenom="1" label="gasHogeDruk buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasHogeDruk' AND  &quot;status&quot; =  'projected' " key="{39704849-9875-46e2-b565-71aa94ba0e54}" symbol="17" scalemindenom="1" label="gasHogeDruk geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND &quot;status&quot; = 'functional'" key="{0a328a25-189e-457d-8c4d-222efe65d789}" symbol="18" scalemindenom="1" label="buisleidingGevaarlijkeInhoud 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND &quot;status&quot; = 'disused' " key="{fb9f3a71-d904-4703-b3ca-b53846bee5e5}" symbol="19" scalemindenom="1" label="buisleidingGevaarlijkeInhoud buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND  &quot;status&quot; =  'projected' " key="{eb910e33-4b50-4373-bc50-c550ecebcf91}" symbol="20" scalemindenom="1" label="buisleidingGevaarlijkeInhoud geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'petrochemie' AND &quot;status&quot; = 'functional'" key="{40704e58-055a-41f1-bf0d-814ba67f737f}" symbol="21" scalemindenom="1" label="petrochemie 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'petrochemie' AND &quot;status&quot; = 'disused' " key="{370f3067-92f6-4ae1-b8c9-45c627bb8ec6}" symbol="22" scalemindenom="1" label="petrochemie buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'petrochemie' AND  &quot;status&quot; =  'projected' " key="{b8a28328-9f02-4ce4-8a94-0a958a627de9}" symbol="23" scalemindenom="1" label="petrochemie geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolVrijverval' AND &quot;status&quot; = 'functional'" key="{bf4824d2-a1f0-4bf2-bb75-5710303b4c0a}" symbol="24" scalemindenom="1" label="rioolVrijverval 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolVrijverval' AND &quot;status&quot; = 'disused' " key="{cf5d5ea8-a4ae-4c52-977e-63b559b66908}" symbol="25" scalemindenom="1" label="rioolVrijverval buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolVrijverval' AND  &quot;status&quot; =  'projected' " key="{46d8d5f6-bb2c-4736-b99c-3a3ef695caf4}" symbol="26" scalemindenom="1" label="rioolVrijverval geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'functional'" key="{cde58d52-fc1b-43ce-af01-e1465d4beebe}" symbol="27" scalemindenom="1" label="rioolOnderOverOfOnderdruk 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'disused' " key="{9c026e42-3454-44bb-8ba3-b5c49b315039}" symbol="28" scalemindenom="1" label="rioolOnderOverOfOnderdruk buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND  &quot;status&quot; =  'projected' " key="{a580987a-8257-49c9-b6b5-073faf42ce69}" symbol="29" scalemindenom="1" label="rioolOnderOverOfOnderdruk geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'warmte' AND &quot;status&quot; = 'functional'" key="{9ad9d9a8-6fb8-4e0a-bad0-585c8933c4c1}" symbol="30" scalemindenom="1" label="warmte 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'warmte' AND &quot;status&quot; = 'disused' " key="{eba9f7b3-9d4d-44d3-abed-f58867f3fab8}" symbol="31" scalemindenom="1" label="warmte buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'warmte' AND  &quot;status&quot; =  'projected' " key="{edc4c397-9be0-4b7f-a628-020c9c2a29c2}" symbol="32" scalemindenom="1" label="warmte geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'water' AND &quot;status&quot; = 'functional'" key="{478a6993-7796-4672-9369-4437407567f4}" symbol="33" scalemindenom="1" label="water 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'water' AND &quot;status&quot; = 'disused' " key="{8fce3ec3-9643-40dc-bcae-db80a43bf2af}" symbol="34" scalemindenom="1" label="water buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'water' AND  &quot;status&quot; =  'projected' " key="{51f5a3a4-9040-4466-930a-4dc3d3b166b2}" symbol="35" scalemindenom="1" label="water geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'overig' AND &quot;status&quot; = 'functional'" key="{9f14865b-f85d-4b32-9600-0abf45869c7e}" symbol="36" scalemindenom="1" label="overig 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'overig'  AND &quot;status&quot; = 'disused' " key="{1e121d59-0bad-46f7-b0ce-b6c41359e6ca}" symbol="37" scalemindenom="1" label="overig buiten gebruik 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'overig' AND  &quot;status&quot; =  'projected' " key="{66a67461-3de6-4b77-8be8-cd6d54eecbd9}" symbol="38" scalemindenom="1" label="overig geprojecteerd 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'wees'" key="{b18e8c38-e055-4f72-acc0-578a5c001670}" symbol="39" scalemindenom="1" label="wees 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'wees' AND &quot;status&quot; = 'disused' " key="{1322ce14-b77a-4e7d-bc83-d860e43c6090}" symbol="40" scalemindenom="1" label="wees 1"/>
-      <rule scalemaxdenom="1250" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND &quot;status&quot; = 'functional'" key="{dcf63a17-3d05-4139-85b7-93d5f7bb78fd}" symbol="41" scalemindenom="500" label="hoogspanning 2"/>
-      <rule scalemaxdenom="1250" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND &quot;status&quot; = 'disused' " key="{ed2c1c31-84b3-4a1b-bb5b-ffd8c73afca9}" symbol="42" scalemindenom="500" label="hoogspanning buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND  &quot;status&quot; =  'projected' " key="{b826b590-2b36-4ea1-8f13-ded6c7f83b2e}" symbol="43" scalemindenom="500" label="hoogspanning geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'functional' " key="{29c7969b-c768-4b86-99df-182f4c4772d3}" symbol="44" scalemindenom="500" label="middenspanning 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'disused' " key="{88cde309-eec3-4717-9a91-83b934b285f5}" symbol="45" scalemindenom="500" label="middenspanning buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'projected' " key="{4f963f98-fc3c-4256-8c4e-d3069c04bdf3}" symbol="46" scalemindenom="500" label="middenspanning geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'functional' " key="{aed8a31d-9726-477f-9111-842d17e11a53}" symbol="47" scalemindenom="500" label="laagspanning 1"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'disused'" key="{dd63d026-f11a-494d-9b1b-efcef272ab06}" symbol="48" scalemindenom="500" label="laagspanning buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'projected'" key="{8f83d6f9-3f9d-45ae-8419-65015e47e2c3}" symbol="49" scalemindenom="500" label="laagspanning geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'datatransport' AND &quot;status&quot; = 'functional'" key="{e15cd2d9-2a25-4f24-91f0-6db38addc900}" symbol="50" scalemindenom="500" label="datatransport 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'datatransport' AND &quot;status&quot; = 'disused' " key="{25835648-8ab9-40bb-a4d8-b3ae623bbf08}" symbol="51" scalemindenom="500" label="datatransport buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'datatransport' AND  &quot;status&quot; =  'projected' " key="{98ebbd2a-4316-4c2b-beb9-45ea105bbd2a}" symbol="52" scalemindenom="500" label="datatransport geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasLageDruk' AND &quot;status&quot; = 'functional'" key="{b80deb4d-f242-452f-a317-ac3b5cd0e52c}" symbol="53" scalemindenom="500" label="gasLageDruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasLageDruk' AND &quot;status&quot; = 'disused' " key="{7f02d15b-e2f2-4a24-af1e-d482537775b0}" symbol="54" scalemindenom="500" label="gasLageDruk buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasLageDruk' AND  &quot;status&quot; =  'projected' " key="{10f920b4-c50b-4548-ab26-685d8b2ca61b}" symbol="55" scalemindenom="500" label="gasLageDruk geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasHogeDruk' AND &quot;status&quot; = 'functional'" key="{7afd0553-928b-4780-8a50-bdb9416bbea3}" symbol="56" scalemindenom="500" label="gasHogeDruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasHogeDruk'  AND &quot;status&quot; = 'disused' " key="{a845cd79-f278-4785-9a3f-4a8b7bfae919}" symbol="57" scalemindenom="500" label="gasHogeDruk buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasHogeDruk' AND  &quot;status&quot; =  'projected' " key="{9ab30ef8-0a2f-47dc-8eff-94f914b35b1e}" symbol="58" scalemindenom="500" label="gasHogeDruk geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND &quot;status&quot; = 'functional'" key="{68236bfc-1a42-4ee2-b5a5-f000c3eef65a}" symbol="59" scalemindenom="500" label="buisleidingGevaarlijkeInhoud 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND &quot;status&quot; = 'disused' " key="{9e7da4c0-489b-480e-917d-18317c4f5174}" symbol="60" scalemindenom="500" label="buisleidingGevaarlijkeInhoud buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND  &quot;status&quot; =  'projected' " key="{18c63586-d85b-45b2-bc19-0121432ff186}" symbol="61" scalemindenom="500" label="buisleidingGevaarlijkeInhoud geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'petrochemie' AND &quot;status&quot; = 'functional'" key="{9747a73d-62c5-41ee-b725-8de898502906}" symbol="62" scalemindenom="500" label="petrochemie 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'petrochemie' AND &quot;status&quot; = 'disused' " key="{065ef60c-cef5-4861-8acd-94f29ff55049}" symbol="63" scalemindenom="500" label="petrochemie buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'petrochemie' AND  &quot;status&quot; =  'projected' " key="{26355ec9-9b9f-495d-a27a-a576c21ac732}" symbol="64" scalemindenom="500" label="petrochemie geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolVrijverval' AND &quot;status&quot; = 'functional'" key="{673e9785-0783-448d-8d7d-9c96d63a09d9}" symbol="65" scalemindenom="500" label="rioolVrijverval 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolVrijverval' AND &quot;status&quot; = 'disused' " key="{b473e088-34b3-4f75-b547-e331c4bae91c}" symbol="66" scalemindenom="500" label="rioolVrijverval buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolVrijverval' AND  &quot;status&quot; =  'projected' " key="{ceb95df4-137c-4d8a-a3f1-f31de46f8f77}" symbol="67" scalemindenom="500" label="rioolVrijverval geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'functional'" key="{b1d4b93d-76fd-4ad2-bb9e-ff72371f50f6}" symbol="68" scalemindenom="500" label="rioolOnderOverOfOnderdruk 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'disused' " key="{cb4ac555-4467-4927-9c27-1dedbf98df3d}" symbol="69" scalemindenom="500" label="rioolOnderOverOfOnderdruk buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND  &quot;status&quot; =  'projected' " key="{cc34b5fb-d5e7-468d-a32b-63b0d01bb141}" symbol="70" scalemindenom="500" label="rioolOnderOverOfOnderdruk geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'warmte' AND &quot;status&quot; = 'functional'" key="{72461ea2-9a16-4cbd-952c-3a53f63c05d0}" symbol="71" scalemindenom="500" label="warmte 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'warmte' AND &quot;status&quot; = 'disused' " key="{139f262b-21ea-4289-b699-2c2f71f74096}" symbol="72" scalemindenom="500" label="warmte buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'warmte' AND  &quot;status&quot; =  'projected' " key="{4f89bdad-25e4-49fe-a00e-72ff61c29e64}" symbol="73" scalemindenom="500" label="warmte geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'water' AND &quot;status&quot; = 'functional'" key="{468cb9b6-8bc2-4981-8c63-679d9c46c1e3}" symbol="74" scalemindenom="500" label="water 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'water' AND &quot;status&quot; = 'disused' " key="{bd5086b1-e641-4f44-aae7-f501d988754b}" symbol="75" scalemindenom="500" label="water buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'water' AND  &quot;status&quot; =  'projected' " key="{ddeaac25-9fd6-43ea-b38e-500a3e348edf}" symbol="76" scalemindenom="500" label="water geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'overig' AND &quot;status&quot; = 'functional'" key="{e8f2e0ea-2e60-4a94-a718-991e63a0234b}" symbol="77" scalemindenom="500" label="overig 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'overig'  AND &quot;status&quot; = 'disused' " key="{dc4913ff-4223-4586-9003-68f2bce68b44}" symbol="78" scalemindenom="500" label="overig buiten gebruik 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'overig' AND  &quot;status&quot; =  'projected' " key="{41e2abbb-9bae-4fd5-bc3f-f4f42f58fae1}" symbol="79" scalemindenom="500" label="overig geprojecteerd 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'wees'" key="{ad5ad98e-34ac-4f6c-8176-37d727fd5e2e}" symbol="80" scalemindenom="500" label="wees 2"/>
-      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'wees' AND &quot;status&quot; = 'disused' " key="{cd9e4cb5-4965-430a-b915-4901b74d6c4f}" symbol="81" scalemindenom="500" label="wees 2"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'functional'" key="{280716d3-710b-4a0c-8478-f4859163032e}" symbol="0" scalemindenom="1" label="hoogspanning 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'disused' " key="{6f9e001e-d529-49de-9a33-2a765db61f4d}" symbol="1" scalemindenom="1" label="hoogspanning buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'projected' " key="{100e9642-6d75-468c-a72c-8e8661372fea}" symbol="2" scalemindenom="1" label="hoogspanning geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'landelijkHoogspanningsnet' AND &quot;status&quot; = 'functional'" key="{473ddd7e-6caa-4423-8b6c-42d3d9d3d577}" symbol="3" scalemindenom="1" label="landelijkHoogspanningsnet 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'landelijkHoogspanningsnet' AND &quot;status&quot; = 'disused' " key="{3ab809bb-7905-437b-a900-cb5a7521d471}" symbol="4" scalemindenom="1" label="landelijkHoogspanningsnet buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'landelijkHoogspanningsnet' AND &quot;status&quot; = 'projected' " key="{9813324d-aa37-4a23-bdd3-3f4ecb43a975}" symbol="5" scalemindenom="1" label="landelijkHoogspanningsnet geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'functional' " key="{33be922f-4a3f-42a1-aa69-220dc8ef47db}" symbol="6" scalemindenom="1" label="middenspanning 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'disused' " key="{3a265ab5-f6cc-4155-9afc-bee756b291d7}" symbol="7" scalemindenom="1" label="middenspanning buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'projected' " key="{37bd82de-7164-4da0-9c95-9527a1fe5d54}" symbol="8" scalemindenom="1" label="middenspanning geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter=" &quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'functional' " key="{ae69ba65-3641-4b44-9144-0ccd26fedd81}" symbol="9" scalemindenom="1" label="laagspanning 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'disused'" key="{8281e57c-daed-465b-8f2b-cb083dfa668d}" symbol="10" scalemindenom="1" label="laagspanning buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'projected'" key="{15422289-2c36-4035-a62f-637795bdee8a}" symbol="11" scalemindenom="1" label="laagspanning geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'datatransport' AND &quot;status&quot; = 'functional'" key="{24a2e855-1691-49b0-b5bc-92710bb3bc74}" symbol="12" scalemindenom="1" label="datatransport 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'datatransport' AND &quot;status&quot; = 'disused' " key="{1714ad8b-183c-477d-970b-615cfe68f9d0}" symbol="13" scalemindenom="1" label="datatransport buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'datatransport' AND  &quot;status&quot; =  'projected' " key="{39704849-9875-46e2-b565-71aa94ba0e54}" symbol="14" scalemindenom="1" label="datatransport geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasLageDruk' AND &quot;status&quot; = 'functional'" key="{24a2e855-1691-49b0-b5bc-92710bb3bc74}" symbol="15" scalemindenom="1" label="gasLageDruk 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasLageDruk' AND &quot;status&quot; = 'disused' " key="{1714ad8b-183c-477d-970b-615cfe68f9d0}" symbol="16" scalemindenom="1" label="gasLageDruk buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasLageDruk' AND  &quot;status&quot; =  'projected' " key="{39704849-9875-46e2-b565-71aa94ba0e54}" symbol="17" scalemindenom="1" label="gasLageDruk geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasHogeDruk' AND &quot;status&quot; = 'functional'" key="{24a2e855-1691-49b0-b5bc-92710bb3bc74}" symbol="18" scalemindenom="1" label="gasHogeDruk 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasHogeDruk'  AND &quot;status&quot; = 'disused' " key="{1714ad8b-183c-477d-970b-615cfe68f9d0}" symbol="19" scalemindenom="1" label="gasHogeDruk buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'gasHogeDruk' AND  &quot;status&quot; =  'projected' " key="{39704849-9875-46e2-b565-71aa94ba0e54}" symbol="20" scalemindenom="1" label="gasHogeDruk geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND &quot;status&quot; = 'functional'" key="{0a328a25-189e-457d-8c4d-222efe65d789}" symbol="21" scalemindenom="1" label="buisleidingGevaarlijkeInhoud 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND &quot;status&quot; = 'disused' " key="{fb9f3a71-d904-4703-b3ca-b53846bee5e5}" symbol="22" scalemindenom="1" label="buisleidingGevaarlijkeInhoud buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND  &quot;status&quot; =  'projected' " key="{eb910e33-4b50-4373-bc50-c550ecebcf91}" symbol="23" scalemindenom="1" label="buisleidingGevaarlijkeInhoud geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'petrochemie' AND &quot;status&quot; = 'functional'" key="{40704e58-055a-41f1-bf0d-814ba67f737f}" symbol="24" scalemindenom="1" label="petrochemie 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'petrochemie' AND &quot;status&quot; = 'disused' " key="{370f3067-92f6-4ae1-b8c9-45c627bb8ec6}" symbol="25" scalemindenom="1" label="petrochemie buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'petrochemie' AND  &quot;status&quot; =  'projected' " key="{b8a28328-9f02-4ce4-8a94-0a958a627de9}" symbol="26" scalemindenom="1" label="petrochemie geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolVrijverval' AND &quot;status&quot; = 'functional'" key="{bf4824d2-a1f0-4bf2-bb75-5710303b4c0a}" symbol="27" scalemindenom="1" label="rioolVrijverval 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolVrijverval' AND &quot;status&quot; = 'disused' " key="{cf5d5ea8-a4ae-4c52-977e-63b559b66908}" symbol="28" scalemindenom="1" label="rioolVrijverval buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolVrijverval' AND  &quot;status&quot; =  'projected' " key="{46d8d5f6-bb2c-4736-b99c-3a3ef695caf4}" symbol="29" scalemindenom="1" label="rioolVrijverval geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'functional'" key="{cde58d52-fc1b-43ce-af01-e1465d4beebe}" symbol="30" scalemindenom="1" label="rioolOnderOverOfOnderdruk 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'disused' " key="{9c026e42-3454-44bb-8ba3-b5c49b315039}" symbol="31" scalemindenom="1" label="rioolOnderOverOfOnderdruk buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND  &quot;status&quot; =  'projected' " key="{a580987a-8257-49c9-b6b5-073faf42ce69}" symbol="32" scalemindenom="1" label="rioolOnderOverOfOnderdruk geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'warmte' AND &quot;status&quot; = 'functional'" key="{9ad9d9a8-6fb8-4e0a-bad0-585c8933c4c1}" symbol="33" scalemindenom="1" label="warmte 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'warmte' AND &quot;status&quot; = 'disused' " key="{eba9f7b3-9d4d-44d3-abed-f58867f3fab8}" symbol="34" scalemindenom="1" label="warmte buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'warmte' AND  &quot;status&quot; =  'projected' " key="{edc4c397-9be0-4b7f-a628-020c9c2a29c2}" symbol="35" scalemindenom="1" label="warmte geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'water' AND &quot;status&quot; = 'functional'" key="{478a6993-7796-4672-9369-4437407567f4}" symbol="36" scalemindenom="1" label="water 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'water' AND &quot;status&quot; = 'disused' " key="{8fce3ec3-9643-40dc-bcae-db80a43bf2af}" symbol="37" scalemindenom="1" label="water buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'water' AND  &quot;status&quot; =  'projected' " key="{51f5a3a4-9040-4466-930a-4dc3d3b166b2}" symbol="38" scalemindenom="1" label="water geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'overig' AND &quot;status&quot; = 'functional'" key="{9f14865b-f85d-4b32-9600-0abf45869c7e}" symbol="39" scalemindenom="1" label="overig 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'overig'  AND &quot;status&quot; = 'disused' " key="{1e121d59-0bad-46f7-b0ce-b6c41359e6ca}" symbol="40" scalemindenom="1" label="overig buiten gebruik 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'overig' AND  &quot;status&quot; =  'projected' " key="{66a67461-3de6-4b77-8be8-cd6d54eecbd9}" symbol="41" scalemindenom="1" label="overig geprojecteerd 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'wees'" key="{b18e8c38-e055-4f72-acc0-578a5c001670}" symbol="42" scalemindenom="1" label="wees 1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'wees' AND &quot;status&quot; = 'disused' " key="{1322ce14-b77a-4e7d-bc83-d860e43c6090}" symbol="43" scalemindenom="1" label="wees 1"/>
+      <rule scalemaxdenom="1250" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND &quot;status&quot; = 'functional'" key="{dcf63a17-3d05-4139-85b7-93d5f7bb78fd}" symbol="44" scalemindenom="500" label="hoogspanning 2"/>
+      <rule scalemaxdenom="1250" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND &quot;status&quot; = 'disused' " key="{ed2c1c31-84b3-4a1b-bb5b-ffd8c73afca9}" symbol="45" scalemindenom="500" label="hoogspanning buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="(&quot;thema&quot; = 'hoogspanning' OR &quot;thema&quot; = 'landelijkHoogspanningsnet') AND  &quot;status&quot; =  'projected' " key="{b826b590-2b36-4ea1-8f13-ded6c7f83b2e}" symbol="46" scalemindenom="500" label="hoogspanning geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'functional' " key="{29c7969b-c768-4b86-99df-182f4c4772d3}" symbol="47" scalemindenom="500" label="middenspanning 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'disused' " key="{88cde309-eec3-4717-9a91-83b934b285f5}" symbol="48" scalemindenom="500" label="middenspanning buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'middenspanning' AND &quot;status&quot;  = 'projected' " key="{4f963f98-fc3c-4256-8c4e-d3069c04bdf3}" symbol="49" scalemindenom="500" label="middenspanning geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'functional' " key="{aed8a31d-9726-477f-9111-842d17e11a53}" symbol="50" scalemindenom="500" label="laagspanning 1"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'disused'" key="{dd63d026-f11a-494d-9b1b-efcef272ab06}" symbol="51" scalemindenom="500" label="laagspanning buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'projected'" key="{8f83d6f9-3f9d-45ae-8419-65015e47e2c3}" symbol="52" scalemindenom="500" label="laagspanning geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'datatransport' AND &quot;status&quot; = 'functional'" key="{e15cd2d9-2a25-4f24-91f0-6db38addc900}" symbol="53" scalemindenom="500" label="datatransport 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'datatransport' AND &quot;status&quot; = 'disused' " key="{25835648-8ab9-40bb-a4d8-b3ae623bbf08}" symbol="54" scalemindenom="500" label="datatransport buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'datatransport' AND  &quot;status&quot; =  'projected' " key="{98ebbd2a-4316-4c2b-beb9-45ea105bbd2a}" symbol="55" scalemindenom="500" label="datatransport geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasLageDruk' AND &quot;status&quot; = 'functional'" key="{b80deb4d-f242-452f-a317-ac3b5cd0e52c}" symbol="56" scalemindenom="500" label="gasLageDruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasLageDruk' AND &quot;status&quot; = 'disused' " key="{7f02d15b-e2f2-4a24-af1e-d482537775b0}" symbol="57" scalemindenom="500" label="gasLageDruk buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasLageDruk' AND  &quot;status&quot; =  'projected' " key="{10f920b4-c50b-4548-ab26-685d8b2ca61b}" symbol="58" scalemindenom="500" label="gasLageDruk geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasHogeDruk' AND &quot;status&quot; = 'functional'" key="{7afd0553-928b-4780-8a50-bdb9416bbea3}" symbol="59" scalemindenom="500" label="gasHogeDruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasHogeDruk'  AND &quot;status&quot; = 'disused' " key="{a845cd79-f278-4785-9a3f-4a8b7bfae919}" symbol="60" scalemindenom="500" label="gasHogeDruk buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'gasHogeDruk' AND  &quot;status&quot; =  'projected' " key="{9ab30ef8-0a2f-47dc-8eff-94f914b35b1e}" symbol="61" scalemindenom="500" label="gasHogeDruk geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND &quot;status&quot; = 'functional'" key="{68236bfc-1a42-4ee2-b5a5-f000c3eef65a}" symbol="62" scalemindenom="500" label="buisleidingGevaarlijkeInhoud 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND &quot;status&quot; = 'disused' " key="{9e7da4c0-489b-480e-917d-18317c4f5174}" symbol="63" scalemindenom="500" label="buisleidingGevaarlijkeInhoud buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'buisleidingGevaarlijkeInhoud' AND  &quot;status&quot; =  'projected' " key="{18c63586-d85b-45b2-bc19-0121432ff186}" symbol="64" scalemindenom="500" label="buisleidingGevaarlijkeInhoud geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'petrochemie' AND &quot;status&quot; = 'functional'" key="{9747a73d-62c5-41ee-b725-8de898502906}" symbol="65" scalemindenom="500" label="petrochemie 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'petrochemie' AND &quot;status&quot; = 'disused' " key="{065ef60c-cef5-4861-8acd-94f29ff55049}" symbol="66" scalemindenom="500" label="petrochemie buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'petrochemie' AND  &quot;status&quot; =  'projected' " key="{26355ec9-9b9f-495d-a27a-a576c21ac732}" symbol="67" scalemindenom="500" label="petrochemie geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolVrijverval' AND &quot;status&quot; = 'functional'" key="{673e9785-0783-448d-8d7d-9c96d63a09d9}" symbol="68" scalemindenom="500" label="rioolVrijverval 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolVrijverval' AND &quot;status&quot; = 'disused' " key="{b473e088-34b3-4f75-b547-e331c4bae91c}" symbol="69" scalemindenom="500" label="rioolVrijverval buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolVrijverval' AND  &quot;status&quot; =  'projected' " key="{ceb95df4-137c-4d8a-a3f1-f31de46f8f77}" symbol="70" scalemindenom="500" label="rioolVrijverval geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'functional'" key="{b1d4b93d-76fd-4ad2-bb9e-ff72371f50f6}" symbol="71" scalemindenom="500" label="rioolOnderOverOfOnderdruk 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'disused' " key="{cb4ac555-4467-4927-9c27-1dedbf98df3d}" symbol="72" scalemindenom="500" label="rioolOnderOverOfOnderdruk buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND  &quot;status&quot; =  'projected' " key="{cc34b5fb-d5e7-468d-a32b-63b0d01bb141}" symbol="73" scalemindenom="500" label="rioolOnderOverOfOnderdruk geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'warmte' AND &quot;status&quot; = 'functional'" key="{72461ea2-9a16-4cbd-952c-3a53f63c05d0}" symbol="74" scalemindenom="500" label="warmte 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'warmte' AND &quot;status&quot; = 'disused' " key="{139f262b-21ea-4289-b699-2c2f71f74096}" symbol="75" scalemindenom="500" label="warmte buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'warmte' AND  &quot;status&quot; =  'projected' " key="{4f89bdad-25e4-49fe-a00e-72ff61c29e64}" symbol="76" scalemindenom="500" label="warmte geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'water' AND &quot;status&quot; = 'functional'" key="{468cb9b6-8bc2-4981-8c63-679d9c46c1e3}" symbol="77" scalemindenom="500" label="water 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'water' AND &quot;status&quot; = 'disused' " key="{bd5086b1-e641-4f44-aae7-f501d988754b}" symbol="78" scalemindenom="500" label="water buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'water' AND  &quot;status&quot; =  'projected' " key="{ddeaac25-9fd6-43ea-b38e-500a3e348edf}" symbol="79" scalemindenom="500" label="water geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'overig' AND &quot;status&quot; = 'functional'" key="{e8f2e0ea-2e60-4a94-a718-991e63a0234b}" symbol="80" scalemindenom="500" label="overig 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'overig'  AND &quot;status&quot; = 'disused' " key="{dc4913ff-4223-4586-9003-68f2bce68b44}" symbol="81" scalemindenom="500" label="overig buiten gebruik 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot; = 'overig' AND  &quot;status&quot; =  'projected' " key="{41e2abbb-9bae-4fd5-bc3f-f4f42f58fae1}" symbol="82" scalemindenom="500" label="overig geprojecteerd 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'wees'" key="{ad5ad98e-34ac-4f6c-8176-37d727fd5e2e}" symbol="83" scalemindenom="500" label="wees 2"/>
+      <rule scalemaxdenom="1250" filter="&quot;thema&quot;  =  'wees' AND &quot;status&quot; = 'disused' " key="{cd9e4cb5-4965-430a-b915-4901b74d6c4f}" symbol="84" scalemindenom="500" label="wees 2"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="line" name="0">
@@ -210,13 +213,13 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,255,0,255"/>
-          <prop k="line_style" v="dot"/>
+          <prop k="line_color" v="150,0,0,255"/>
+          <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
+          <prop k="offset_unit" v="Pixel"/>
           <prop k="use_custom_dash" v="1"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -246,13 +249,13 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,255,0,255"/>
+          <prop k="line_color" v="150,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
+          <prop k="offset_unit" v="Pixel"/>
           <prop k="use_custom_dash" v="1"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -282,7 +285,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,215,80,255"/>
+          <prop k="line_color" v="0,255,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -318,7 +321,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,215,80,255"/>
+          <prop k="line_color" v="0,255,0,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -354,7 +357,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,215,80,255"/>
+          <prop k="line_color" v="0,255,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -390,7 +393,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,175,60,255"/>
+          <prop k="line_color" v="255,215,80,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -426,7 +429,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,175,60,255"/>
+          <prop k="line_color" v="255,215,80,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -462,7 +465,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,175,60,255"/>
+          <prop k="line_color" v="255,215,80,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -498,7 +501,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,127,0,255"/>
+          <prop k="line_color" v="255,175,60,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -534,7 +537,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,127,0,255"/>
+          <prop k="line_color" v="255,175,60,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -606,7 +609,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,127,0,255"/>
+          <prop k="line_color" v="255,175,60,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -642,7 +645,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="182,74,0,255"/>
+          <prop k="line_color" v="255,127,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -678,7 +681,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="182,74,0,255"/>
+          <prop k="line_color" v="255,127,0,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -714,7 +717,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="182,74,0,255"/>
+          <prop k="line_color" v="255,127,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -750,7 +753,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="186,56,168,255"/>
+          <prop k="line_color" v="182,74,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -786,7 +789,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="186,56,168,255"/>
+          <prop k="line_color" v="182,74,0,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -822,7 +825,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="186,56,168,255"/>
+          <prop k="line_color" v="182,74,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -858,7 +861,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="128,0,128,255"/>
+          <prop k="line_color" v="186,56,168,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -894,7 +897,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="128,0,128,255"/>
+          <prop k="line_color" v="186,56,168,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -930,7 +933,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="128,0,128,255"/>
+          <prop k="line_color" v="186,56,168,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -966,7 +969,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="200,0,0,255"/>
+          <prop k="line_color" v="255,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1002,7 +1005,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,128,128,255"/>
+          <prop k="line_color" v="128,0,128,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1033,12 +1036,12 @@
       <symbol alpha="1" clip_to_extent="1" type="line" name="31">
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="21;25;2;25"/>
+          <prop k="customdash" v="21;25;1;25"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,128,128,255"/>
+          <prop k="line_color" v="128,0,128,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1074,7 +1077,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,128,128,255"/>
+          <prop k="line_color" v="128,0,128,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1110,7 +1113,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,0,255,255"/>
+          <prop k="line_color" v="0,128,128,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1141,12 +1144,12 @@
       <symbol alpha="1" clip_to_extent="1" type="line" name="34">
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="21;25;1;25"/>
+          <prop k="customdash" v="21;25;2;25"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,0,255,255"/>
+          <prop k="line_color" v="0,128,128,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1158,12 +1161,12 @@
         </layer>
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="21;25;1;25"/>
+          <prop k="customdash" v="5;2"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,203"/>
+          <prop k="line_color" v="255,255,255,204"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="12"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1182,7 +1185,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,0,255,255"/>
+          <prop k="line_color" v="0,128,128,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1199,7 +1202,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,203"/>
+          <prop k="line_color" v="255,255,255,204"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="12"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1218,7 +1221,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="111,92,16,255"/>
+          <prop k="line_color" v="0,0,255,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1254,7 +1257,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="111,92,16,255"/>
+          <prop k="line_color" v="0,0,255,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1266,12 +1269,12 @@
         </layer>
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
+          <prop k="customdash" v="21;25;1;25"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,204"/>
+          <prop k="line_color" v="255,255,255,203"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="12"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1290,7 +1293,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="111,92,16,255"/>
+          <prop k="line_color" v="0,0,255,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1307,7 +1310,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,204"/>
+          <prop k="line_color" v="255,255,255,203"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="12"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1326,7 +1329,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="145,138,111,255"/>
+          <prop k="line_color" v="111,92,16,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1362,8 +1365,8 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="200,0,0,255"/>
-          <prop k="line_style" v="solid"/>
+          <prop k="line_color" v="255,0,0,255"/>
+          <prop k="line_style" v="dot"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
@@ -1391,6 +1394,114 @@
         </layer>
       </symbol>
       <symbol alpha="1" clip_to_extent="1" type="line" name="40">
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="21;25;1;25"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="Pixel"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="111,92,16,255"/>
+          <prop k="line_style" v="dot"/>
+          <prop k="line_width" v="16"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="1"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="255,255,255,204"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="12"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+      </symbol>
+      <symbol alpha="1" clip_to_extent="1" type="line" name="41">
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="1;25"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="Pixel"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="111,92,16,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="16"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="1"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="255,255,255,204"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="12"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+      </symbol>
+      <symbol alpha="1" clip_to_extent="1" type="line" name="42">
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="145,138,111,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="16"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="255,255,255,204"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="12"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+      </symbol>
+      <symbol alpha="1" clip_to_extent="1" type="line" name="43">
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
           <prop k="customdash" v="21;25;1;25"/>
@@ -1426,114 +1537,6 @@
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
       </symbol>
-      <symbol alpha="1" clip_to_extent="1" type="line" name="41">
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,0,0,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="8"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,204"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="5"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-      </symbol>
-      <symbol alpha="1" clip_to_extent="1" type="line" name="42">
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="32;19;2;19"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="Pixel"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,0,0,255"/>
-          <prop k="line_style" v="dot"/>
-          <prop k="line_width" v="8"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="1"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,204"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="5"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-      </symbol>
-      <symbol alpha="1" clip_to_extent="1" type="line" name="43">
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="2;20"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="Pixel"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,0,0,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="8"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="1"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,204"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="5"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-      </symbol>
       <symbol alpha="1" clip_to_extent="1" type="line" name="44">
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
@@ -1542,7 +1545,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="200,0,0,255"/>
+          <prop k="line_color" v="255,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1578,8 +1581,8 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="200,0,0,255"/>
-          <prop k="line_style" v="solid"/>
+          <prop k="line_color" v="255,0,0,255"/>
+          <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
@@ -1614,7 +1617,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="200,0,0,255"/>
+          <prop k="line_color" v="255,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1647,16 +1650,16 @@
           <prop k="capstyle" v="square"/>
           <prop k="customdash" v="5;2"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="Pixel"/>
+          <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="150,0,0,255"/>
+          <prop k="line_color" v="200,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="Pixel"/>
+          <prop k="offset_unit" v="MM"/>
           <prop k="use_custom_dash" v="0"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -1686,13 +1689,13 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="150,0,0,255"/>
+          <prop k="line_color" v="200,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="Pixel"/>
+          <prop k="offset_unit" v="MM"/>
           <prop k="use_custom_dash" v="1"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -1722,13 +1725,13 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="150,0,0,255"/>
+          <prop k="line_color" v="200,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="Pixel"/>
+          <prop k="offset_unit" v="MM"/>
           <prop k="use_custom_dash" v="1"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -1758,7 +1761,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="200,0,0,255"/>
+          <prop k="line_color" v="255,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1791,16 +1794,16 @@
           <prop k="capstyle" v="square"/>
           <prop k="customdash" v="5;2"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
+          <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,255,0,255"/>
+          <prop k="line_color" v="150,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
+          <prop k="offset_unit" v="Pixel"/>
           <prop k="use_custom_dash" v="0"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -1830,13 +1833,13 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,255,0,255"/>
-          <prop k="line_style" v="dot"/>
+          <prop k="line_color" v="150,0,0,255"/>
+          <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
+          <prop k="offset_unit" v="Pixel"/>
           <prop k="use_custom_dash" v="1"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -1866,13 +1869,13 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,255,0,255"/>
+          <prop k="line_color" v="150,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
+          <prop k="offset_unit" v="Pixel"/>
           <prop k="use_custom_dash" v="1"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -1902,7 +1905,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,215,80,255"/>
+          <prop k="line_color" v="0,255,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1938,7 +1941,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,215,80,255"/>
+          <prop k="line_color" v="0,255,0,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -1974,7 +1977,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,215,80,255"/>
+          <prop k="line_color" v="0,255,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2010,7 +2013,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,175,60,255"/>
+          <prop k="line_color" v="255,215,80,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2046,7 +2049,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,175,60,255"/>
+          <prop k="line_color" v="255,215,80,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2082,7 +2085,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,175,60,255"/>
+          <prop k="line_color" v="255,215,80,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2118,7 +2121,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,127,0,255"/>
+          <prop k="line_color" v="255,175,60,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2151,16 +2154,16 @@
           <prop k="capstyle" v="square"/>
           <prop k="customdash" v="5;2"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="Pixel"/>
+          <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="150,0,0,255"/>
+          <prop k="line_color" v="200,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="Pixel"/>
+          <prop k="offset_unit" v="MM"/>
           <prop k="use_custom_dash" v="0"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -2190,7 +2193,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,127,0,255"/>
+          <prop k="line_color" v="255,175,60,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2226,7 +2229,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,127,0,255"/>
+          <prop k="line_color" v="255,175,60,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2262,7 +2265,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="182,74,0,255"/>
+          <prop k="line_color" v="255,127,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2298,7 +2301,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="182,74,0,255"/>
+          <prop k="line_color" v="255,127,0,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2334,7 +2337,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="182,74,0,255"/>
+          <prop k="line_color" v="255,127,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2370,7 +2373,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="186,56,168,255"/>
+          <prop k="line_color" v="182,74,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2406,7 +2409,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="186,56,168,255"/>
+          <prop k="line_color" v="182,74,0,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2442,7 +2445,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="186,56,168,255"/>
+          <prop k="line_color" v="182,74,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2478,7 +2481,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="128,0,128,255"/>
+          <prop k="line_color" v="186,56,168,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2514,7 +2517,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="128,0,128,255"/>
+          <prop k="line_color" v="186,56,168,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2550,13 +2553,13 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="150,0,0,255"/>
+          <prop k="line_color" v="200,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="Pixel"/>
+          <prop k="offset_unit" v="MM"/>
           <prop k="use_custom_dash" v="1"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
@@ -2586,7 +2589,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="128,0,128,255"/>
+          <prop k="line_color" v="186,56,168,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2622,7 +2625,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,128,128,255"/>
+          <prop k="line_color" v="128,0,128,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2658,7 +2661,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,128,128,255"/>
+          <prop k="line_color" v="128,0,128,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2694,7 +2697,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,128,128,255"/>
+          <prop k="line_color" v="128,0,128,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2730,7 +2733,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,0,255,255"/>
+          <prop k="line_color" v="0,128,128,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2766,7 +2769,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,0,255,255"/>
+          <prop k="line_color" v="0,128,128,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2778,12 +2781,12 @@
         </layer>
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="21;25;1;25"/>
+          <prop k="customdash" v="5;2"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,203"/>
+          <prop k="line_color" v="255,255,255,204"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="5"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2802,7 +2805,7 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,0,255,255"/>
+          <prop k="line_color" v="0,128,128,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2819,7 +2822,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,203"/>
+          <prop k="line_color" v="255,255,255,204"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="5"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2838,7 +2841,7 @@
           <prop k="customdash_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="111,92,16,255"/>
+          <prop k="line_color" v="0,0,255,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="8"/>
           <prop k="line_width_unit" v="Pixel"/>
@@ -2874,6 +2877,150 @@
           <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="0,0,255,255"/>
+          <prop k="line_style" v="dot"/>
+          <prop k="line_width" v="8"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="1"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="21;25;1;25"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="255,255,255,203"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="5"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+      </symbol>
+      <symbol alpha="1" clip_to_extent="1" type="line" name="79">
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="2;20"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="Pixel"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="0,0,255,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="8"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="1"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="255,255,255,203"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="5"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+      </symbol>
+      <symbol alpha="1" clip_to_extent="1" type="line" name="8">
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="1;25"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="Pixel"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="200,0,0,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="16"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="1"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="255,255,255,204"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="12"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+      </symbol>
+      <symbol alpha="1" clip_to_extent="1" type="line" name="80">
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="111,92,16,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="8"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="255,255,255,204"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="5"/>
+          <prop k="line_width_unit" v="Pixel"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+        </layer>
+      </symbol>
+      <symbol alpha="1" clip_to_extent="1" type="line" name="81">
+        <layer pass="0" class="SimpleLine" locked="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="32;19;2;19"/>
+          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="Pixel"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
           <prop k="line_color" v="111,92,16,255"/>
           <prop k="line_style" v="dot"/>
           <prop k="line_width" v="8"/>
@@ -2902,7 +3049,7 @@
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
       </symbol>
-      <symbol alpha="1" clip_to_extent="1" type="line" name="79">
+      <symbol alpha="1" clip_to_extent="1" type="line" name="82">
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
           <prop k="customdash" v="2;20"/>
@@ -2938,43 +3085,7 @@
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
       </symbol>
-      <symbol alpha="1" clip_to_extent="1" type="line" name="8">
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="1;25"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="Pixel"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="150,0,0,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="16"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="Pixel"/>
-          <prop k="use_custom_dash" v="1"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,255,255,204"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="12"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-      </symbol>
-      <symbol alpha="1" clip_to_extent="1" type="line" name="80">
+      <symbol alpha="1" clip_to_extent="1" type="line" name="83">
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
           <prop k="customdash" v="5;2"/>
@@ -3010,7 +3121,7 @@
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
       </symbol>
-      <symbol alpha="1" clip_to_extent="1" type="line" name="81">
+      <symbol alpha="1" clip_to_extent="1" type="line" name="84">
         <layer pass="0" class="SimpleLine" locked="0">
           <prop k="capstyle" v="square"/>
           <prop k="customdash" v="32;19;2;19"/>
@@ -3051,16 +3162,16 @@
           <prop k="capstyle" v="square"/>
           <prop k="customdash" v="5;2"/>
           <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
+          <prop k="customdash_unit" v="Pixel"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,255,0,255"/>
+          <prop k="line_color" v="150,0,0,255"/>
           <prop k="line_style" v="solid"/>
           <prop k="line_width" v="16"/>
           <prop k="line_width_unit" v="Pixel"/>
           <prop k="offset" v="0"/>
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
+          <prop k="offset_unit" v="Pixel"/>
           <prop k="use_custom_dash" v="0"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>

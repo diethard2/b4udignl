@@ -41,16 +41,17 @@
       <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'gasLageDruk' " key="{602faffb-48d7-4bb0-968b-57d805d9f563}" symbol="1" scalemindenom="1" label="gasLageDruk"/>
       <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'gasHogeDruk' " key="{8466acc8-4163-4593-ad05-30d82caea573}" symbol="2" scalemindenom="1" label="gasHogeDruk"/>
       <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'buisleidingGevaarlijkeInhoud' " key="{1b660073-9766-4960-8b7c-b78a5c5e5cd7}" symbol="3" scalemindenom="1" label="buisleiding gevaarlijke inhoud"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot; IN ('hoogspanning', 'landelijkHoogspanningsnet')" key="{0f450d9a-a9bb-4160-b1de-8c8c79d54007}" symbol="4" scalemindenom="1" label="hoogspanning"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'middenspanning' " key="{6c1f2781-3db0-4d7b-a1f7-e8c6d4740fb3}" symbol="5" scalemindenom="1" label="middenspanning"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'laagspanning' " key="{f39a27d9-0e69-49e3-8b7d-3691434c236c}" symbol="6" scalemindenom="1" label="laagspanning"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'petrochemie' " key="{c98ea927-23ca-4d1a-bd48-0e2ec313dafa}" symbol="7" scalemindenom="1" label="petrochemie"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'rioolVrijverval' " key="{9e2def1b-0998-4049-8fe8-474308ed4dc7}" symbol="8" scalemindenom="1" label="rioolVrijverval"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'rioolOnderOverOfOnderdruk' " key="{d12c4308-a6e4-409e-85f1-6d2243daf345}" symbol="9" scalemindenom="1" label="rioolOnderOverOfOnderdruk"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'water' " key="{fa04df74-cb9f-4217-acf5-d3b29ec0431a}" symbol="10" scalemindenom="1" label="water"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'warmte' " key="{7f1618e4-85af-465a-8248-a785275cd56d}" symbol="11" scalemindenom="1" label="warmte"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'wees' " key="{e6fe0928-779a-47e3-9134-f409b71e583f}" symbol="12" scalemindenom="1" label="wees"/>
-      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'overig' " key="{e6fe0928-779a-47e3-9134-f409b71e583f}" symbol="13" scalemindenom="1" label="overig"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'hoogspanning'" key="{1aa130fb-2250-4cfb-8a8c-1a1dfbb83bb0}" symbol="4" scalemindenom="1" label="hoogspanning"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'landelijkHoogspanningsnet'" key="{0f450d9a-a9bb-4160-b1de-8c8c79d54007}" symbol="5" scalemindenom="1" label="landelijkHoogspanningsnet"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'middenspanning' " key="{6c1f2781-3db0-4d7b-a1f7-e8c6d4740fb3}" symbol="6" scalemindenom="1" label="middenspanning"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'laagspanning' " key="{f39a27d9-0e69-49e3-8b7d-3691434c236c}" symbol="7" scalemindenom="1" label="laagspanning"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'petrochemie' " key="{c98ea927-23ca-4d1a-bd48-0e2ec313dafa}" symbol="8" scalemindenom="1" label="petrochemie"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'rioolVrijverval' " key="{9e2def1b-0998-4049-8fe8-474308ed4dc7}" symbol="9" scalemindenom="1" label="rioolVrijverval"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'rioolOnderOverOfOnderdruk' " key="{d12c4308-a6e4-409e-85f1-6d2243daf345}" symbol="10" scalemindenom="1" label="rioolOnderOverOfOnderdruk"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'water' " key="{fa04df74-cb9f-4217-acf5-d3b29ec0431a}" symbol="11" scalemindenom="1" label="water"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'warmte' " key="{7f1618e4-85af-465a-8248-a785275cd56d}" symbol="12" scalemindenom="1" label="warmte"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'wees' " key="{e6fe0928-779a-47e3-9134-f409b71e583f}" symbol="13" scalemindenom="1" label="wees"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot;  =  'overig' " key="{e6fe0928-779a-47e3-9134-f409b71e583f}" symbol="14" scalemindenom="1" label="overig"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
@@ -98,7 +99,7 @@
       <symbol alpha="1" clip_to_extent="1" type="marker" name="10">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
-          <prop k="color" v="0,0,255,255"/>
+          <prop k="color" v="128,0,128,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
           <prop k="name" v="circle"/>
           <prop k="offset" v="0,0"/>
@@ -119,7 +120,7 @@
       <symbol alpha="1" clip_to_extent="1" type="marker" name="11">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
-          <prop k="color" v="0,128,128,255"/>
+          <prop k="color" v="0,0,255,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
           <prop k="name" v="circle"/>
           <prop k="offset" v="0,0"/>
@@ -140,7 +141,7 @@
       <symbol alpha="1" clip_to_extent="1" type="marker" name="12">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
-          <prop k="color" v="145,138,111,255"/>
+          <prop k="color" v="0,128,128,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
           <prop k="name" v="circle"/>
           <prop k="offset" v="0,0"/>
@@ -159,6 +160,27 @@
         </layer>
       </symbol>
       <symbol alpha="1" clip_to_extent="1" type="marker" name="13">
+        <layer pass="0" class="SimpleMarker" locked="0">
+          <prop k="angle" v="0"/>
+          <prop k="color" v="145,138,111,255"/>
+          <prop k="horizontal_anchor_point" v="1"/>
+          <prop k="name" v="circle"/>
+          <prop k="offset" v="0,0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="outline_color" v="0,0,0,255"/>
+          <prop k="outline_style" v="solid"/>
+          <prop k="outline_width" v="0"/>
+          <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="outline_width_unit" v="MM"/>
+          <prop k="scale_method" v="diameter"/>
+          <prop k="size" v="2"/>
+          <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="size_unit" v="MM"/>
+          <prop k="vertical_anchor_point" v="1"/>
+        </layer>
+      </symbol>
+      <symbol alpha="1" clip_to_extent="1" type="marker" name="14">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="111,92,16,255"/>
@@ -245,7 +267,7 @@
       <symbol alpha="1" clip_to_extent="1" type="marker" name="5">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
-          <prop k="color" v="200,0,0,255"/>
+          <prop k="color" v="255,0,0,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
           <prop k="name" v="circle"/>
           <prop k="offset" v="0,0"/>
@@ -266,7 +288,7 @@
       <symbol alpha="1" clip_to_extent="1" type="marker" name="6">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
-          <prop k="color" v="150,0,0,255"/>
+          <prop k="color" v="200,0,0,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
           <prop k="name" v="circle"/>
           <prop k="offset" v="0,0"/>
@@ -287,7 +309,7 @@
       <symbol alpha="1" clip_to_extent="1" type="marker" name="7">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
-          <prop k="color" v="182,74,0,255"/>
+          <prop k="color" v="150,0,0,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
           <prop k="name" v="circle"/>
           <prop k="offset" v="0,0"/>
@@ -308,7 +330,7 @@
       <symbol alpha="1" clip_to_extent="1" type="marker" name="8">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
-          <prop k="color" v="186,56,168,255"/>
+          <prop k="color" v="182,74,0,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
           <prop k="name" v="circle"/>
           <prop k="offset" v="0,0"/>
@@ -329,7 +351,7 @@
       <symbol alpha="1" clip_to_extent="1" type="marker" name="9">
         <layer pass="0" class="SimpleMarker" locked="0">
           <prop k="angle" v="0"/>
-          <prop k="color" v="128,0,128,255"/>
+          <prop k="color" v="186,56,168,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
           <prop k="name" v="circle"/>
           <prop k="offset" v="0,0"/>
