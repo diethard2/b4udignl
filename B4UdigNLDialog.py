@@ -279,6 +279,8 @@ class B4UdigNLDialog(QDialog):
         doc = self.doc()
         if doc is not None and doc.themes.has_key(p_theme):
             if p_state <> 1:
+                if p_theme == 'Topo':
+                    self._displayThemesVisibilyMsg(p_theme)
                 theme = doc.themes[p_theme]
                 theme.setVisibility(p_state)
     ##            self._setStateOfVisibilitiesTheme(p_theme, True)
@@ -569,13 +571,15 @@ class B4UdigNLDialog(QDialog):
         KLIC bericht of kan niet worden geopend!")
         QMessageBox.warning(self, l_titleMsg, l_errorMsg)
 
-    def _displayThemesVisibilyMsg(self):
+    def _displayThemesVisibilyMsg(self, p_theme=None):
         title = u"ThemesVisibilities"
         msg = u"Toon Visibilities Themes\n"
         doc = self.doc()
         for i_theme in self.__themes.keys():
             theme = None
             if doc.themes.has_key(i_theme):
+                if p_theme is not None and i_theme != p_theme:
+                    continue
                 theme = doc.themes[i_theme]
                 theme.checkVisible()
                 layers = theme.layers

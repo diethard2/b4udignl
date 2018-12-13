@@ -350,7 +350,7 @@ class Storage1(Storage):
         layer = Layer(self, file_png)
         layer.addVisibility('Topo')
         theme = Theme(self)
-        theme.name = 'topo'
+        theme.name = 'Topo'
         layers.append(layer)
         theme.layers.append(layer)
         self._extend_layers(layers)
@@ -483,7 +483,7 @@ class Storage2(Storage):
             file_type = bijlage.field("bestandstype").value
             file_type = file_type.split('/')[-1]
             if file_type == 'PNG':
-                theme = self._get_create_theme_netowner(netowner, 'topo')
+                theme = self._get_create_theme_netowner(netowner, 'Topo')
                 self._add_layer_to_theme(theme, bijlage)
             elif file_type == 'PDF':
                 pdfFile = self._create_doc_from_imkl(bijlage)

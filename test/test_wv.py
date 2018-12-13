@@ -335,6 +335,25 @@ class DocTestCaseV2_1(unittest.TestCase):
         self.assertEqual((network_id,thema),
                          ('nl.imkl-nbact1.un00048', 'datatransport'))
 
+    def test_thema_datatransport(self):
+        theme = self.doc.themes['datatransport']
+        layers = theme.layers
+        layer_themes = []
+        for layer in layers:
+            theme_names = layer.themes_visible.keys()
+            theme_names.sort()
+            for theme_name in theme_names:
+                visible = layer.themes_visible[theme_name]
+                layer_themes.append([layer.layerName, theme_name, visible])           
+        self.assertEqual(layer_themes,
+                         [['LG_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                           'datatransport',2],
+                          ['MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                           'datatransport',2],
+                          ['AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                           'datatransport',2],
+                          ['Kast','datatransport',2]])
+
     def test_klicnummer(self):
         self.assertEqual(self.doc.klicnummer, '18G007160')
         
@@ -429,7 +448,7 @@ class DocTestCaseV2_1(unittest.TestCase):
             layers = theme.layers
             for layer in layers:
                 layer_names.append(layer.layerName)
-            key_values.append([key, layer_names])
+            key_values.append([theme_name, layer_names])
         self.assertEqual(key_values,
                          [['Annotatie',
                            ['AN_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
@@ -500,7 +519,6 @@ class DocTestCaseV2_1(unittest.TestCase):
                            ['LG_rioolOnderOverOfOnderdruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['rioolVrijverval',
                            ['LG_rioolVrijverval_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
-                          ['topo', []],
                           ['warmte',
                            ['LG_warmte_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['water',

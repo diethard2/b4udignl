@@ -290,7 +290,7 @@ class Doc():
                 if theme_field is None:
                     break
                 if imkl_object.name == imkl.EIGENTOPOGRAFIE:
-                    theme = "topo"
+                    theme = "Topo"
                 else:
                     network_id = imkl_object.field("network_id").value
                     network = self.imkls_on_id[network_id]
