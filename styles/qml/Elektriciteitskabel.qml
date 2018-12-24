@@ -91,7 +91,7 @@
       <rule scalemaxdenom="400000" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'disused'" key="{8c9c9b63-9568-4e7c-b24d-d599eef85d61}" symbol="36" scalemindenom="10000" label="laagspanning buiten gebruik 3"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot;  = 'laagspanning' AND &quot;status&quot;  = 'projected'" key="{4b008c85-20b1-447c-b810-ee672c9e7519}" symbol="37" scalemindenom="10000" label="laagspanning geprojecteerd 3"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot;  =  'wees'" key="{1ffa6f91-4478-4276-a9f9-dfa2f14b481a}" symbol="38" scalemindenom="10000" label="wees 3"/>
-      <rule scalemaxdenom="400000" filter="&quot;thema&quot; NOT IN ('landelijkHoogspanningsnet', 'hoogspanning', 'middenspanning',  'laagspanning', 'wees')" key="{49241506-d5f4-44df-9524-c4395127933e}" symbol="39" scalemindenom="1" label="verkeerd thema"/>
+      <rule scalemaxdenom="400000" filter="&quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water','overig')" key="{49241506-d5f4-44df-9524-c4395127933e}" symbol="39" scalemindenom="1" label="verkeerd thema"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="line" name="0">

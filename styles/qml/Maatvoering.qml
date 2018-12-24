@@ -31,7 +31,7 @@
   </edittypes>
   <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
     <rules key="{bafeb50e-287c-4145-8e4f-5ec8cf9dffdc}">
-      <rule scalemaxdenom="500" filter=" &quot;maatvoeringsType&quot;  =  'maatvoeringspijlpunt' " key="{0f73e546-8c7d-4a39-ba54-ef00b9842232}" symbol="0" scalemindenom="1"/>
+      <rule scalemaxdenom="500" filter="&quot;thema&quot;  IN ( 'datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water','wees','overig')" key="{0f73e546-8c7d-4a39-ba54-ef00b9842232}" symbol="0" scalemindenom="1" label="alle thema's"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
@@ -111,6 +111,7 @@
   <SingleCategoryDiagramRenderer diagramType="Pie">
     <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="1">
       <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+      <attribute field="" color="#000000" label=""/>
     </DiagramCategory>
   </SingleCategoryDiagramRenderer>
   <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>

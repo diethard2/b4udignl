@@ -37,7 +37,7 @@
   </edittypes>
   <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
     <rules key="{384d1b9d-c4eb-4d4f-adec-4088b542f8f6}">
-      <rule scalemaxdenom="1" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{fabb2dda-5619-4e2a-81a4-35a0ea75d917}" symbol="0" scalemindenom="500"/>
+      <rule scalemaxdenom="500" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{fabb2dda-5619-4e2a-81a4-35a0ea75d917}" symbol="0" scalemindenom="1"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="marker" name="0">

@@ -34,7 +34,6 @@ import ifaceqgis, os
 from core import wv
 import unzip, zipfile, pickle
 
-
 # create the dialog
 class B4UdigNLDialog(QDialog):
     layerGroups = ["Annotatie",
@@ -279,8 +278,8 @@ class B4UdigNLDialog(QDialog):
         doc = self.doc()
         if doc is not None and doc.themes.has_key(p_theme):
             if p_state <> 1:
-                if p_theme == 'Topo':
-                    self._displayThemesVisibilyMsg(p_theme)
+##                if p_theme == 'Topo':
+##                    self._displayThemesVisibilyMsg(p_theme)
                 theme = doc.themes[p_theme]
                 theme.setVisibility(p_state)
     ##            self._setStateOfVisibilitiesTheme(p_theme, True)

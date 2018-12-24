@@ -40,7 +40,7 @@
       <rule scalemaxdenom="10000" filter=" &quot;thema&quot;  =  'middenspanning'" key="{8f09d886-b760-418a-ad72-c9b6982e37a4}" symbol="6" scalemindenom="1" label="middenspanning 1"/>
       <rule scalemaxdenom="10000" filter=" &quot;thema&quot;  =  'laagspanning'" key="{c828b3bc-1c80-47de-be97-bed99dd9bcac}" symbol="7" scalemindenom="1" label="laagspanning 1"/>
       <rule scalemaxdenom="10000" filter=" &quot;thema&quot;  =  'petrochemie' " key="{9043339a-2c0e-4270-995f-391cb2cabbc8}" symbol="8" scalemindenom="1" label="petrochemie 1"/>
-      <rule scalemaxdenom="10000" filter=" &quot;thema&quot;  =  'rioolVrijVerval' " key="{d15fda2d-6281-4869-897a-a75b576ba2c5}" symbol="9" scalemindenom="1" label="rioolVrijVerval"/>
+      <rule scalemaxdenom="10000" filter=" &quot;thema&quot;  =  'rioolVrijverval' " key="{d15fda2d-6281-4869-897a-a75b576ba2c5}" symbol="9" scalemindenom="1" label="rioolVrijverval"/>
       <rule scalemaxdenom="10000" filter=" &quot;thema&quot;  =  'rioolOnderOverOfOnderdruk' " key="{5ac2bb3a-698b-4c1c-b8d0-ec9fdfcfc531}" symbol="10" scalemindenom="1" label="rioolOnderOverOfOnderdruk 1"/>
       <rule scalemaxdenom="10000" filter=" &quot;thema&quot;  =  'warmte' " key="{2436f072-f316-41d8-9d23-11fffd5d78a7}" symbol="11" scalemindenom="1" label="warmte 1"/>
       <rule scalemaxdenom="10000" filter=" &quot;thema&quot;  =  'water' " key="{f6f3dbe0-3729-419e-9228-10d79ae8fc88}" symbol="12" scalemindenom="1" label="water 1"/>
@@ -55,7 +55,7 @@
       <rule scalemaxdenom="25000" checkstate="0" filter=" &quot;thema&quot;  =  'middenspanning'" key="{8417a3c6-15d3-4f72-a5b2-f459aed1dfb8}" symbol="21" scalemindenom="10000" label="middenspanning 2"/>
       <rule scalemaxdenom="25000" filter=" &quot;thema&quot;  =  'laagspanning'" key="{a676aec4-e796-4cd6-a826-438323ac973e}" symbol="22" scalemindenom="10000" label="laagspanning 2"/>
       <rule scalemaxdenom="25000" filter=" &quot;thema&quot;  =  'petrochemie' " key="{9ee4c695-9592-4c22-b663-fd63581ce6f0}" symbol="23" scalemindenom="10000" label="petrochemie 2"/>
-      <rule scalemaxdenom="25000" filter=" &quot;thema&quot;  =  'rioolVrijVerval' " key="{56da08cc-8c37-489a-a9ff-4dd649f43ce1}" symbol="24" scalemindenom="10000" label="rioolVrijVerval"/>
+      <rule scalemaxdenom="25000" filter=" &quot;thema&quot;  =  'rioolVrijverval' " key="{56da08cc-8c37-489a-a9ff-4dd649f43ce1}" symbol="24" scalemindenom="10000" label="rioolVrijverval 2"/>
       <rule scalemaxdenom="25000" filter=" &quot;thema&quot;  =  'rioolOnderOverOfOnderdruk' " key="{5f261d39-a30d-4d1f-b068-7647015a86fa}" symbol="25" scalemindenom="10000" label="rioolOnderOverOfOnderdruk 2"/>
       <rule scalemaxdenom="25000" filter=" &quot;thema&quot;  =  'warmte' " key="{3730fd02-0cf4-4445-b7a6-70f4af417897}" symbol="26" scalemindenom="10000" label="warmte 2"/>
       <rule scalemaxdenom="25000" filter=" &quot;thema&quot;  =  'water' " key="{607f6805-9b4e-468a-a87e-d28bef8fe902}" symbol="27" scalemindenom="10000" label="water 2"/>

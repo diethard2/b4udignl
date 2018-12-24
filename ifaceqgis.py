@@ -139,9 +139,9 @@ class Iface:
 
     def _visibility_for_layer_theme(self, layer, theme):
         '''check visibility of all themes in layer.
-        If all are visible: return True
-        If none are visible: return False
-        If some are visible: return None
+        If all are visible: return 2
+        If none are visible: return 0
+        If some are visible: return 1
         '''
         renderer = layer.rendererV2()
         visibility = 0
@@ -157,17 +157,22 @@ class Iface:
         visibilities = []
         for rule in rules:
             expression = rule.filterExpression()
-            if not 'NOT'in expression and theme in expression:
+            if theme in expression:
                 visibilities.append(rule.checkState())
-        visibility = sum(visibilities)/len(visibilities)
-##        for v in visibilies:
-##            if visibility is None:
-##                visibility = v
-##            else:
-##                if visibility is not v:
-##                    visibility = None
-##                    break
-        return visibility
+        if len(visibilities) != 0:
+            return sum(visibilities)/len(visibilities)
+        else:
+##            self._displayThemesVisibilyMsg(rules, theme)
+            return 2
+
+    def _displayThemesVisibilyMsg(self, rules, theme):
+        title = u"ThemesVisibilities"
+        msg = u"Toon Visibilities Themes\n"
+##        if theme == 'laagspanning':
+        msg += theme + "not found in:\n"
+        for rule in rules:
+            msg += rule.filterExpression() + "\n"
+        QtGui.QMessageBox.information(None, title, msg)      
 
     def _set_visibility_rules_symbol(self, layer, theme, visibility):
         renderer = layer.rendererV2()

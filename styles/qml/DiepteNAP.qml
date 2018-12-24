@@ -43,7 +43,7 @@
   </edittypes>
   <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
     <rules key="{b3974815-bb53-4306-9a3f-d0d4d15874ab}">
-      <rule scalemaxdenom="1" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{f35c4b55-93e3-4564-92da-c2827531b082}" symbol="0" scalemindenom="500"/>
+      <rule scalemaxdenom="500" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{f35c4b55-93e3-4564-92da-c2827531b082}" symbol="0" scalemindenom="1" label="alle thema's"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
