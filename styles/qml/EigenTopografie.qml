@@ -28,9 +28,9 @@
   </edittypes>
   <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
     <rules key="{e34fd4ad-7606-49b1-b89d-11071ab4b191}">
-      <rule scalemaxdenom="500" key="{396c58a4-722c-4c2f-bdf0-3e5d503f7b9b}" symbol="0" scalemindenom="1" label="schaal 1"/>
-      <rule scalemaxdenom="1250" key="{66408958-20a6-46af-94aa-712c599b73ef}" symbol="1" scalemindenom="500" label="schaal 2"/>
-      <rule scalemaxdenom="1250" key="{af7fdfd9-df85-4a83-9fc6-1757254fcb32}" symbol="2" scalemindenom="2500" label="schaal 3"/>
+      <rule scalemaxdenom="500" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{396c58a4-722c-4c2f-bdf0-3e5d503f7b9b}" symbol="0" scalemindenom="1" label="schaal 1"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{66408958-20a6-46af-94aa-712c599b73ef}" symbol="1" scalemindenom="500" label="schaal 2"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{af7fdfd9-df85-4a83-9fc6-1757254fcb32}" symbol="2" scalemindenom="2500" label="schaal 3"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
@@ -267,6 +267,7 @@
   <SingleCategoryDiagramRenderer diagramType="Pie">
     <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="1">
       <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+      <attribute field="" color="#000000" label=""/>
     </DiagramCategory>
   </SingleCategoryDiagramRenderer>
   <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>

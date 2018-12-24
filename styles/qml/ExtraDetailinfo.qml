@@ -31,8 +31,8 @@
   </edittypes>
   <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
     <rules key="{3dc1e491-6906-474a-bdcd-05e0a9696aad}">
-      <rule scalemaxdenom="500" key="{b221b4d9-969f-414d-9709-493a956ee802}" symbol="0" scalemindenom="1" label="alle thema's 1"/>
-      <rule scalemaxdenom="1250" key="{dc51cfa2-33e9-4466-b103-39bdde30eaa2}" symbol="1" scalemindenom="500" label="alle thema's 2"/>
+      <rule scalemaxdenom="500" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{b221b4d9-969f-414d-9709-493a956ee802}" symbol="0" scalemindenom="1" label="alle thema's 1"/>
+      <rule scalemaxdenom="1250" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water', 'wees','overig')" key="{dc51cfa2-33e9-4466-b103-39bdde30eaa2}" symbol="1" scalemindenom="500" label="alle thema's 2"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="marker" name="0">

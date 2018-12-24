@@ -70,7 +70,7 @@
       <rule scalemaxdenom="400000" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'disused' " key="{4b348ae7-e7af-4596-832b-dc5ec802529b}" symbol="18" scalemindenom="10000" label="drukriool buiten gebruik 3"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot; = 'rioolOnderOverOfOnderdruk' AND &quot;status&quot; = 'projected' " key="{128ee7cc-ba8c-411b-be0c-7c5b15e34518}" symbol="19" scalemindenom="10000" label="drukriool geprojecteerd 3"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot; = 'wees'" key="{1ffa6f91-4478-4276-a9f9-dfa2f14b481a}" symbol="20" scalemindenom="10000" label="wees 3"/>
-      <rule scalemaxdenom="400000" filter="&quot;thema&quot; NOT IN ('rioolVrijverval', 'rioolOnderOverOfOnderdruk', 'wees')" key="{49241506-d5f4-44df-9524-c4395127933e}" symbol="21" scalemindenom="1" label="verkeerd thema"/>
+      <rule scalemaxdenom="10000" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','warmte','water','overig')" key="{49241506-d5f4-44df-9524-c4395127933e}" symbol="21" scalemindenom="1" label="verkeerd thema"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="line" name="0">

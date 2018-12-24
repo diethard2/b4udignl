@@ -296,7 +296,7 @@ class Doc():
                     network = self.imkls_on_id[network_id]
                     theme = network.field("thema").value
                 theme_field.value = theme
-
+        
     def _fill_graaf_polygoon(self):
         graafpolygoon = self.imkls[imkl.GRAAFPOLYGOON][0]
         aanvraag = self.imkls[imkl.GEBIEDSINFORMATIEAANVRAAG][0]
@@ -341,6 +341,7 @@ class Doc():
         attribut themes and this will be used in dialog to
         present to user.
         """
+        names_themes = self._gather_layernames_and_themes()
         for netOwner in self.netOwners:
             for theme in netOwner.themes:
                 nameTheme = theme.name
@@ -350,10 +351,41 @@ class Doc():
                     # now traverse all my layers to add layer to this theme.
                     findString = nameTheme.replace(' ', '+')
                     for layername, layer in self.layers.items():
+                        add_layer = False
                         if layername is not None and findString in layername:
+                            add_layer = True
+                        if names_themes.has_key(layername) and nameTheme in names_themes[layername]:
+                            add_layer = True
+                        if add_layer:
                             self.themes[nameTheme].layers.append(layer)
         self._setLayerGroupThemes()
+        self._set_themes_to_layers()
         self._allLayersHaveThemes()
+
+    def _set_themes_to_layers(self):
+        names_themes = self._gather_layernames_and_themes()
+        for theme in self.themes.values():
+            for layer in theme.layers:
+                name_layer = layer.layerName
+                if layer.is_vector() and names_themes.has_key(name_layer):
+                    for theme_name in names_themes[name_layer]:
+                        if not layer.themes_visible.has_key(theme_name):
+                            layer.addVisibility(theme_name)
+
+    def _gather_layernames_and_themes(self):
+        names_themes = {}
+        for imkl_objects in self.imkls.values():
+            name_object = imkl_objects[0].name
+            for imkl_object in imkl_objects:
+                theme_field = imkl_object.field('thema')
+                if theme_field is not None:
+                    name_theme = theme_field.value
+                    if names_themes.has_key(name_object):
+                        if name_theme not in names_themes[name_object]:
+                            names_themes[name_object].append(name_theme)
+                    else:
+                        names_themes[name_object] = [name_theme]
+        return names_themes   
         
     def _allLayersHaveThemes(self):
         for theme in self.themes.values():

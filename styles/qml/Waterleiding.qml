@@ -61,7 +61,7 @@
       <rule scalemaxdenom="400000" filter=" &quot;thema&quot;  =  'water' AND  &quot;status&quot; =  'disused' " key="{b6821b42-f18f-4d7b-9b5c-7955046fced7}" symbol="9" scalemindenom="10000" label="water buiten gebruik 3"/>
       <rule scalemaxdenom="400000" filter=" &quot;thema&quot;  =  'water' AND  &quot;status&quot; =  'functional' " key="{35049ef3-1a14-4d40-a09d-24b519362c0a}" symbol="10" scalemindenom="10000" label="water geprojecteerd 3"/>
       <rule scalemaxdenom="400000" filter=" &quot;thema&quot;  =  'wees'" key="{1ffa6f91-4478-4276-a9f9-dfa2f14b481a}" symbol="11" scalemindenom="10000" label="wees 3"/>
-      <rule scalemaxdenom="400000" filter=" &quot;thema&quot; NOT IN ('water', 'wees')" key="{49241506-d5f4-44df-9524-c4395127933e}" symbol="12" scalemindenom="1" label="verkeerd thema"/>
+      <rule scalemaxdenom="10000" filter=" &quot;thema&quot; IN ('datatransport','gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','landelijkHoogspanningsnet','hoogspanning','middenspanning','laagspanning','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','overig')" key="{49241506-d5f4-44df-9524-c4395127933e}" symbol="12" scalemindenom="1" label="verkeerd thema"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="line" name="0">

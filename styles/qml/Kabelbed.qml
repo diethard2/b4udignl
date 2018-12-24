@@ -65,7 +65,7 @@
       <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'overig'  AND &quot;status&quot; = 'disused' " key="{1e121d59-0bad-46f7-b0ce-b6c41359e6ca}" symbol="16" scalemindenom="1" label="overig buiten gebruik 1"/>
       <rule scalemaxdenom="500" filter="&quot;thema&quot; = 'overig' AND  &quot;status&quot; =  'projected' " key="{66a67461-3de6-4b77-8be8-cd6d54eecbd9}" symbol="17" scalemindenom="1" label="overig geprojecteerd 1"/>
       <rule scalemaxdenom="500" filter="&quot;thema&quot;  =  'wees'" key="{b18e8c38-e055-4f72-acc0-578a5c001670}" symbol="18" scalemindenom="1" label="wees 1"/>
-      <rule scalemaxdenom="500" filter="&quot;thema&quot; NOT IN ('datatransport', 'laagspanning', 'middenspanning', 'hoogspanning', 'landelijkHoogspanningsnet','overig', 'wees')" key="{1322ce14-b77a-4e7d-bc83-d860e43c6090}" symbol="19" scalemindenom="1" label="Verkeerd thema 1"/>
+      <rule scalemaxdenom="500" filter=" &quot;thema&quot; IN ('gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water')" key="{1322ce14-b77a-4e7d-bc83-d860e43c6090}" symbol="19" scalemindenom="1" label="Verkeerd thema 1"/>
       <rule scalemaxdenom="10000" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'functional'" key="{909aa493-be16-4a1e-a628-4bec9ac54895}" symbol="20" scalemindenom="500" label="hoogspanning 2"/>
       <rule scalemaxdenom="10000" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'disused' " key="{9e8962bd-c3af-41b4-bc2c-a28e1c055a21}" symbol="21" scalemindenom="500" label="hoogspanning buiten gebruik 2"/>
       <rule scalemaxdenom="10000" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'projected' " key="{7d01a3b2-af18-4bd8-8b8a-9c5ff5dc7314}" symbol="22" scalemindenom="500" label="hoogspanning geprojecteerd 2"/>
@@ -85,7 +85,7 @@
       <rule scalemaxdenom="10000" filter="&quot;thema&quot; = 'overig'  AND &quot;status&quot; = 'disused' " key="{a3f6476b-917a-462e-8c06-a88d0dc11dfe}" symbol="36" scalemindenom="500" label="overig buiten gebruik 2"/>
       <rule scalemaxdenom="10000" filter="&quot;thema&quot; = 'overig' AND  &quot;status&quot; =  'projected' " key="{8de74e31-103c-4369-acda-c70b366e6697}" symbol="37" scalemindenom="500" label="overig geprojecteerd 2"/>
       <rule scalemaxdenom="10000" filter="&quot;thema&quot;  =  'wees'" key="{0dcdd0b4-90d7-4d10-87ec-516a6ff16939}" symbol="38" scalemindenom="500" label="wees 2"/>
-      <rule scalemaxdenom="10000" filter="&quot;thema&quot; NOT IN ('datatransport', 'laagspanning', 'middenspanning', 'hoogspanning', 'landelijkHoogspanningsnet','overig', 'wees')" key="{444b8b5d-8646-4164-a005-dea43276aa1b}" symbol="39" scalemindenom="500" label="Verkeerd thema 2"/>
+      <rule scalemaxdenom="10000" filter="&quot;thema&quot; IN ('gasLageDruk','gasHogeDruk','buisleidingGevaarlijkeInhoud','petrochemie','rioolVrijverval','rioolOnderOverOfOnderdruk','warmte','water')" key="{444b8b5d-8646-4164-a005-dea43276aa1b}" symbol="39" scalemindenom="500" label="Verkeerd thema 2"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'functional'" key="{7562e51f-046c-4c32-9d5b-d83ded47a2d9}" symbol="40" scalemindenom="10000" label="hoogspanning 3"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'disused' " key="{be887316-a6d7-42ec-9bac-47b188e30fcd}" symbol="41" scalemindenom="10000" label="hoogspanning buiten gebruik 3"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot; = 'hoogspanning' AND &quot;status&quot; = 'projected' " key="{ec4584f8-ed46-4384-86af-ce6e2823aab0}" symbol="42" scalemindenom="10000" label="hoogspanning geprojecteerd 3"/>
@@ -105,7 +105,6 @@
       <rule scalemaxdenom="400000" filter="&quot;thema&quot; = 'overig'  AND &quot;status&quot; = 'disused' " key="{f5c6c2a4-cfcf-4b8d-9bce-0a7da6e7db3b}" symbol="56" scalemindenom="10000" label="overig buiten gebruik 3"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot; = 'overig' AND  &quot;status&quot; =  'projected' " key="{27f34d15-262a-420c-b4f8-85a5e9ffb933}" symbol="57" scalemindenom="10000" label="overig geprojecteerd 3"/>
       <rule scalemaxdenom="400000" filter="&quot;thema&quot;  =  'wees'" key="{1ffa6f91-4478-4276-a9f9-dfa2f14b481a}" symbol="58" scalemindenom="10000" label="wees 3"/>
-      <rule scalemaxdenom="400000" filter="&quot;thema&quot; NOT IN ('datatransport', 'laagspanning', 'middenspanning', 'hoogspanning', 'landelijkHoogspanningsnet','overig', 'wees')" key="{aab0212e-88fd-4cd2-bb31-5fe8d6108f86}" symbol="59" scalemindenom="10000" label="Verkeerd thema 3"/>
     </rules>
     <symbols>
       <symbol alpha="1" clip_to_extent="1" type="line" name="0">
@@ -1184,42 +1183,6 @@
           <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
           <prop k="offset_unit" v="MM"/>
           <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-      </symbol>
-      <symbol alpha="1" clip_to_extent="1" type="line" name="59">
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="255,0,0,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="1"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-        </layer>
-        <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="10;10"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="0,255,0,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="1"/>
-          <prop k="line_width_unit" v="Pixel"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="1"/>
           <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
         </layer>
       </symbol>
