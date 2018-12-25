@@ -152,6 +152,7 @@ class Iface:
         return visibility
 
     def _visibility_from_rules_symbol(self, layer, theme):
+        state = 0
         renderer = layer.rendererV2()
         rules = renderer.rootRule().children()
         visibilities = []
@@ -159,16 +160,21 @@ class Iface:
             expression = rule.filterExpression()
             if theme in expression:
                 visibilities.append(rule.checkState())
-        if len(visibilities) != 0:
-            return sum(visibilities)/len(visibilities)
+        n_visibilities = len(visibilities)
+        sum_visibilities = sum(visibilities)
+        if n_visibilities == sum_visibilities:
+            state = 2
+        elif sum_visibilities == 0:
+            state = 0
         else:
-##            self._displayThemesVisibilyMsg(rules, theme)
-            return 2
+            state = 1
+        if n_visibilities == 0:
+            self._displayThemesVisibilyMsg(rules, theme)
+        return state
 
     def _displayThemesVisibilyMsg(self, rules, theme):
         title = u"ThemesVisibilities"
         msg = u"Toon Visibilities Themes\n"
-##        if theme == 'laagspanning':
         msg += theme + "not found in:\n"
         for rule in rules:
             msg += rule.filterExpression() + "\n"
