@@ -106,12 +106,12 @@ class Iface:
             if self.isLayerVisible(layer) != visibility:
                 # different so set visibility
                 self.setLayerVisible(layer, visibility)
-            else:
-                renderer = layer.rendererV2()
-                if isinstance(renderer, core.QgsRuleBasedRendererV2):
-                    visibility = self.set_visibility_rules_symbol(layer, theme)
-                elif isinstance(renderer, core.QgsSingleSymbolRendererV2):
-                    self.setLayerVisible(layer, visibility)
+        else:
+            renderer = layer.rendererV2()
+            if isinstance(renderer, core.QgsRuleBasedRendererV2):
+                self._set_visibility_rules_symbol(layer, theme, visibility)
+            elif isinstance(renderer, core.QgsSingleSymbolRendererV2):
+                self.setLayerVisible(layer, visibility)
 
     def visibilityForLayer(self, wvLayer, theme = None):
         """returns boolean, true if layer is visible false if not"""
@@ -168,9 +168,26 @@ class Iface:
             state = 0
         else:
             state = 1
-        if n_visibilities == 0:
-            self._displayThemesVisibilyMsg(rules, theme)
+##        if n_visibilities == 0:
+##            self._displayThemesVisibilyMsg(rules, theme)
         return state
+
+    def _set_visibility_rules_symbol(self, layer, theme, visibility):
+##        self._displaySetThemesVisibilyMsg(layer, theme, visibility)
+        state = None
+        if visibility == 0:
+            state = False
+        elif visibility == 1:
+            return
+        elif visibility == 2:
+            state = True
+        renderer = layer.rendererV2()
+        rules = renderer.rootRule().children()
+        for rule in rules:
+            expression = rule.filterExpression()
+            if theme in expression:
+                if rule.checkState() != state:
+                    rule.setCheckState(state)
 
     def _displayThemesVisibilyMsg(self, rules, theme):
         title = u"ThemesVisibilities"
@@ -178,16 +195,22 @@ class Iface:
         msg += theme + "not found in:\n"
         for rule in rules:
             msg += rule.filterExpression() + "\n"
-        QtGui.QMessageBox.information(None, title, msg)      
-
-    def _set_visibility_rules_symbol(self, layer, theme, visibility):
-        renderer = layer.rendererV2()
-        rules = renderer.rootRule().children()
-        for rule in rules:
-            expression = rule.filterExpression()
-            if not 'NOT'in expression and theme in expression:
-                if rule.checkState() != visibility:
-                    rule.setCheckState(visibility)
+        QtGui.QMessageBox.information(None, title, msg)
+        
+    def _displaySetThemesVisibilyMsg(self, layer, theme, visibility):
+        title = u"set Themes Visibilities"
+        if theme == 'datatransport':
+            msg = u"Set Visibilities for Themes\n"
+            msg += "wijzig " + theme + " van " + layer.name()
+            msg += " naar " + str(visibility)+ "\n"
+            renderer = layer.rendererV2()
+            rules = renderer.rootRule().children()
+            for rule in rules:
+                expression = rule.filterExpression()
+                if theme in expression:
+                    msg += rule.label() + str(rule.checkState())
+                    msg += " to " + str(visibility) + "\n"
+            QtGui.QMessageBox.information(None, title, msg)      
         
     def gotoLayer(self, wvLayer):
         """ goto extent of given layer """

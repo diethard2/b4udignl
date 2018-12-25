@@ -284,6 +284,7 @@ class B4UdigNLDialog(QDialog):
                 theme.setVisibility(p_state)
     ##            self._setStateOfVisibilitiesTheme(p_theme, True)
                 self._setStateOfVisibilitiesThemes(True)
+                self._iface().refreshMap()
             
     def _setVisibilities(self):
         """ update visibilities of buttons"""
