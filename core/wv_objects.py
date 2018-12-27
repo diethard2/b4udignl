@@ -190,7 +190,7 @@ class Layer:
         if not self.themes_visible.has_key(theme_name):
             self.themes_visible[theme_name] = 2
         
-    def setVisibility(self, visibility, theme):
+    def setVisibility(self, visibility, show_raster, show_vector, theme):
         """
         visibility = 0 or 2 (all visible) to change visibility in
         set of themes
@@ -204,15 +204,19 @@ class Layer:
             # incoming group_theme_name. Just set the visibility
             # of whole layer on or off.
             for i_theme_name in self.themes_visible.keys():
-                self._setVisibilityTheme(visibility, i_theme_name)
+                self._setVisibilityTheme(visibility, show_raster, show_vector,
+                                         i_theme_name)
         elif self.themes_visible.has_key(theme_name):
-            self._setVisibilityTheme(visibility, theme_name)
+            self._setVisibilityTheme(visibility, show_raster, show_vector,
+                                     theme_name)
 
-    def _setVisibilityTheme(self, visibility, theme_name):
+    def _setVisibilityTheme(self, visibility, show_raster, show_vector,
+                            theme_name):
         iface = self.owner.iface
         visible = self.isVisible(theme_name)
         if visible != visibility:
-            iface.setVisibilityForLayer(self, visibility, theme_name)
+            iface.setVisibilityForLayer(self, visibility, show_raster,
+                                        show_vector, theme_name)
             self.themes_visible[theme_name] = visibility
 
     def visible(self, theme_name):
@@ -539,14 +543,18 @@ class Theme:
 
     def setVisibility(self, p_visibility):
         """
-        p_visibility = boolean used to set same visibility for  
+        p_visibility = 0 or 2 used to set same visibility for  
         this theme (all on or all off!)
         """
-        iface = self.owner.iface
+        owner = self.owner
+        iface = owner.iface
+        show_raster = owner.showRaster
+        show_vector = owner.showVector
         if iface != None:
             iface.doRendering(False)
             for i_layer in self.layers:
-                i_layer.setVisibility(p_visibility, self)
+                i_layer.setVisibility(p_visibility, show_raster, show_vector,
+                                      self)
             iface.doRendering(True)
             
         # refresh state of visibility and return!

@@ -61,6 +61,8 @@ class Doc():
         self.__version = None
         self.layerGroups = {}
         self.__themes = {}
+        self.__showVector = True
+        self.__showRaster = True
         # find and read xml file holding metadata
         xml_files = self._xml_files()
         self._parse_xml_files(xml_files)
@@ -110,6 +112,27 @@ class Doc():
         return self.__themes
     
     themes = property(fget=_themes)
+
+    def _showVector(self):
+        """return private attribute showVector"""
+        return self.__showVector
+    
+    def _setShowVector(self, state):
+        """state = boolean, show vector layers?"""
+        # set it only once
+        self.__showVector = state
+    
+    showVector = property(fget=_showVector, fset=_setShowVector)
+
+    def _showRaster(self):
+        """return private attribute showRaster"""
+        return self.__showRaster
+    
+    def _setShowRaster(self, state):
+        """state = boolean, show raster layers?"""
+        self.__showRaster = state
+    
+    showRaster = property(fget=_showRaster, fset=_setShowRaster)
 
     '''access to attributes stored in Storage'''
     def _klicnummer(self):
