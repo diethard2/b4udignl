@@ -53,6 +53,7 @@ MANGAT = "Mangat"
 MANTELBUIS = "Mantelbuis"
 MAST = "Mast"
 OLIEGASCHEMICALIENPIJPLEIDING = "OlieGasChemicalienPijpleiding"
+ORIENTATIEPOLYGOON = "Orientatiepolygoon"
 OVERIG = "Overig"
 RIOOLLEIDING = "Rioolleiding"
 TECHNISCHGEBOUW = "TechnischGebouw"
@@ -92,6 +93,7 @@ def tag2function():
             MANTELBUIS: mantelbuis,
             MAST: mast,
             OLIEGASCHEMICALIENPIJPLEIDING: olieGasChemicalienPijpleiding,
+            ORIENTATIEPOLYGOON: graafpolygoon,
             OVERIG: overig,
             RIOOLLEIDING: rioolleiding,
             TECHNISCHGEBOUW: technischGebouw,
@@ -916,7 +918,8 @@ class IMKL_Id(B_XmlProcessor):
         self.id = elem.text + self.id
 
     def _process_localId(self, elem):
-        self.id = self.id + '-' + elem.text
+        if elem.text is not None:
+            self.id = self.id + '-' + elem.text
 
     def as_text(self):
         return self.id

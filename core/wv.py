@@ -39,6 +39,7 @@ import xml.etree.ElementTree as ET
 import imkl, xml_utils
 from wv_storage import Storage1, Storage2
 from wv_objects import Theme, Layer, PdfFile
+from PyQt4.QtGui import QMessageBox
 
 class Doc():
     
@@ -137,43 +138,50 @@ class Doc():
     '''access to attributes stored in Storage'''
     def _klicnummer(self):
         """return klicnummer from storage"""
-        return self.storage.klicnummer
+        if self.storage is not None:
+            return self.storage.klicnummer
 
     klicnummer = property(fget=_klicnummer)
     
     def _meldingsoort(self):
         """return private attribute meldingsoort from storage"""
-        return self.storage.meldingsoort
+        if self.storage is not None:
+            return self.storage.meldingsoort
 
     meldingsoort = property(fget=_meldingsoort)
 
     def _rectangle(self):
         """return private attribute rectangle from storage"""
-        return self.storage.rectangle
+        if self.storage is not None:
+            return self.storage.rectangle
 
     rectangle = property(fget=_rectangle)
 
     def _graafpolygoon(self):
         """return private attribute graafpolygoon from storage"""
-        return self.storage.graafpolygoon
+        if self.storage is not None:
+            return self.storage.graafpolygoon
 
     graafpolygoon = property(fget=_graafpolygoon)
     
     def _netOwners(self):
         """return private attribute netOwners from storage"""
-        return self.storage.netOwners
+        if self.storage is not None:
+            return self.storage.netOwners
     
     netOwners = property(fget=_netOwners)
 
     def _pdfFiles(self):
         """return private attribute pdfFiles from storage"""
-        return self.storage.pdfFiles
+        if self.storage is not None:
+            return self.storage.pdfFiles
     
     pdfFiles = property(fget=_pdfFiles)
 
     def _layers(self):
         """return private attribute layerGroups from storage"""
-        return self.storage.layers
+        if self.storage is not None:
+            return self.storage.layers
     
     layers = property(fget=_layers)
 
@@ -286,8 +294,18 @@ class Doc():
                 for imkl_object in imkl_set:
                     geom_field = imkl_object.geometry_field()
                     link_id = imkl_object.field("link_id").value
+                    if not self.imkls_on_id.has_key(link_id):
+                        self._display_no_utilitylink(imkl_object, link_id)
+                        continue
                     utility_link = self.imkls_on_id[link_id]
                     geom_field.value = utility_link.geometry_field().value
+
+    def _display_no_utilitylink(self, imkl_object, link_id):
+        title = u"object has no utility link!"
+        msg = u"object concerned: " + imkl_object.name + "\n"
+        msg += "link_id: " + imkl_object.field("link_id").value + "\n"
+        msg += "is missing in all utility links that stores geometry!"
+        QMessageBox.information(None, title, msg)
 
     def _set_short_values_from_url(self):
         for imkl_set in self.imkls.values():
@@ -321,7 +339,12 @@ class Doc():
                 theme_field.value = theme
         
     def _fill_graaf_polygoon(self):
-        graafpolygoon = self.imkls[imkl.GRAAFPOLYGOON][0]
+        polygon_key = None
+        if self.imkls.has_key(imkl.GRAAFPOLYGOON):
+            polygon_key = imkl.GRAAFPOLYGOON
+        elif self.imkls.has_key(imkl.ORIENTATIEPOLYGOON):
+            polygon_key = imkl.ORIENTATIEPOLYGOON
+        graafpolygoon = self.imkls[polygon_key][0]
         aanvraag = self.imkls[imkl.GEBIEDSINFORMATIEAANVRAAG][0]
         levering = self.imkls[imkl.GEBIEDSINFORMATIELEVERING][0]
         field_names = ("registratiedatum", "vervaldatum",
@@ -365,7 +388,10 @@ class Doc():
         present to user.
         """
         names_themes = self._gather_layernames_and_themes()
-        for netOwner in self.netOwners:
+        netowners = self.netOwners
+        if netowners is None:
+            return
+        for netOwner in netowners:
             for theme in netOwner.themes:
                 nameTheme = theme.name
                 #create theme for doc only once!!
@@ -423,10 +449,25 @@ class Doc():
         are special themes that have been added to turn on/off visibility for
         these visibility groups.
         """
+        dict_layers = self.layers
+        if dict_layers is None:
+            return
         for layerGroupName in Layer.layerGroupNames.keys():
             self.themes[layerGroupName] = Theme(self, layerGroupName)
-        for layer in self.layers.values():
-            self.themes[layer.groupName()].layers.append(layer)
+        for layer in dict_layers.values():
+            if self.themes.has_key(layer.groupName()):
+                self.themes[layer.groupName()].layers.append(layer)
+            else:
+                self._display_no_groupname(layer)
+
+    def _display_no_groupname(self, layer):
+        title = u"layer has not a (valid) groupname"
+        msg = u"layer concerned: " + layer.layerName + "\n"
+        msg += "group name: " + layer.groupName() + "\n"
+        msg += "Not in: "
+        for layerGroupName in Layer.layerGroupNames.keys():
+            msg += layerGroupName + "\n"
+        QMessageBox.information(None, title, msg)
 
     def _createWorldFiles(self):
         """
@@ -434,7 +475,10 @@ class Doc():
         This in fact turns the image to a map, because now it can
         be loaded in QGIS as a raster map.
         """
-        for layer in self.layers.values():
+        dict_layers = self.layers
+        if dict_layers is None:
+            return
+        for layer in dict_layers.values():
             if not layer.vectorType:
                 pngFile = layer.layerFile
                 pngAuxFile = pngFile + '.aux.xml'
@@ -445,7 +489,10 @@ class Doc():
 
     def loadLayers(self):
         """Load all layers into QGIS"""
-        layers = [layer for layer in self.layers.values()]
+        dict_layers = self.layers
+        if dict_layers is None:
+            return
+        layers = [layer for layer in dict_layers.values()]
         layers.sort()
         self.storage.layers = layers
         for layer in layers:

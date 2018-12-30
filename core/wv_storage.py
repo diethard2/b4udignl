@@ -375,7 +375,12 @@ class Storage2(Storage):
             super(Storage2, self)._fill_rectangle(imkl_obj)
 
     def _fill_graafpolygoon(self):
-        imkl_obj = self.imkls[imkl.GRAAFPOLYGOON][0]
+        polygon_key = None
+        if self.imkls.has_key(imkl.GRAAFPOLYGOON):
+            polygon_key = imkl.GRAAFPOLYGOON
+        elif self.imkls.has_key(imkl.ORIENTATIEPOLYGOON):
+            polygon_key = imkl.ORIENTATIEPOLYGOON
+        imkl_obj = self.imkls[polygon_key][0]
         self.graafpolygoon = imkl_obj.field("geometry").value
 
     def _fill_netowners(self):
@@ -436,12 +441,13 @@ class Storage2(Storage):
 
     def _process_belanghebbende(self, belanghebbende):
         id_beheerder = belanghebbende.field("idNetbeheerder").value
-        id_belang = belanghebbende.field("idGeraaktBelang").value
         beheerder = self.imkls_on_id[id_beheerder]
-        belang = self.imkls_on_id[id_belang]
         netOwner = Company()
         netOwner.process_imkl_object(beheerder)
-        netOwner.process_imkl_object(belang)
+        id_belang = belanghebbende.field("idGeraaktBelang").value
+        if self.imkls_on_id.has_key(id_belang):
+            belang = self.imkls_on_id[id_belang]
+            netOwner.process_imkl_object(belang)
         if self.imkls.has_key(imkl.UTILITEITSNET):
             utility_nets = self.imkls[imkl.UTILITEITSNET]
             self._process_themes(netOwner, utility_nets)

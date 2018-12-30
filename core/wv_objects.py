@@ -29,8 +29,8 @@ Ubuntu = os.environ.get('GNOME_DESKTOP_SESSION_ID') != None
 
 class Layer:
 
-    layerPriority=("GB_", "SEL", "ET_", "PT_", "LG_" ,"MV_", "AN_")
-    layerGroupNames= {"Topo": ("GB_", "SEL", "ET_", "PT_"),
+    layerPriority=("GB_", "GP_", "SEL", "ET_", "PT_", "LG_" ,"MV_", "AN_")
+    layerGroupNames= {"Topo": ("GB_", "GP_", "SEL", "ET_", "PT_"),
                       "Ligging": ("LG_",),
                       "Maatvoering": ("MV_",),
                       "Annotatie": ("AN_",)}
@@ -537,7 +537,10 @@ class Theme:
             else:
                 visible = layer.visible(theme_name)
             n_visible += visible
-        visible = n_visible / n_layers
+        if n_layers == 0:
+            visible = 0
+        else:
+            visible = n_visible / n_layers
             
         return visible
 
