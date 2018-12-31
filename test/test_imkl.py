@@ -32,7 +32,7 @@ class LeveringsInformatieTestCaseV1_5(unittest.TestCase):
         this is part of the old klic message (before 01-01-2019).
         """
         # read the file
-        xml_file = open("../testMsg/14G166926_1/LI_14G166926_1.xml")
+        xml_file = open("data/14G166926_1/LI_14G166926_1.xml")
         self.xml_element = ET.fromstring(xml_file.read())
         self.leveringsinformatie = imkl.leveringsinformatie()
         self.leveringsinformatie.process(self.xml_element)
@@ -142,7 +142,7 @@ class LeveringsInformatieTestCaseV2_1(unittest.TestCase):
         this is part of the new klic message (after 01-01-2019).
         """
         # read the file
-        xml_file = open("../test/data/18G007160_1/LI_18G007160_1.xml")
+        xml_file = open("data/18G007160_1/LI_18G007160_1.xml")
         self.xml_element = ET.fromstring(xml_file.read())
         self.leveringsinformatie = imkl.leveringsinformatie()
         self.leveringsinformatie.process(self.xml_element)

@@ -34,7 +34,7 @@ class DocTestCaseV1_5(unittest.TestCase):
         For each test create a woonplaats read from xml file woonplaats.xml
         """
         # read the file
-        klic_msg_dir = "../testMsg/14G166926_1"
+        klic_msg_dir = "data/14G166926_1"
         self.doc = Doc(klic_msg_dir)
         self.maxDiff = None
 

@@ -615,26 +615,3 @@ class LayerGroup:
     def __repr__(self):
         return "LayerGroup('%s')" % self.name
 
-        
-if __name__ == "__main__":
-    import os, wv
-    l_my_dir = os.path.dirname(wv.__file__)
-    l_test_dir = os.path.join(l_my_dir,"testMsg")
-    print "test_dir:", l_test_dir
-    if not os.path.exists(l_test_dir):
-        os.mkdir(l_test_dir)
-    msg_dir = os.path.join(l_test_dir,"14G166926_1")
-    if not os.path.exists(msg_dir):
-        # download and unzip testmsg in testdir
-        import urllib2, zipfile
-        url = "https://www.kadaster.nl/documents/20838/87975/\
-KLIC+proefbestand+Klic+viewer/0ffdb475-bd96-43c6-bf71-d639bad14a1c"
-        l_remote_file = urllib2.urlopen(url)
-        #l_file_name = os.path.join(l_test_dir,os.path.basename(url))
-        l_file_name = os.path.join(l_test_dir,os.path.basename(url))
-        l_file = open(l_file_name, "wb")
-        l_file.write(l_remote_file.read())
-        l_file.close()
-        z = zipfile.ZipFile(l_file_name)
-        z.extractall(l_test_dir)
-        z.close
