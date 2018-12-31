@@ -6,7 +6,7 @@ The QGIS KLIC Viewer plugin, a python plugin that can be used to view Dutch b4ud
 Installation
 ------------
 First you need an installation of Quantum GIS! 
-Download QGIS v. 2.0 from www.qgis.org.
+Download QGIS v. 2.18 from www.qgis.org.
 
 Use QGIS Python Plugin Installer for installation of this plugin.
 
@@ -15,6 +15,14 @@ in your home folder ~/.qgis2/python/plugins/
 
 Release notes
 -------------
+**Version 2.0.0** 31/12/2018
+Major update where interface remains the same, but instead of loading rasters now also Vector information is loaded.
+From 02/01/2019 the format of the result requested from Kadaster has changed a lot.
+Previous versions of Klicviewer for QGIS can not be used to view the new results.
+This new version can be used to view old KLIC messages.
+
+**Version 1.4.3**
+Added maximum version 2.18 as preparation for update to QGIS 4.3
 
 **Version 1.4.2** 02/01/2015
 fixed:

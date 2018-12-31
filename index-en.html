@@ -10,7 +10,7 @@ quickly the result of a Dutch Dig Alert.</p>
 
 <p>It is a good alternative for the free KLIC viewer provided by the 
 Kadaster, the Dutch Mapping Agency, which can be found at 
-<a href="http://www.kadaster.nl/klicviewer">http://www.kadaster.nl/klicviewer</a>.</p>
+<a href="https://zakelijk.kadaster.nl/klic-viewer">https://zakelijk.kadaster.nl/klic-viewer</a>.</p>
 
 <p>Because this viewer is part of a real GIS system, you can also 
 measure distances, add design drawings as a layer, read multiple Dig 
@@ -36,24 +36,27 @@ How to obtain it is explained in <a href="#aboutWion">About WION</a>.
 After you downloaded the result you will have a zip-archive. 
 You have to extract the contents first in a directory.</p>
 
-<p>The KLIC Viewer has three tabs, <B>Messages</B>,<B>Themes</B> and <B>Options</B>.
+<p>The KLIC Viewer has three tabs, <B>Messages</B>,<B>Themes</B> and 
+<B>Options</B>.
 The viewer, allways starts with the open tab <B>Messages</B>, because the 
 first thing you have to do is open a KLIC message.</p>  
 <p>When the contents of received zip-archive is extracted to a directory, 
 you can use the button <B>[Open Directory...]</B> to select this directory 
 holding the KLIC message.<BR>
-It is recommended to first set the default Directory in tab <B>Options</B> so searching starts in selected directory where KLIC messages are expected to be found.<BR>
+It is recommended to first set the default Directory in tab <B>Options</B> 
+so searching starts in selected directory where KLIC messages are expected 
+to be found.<BR>
 After selection and pressing [OK] this is what will happen:
 <ul>
 <li>The xml file of a KLIC message is read which holds information on the other 
 included files in the Wion Alert</li>
-<li>Next to all images that will be loaded as layers, little files will 
-be created, called world files, to give those images a coordinate system and in 
-fact turning images into maps.</li>
-<li>The legend groups Annotation, Dimensioning, Location, and Background topo 
-are created in QGIS in the layer panel (not in QGIS 1.6.0).</li>
-<li>The maps are loaded in the right order as layers into QGIS and placed 
-in the right legend group.</li>
+<li>The xml file with network information in a vector format named IMKL which 
+holds geometry in GML-format is read in memory and this information is combided 
+to vector layers which are read in memory.</li> 
+<li>All PNG raster files that will be loaded as layers. Little files will 
+be created, called world files, to give those images a coordinate system turn 
+these images into transparent maps.</li>
+<li>The maps are loaded in the right order as layers into QGIS.</li>
 <li>The registration number of this KLIC message is added to the list of loaded 
 KLIC messages.</li>
 <li>Also the documents that come with the maps, being PDF files, are sorted out 
@@ -67,38 +70,40 @@ take some time.</p>
 <P>Before loading, you can first extract the zipfile containing the KLIC message, but you can also use the button <B>[Open Zipfile...]</B> or use Alt-Z.<BR>
 This Function first extracts the zipfile and then loads the KLIC message in 
 QGIS. You should use this function only once for every KLIC message, the next 
-time it is faster to use [Open Folder...] instead.
+time it is faster to use <B>[Open Folder...]</B> instead.
 </p>
 <p>When the list with PDF files is filled you can select and open them using 
-<B>[Open file(s)]</B>. When you select multiple PDF files or use Ctrl-A to select  
-them all, you can also open several pdf files at once. 
+<B>[Open file(s)]</B>. When you select multiple PDF files or use Ctrl-A to 
+select them all, you can also open several pdf files at once. 
 Double clicking a file in the list of PDF files opens it directly. 
 </p>
 <p>You can load and work with more KLIC messages. 
 After loading another KLIC message, you can select this result in the list of 
 KLIC messages. After selection the list of accompanying documents is refreshed 
 with the ones belonging to that KLIC message.<BR>
-You can use the button <B>[Goto]</B> or Alt-B to move the map in QGIS to the extent 
-of selected Wion result.<BR>
+You can use the button <B>[Goto]</B> or Alt-B to move the map in QGIS to 
+the extent of selected Wion result.<BR>
 To get the best view of the KLIC message use the button <B>[Best Scale]</B> 
 or Alt-B. 
 Use the button <B>[Close Message]</B>, Alt-C to close selected Wion Message. 
 </p>
-<p>You can store all information in KLIC message Viewer plugin in a project using the
-button <B>[Save in project]</B>. This only works when you first have created
+<p>You could store all information in KLIC message Viewer plugin in a project 
+using the button <B>[Save in project]</B>, for version 2.0.0 this is temporary 
+disabled to be able to provide the klic viewer in time for new version of klic 
+messages. Once enable again, this only works when you first have created
 a project, use the option <B>Save project</B> from the <B>File</B> menu. 
 Then the next time you open a project the contents of the plugin is restored.
 </p>
-<p>Use the button <B>[Quit]</B>, Alt-Q or using the [Esc]-button on your keyboard 
-to close the KLIC Viewer. When you open the KLIC Viewer again 
+<p>Use the button <B>[Quit]</B>, Alt-Q or using the [Esc]-button on your 
+keyboard to close the KLIC Viewer. When you open the KLIC Viewer again 
 you will find it in the same state as when you closed it.</p>
 
 <p>After loading, all layers are visible, you can make layers invisible by 
-deselecting the little cross, used to mark the visibility, in front of each layer 
-or several layers for a whole group (for QGIS1.6.0 only from Themes tab).<BR>
+deselecting the little cross, used to mark the visibility, in front of each 
+layer or several layers for a whole group from the Themes tab.<BR>
 <p>It is also possible to set visibilities using the <B>Themes</B> tab.</p>
 
-<p>The first two characters followed by an underscore of each layer 
+<p>The first two characters of the name of each raster layer 
 indicate what kind of layer it concerns.</p>
 <ul>
 <li><B>AN_</B> means annotation, and is used to label pipelines, cables etc.</li>
@@ -113,7 +118,7 @@ which can be delivered by the netowners.</li>
 </p>
 
 <p>The tab <B>Themes</B> shows which Wion themes the selected KLIC message 
-contains. It is also a legend of the map. 
+contains. It is also kind of legend of the map. 
 For example the green lines are used to show the position of cables 
 on the map that convey data. The visibility can be changed for 
 active available themes. A theme includes the position, annotation and 
@@ -133,6 +138,12 @@ statusses with respect to layers belonging to that theme or group.
 <li>A checkbox with a grey cross, some layers are visible </li>
 <li>A checkbox with a black cross, all layers are visible</li>
 </ol>
+
+<p>From 02/01/2019 themes are a bit complicated. A vector layers can hold several 
+themes, a theme is spread over many vector and raster layers. Vector information
+can contain several themes in one style. It was really hard to turn on/off the mapinformation on themes.</p>
+
+<p>New is the addition of the checkboxes <b>Vector</b> and <b>Raster</b>. In 2019 Raster and Vector information is delivered in duplicate for some network information, so you may want to turn one of them off.</p>
 
 <H2>Question and Answers</H2>
 <P>Question: Why is the list of PDF documents empty after opening a saved project?<BR>
@@ -189,7 +200,7 @@ received information first.</p>
 <p>When the law WION came into force, things changed a bit. Mechanical digging
 was absolutely not allowed anymore without doing first a dig alert with
 Kadaster. Penalty fees are steep (ten thousands of euro's). A dig alert is not
-free anymore, a dig alert costs 24 euro (july 2010).
+free anymore, a dig alert costs 16 euro (january 2019).
 The kadaster now collects information from all network owners and the result
 is returned as layers of maps with network information together with guiding
 letters and drawings. The layers can be combined into one clear picture.
@@ -212,26 +223,27 @@ Three kinds of requests can be made, each of them serve a special purpose.
 </ol>                                  
 
 <H2>Doing a Dig Alert request</H2>
-<p>The website www.kadaster.nl/klic gives information how to do a Dig Alert
-request. For companies there is the web service KLIC-online that can be used
-to do a Dig Alert, registration is necessary. Using KLIC-online you can draw
-the planned area inside an interactive map, where you want to excavate.
+<p>The website https://zakelijk.kadaster.nl/klic-diensten-voor-netbeheerders 
+gives information how to do a Dig Alert request. For companies there is the 
+web service KLIC-online that can be used to do a Dig Alert, registration is 
+necessary. Using KLIC-online you can draw the planned area inside an 
+interactive map, where you want to excavate.
 Private persons can fill in a form to obtain information.</p>
 <p>Within a day you will receive an email with an url where you can download
 requested information. Be carefull to download this information first without
 opening it directly. You have only 5 attempts to receive requested information.
-After downloading the information unpack it and view it using the KLIC message
+After downloading the information, unpack it and view it using the KLIC message
 Viewer</p>
-<p>For testing purposes, you can also download one of the two free example
-digging requests from <a href="http://www.kadaster.nl/web/artikel/download/KLIC-proefbestand-Klicviewer-1.htm">http://www.kadaster.nl/klicviewer</a><p>
+<p>For testing purposes, you can also download one of free example digging 
+requests from <a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden">https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden</a> and <a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden%20met%20BGT">https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden met BGT</a>.<p>
 
 <a name="aboutLicense">
 <H1>License and terms of usage</H1>
 </a>
 
-Copyright: (C) 2011 Diethard Jansen<BR>
-Version: 1.4.2
-email: hulp@gis-hulp.nl<BR>
+Copyright: (C) 2018 Diethard Jansen<BR>
+Version: 2.0.0
+email: diethard.jansen@gmail.nl<BR>
 
 <p>The QGIS <b>KLIC Viewer</b> python plugin is free software;
 you can redistribute it and/or modify it under the terms of the GNU
@@ -251,8 +263,8 @@ the KLIC Viewer from the menu<p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/b4udig128.png"></p>
 <p>The background represents the three coloured flag of the Netherlands.
 The plugin is especially targetted for use inside the Netherlands.<br>
-The Netherlands has maybe the most advanced warning system in the
-world to protect their underground Infrastructure.
+The Netherlands has an advanced warning system to protect their underground 
+Infrastructure.
 <p>On the foreground you can see the bucket of an excavator representing
 mechanical digging.</p>
 <p>By law, before any mechanical digging is done in the Netherlands, first

@@ -10,7 +10,7 @@ van een KLIC melding te kunnen bekijken en begrijpen.</p>
 
 <p>Het is een goed alternatief voor de gratis KLIC viewer die wordt
 aangeboden door het Kadaster, via 
-<a href="http://www.kadaster.nl/klicviewer">http://www.kadaster.nl/klicviewer</a>.</p>
+<a href="https://zakelijk.kadaster.nl/klic-viewer">https://zakelijk.kadaster.nl/klic-viewer</a>.</p>
 
 <p>Doordat deze viewer onderdeel is van een echt GIS systeem, kun je
 binnen deze Viewer ook afstanden opmeten en ontwerptekeningen als laag
@@ -43,20 +43,26 @@ want eerst dient een KLIC bericht te worden ingelezen.</p>
 
 <p>Gebruik de knop <B>[Open Folder...]</B> wanneer u een al uitgepakt
 KLIC bericht heeft. U kunt ook de Alt-toets gevolgd door de O-toets 
-gebruiken. Zo'n combinatie zal hierna worden afgekort tot Alt-O.<BR> 
+gebruiken. Zo'n combinatie zal hierna worden afgekort tot <b>Alt-O</B>.<BR> 
 U kunt hiermee de folder selecteren die het KLIC bericht bevat. 
 Wanneer u in het tabblad <B>Opties</B> al de standaard folder heeft 
 ingesteld waar KLIC berichten normaal gesproken gevonden worden, dan 
 is deze snel gevonden.<BR>  
-Na selectie en op [OK] te hebben gedrukt gebeurt het volgende:
+Na selectie en op <b>[OK]</b> te hebben gedrukt gebeurt het volgende:
 <ul>
-<li>Het xml bestand met informatie over de klic melding wordt gelezen</li>
-<li>Er worden naast alle kaartjes van het KLIC bericht zogenaamde world-files
-geplaatst. Daardoor kunnen deze plaatjes gemaakt in PNG formaat die ligging,
-annotatie, maatvoering en onderliggende topo bevatten worden ingelezen in QGIS
+<li>Het xml bestand met informatie over de geleverde onderdelen die meegeleverd 
+worden middels de klic melding wordt gelezen</li>
+<li>Het xml bestand met de netwerk informatie in IMKL formaat waarbij de 
+geometrie in GML formaat is opgeslagen wordt in het geheugen ingelezen. Na het 
+inlezen wordt die informatie gecombineerd tot vector lagen die eveneens in 
+memory worden geladen.</li>
+<li>Voor alle PNG bestanden die als rasterlagen zullen worden geladen, zal 
+naast het PNG bestand een kleine bestand, de zogenaamde world-files worden 
+aangemaakt. Daardoor kunnen deze plaatjes gemaakt die ligging, annotatie, 
+maatvoering en onderliggende topo bevatten worden ingelezen in QGIS
 en krijgen deze het Nederlandse Coordinaten Systeem.</li>
-<li>De PNG files worden vervolgens in de goede volgorde geopend in QGIS, 
-geplaatst in de juiste legenda Groep en zichtbaar in de kaart.</li>
+<li>De PNG files en in memory vectorlagen worden vervolgens in de goede 
+volgorde geopend in QGIS en zichtbaar in de kaart.</li>
 <li>Het meldnummer van het KLIC bericht wordt toegevoegd aan de lijst van
 geladen berichten.</li>
 <li>De PDF files, waarin begeleidende brieven, detailtekeningen en
@@ -66,11 +72,20 @@ geplaatst.</li>
 zijn, deze staan ook aan.
 </ul>
 Het laden van een KLIC bericht die veel informatie bevat kan even duren.
-</p>
- 
+</p> 
+<p>Vanaf 02/01/2019 is de levering van gegevens aanzienlijk veranderd en de 
+opbouw van thema's is nogal ingewikkeld. Zo is de thema informatie verspreid 
+over meerdere raster en vectorlagen. Maar elke vectorlaag bevat vaak ook 
+informatie over meerdere thema's. Het was vrij lastig om dit onderdeel te 
+programmeren om per thema gegevens aan en uit te zetten.</p>
+<p>Nieuw is de toevoeging van het kunnen selecteren of  <b>Vector</b> en 
+<b>Raster</b> aan of uitgezet dient te worden. In 2019 wordt tijdelijk veel 
+informatie dubbel aangeleverd in vector- en raster-formaat. De behoefte 
+bestaat wellicht om ineens even alle vector- of raster-informatie uit te 
+zetten.</p>
 <p>U kunt het zip bestand eerst zelf uitpakken, maar u kunt ook de knop
-<B>[Open Zip-bestand...]</B> gebruiken, of Alt-Z, de Alt-toets gevolgd door de
-Z-toets.<BR>
+<B>[Open Zip-bestand...]</B> gebruiken, of <b>Alt-Z</b>, de Alt-toets gevolgd 
+door de Z-toets.<BR>
 Via deze functie kunt u het Zip-bestand selecteren die het ingepakte
 KLIC bericht bevat. Na selectie pakt deze eerst het KLIC bericht uit en
 laad het vervolgens in QGIS.
@@ -89,18 +104,21 @@ de lijst van bijlages op een bijlage te dubbelklikken.
 berichten kiest u vervolgens het bericht waarmee u wilt gaan werken. Na 
 selectie zal onmiddelijk ook de lijst van bijlagen behorende bij dat bericht 
 worden aangepast en de lijst met thema's in het tabblad <B>Thema's</B>.
-Met de knop <B>[Ga Naar]</B> of Alt-G, verplaatst u
+Met de knop <B>[Ga Naar]</B> of <b>Alt-G</b>, verplaatst u
 de kaart binnen QGIS naar de grens van het gebied van het KLIC bericht.<BR>
-Met de knop <B>[Beste Schaal]</B> of Alt-C krijgt u het bericht in de meest 
+Met de knop <B>[Beste Schaal]</B> of <b>Alt-C</b> krijgt u het bericht in de meest 
 perfect mogelijke weergave te zien.
 Met de knop <B>[Sluit Bericht]</B> sluit u het bericht en de kaartlagen 
 zullen eveneens worden verwijderd uit QGIS.</p>
-<p>Met de knop <B>[Opslaan in project]</B> worden alle gegevens in de plugin
-opgeslagen in het huidige project. Eerst moet er wel al een opgeslagen Quantum
-GIS project bestaan. Dit doet u door in het menu <B>Bestand</B> de optie
-<B>Project opslaan</B> te kiezen. Wanneer u vervolgens een project opent dan
-zal ook de informatie in de wion viewer plugin weer zichtbaar en bruikbaar zijn.
-</p>
+<p>Met de knop <B>[Opslaan in project]</B> konden alle gegevens in de plugin
+opgeslagen worden naast het huidige QGIS projectbestand. Daarvoor moest eerst 
+wel al een opgeslagen Quantum GIS project bestaan. 
+Dit doet u door in het menu <B>Bestand</B> de optie <B>Project opslaan</B> te 
+kiezen. Wanneer u vervolgens een project opent dan zal ook de informatie in de 
+wion viewer plugin weer zichtbaar en bruikbaar zijn.</p>
+
+<p>Echter om op tijd de KLIC viewer te kunnen leveren is deze functionaliteit 
+tijdelijk niet beschikbaar.</p>
 
 <p>Met de knop <B>[Afsluiten]</B> wordt de KLIC Viewer gesloten, 
 maar wanneer de KLIC Viewer weer wordt geopend dan is de inhoud 
@@ -137,7 +155,7 @@ het thema <u>Data</u>.<BR>
 Alleen actieve thema's kun je aan en uit zetten middels het aankruisvakje. Niet  
 alleen de ligging, maar ook de bijbehorende labels (=annotatie) en maatvoering 
 wordt uitgezet.</p>
-<p>Met de knop <B>[Ververs]</B> Alt-V kun je de status van de aankruisvakje 
+<p>Met de knop <B>[Ververs]</B> <b>Alt-V</b> kun je de status van de aankruisvakje 
 geforceerd bijwerken t.o.v. de zichtbare kaartlagen. Na wijzigingen vanuit de 
 KLIC Viewer is de inhoud van Themes altijd goed, maar indien er in het 
 Lagen panel van Quantum GIS de zichtbaarheid wordt gewijzigd worden die 
@@ -213,13 +231,16 @@ grondig bestudeert doordat dit te veel tijd in beslag zou nemen.
 <H2>De wet WION</H2>
 <p>Sinds 1 oktober 2009 is de wet WION in werking getreden. Deze verplicht de
 grondroerder tot het doen van een graafmelding centraal bij het Kadaster.
-De melding is niet gratis meer, per melding wordt er een bedrag van 24 euro in
-rekening gebracht (peildatum juli 2010).
+De melding is niet gratis meer, per melding wordt er een bedrag van 16 euro in
+rekening gebracht (peildatum januari 2019).
 Het Kadaster verzameld van verschillende Netbeheerders de netwerkgegevens en
 levert deze terug aan de grondroerder. De OPTA is de toezichthouder en deze
 controleert of grondroerders bij mechanische graafwerkzaamheden wel informatie
 aanvragen en of netbeheerders voldoen aan de verplichting om op tijd de juiste
 gegevens te verstrekken. De gehanteerde boetes bedragen tienduizenden euro's.</p>
+<p>Sinds 2 januari 2019 wordt de informatie aangeleverd waarbij de informatie 
+wordt opgeslagen in een nieuwe interne folderstructuur. Daarnaast wordt er nu 
+ook vector informatie aangeleverd!</p>
 
 <H2>3 soorten meldingen</H2>
 <p>Er kunnen drie soorten meldingen gedaan worden, elk voor een speciaal doeleinde.
@@ -248,14 +269,15 @@ vervolgens uit naar een folder. U heeft slechts 5 pogingen om de gegevens op te 
 Gebruik de KLIC Viewer om het resultaat te bekijken.</p>
 
 <p>Voor het testen van de KLIC Viewer kan een testmelding gedownload worden van 
-<a href="http://www.kadaster.nl/web/artikel/download/KLIC-proefbestand-Klicviewer-1.htm">http://www.kadaster.nl/klicviewer</a> </p>
+<a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden">https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden</a> 
+en <a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden%20met%20BGT">https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden met BGT</a>.<p>
 
 <a name="aboutLicense">
 <H1>Licentie en gebruiksvoorwaarden</H1>
 </a>
-Copyright: (C) 2011 Diethard Jansen<BR>
-Versie: 1.4.2
-email: hulp@gis-hulp.nl<BR>
+Copyright: (C) 2018 Diethard Jansen<BR>
+Versie: 2.0.0
+email: diethard.jansen@gmail.com<BR>
 
 <p>De <b>KLIC Viewer</b> python plugin is gratis software;
 U mag het verspreiden en aanpassen volgens de voorwaarden zoals vastgelegd
