@@ -96,7 +96,7 @@ class LineString(GmlBase):
         self.add_tag_method_to_process("PosList", self._process_posList)
 
     def _process_posList(self, elem):
-        '''From xml element posList derive the coords'''        
+        '''From xml element posList derive the coords'''
         self.coords = wkt_coords_from_gml(self._text_poslist(elem))
 
     def as_wkt(self):
@@ -104,6 +104,24 @@ class LineString(GmlBase):
         wkt = "LineString(%s)" % self.coords
         return wkt
 
+class Curve(LineString):
+
+    def __init__(self):
+        LineString.__init__(self)
+        self.add_tag_method_to_process("Curve", self.process)
+        self.add_tag_method_to_process("Segments", self._process_segments)
+
+    def _process_segments(self, elem):
+        for i_elem in elem:
+            tag = clean_tag(i_elem.tag)
+            if tag == "LineStringSegment":
+                    self._process_lineStringSegment(i_elem)
+
+    def _process_lineStringSegment(self, elem):
+        for i_elem in elem:
+            tag = clean_tag(i_elem.tag)
+            if tag == "PosList":
+                self._process_posList(i_elem)
         
 class Envelope(GmlBase):
 

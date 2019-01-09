@@ -9,6 +9,15 @@
  <gml:posList>155038.000 388070.000 155022.000 388070.000</gml:posList>
 </gml:LineString>
 
+<gml:Curve srsName="urn:ogc:def:crs:EPSG::28992" gml:id="idm522374155600">
+ <gml:segments>
+  <gml:LineStringSegment>
+   <gml:posList srsDimension="2">154430.283 389769.995 154431.859 389767.832
+                                154430.610 389766.544</gml:posList>
+  </gml:LineStringSegment>
+ </gml:segments>
+ </gml:Curve>
+
 <gml:Envelope srsName="urn:ogc:def:crs:EPSG::28992" srsDimension="2">
   <gml:lowerCorner>154980.0 387980.0</gml:lowerCorner>
   <gml:upperCorner>155120.0 388140.0</gml:upperCorner>

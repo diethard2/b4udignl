@@ -74,6 +74,35 @@ class LineStringTestCase(unittest.TestCase):
                          'LineString(155038.000 388070.000, 155022.000 388070.000)')  
 
 _suite_linestring = unittest.TestLoader().loadTestsFromTestCase(LineStringTestCase)
+
+class CurveTestCase(unittest.TestCase):
+    """
+    unittest to test GML Polygon
+    """
+    def setUp(self):
+        """
+        For each test create the Woonplaats read from xml file woonplaats.xml
+
+        The geometry actually consists of an gml polygon element which includes
+        an outer and inner ring.
+        """
+        xml_file = open("data/gml/gml_geometries.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "Curve",
+                                                        None)
+        self.curve = gml.Curve()
+        self.curve.process(self.xml_element)
+        xml_file.close()        
+
+    def test_coords(self):
+        self.assertEqual(self.curve.coords, '154430.283 389769.995, 154431.859 389767.832, 154430.610 389766.544')
+
+    def test_as_wkt(self):
+        self.assertEqual(self.curve.as_wkt(),
+                         'LineString(154430.283 389769.995, 154431.859 389767.832, 154430.610 389766.544)')  
+
+_suite_curve = unittest.TestLoader().loadTestsFromTestCase(CurveTestCase)
+
                          
 class EnvelopeTestCase(unittest.TestCase):
     """
@@ -217,7 +246,8 @@ class Polygon3DTestCase(unittest.TestCase):
 
 _suite_polygon3d = unittest.TestLoader().loadTestsFromTestCase(Polygon3DTestCase)
 
-unit_test_suites = [_suite_point, _suite_linestring,_suite_envelope, _suite_polygon, _suite_multipolygon,
+unit_test_suites = [_suite_point, _suite_linestring, _suite_curve,
+                    _suite_envelope, _suite_polygon, _suite_multipolygon,
                     _suite_polygon3d]
 
 def main():

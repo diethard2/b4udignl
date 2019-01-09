@@ -518,7 +518,7 @@ def utilityLink():
     obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
     obj.add_field(B_Field("verticalPosition", "TEXT", "VerticalPosition"))
     obj.add_field(B_Field("geometry", "LINESTRING", "CentrelineGeometry",
-                          to_object=gml.LineString))
+                          to_object=gml.Curve))
     obj.add_tags_to_process()
     return obj
 
