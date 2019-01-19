@@ -5,10 +5,11 @@ qgisMinimumVersion=2.14
 qgisMaximumVersion=2.99
 description=View the result of a B4Udig request of the Netherlands to prevent damage
 about=When you want to dig mechanically In the Netherlands you are obliged to request information on the area where you want to dig. The information on the network you receive can be viewed in QGIS. Information includes vector (IMKL with GML) + raster (PNG) + letters and detaildrawings (PDF).
-version=2.0.1
+version=2.0.2
 author=Diethard Jansen
 email=diethard.jansen@gmail.com
 changelog:
+    2.0.2   renamed reference to Quantum GIS to QGIS and do a garbage collect after loading each Klic message.
     2.0.1   fixed few problem with starting new QGIS plugin (i.e. not loading for 2.18.xx version)
     2.0.0   reads results of new (IMKL 2) Klic Win and previous (IMKL 1) Klic messages 
     1.4.3   added maximum version needed for upgrade
