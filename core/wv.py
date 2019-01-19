@@ -36,7 +36,7 @@ Author: Diethard Jansen, 14-3-2010
 
 import os
 import xml.etree.ElementTree as ET
-import imkl, xml_utils
+import imkl, xml_utils, gc
 from wv_storage import Storage1, Storage2
 from wv_objects import Theme, Layer, PdfFile
 from PyQt4.QtGui import QMessageBox
@@ -56,8 +56,7 @@ class Doc():
         self.__path = os.path.realpath(path_message)
         # holds interface to gis.   
         self.__iface = None
-        self.imkls = {}
-        self.imkls_on_id = {}
+        self._init_imkls()
         self.storage = None
         self.__version = None
         self.layerGroups = {}
@@ -71,6 +70,12 @@ class Doc():
         # set themes and create world files
         self._setThemes()
         self._createWorldFiles()
+        self._init_imkls()
+        gc.collect()
+
+    def _init_imkls(self):
+        self.imkls = {}
+        self.imkls_on_id = {}
 
 # defining access to attributes of class Doc
     def _iface(self):

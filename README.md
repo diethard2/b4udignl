@@ -5,7 +5,7 @@ The QGIS KLIC Viewer plugin, a python plugin that can be used to view Dutch b4ud
 
 Installation
 ------------
-First you need an installation of Quantum GIS! 
+First you need an installation of QGIS! 
 Download QGIS v. 2.18 from www.qgis.org.
 
 Use QGIS Python Plugin Installer for installation of this plugin.
@@ -136,7 +136,7 @@ Fixed:
 
 version 1.1.1
 Fixed: 
-* Make plugin multilingual for Quantum GIS Thethys as well
+* Make plugin multilingual for QGIS Thethys as well
 
 Version 1.1.0
 New functionality:
@@ -148,13 +148,13 @@ New functionality:
 4. Change visibility of buttons whether message is loaded.
 
 This version is probably the last version that works with
-previous releases of Quantum GIS. The next one is only
+previous releases of QGIS. The next one is only
 supported from QGIS version 1.5 onwards! 
 
 Version 1.0.2
 First official release!
 
-Tested with Quantum GIS 1.0.2 (Kore), 1.3 (Mimas) and 1.4
+Tested with QGIS 1.0.2 (Kore), 1.3 (Mimas) and 1.4
 (Enceladus) on following OS systems: Windows XP, Vista, 7,
 Unbuntu & OSX (mac) Help manuals (browser) included!
 Translations available: English and Dutch
