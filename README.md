@@ -15,6 +15,11 @@ in your home folder ~/.qgis2/python/plugins/
 
 Release notes
 -------------
+**version 2.0.2** 19/01/2018
+Renamed Quantum GIS to QGIS in documentation (and this file)
+Now GML curves are also supported for Vector Geometry of pipelines
+After loading each KLIC message, a full garbage collect is done after removing temporary datamodel
+
 **version 2.0.1** 05/01/2018
 fixed max qgis version to 2.99 so it will also be loaded in QGIS version 2.18.22.
 fixed problem with not adding SVG path with style symbols for this plugin when no svg symbols were added.
