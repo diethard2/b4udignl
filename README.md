@@ -15,6 +15,11 @@ in your home folder ~/.qgis2/python/plugins/
 
 Release notes
 -------------
+**version 2.0.3** 27/01/2018
+Fixed loading detailkaarten (Themabijlagen) as rasterlayers.
+Improved style of depth measurement object DiepteNAP en DiepteTovMaaiveld.
+Forced garbage collect takes place after removing KLIC message.
+
 **version 2.0.2** 19/01/2018
 Renamed Quantum GIS to QGIS in documentation (and this file)
 Now GML curves are also supported for Vector Geometry of pipelines

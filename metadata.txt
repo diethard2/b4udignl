@@ -5,15 +5,16 @@ qgisMinimumVersion=2.14
 qgisMaximumVersion=2.99
 description=View the result of a B4Udig request of the Netherlands to prevent damage
 about=When you want to dig mechanically In the Netherlands you are obliged to request information on the area where you want to dig. The information on the network you receive can be viewed in QGIS. Information includes vector (IMKL with GML) + raster (PNG) + letters and detaildrawings (PDF).
-version=2.0.2
+version=2.0.3
 author=Diethard Jansen
 email=diethard.jansen@gmail.com
 changelog:
-    2.0.2   renamed reference to Quantum GIS to QGIS and do a garbage collect after loading each Klic message.
-    2.0.1   fixed few problem with starting new QGIS plugin (i.e. not loading for 2.18.xx version)
-    2.0.0   reads results of new (IMKL 2) Klic Win and previous (IMKL 1) Klic messages 
-    1.4.3   added maximum version needed for upgrade
-    1.4.2   fixed issue concerning character encoding
+    2.0.3   Fixed loading detailkaart into map and improved style of depth measurement objects.
+    2.0.2   Renamed reference to Quantum GIS to QGIS and do a garbage collect after loading each Klic message.
+    2.0.1   Fixed few problem with starting new QGIS plugin (i.e. not loading for 2.18.xx version)
+    2.0.0   Reads results of new (IMKL 2) Klic Win and previous (IMKL 1) Klic messages 
+    1.4.3   Added maximum version needed for upgrade
+    1.4.2   Fixed issue concerning character encoding
     1.4.1   Added a webpage for this site and improved metadata.txt
     1.4.0   New version for qgis 2.0, changed name from WION result viewer to KLIC viewer, help function streamlined with QGIS
     1.3.2   Moved plugin to official QGIS repository and update it to new standards
@@ -27,9 +28,9 @@ changelog:
     1.2.0   Added Themes Tab to turn of visibility of groups of layers
     1.1.3   Make plugin open any zipped files, after loading WION document units is set to meters
     1.1.2   Fixed: Make plugin open zipped files delivered by Kadaster
-    1.1.1   make plugin multilingual for QGIS Thetys as well
-    1.1.0   opening zipped Wion Documents, support for opening more documents
-    1.0.2   first official release tested with QGIS 1.0.1, 1.3 and 1.4 on all platforms
+    1.1.1   Make plugin multilingual for QGIS Thetys as well
+    1.1.0   Opening zipped Wion Documents, support for opening more documents
+    1.0.2   First official release tested with QGIS 1.0.1, 1.3 and 1.4 on all platforms
 experimental=False
 deprecated=False
 tags=KLIC,WION,KLIC Viewer,KLIC WIN,CBYD
