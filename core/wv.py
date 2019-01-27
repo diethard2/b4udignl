@@ -70,8 +70,6 @@ class Doc():
         # set themes and create world files
         self._setThemes()
         self._createWorldFiles()
-        self._init_imkls()
-        gc.collect()
 
     def _init_imkls(self):
         self.imkls = {}
@@ -300,7 +298,7 @@ class Doc():
                     geom_field = imkl_object.geometry_field()
                     link_id = imkl_object.field("link_id").value
                     if not self.imkls_on_id.has_key(link_id):
-                        self._display_no_utilitylink(imkl_object, link_id)
+##                        self._display_no_utilitylink(imkl_object, link_id)
                         continue
                     utility_link = self.imkls_on_id[link_id]
                     geom_field.value = utility_link.geometry_field().value
@@ -463,7 +461,8 @@ class Doc():
             if self.themes.has_key(layer.groupName()):
                 self.themes[layer.groupName()].layers.append(layer)
             else:
-                self._display_no_groupname(layer)
+                pass
+##                self._display_no_groupname(layer)
 
     def _display_no_groupname(self, layer):
         title = u"layer has not a (valid) groupname"

@@ -409,11 +409,15 @@ class Storage2(Storage):
             return
         for bijlage in bijlagen:
             bijlage_type = self._get_type_from_bijlage(bijlage)
+            soort_bijlage = bijlage.field("soort_bijlage")
+            if soort_bijlage is not None and soort_bijlage == 'detailkaart':
+                continue
             if bijlage_type == 'PNG':
                 location = bijlage.field("bestandlocatie").value
-                file_png = os.path.join(self.path, location)
-                layer = Layer(self, file_png)
-                layers.append(layer)
+                if '.png' in location.lower():
+                    file_png = os.path.join(self.path, location)
+                    layer = Layer(self, file_png)
+                    layers.append(layer)
         self._extend_layers(layers)
 
     def _fill_pdf_files(self):        
@@ -521,10 +525,11 @@ class Storage2(Storage):
 
     def _add_layer_to_theme(self, theme, imkl_object):
         file_location = imkl_object.field("bestandlocatie").value
-        layer_file = os.path.join(self.path, file_location)
-        layer = Layer(self, layer_file)
-        layer.addVisibility(theme.name)
-        theme.layers.append(layer)
+        if '.png' in file_location.lower():
+            layer_file = os.path.join(self.path, file_location)
+            layer = Layer(self, layer_file)
+            layer.addVisibility(theme.name)
+            theme.layers.append(layer)
                     
     def _add_doc_to_theme(self, theme, imkl_object):
         pdfFile = self._create_doc_from_imkl(imkl_object)

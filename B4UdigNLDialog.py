@@ -30,7 +30,7 @@ from PyQt4.QtGui import QDialog, QFileDialog, QMessageBox, QListWidgetItem, \
 from qgis import utils
 from qgis.core import QgsProject
 from ui_B4UdigNL import Ui_B4UdigNL
-import ifaceqgis, os
+import ifaceqgis, os, gc
 from core import wv
 import unzip, zipfile, pickle
 
@@ -542,6 +542,7 @@ class B4UdigNLDialog(QDialog):
         self._populateTree()
         self._setStateOfVisibilitiesThemes(True)
         self._setVisibilities()
+        gc.collect()
         
     @pyqtSignature("")
     def on_bestScaleButton_clicked(self):
