@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Leveringsinformatie xmlns="http://www.kadaster.nl/schemas/klic/leveringsinformatie/v20180418" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
+ <version>2.1</version>
+ <bijlagePerLevering>
+  <soortBijlage>achtergrondkaart</soortBijlage>
+  <bestandLocatie>bronnen/GB_18G007160.png</bestandLocatie>
+  <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+  <bestandIdentificator>GB_18G007160</bestandIdentificator>
+ </bijlagePerLevering>
+ <bijlagePerLevering>
+  <soortBijlage>geselecteerdGebied</soortBijlage>
+  <bestandLocatie>bronnen/SEL_18G007160.png</bestandLocatie>
+  <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+  <bestandIdentificator>SEL_18G007160</bestandIdentificator>
+ </bijlagePerLevering>
+ <bijlagePerLevering>
+  <soortBijlage>leveringsbrief</soortBijlage>
+  <bestandLocatie>LI_18G007160_1.pdf</bestandLocatie><bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+  <bestandIdentificator>LI_18G007160_1</bestandIdentificator>
+ </bijlagePerLevering>
+ <bijlagePerLevering>
+  <soortBijlage>gebiedsinformatieLevering</soortBijlage>
+  <bestandLocatie>GI_gebiedsinformatielevering_18G007160_1.xml</bestandLocatie><bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/XML"/>
+  <bestandIdentificator>GI_gebiedsinformatielevering_18G007160_1</bestandIdentificator>
+ </bijlagePerLevering>
+ <pngFormaat>
+  <omsluitendeRechthoek>
+   <gml:Envelope srsName="urn:ogc:def:crs:EPSG::28992" srsDimension="2">
+    <gml:lowerCorner>154980.0 387980.0</gml:lowerCorner>
+    <gml:upperCorner>155120.0 388140.0</gml:upperCorner>
+   </gml:Envelope>
+  </omsluitendeRechthoek>
+  <pixelsBreed>1960</pixelsBreed>
+  <pixelsHoog>2240</pixelsHoog>
+ </pngFormaat>
+ <belanghebbende>
+  <bronhoudercode>nbact2</bronhoudercode>
+  <beheerdersinformatieVersie>IMKL1.2</beheerdersinformatieVersie>
+  <bijlagePerNetbeheerder>
+   <soortBijlage>algemeen</soortBijlage>
+   <bestandLocatie>bronnen/nbact2/nl.imkl-nbact2_18G007160.algemeen.pdf</bestandLocatie>
+   <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+   <bestandIdentificator>nl.imkl-nbact2.algemeen</bestandIdentificator>
+  </bijlagePerNetbeheerder>
+  <bijlagePerNetbeheerder>
+   <soortBijlage>nietBetrokken</soortBijlage>
+   <bestandLocatie>bronnen/nbact2/nl.imkl-nbact2_18G007160.nietBetrokken.pdf</bestandLocatie>
+   <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+   <bestandIdentificator>nl.imkl-nbact2.nietBetrokken</bestandIdentificator>
+  </bijlagePerNetbeheerder>
+ </belanghebbende>
+ <belanghebbende>
+  <bronhoudercode>nbact3</bronhoudercode>
+  <beheerdersinformatieVersie>IMKL1.2</beheerdersinformatieVersie>
+ </belanghebbende>
+ <belanghebbende>
+  <bronhoudercode>nbact4</bronhoudercode>
+  <beheerdersinformatieVersie>IMKL1.2</beheerdersinformatieVersie>
+ </belanghebbende>
+ <belanghebbende>
+  <bronhoudercode>nbact1</bronhoudercode>
+  <beheerdersinformatieVersie>IMKL1.2</beheerdersinformatieVersie>
+  <bijlagePerNetbeheerder>
+   <soortBijlage>algemeen</soortBijlage>
+   <bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf</bestandLocatie>
+   <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+   <bestandIdentificator>nl.imkl-nbact1.filename</bestandIdentificator>
+  </bijlagePerNetbeheerder>
+  <bijlagePerNetbeheerder>
+   <soortBijlage>eigenTopo</soortBijlage>
+   <bestandLocatie>bronnen/nbact1/ET_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+   <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+   <bestandIdentificator>ET_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+  </bijlagePerNetbeheerder>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/rioolOnderOverOfOnderdruk"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_rioolOnderOverOfOnderdruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_rioolOnderOverOfOnderdruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/buisleidingGevaarlijkeInhoud"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_buisleidingGevaarlijkeInhoud_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_buisleidingGevaarlijkeInhoud_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/hoogspanning"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_hoogspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_hoogspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/middenspanning"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>annotatie</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/AN_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>AN_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/gasLageDruk"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_gasLageDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_gasLageDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/water"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_water_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_water_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/petrochemie"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_petrochemie_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_petrochemie_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/datatransport"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>annotatie</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>maatvoering</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>aansluiting</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+    <bestandIdentificator>nl.imkl-nbact1.filename</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>profielschets</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+    <bestandIdentificator>nl.imkl-nbact1.filename</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>overig</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+    <bestandIdentificator>nl.imkl-nbact1.filename</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/gasHogeDruk"/>
+   <eisVoorzorgmaatregel>true</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_gasHogeDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_gasHogeDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>eisVoorzorgsmaatregel</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.EV_gasHogeDruk_T_risicoHoog_gasHogeDruk.pdf</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+    <bestandIdentificator>nl.imkl-nbact1.EV_gasHogeDruk_T_risicoHoog_gasHogeDruk</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/overig"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_overig_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_overig_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/warmte"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_warmte_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_warmte_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/rioolVrijverval"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_rioolVrijverval_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_rioolVrijverval_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/laagspanning"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>annotatie</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/AN_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>AN_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/wees"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_wees_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_wees_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/landelijkHoogspanningsnet"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/nbact1/LG_landelijkHoogspanningsnet_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_landelijkHoogspanningsnet_Netbeheerder+Actualiseren01_0000949099_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+</belanghebbende>
+<belanghebbende>
+  <bronhoudercode>KL1031</bronhoudercode>
+  <beheerdersinformatieVersie>IMKL1.2</beheerdersinformatieVersie>
+</belanghebbende>
+<belanghebbende>
+  <bronhoudercode>KN1100</bronhoudercode>
+  <beheerdersinformatieVersie>IMKL1.2</beheerdersinformatieVersie>
+  <beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/water"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+   <themabijlagePerNetbeheerder>
+    <soortBijlage>ligging</soortBijlage>
+    <bestandLocatie>bronnen/KN1100/LG_water_PWN4_0000950324_18G007160.png</bestandLocatie>
+    <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+    <bestandIdentificator>LG_water_PWN4_0000950324_18G007160.png</bestandIdentificator>
+   </themabijlagePerNetbeheerder>
+  </beheerdersinformatie>
+ </belanghebbende>
+</Leveringsinformatie>

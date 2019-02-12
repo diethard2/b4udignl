@@ -260,6 +260,11 @@ class DocTestCaseV2_1(unittest.TestCase):
         """
         # read the file
         klic_msg_dir = "../test/data/18G007160_1"
+        subdirs = ("../test/data/18G007160_1/bronnen/KN1100",
+                   "../test/data/18G007160_1/bronnen/nbact1")
+        for a_dir in subdirs:
+            if not os.path.exists(a_dir):
+                os.makedirs(a_dir)
         self.doc = Doc(klic_msg_dir)
         self.maxDiff = None
 

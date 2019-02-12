@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lev:Leveringsinformatie xmlns:lev="http://www.kadaster.nl/schemas/klic/20080722/leveringsinfo" xmlns:gml="http://www.opengis.net/gml" xmlns:ns3="http://www.w3.org/1999/xlink" xmlns:ns4="http://www.w3.org/2001/SMIL20/" xmlns:ns5="http://www.w3.org/2001/SMIL20/Language">
+  <lev:Version>1.5</lev:Version>
+  <lev:Klicnummer>14G166926</lev:Klicnummer>
+  <lev:Ordernummer>9805738757</lev:Ordernummer>
+  <lev:RelatienummerGrondroerder>0000648756</lev:RelatienummerGrondroerder>
+  <lev:Leveringsvolgnummer>1</lev:Leveringsvolgnummer>
+  <lev:Meldingsoort>Graafmelding</lev:Meldingsoort>
+  <lev:DatumTijdAanvraag>2014-04-30T14:07:00.000+02:00</lev:DatumTijdAanvraag>
+  <lev:KlantReferentie>KADASTER TESTMELDING</lev:KlantReferentie>
+  <lev:Locatie srsName="epsg:28992" srsDimension="2" axisLabels="x y" uomLabels="m m">
+    <gml:exterior>
+      <gml:LinearRing>
+        <gml:posList>194154 465912 194154 465849 194270 465850 194269 465914 194154 465912</gml:posList>
+      </gml:LinearRing>
+    </gml:exterior>
+  </lev:Locatie>
+  <lev:Pngformaat>
+    <lev:OmsluitendeRechthoek>
+      <gml:Envelope srsName="epsg:28992" srsDimension="2" axisLabels="x y" uomLabels="m m">
+        <gml:lowerCorner>194154 465849</gml:lowerCorner>
+        <gml:upperCorner>194270 465914</gml:upperCorner>
+      </gml:Envelope>
+    </lev:OmsluitendeRechthoek>
+    <lev:PixelsBreed>1624</lev:PixelsBreed>
+    <lev:PixelsHoog>910</lev:PixelsHoog>
+  </lev:Pngformaat>
+  <lev:NetbeheerderLeveringen>
+    <lev:NetbeheerderLevering>
+      <lev:RelatienummerNetbeheerder>0000574962</lev:RelatienummerNetbeheerder>
+      <lev:Bedrijfsnaam>Liander</lev:Bedrijfsnaam>
+      <lev:BedrijfsnaamAfkorting>Liander</lev:BedrijfsnaamAfkorting>
+      <lev:Contact>
+        <lev:Telefoon>0611 382 570</lev:Telefoon>
+      </lev:Contact>
+      <lev:Contactpersoon>
+        <lev:Naam>Gis Data Klic</lev:Naam>
+        <lev:Telefoon>0611382570</lev:Telefoon>
+        <lev:Email>infoklic@alliander.com</lev:Email>
+      </lev:Contactpersoon>
+      <lev:BelangAanwezig>true</lev:BelangAanwezig>
+      <lev:Storingsnummer>0800-9009</lev:Storingsnummer>
+      <lev:Themas>
+        <lev:Thema>
+          <lev:Themanaam>middenspanning</lev:Themanaam>
+          <lev:Toezichthouders>
+            <lev:Toezichthouder>
+              <lev:Telefoon>0881912211</lev:Telefoon>
+            </lev:Toezichthouder>
+          </lev:Toezichthouders>
+          <lev:EisVoorzorgmaatregel>false</lev:EisVoorzorgmaatregel>
+          <lev:Ligging>
+            <lev:Bestandsnaam>LG_middenspanning_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Ligging>
+          <lev:Maatvoering>
+            <lev:Bestandsnaam>MV_middenspanning_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Maatvoering>
+          <lev:Annotatie>
+            <lev:Bestandsnaam>AN_middenspanning_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Annotatie>
+        </lev:Thema>
+        <lev:Thema>
+          <lev:Themanaam>gas lage druk</lev:Themanaam>
+          <lev:Toezichthouders>
+            <lev:Toezichthouder>
+              <lev:Telefoon>0881912211</lev:Telefoon>
+            </lev:Toezichthouder>
+          </lev:Toezichthouders>
+          <lev:EisVoorzorgmaatregel>false</lev:EisVoorzorgmaatregel>
+          <lev:Ligging>
+            <lev:Bestandsnaam>LG_gas+lage+druk_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Ligging>
+          <lev:Maatvoering>
+            <lev:Bestandsnaam>MV_gas+lage+druk_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Maatvoering>
+          <lev:Annotatie>
+            <lev:Bestandsnaam>AN_gas+lage+druk_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Annotatie>
+        </lev:Thema>
+        <lev:Thema>
+          <lev:Themanaam>laagspanning</lev:Themanaam>
+          <lev:Toezichthouders>
+            <lev:Toezichthouder>
+              <lev:Telefoon>0881912211</lev:Telefoon>
+            </lev:Toezichthouder>
+          </lev:Toezichthouders>
+          <lev:EisVoorzorgmaatregel>false</lev:EisVoorzorgmaatregel>
+          <lev:Ligging>
+            <lev:Bestandsnaam>LG_laagspanning_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Ligging>
+          <lev:Maatvoering>
+            <lev:Bestandsnaam>MV_laagspanning_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Maatvoering>
+          <lev:Annotatie>
+            <lev:Bestandsnaam>AN_laagspanning_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+          </lev:Annotatie>
+          <lev:Huisaansluitschetsen>
+            <lev:Huisaansluitschets>
+              <lev:Bestandsnaam>HA_laagspanning_Liander_0000574962_14G166926_7334DP_701.pdf</lev:Bestandsnaam>
+            </lev:Huisaansluitschets>
+          </lev:Huisaansluitschetsen>
+        </lev:Thema>
+      </lev:Themas>
+      <lev:Bijlagen>
+        <lev:Bijlage>
+          <lev:Bestandsnaam>BL_Liander_0000574962_14G166926_BriefAlgemeen.pdf</lev:Bestandsnaam>
+        </lev:Bijlage>
+        <lev:Bijlage>
+          <lev:Bestandsnaam>BL_Liander_0000574962_14G166926_OntwerpContouren.pdf</lev:Bestandsnaam>
+        </lev:Bijlage>
+      </lev:Bijlagen>
+      <lev:EigenTopo>
+        <lev:Bestandsnaam>ET_Liander_0000574962_14G166926.png</lev:Bestandsnaam>
+      </lev:EigenTopo>
+    </lev:NetbeheerderLevering>
+  </lev:NetbeheerderLeveringen>
+</lev:Leveringsinformatie>

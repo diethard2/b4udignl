@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xb:BAG-Extract-Deelbestand-LVC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xb="http://www.kadaster.nl/schemas/bag-verstrekkingen/extract-deelbestand-lvc/v20090901" xmlns:bag_LVC="http://www.kadaster.nl/schemas/imbag/lvc/v20090901" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bagtype="http://www.kadaster.nl/schemas/imbag/imbag-types/v20090901" xmlns:nen5825="http://www.kadaster.nl/schemas/imbag/nen5825/v20090901" xmlns:product_LVC="http://www.kadaster.nl/schemas/bag-verstrekkingen/extract-producten-lvc/v20090901" xmlns:selecties-extract="http://www.kadaster.nl/schemas/bag-verstrekkingen/extract-selecties/v20090901" xsi:schemaLocation="http://www.kadaster.nl/schemas/bag-verstrekkingen/extract-deelbestand-lvc/v20090901 http://www.kadaster.nl/schemas/bag-verstrekkingen/extract-deelbestand-lvc/v20090901/BagvsExtractDeelbestandExtractLvc-1.4.xsd">
+  <xb:antwoord>
+    <xb:vraag>
+      <selecties-extract:Gebied-Registratief>
+        <selecties-extract:Gebied-NLD>
+          <selecties-extract:GebiedIdentificatie>9999</selecties-extract:GebiedIdentificatie>
+          <selecties-extract:GebiedNaam>Nederland</selecties-extract:GebiedNaam>
+          <selecties-extract:gebiedTypeNederland>1</selecties-extract:gebiedTypeNederland>
+        </selecties-extract:Gebied-NLD>
+      </selecties-extract:Gebied-Registratief>
+      <selecties-extract:StandTechnischeDatum>20150608</selecties-extract:StandTechnischeDatum>
+    </xb:vraag>
+    <xb:producten>
+      <product_LVC:LVC-product><bag_LVC:Pand><bag_LVC:identificatie>1987100000011601</bag_LVC:identificatie><bag_LVC:aanduidingRecordInactief>N</bag_LVC:aanduidingRecordInactief><bag_LVC:aanduidingRecordCorrectie>0</bag_LVC:aanduidingRecordCorrectie><bag_LVC:officieel>N</bag_LVC:officieel><bag_LVC:pandGeometrie><gml:Polygon srsName="urn:ogc:def:crs:EPSG::28992">
+  <gml:exterior>
+    <gml:LinearRing>
+      <gml:posList srsDimension="3" count="5">253680.97 576716.1 0.0 253679.11 576736.32 0.0 253667.39 576735.3 0.0 253669.21 576715.11 0.0 253680.97 576716.1 0.0</gml:posList>
+    </gml:LinearRing>
+  </gml:exterior>
+  <gml:interior>
+    <gml:LinearRing>
+      <gml:posList srsDimension="3" count="5">253679.875 576724.723 0.0 253671.753 576723.992 0.0 253671.406 576727.849 0.0 253679.528 576728.58 0.0 253679.875 576724.723 0.0</gml:posList>
+    </gml:LinearRing>
+  </gml:interior>
+</gml:Polygon></bag_LVC:pandGeometrie><bag_LVC:bouwjaar>2012</bag_LVC:bouwjaar><bag_LVC:pandstatus>Pand in gebruik</bag_LVC:pandstatus><bag_LVC:tijdvakgeldigheid><bagtype:begindatumTijdvakGeldigheid>2014081200000000</bagtype:begindatumTijdvakGeldigheid><bagtype:einddatumTijdvakGeldigheid>2014102200000000</bagtype:einddatumTijdvakGeldigheid></bag_LVC:tijdvakgeldigheid><bag_LVC:inOnderzoek>N</bag_LVC:inOnderzoek><bag_LVC:bron><bagtype:documentdatum>20140812</bagtype:documentdatum><bagtype:documentnummer>AV-2014-08-12-001b</bagtype:documentnummer></bag_LVC:bron></bag_LVC:Pand></product_LVC:LVC-product>
+    </xb:producten>
+  </xb:antwoord>
+</xb:BAG-Extract-Deelbestand-LVC>
