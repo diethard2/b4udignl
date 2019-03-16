@@ -58,7 +58,7 @@ class DocTestCaseV1_5(unittest.TestCase):
         self.assertEqual((rectangle.pixelsWidth,rectangle.pixelsHeight),
                          (1624,910))
 
-    def test_rectange(self):
+    def test_rectangle(self):
         rectangle = self.doc.rectangle
         self.assertEqual(repr(rectangle),
                          'Rectangle(Coord(194154.00, 465849.00), Coord(194270.00, 465914.00))')
@@ -73,7 +73,7 @@ class DocTestCaseV1_5(unittest.TestCase):
 
     def test_themes2(self):
         themes = self.doc.themes
-        keys = themes.keys()
+        keys = list(themes.keys())
         keys.sort()
         key_values = []
         for key in keys:
@@ -86,42 +86,42 @@ class DocTestCaseV1_5(unittest.TestCase):
             key_values.append([key, layer_names])
         self.assertEqual(key_values,
                          [['Annotatie',
-                           ['AN_gas+lage+druk_Liander_0000574962_14G166926.png',
+                           ['AN_middenspanning_Liander_0000574962_14G166926.png',
+                            'AN_gas+lage+druk_Liander_0000574962_14G166926.png',
+                            'AN_laagspanning_Liander_0000574962_14G166926.png',
                             'AN_datatransport_KPN_0000546663_14G166926.png',
-                            'AN_water_Vitens_0000552354_14G166926.png',
                             'AN_datatransport_trent_0000585212_14G166926.png',
-                            'AN_middenspanning_Liander_0000574962_14G166926.png',
-                            'AN_laagspanning_Liander_0000574962_14G166926.png']],
+                            'AN_water_Vitens_0000552354_14G166926.png']],
                           ['Ligging',
-                           ['LG_laagspanning_Liander_0000574962_14G166926.png',
-                            'LG_middenspanning_Liander_0000574962_14G166926.png',
-                            'LG_datatransport_trent_0000585212_14G166926.png',
-                            'LG_water_Vitens_0000552354_14G166926.png',
+                           ['LG_middenspanning_Liander_0000574962_14G166926.png',
+                            'LG_gas+lage+druk_Liander_0000574962_14G166926.png',
+                            'LG_laagspanning_Liander_0000574962_14G166926.png',
                             'LG_riool+vrijverval_APELDOORN_0000586326_14G166926.png',
                             'LG_datatransport_KPN_0000546663_14G166926.png',
-                            'LG_gas+lage+druk_Liander_0000574962_14G166926.png']],
+                            'LG_datatransport_trent_0000585212_14G166926.png',
+                            'LG_water_Vitens_0000552354_14G166926.png']],
                           ['Maatvoering',
-                           ['MV_datatransport_KPN_0000546663_14G166926.png',
+                           ['MV_middenspanning_Liander_0000574962_14G166926.png',
+                            'MV_gas+lage+druk_Liander_0000574962_14G166926.png',
                             'MV_laagspanning_Liander_0000574962_14G166926.png',
-                            'MV_datatransport_trent_0000585212_14G166926.png',
-                            'MV_middenspanning_Liander_0000574962_14G166926.png',
-                            'MV_gas+lage+druk_Liander_0000574962_14G166926.png']],
+                            'MV_datatransport_KPN_0000546663_14G166926.png',
+                            'MV_datatransport_trent_0000585212_14G166926.png']],
                           ['Topo',
-                           ['PT_KPN_0000546663_14G166926.png',
-                            'GB_14G166926.png',
-                            'ET_Liander_0000574962_14G166926.png',
-                            'ET_KPN_0000546663_14G166926.png']],
+                           ['ET_Liander_0000574962_14G166926.png',
+                            'ET_KPN_0000546663_14G166926.png',
+                            'PT_KPN_0000546663_14G166926.png',
+                            'GB_14G166926.png']],
                           ['datatransport',
-                           ['MV_datatransport_KPN_0000546663_14G166926.png',
+                           ['LG_datatransport_KPN_0000546663_14G166926.png',
+                            'MV_datatransport_KPN_0000546663_14G166926.png',
+                            'AN_datatransport_KPN_0000546663_14G166926.png',
                             'LG_datatransport_trent_0000585212_14G166926.png',
                             'MV_datatransport_trent_0000585212_14G166926.png',
-                            'AN_datatransport_KPN_0000546663_14G166926.png',
-                            'AN_datatransport_trent_0000585212_14G166926.png',
-                            'LG_datatransport_KPN_0000546663_14G166926.png']],
+                            'AN_datatransport_trent_0000585212_14G166926.png']],
                           ['gas lage druk',
-                           ['AN_gas+lage+druk_Liander_0000574962_14G166926.png',
+                           ['LG_gas+lage+druk_Liander_0000574962_14G166926.png',
                             'MV_gas+lage+druk_Liander_0000574962_14G166926.png',
-                            'LG_gas+lage+druk_Liander_0000574962_14G166926.png']],
+                            'AN_gas+lage+druk_Liander_0000574962_14G166926.png']],
                           ['laagspanning',
                            ['LG_laagspanning_Liander_0000574962_14G166926.png',
                             'MV_laagspanning_Liander_0000574962_14G166926.png',
@@ -133,12 +133,12 @@ class DocTestCaseV1_5(unittest.TestCase):
                           ['riool vrijverval',
                            ['LG_riool+vrijverval_APELDOORN_0000586326_14G166926.png']],
                           ['water',
-                           ['AN_water_Vitens_0000552354_14G166926.png',
-                            'LG_water_Vitens_0000552354_14G166926.png']]])
+                           ['LG_water_Vitens_0000552354_14G166926.png',
+                            'AN_water_Vitens_0000552354_14G166926.png']]])
 
     def test_themes_visibility(self):
         themes = self.doc.themes
-        keys = themes.keys()
+        keys = list(themes.keys())
         keys.sort()
         key_values = []
         for key in keys:
@@ -168,11 +168,16 @@ class DocTestCaseV1_5(unittest.TestCase):
             visible = theme.checkVisible(False)
             themes_visible.append([theme.name, visible])
         self.assertEqual(themes_visible,
-                         [['riool vrijverval', 2], ['Topo', 2],
-                          ['laagspanning', 2], ['Ligging', 2],
-                          ['Annotatie', 2], ['water', 2],
-                          ['datatransport', 2], ['middenspanning', 2],
-                          ['gas lage druk', 2], ['Maatvoering', 2]])
+                         [['middenspanning', 2.0], ['gas lage druk', 2.0],
+                          ['laagspanning', 2.0], ['riool vrijverval', 2.0],
+                          ['datatransport', 2.0], ['water', 2.0],
+                          ['Topo', 2.0], ['Ligging', 2.0],
+                          ['Maatvoering', 2.0], ['Annotatie', 2.0]])
+##                         [['riool vrijverval', 2], ['Topo', 2],
+##                          ['laagspanning', 2], ['Ligging', 2],
+##                          ['Annotatie', 2], ['water', 2],
+##                          ['datatransport', 2], ['middenspanning', 2],
+##                          ['gas lage druk', 2], ['Maatvoering', 2]]
             
 
     def test_toezichthouders(self):
@@ -200,9 +205,9 @@ class DocTestCaseV1_5(unittest.TestCase):
     def test_thema_layers(self):
         netowner = self.doc.netOwners[0]
         theme_layer_files = []
-        file_names = ['AN_middenspanning_Liander_0000574962_14G166926.png',
+        file_names = ['LG_middenspanning_Liander_0000574962_14G166926.png',
                       'MV_middenspanning_Liander_0000574962_14G166926.png',
-                      'LG_middenspanning_Liander_0000574962_14G166926.png']
+                      'AN_middenspanning_Liander_0000574962_14G166926.png']
         klic_dir = self.doc.path
         file_names = [os.path.join(klic_dir,file_name) for file_name in file_names]
         theme = netowner.themes[0]
@@ -398,26 +403,26 @@ class DocTestCaseV2_1(unittest.TestCase):
         layers = theme.layers
         layer_themes = []
         for layer in layers:
-            theme_names = layer.themes_visible.keys()
+            theme_names = list(layer.themes_visible.keys())
             theme_names.sort()
             for a_theme_name in theme_names:
                 if a_theme_name == theme_name:
                     visible = layer.themes_visible[theme_name]
                     layer_themes.append([layer.layerName, theme_name, visible])           
         self.assertEqual(layer_themes,
-                         [['Leidingelement', 'datatransport', 2],
-                          ['LG_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                           'datatransport',2],
-                          ['Maatvoering', 'datatransport', 2],
-                          ['ExtraGeometrie', 'datatransport', 2],
-                          ['Kast', 'datatransport', 2],
-                          ['Annotatie', 'datatransport', 2],
-                          ['Telecommunicatiekabel', 'datatransport', 2],
-                          ['MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                           'datatransport',2],
+                         [['Annotatie', 'datatransport', 2],
+                          ['Leidingelement', 'datatransport', 2],
                           ['ExtraDetailinfo', 'datatransport', 2],
+                          ['Kast', 'datatransport', 2],
+                          ['Maatvoering', 'datatransport', 2],
+                          ['Telecommunicatiekabel', 'datatransport', 2],
+                          ['ExtraGeometrie', 'datatransport', 2],
+                          ['LG_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                           'datatransport', 2],
                           ['AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                           'datatransport',2]])
+                           'datatransport',2],
+                          ['MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                           'datatransport', 2]])
 
     def test_klicnummer(self):
         self.assertEqual(self.doc.klicnummer, '18G007160')
@@ -503,7 +508,7 @@ class DocTestCaseV2_1(unittest.TestCase):
 
     def test_themes2(self):
         themes = self.doc.themes
-        keys = themes.keys()
+        keys = list(themes.keys())
         keys.sort()
         key_values = []
         for key in keys:
@@ -516,113 +521,103 @@ class DocTestCaseV2_1(unittest.TestCase):
             key_values.append([theme_name, layer_names])
         self.assertEqual(key_values,
                          [['Annotatie',
-                           ['AN_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Annotatie',
+                           ['Annotatie',
+                            'AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
                             'AN_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
+                            'AN_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['Ligging',
-                           ['Leidingelement', 'LG_warmte_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Rioolleiding', 'LG_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'LG_wees_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Waterleiding',
-                            'LG_water_PWN4_0000950324_18G007160.png',
-                            'LG_gasHogeDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                           ['Graafpolygoon', 'Leidingelement', 'DiepteTovMaaiveld',
+                            'DiepteNAP', 'Duct', 'ExtraDetailinfo',
+                            'Elektriciteitskabel', 'EisVoorzorgsmaatregel',
+                            'Kast', 'Kabelbed', 'Mast', 'Mantelbuis', 'Mangat',
+                            'OlieGasChemicalienPijpleiding', 'Overig', 'Rioolleiding',
+                            'Telecommunicatiekabel', 'TechnischGebouw', 'ThermischePijpleiding',
+                            'Toren', 'Waterleiding', 'ExtraGeometrie',
                             'LG_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Elektriciteitskabel',
-                            'ExtraGeometrie', 'Graafpolygoon', 'Mantelbuis',
-                            'Kast', 'Kabelbed', 'TechnischGebouw', 'DiepteNAP',
-                            'LG_rioolVrijverval_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'OlieGasChemicalienPijpleiding', 'ThermischePijpleiding',
-                            'Overig',
-                            'LG_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'EisVoorzorgsmaatregel',
-                            'LG_rioolOnderOverOfOnderdruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Mast', 'Telecommunicatiekabel',
-                            'LG_hoogspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'DiepteTovMaaiveld',
+                            'LG_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
                             'LG_buisleidingGevaarlijkeInhoud_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'LG_rioolVrijverval_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'LG_warmte_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
                             'LG_water_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Toren', 'Duct',
+                            'LG_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
                             'LG_overig_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'LG_gasLageDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'LG_gasHogeDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
                             'LG_petrochemie_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
                             'LG_landelijkHoogspanningsnet_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Mangat', 'ExtraDetailinfo']],
+                            'LG_hoogspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'LG_gasLageDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'LG_rioolOnderOverOfOnderdruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'LG_wees_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'LG_water_PWN4_0000950324_18G007160.png']],
                           ['Maatvoering',
                            ['Maatvoering',
                             'MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['Topo',
                            ['EigenTopografie',
-                            'GB_18G007160.png',
                             'ET_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'SEL_18G007160.png']],
+                            'GB_18G007160.png', 'SEL_18G007160.png']],
                           ['buisleidingGevaarlijkeInhoud',
-                           ['Leidingelement','ExtraGeometrie',
-                            'Kabelbed','Telecommunicatiekabel',
+                           ['Leidingelement', 'Kabelbed',
+                            'Telecommunicatiekabel', 'ExtraGeometrie',
                             'LG_buisleidingGevaarlijkeInhoud_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['datatransport',
-                           ['Leidingelement',
+                           ['Annotatie', 'Leidingelement', 'ExtraDetailinfo',
+                            'Kast', 'Maatvoering', 'Telecommunicatiekabel',
+                            'ExtraGeometrie',
                             'LG_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Maatvoering','ExtraGeometrie','Kast','Annotatie',
-                            'Telecommunicatiekabel',
-                            'MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'ExtraDetailinfo',
-                            'AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
+                            'AN_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'MV_datatransport_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['gasHogeDruk',
-                           ['LG_gasHogeDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'ExtraGeometrie','EisVoorzorgsmaatregel',
-                            'Telecommunicatiekabel','Mangat']],
+                           ['EisVoorzorgsmaatregel', 'Mangat', 'Telecommunicatiekabel',
+                            'ExtraGeometrie',
+                            'LG_gasHogeDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['gasLageDruk',
                            ['Telecommunicatiekabel',
                             'LG_gasLageDruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['hoogspanning',
-                           ['ExtraGeometrie','OlieGasChemicalienPijpleiding',
-                            'Telecommunicatiekabel',
+                           ['OlieGasChemicalienPijpleiding',
+                            'Telecommunicatiekabel', 'ExtraGeometrie',
                             'LG_hoogspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['laagspanning',
-                           ['Leidingelement','Rioolleiding',
+                           ['Leidingelement', 'DiepteNAP', 'Rioolleiding',
+                            'Telecommunicatiekabel', 'ExtraGeometrie',
                             'LG_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'ExtraGeometrie','DiepteNAP',
-                            'AN_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Telecommunicatiekabel']],
+                            'AN_laagspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['landelijkHoogspanningsnet',
-                           ['ExtraGeometrie','Mast','Telecommunicatiekabel',
+                           ['Mast', 'Telecommunicatiekabel', 'ExtraGeometrie',
                             'LG_landelijkHoogspanningsnet_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['middenspanning',
-                           ['ExtraGeometrie',
+                           ['DiepteTovMaaiveld', 'Telecommunicatiekabel',
+                            'TechnischGebouw', 'ExtraGeometrie',
                             'AN_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'TechnischGebouw',
-                            'LG_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Telecommunicatiekabel','DiepteTovMaaiveld']],
+                            'LG_middenspanning_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['overig',
-                           ['ExtraGeometrie','Overig','Telecommunicatiekabel',
+                           ['Overig', 'Telecommunicatiekabel', 'ExtraGeometrie',
                             'LG_overig_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['petrochemie',
-                           ['ExtraGeometrie','Mantelbuis',
-                            'Telecommunicatiekabel',
+                           ['Mantelbuis', 'Telecommunicatiekabel', 'ExtraGeometrie',
                             'LG_petrochemie_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['rioolOnderOverOfOnderdruk',
-                           ['ExtraGeometrie','ThermischePijpleiding',
-                            'LG_rioolOnderOverOfOnderdruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Telecommunicatiekabel']],
+                           ['Telecommunicatiekabel', 'ThermischePijpleiding',
+                            'ExtraGeometrie',
+                            'LG_rioolOnderOverOfOnderdruk_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['rioolVrijverval',
-                           ['Leidingelement','ExtraGeometrie',
-                            'LG_rioolVrijverval_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Telecommunicatiekabel','Duct']],
+                           ['Leidingelement', 'Duct', 'Telecommunicatiekabel',
+                            'ExtraGeometrie',
+                            'LG_rioolVrijverval_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['warmte',
-                           ['Leidingelement',
-                            'LG_warmte_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'ExtraGeometrie','Telecommunicatiekabel','Toren']],
+                           ['Leidingelement', 'Telecommunicatiekabel',
+                            'Toren', 'ExtraGeometrie',
+                            'LG_warmte_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
                           ['water',
-                           ['Leidingelement','Waterleiding',
-                            'LG_water_PWN4_0000950324_18G007160.png',
-                            'Elektriciteitskabel','ExtraGeometrie',
-                            'Telecommunicatiekabel',
-                            'LG_water_Netbeheerder+Actualiseren01_0000949099_18G007160.png']],
+                           ['Leidingelement', 'Elektriciteitskabel',
+                            'Telecommunicatiekabel', 'Waterleiding', 'ExtraGeometrie',
+                            'LG_water_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
+                            'LG_water_PWN4_0000950324_18G007160.png']],
                           ['wees',
-                           ['LG_wees_Netbeheerder+Actualiseren01_0000949099_18G007160.png',
-                            'Waterleiding','ExtraGeometrie',
-                            'Telecommunicatiekabel']]])
+                           ['Telecommunicatiekabel', 'Waterleiding', 'ExtraGeometrie',
+                            'LG_wees_Netbeheerder+Actualiseren01_0000949099_18G007160.png']]])
+
 
     def test_riool_layer(self):
         layers = self.doc.layers
