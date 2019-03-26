@@ -20,11 +20,12 @@ email                : diethard.jansen at gmail.com
  This script initializes the plugin, making it known to QGIS.
 """
 from __future__ import absolute_import
-import os
+import os, sys
 from qgis.PyQt.QtCore import QSettings
 
 # add svg path that holds svg symbols to settings when neccesary
 plugin_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(plugin_path)
 svg_path = os.path.join(plugin_path, 'styles', 'svg')
 if not 'svg/searchPathsForSVG' in QSettings().allKeys():
     QSettings().setValue('svg/searchPathsForSVG', svg_path)

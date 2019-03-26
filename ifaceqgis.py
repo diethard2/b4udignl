@@ -62,16 +62,14 @@ class Iface(object):
 
     def refreshLegend(self):
         """refreshes legend"""
-        legend = self.iface.legendInterface()
-        for layer in list(self.loadedLayers().values()):
-            legend.refreshLayerSymbology(layer)
+        pass
 
     def loadedLayers(self):
         """return dictionary where key is layer id and element is layer"""
         #dicLayers --> key = LayerId, Value = Layer
-        layerLegend = core.QgsMapLayerRegistry.instance()
-        dicLayers = layerLegend.mapLayers()
-        return dicLayers
+        project = core.QgsProject.instance()
+        dictLayers = project.mapLayers()
+        return dictLayers
 
     def loadLayer(self, wvLayer):
         """load given layer, and return reference of layer"""
@@ -82,15 +80,14 @@ class Iface(object):
             layer.updateFields()
             layer.dataProvider().addFeatures(wvLayer.features)
             layer.updateExtents()
-            registry = core.QgsMapLayerRegistry.instance()
-            registry.addMapLayer(layer)
-            layer = registry.mapLayersByName(wvLayer.layerName)
+            project = core.QgsProject.instance()
+            project.addMapLayer(layer)
+            layer = project.mapLayersByName(wvLayer.layerName)
             layer = layer[0]
             self.styleLayer(layer)
         else:
             layerFile = wvLayer.layerFile
             layer = self.iface.addRasterLayer(layerFile)
-        self.iface.legendInterface().setLayerExpanded(layer, False)
         return layer
 
     def styleLayer(self, a_layer):

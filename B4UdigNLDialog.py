@@ -26,12 +26,13 @@ email                : diethard.jansen at gmail.com
 from __future__ import absolute_import
 
 from builtins import str
-from qgis.PyQt.QtCore import QSettings
+from qgis.PyQt.QtCore import QSettings, pyqtSlot
 from qgis.PyQt.QtWidgets import QDialog, QFileDialog, QMessageBox, QListWidgetItem, QTreeWidgetItem
 from qgis import utils
 from qgis.core import QgsProject
 from .ui_B4UdigNL import Ui_B4UdigNL
-import ifaceqgis, os, gc
+from ifaceqgis import Iface
+import os, gc
 from .core import wv
 import unzip, zipfile, pickle
 
@@ -66,7 +67,7 @@ class B4UdigNLDialog(QDialog):
     def __init__(self, iface):
         QDialog.__init__(self)
         self.__iface = iface
-        self.__legend = iface.legendInterface()
+##        self.__legend = iface.legendInterface()
         self.__dir = None
         self.__wv = None
         self.__wvs = []
@@ -346,7 +347,7 @@ class B4UdigNLDialog(QDialog):
                     state = 1
                 checkbox.setCheckState(state)
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_openMsgButton_clicked(self):
         """opens directory search dialog and sets my attribute __dir"""
         l_path = self._start_find_path()
@@ -359,7 +360,7 @@ class B4UdigNLDialog(QDialog):
             QSettings().setValue("b4udignl/dir_last_used", str(l_dir_path))
             self._loadMsg()
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_openArchiveButton_clicked(self):
         """opens directory search dialog and sets my attribute __dir"""
         l_path = self._start_find_path()
@@ -403,12 +404,12 @@ class B4UdigNLDialog(QDialog):
                 l_path = self.__settings["b4udignl/dir_last_used"]
         return l_path
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_refreshButton_clicked(self):
         """refreshes the state of all themes"""
         self._setStateOfVisibilitiesThemes(True)
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_saveButton_clicked(self):
         """save messages & state to project file"""
         self.saveMessages()
@@ -435,38 +436,38 @@ class B4UdigNLDialog(QDialog):
             l_dirName = os.path.basename(p_fileName)[:-4]
         return l_dirName
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_msgListWidget_itemSelectionChanged(self):
         """change the current document"""
         l_listWidget = self.ui.msgListWidget
         l_item = l_listWidget.currentItem()
         self._changeDoc(l_item)
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_openDocButton_clicked(self):
         """opens the selected document delivered in result digAlert request"""
         l_items = self.ui.treeWidget.selectedItems()
         for i_item in l_items:
             self._openPdf(i_item)
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_closeButton_clicked(self):
         """hides (closes) the window"""
         self.close()
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_helpButton_clicked(self):
         """opens the help manual"""
         self.helpHelp()
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_gotoButton_clicked(self):
         """goto extent of map current message"""
         doc = self.doc()
         if doc is not None:
             doc.goto()
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_removeMsgButton_clicked(self):
         """remove selected message from list and all loaded layers"""
         l_msg_list = self.ui.msgListWidget
@@ -497,14 +498,14 @@ class B4UdigNLDialog(QDialog):
         self._setVisibilities()
         gc.collect()
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_bestScaleButton_clicked(self):
         """set best scale for current message"""
         doc = self.doc()
         if doc is not None:
             doc.bestScale()
 
-    @pyqtSignature("")
+    @pyqtSlot()
     def on_optionMsgDirButton_clicked(self):
         """
         select directory which will be used to start searching
@@ -522,7 +523,7 @@ class B4UdigNLDialog(QDialog):
         doc = self._openMsg(str(self.__dir))
         if doc is None:
             return
-        doc.iface = ifaceqgis.Iface(self.__iface)
+        doc.iface = Iface(self.__iface)
         self.__wv = doc
         self.__wvs.append(doc)
         self._populateMsgList()
@@ -754,7 +755,7 @@ class B4UdigNLDialog(QDialog):
             # connect qgis properly back to KLIC messages.
             self.__wvs = l_wvs
             for i_wv in self.__wvs:
-                i_wv.iface = ifaceqgis.Iface(self.__iface)
+                i_wv.iface = Iface(self.__iface)
                 i_wv.attachLayers()
                 i_wv.attachThemes()
 

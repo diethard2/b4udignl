@@ -168,17 +168,11 @@ class DocTestCaseV1_5(unittest.TestCase):
             visible = theme.checkVisible(False)
             themes_visible.append([theme.name, visible])
         self.assertEqual(themes_visible,
-                         [['middenspanning', 2.0], ['gas lage druk', 2.0],
-                          ['laagspanning', 2.0], ['riool vrijverval', 2.0],
-                          ['datatransport', 2.0], ['water', 2.0],
-                          ['Topo', 2.0], ['Ligging', 2.0],
-                          ['Maatvoering', 2.0], ['Annotatie', 2.0]])
-##                         [['riool vrijverval', 2], ['Topo', 2],
-##                          ['laagspanning', 2], ['Ligging', 2],
-##                          ['Annotatie', 2], ['water', 2],
-##                          ['datatransport', 2], ['middenspanning', 2],
-##                          ['gas lage druk', 2], ['Maatvoering', 2]]
-            
+                         [['middenspanning', 2], ['gas lage druk', 2],
+                          ['laagspanning', 2], ['riool vrijverval', 2],
+                          ['datatransport', 2], ['water', 2],
+                          ['Topo', 2], ['Ligging', 2],
+                          ['Maatvoering', 2], ['Annotatie', 2]])            
 
     def test_toezichthouders(self):
         personal_info = []
