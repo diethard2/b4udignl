@@ -104,10 +104,10 @@ class Iface(object):
         layer = wvLayer.layer
         if wvLayer.is_vector():
             if show_vector and theme is not None:
-                renderer = layer.rendererV2()
-                if isinstance(renderer, core.QgsRuleBasedRendererV2):
+                renderer = layer.renderer()
+                if isinstance(renderer, core.QgsRuleBasedRenderer):
                     self._set_visibility_rules_symbol(layer, theme, visibility)
-                elif isinstance(renderer, core.QgsSingleSymbolRendererV2):
+                elif isinstance(renderer, core.QgsSingleSymbolRenderer):
                     self.setLayerVisible(layer, visibility)
         else:
             if show_raster and self.isLayerVisible(layer) != visibility:
@@ -132,7 +132,7 @@ class Iface(object):
 
     def setLayerVisible(self, layer, visibility):
         tree_layer = self._treeLayer(layer)
-        tree_layer.setVisible(visibility)
+        tree_layer.setItemVisibilityChecked(visibility)
 
     def _treeLayer(self, layer):
         root_group = self.iface.layerTreeView().layerTreeModel().rootGroup()
@@ -144,17 +144,17 @@ class Iface(object):
         If none are visible: return 0
         If some are visible: return 1
         '''
-        renderer = layer.rendererV2()
+        renderer = layer.renderer()
         visibility = 0
-        if isinstance(renderer, core.QgsRuleBasedRendererV2):
+        if isinstance(renderer, core.QgsRuleBasedRenderer):
             visibility = self._visibility_from_rules_symbol(layer, theme)
-        elif isinstance(renderer,core.QgsSingleSymbolRendererV2):
+        elif isinstance(renderer,core.QgsSingleSymbolRenderer):
             visibility = self.isLayerVisible(layer)
         return visibility
 
     def _visibility_from_rules_symbol(self, layer, theme):
         state = 0
-        renderer = layer.rendererV2()
+        renderer = layer.renderer()
         rules = renderer.rootRule().children()
         visibilities = []
         for rule in rules:
@@ -182,7 +182,7 @@ class Iface(object):
             return
         elif visibility == 2:
             state = True
-        renderer = layer.rendererV2()
+        renderer = layer.renderer()
         rules = renderer.rootRule().children()
         for rule in rules:
             expression = rule.filterExpression()
@@ -212,7 +212,7 @@ class Iface(object):
             msg = u"Set Visibilities for Themes\n"
             msg += "wijzig " + theme + " van " + layer.name()
             msg += " naar " + str(visibility)+ "\n"
-            renderer = layer.rendererV2()
+            renderer = layer.renderer()
             rules = renderer.rootRule().children()
             for rule in rules:
                 expression = rule.filterExpression()
@@ -229,9 +229,9 @@ class Iface(object):
 
     def removeLayer(self, wvLayer):
         """ remove layer from QGIS map registry"""
-        lyr_id = wvLayer.layerId
-        layerLegend = core.QgsMapLayerRegistry.instance()
-        layerLegend.removeMapLayer(lyr_id)
+        lyr = wvLayer.layer
+        project = core.QgsProject.instance()
+        project.removeMapLayer(lyr)
 
     def bestScale(self, wvLayer):
         """Set best scale for given layer"""

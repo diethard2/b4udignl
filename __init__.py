@@ -19,7 +19,6 @@ email                : diethard.jansen at gmail.com
  ***************************************************************************/
  This script initializes the plugin, making it known to QGIS.
 """
-from __future__ import absolute_import
 import os, sys
 from qgis.PyQt.QtCore import QSettings
 
@@ -32,7 +31,7 @@ if not 'svg/searchPathsForSVG' in QSettings().allKeys():
 else:
     svg_paths = QSettings().value('svg/searchPathsForSVG')
     if svg_path not in svg_paths:
-        svg_paths += '|' + svg_path
+        svg_paths.append(svg_path)
         QSettings().setValue('svg/searchPathsForSVG', svg_paths)
 
 def classFactory(iface):

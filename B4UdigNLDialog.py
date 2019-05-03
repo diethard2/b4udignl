@@ -259,6 +259,8 @@ class B4UdigNLDialog(QDialog):
         a theme has changed and now the visibility of layers belonging
         to that theme will change (when neccesary)
         """
+        if p_theme == self.themeNames["data"]:
+            self._displayThemeStateChanged(p_theme, p_state)
         doc = self.doc()
         if doc is not None and p_theme in doc.themes:
             if p_state != 1:
@@ -266,6 +268,15 @@ class B4UdigNLDialog(QDialog):
                 theme.setVisibility(p_state)
                 self._setStateOfVisibilitiesThemes(True)
                 self._iface().refreshMap()
+
+    def _displayThemeStateChanged(self, p_theme, p_state):
+        """
+        give a warning to user that KLIC message could not be read
+        from selected folder
+        """
+        l_titleMsg = "Status Thema Gewijzigd"
+        l_msg = "Status is nu %s voor thema %s" % (p_state, str(p_theme))
+        QMessageBox.information(self, l_titleMsg, l_msg)
 
     def _setVisibilities(self):
         """ update visibilities of buttons"""
