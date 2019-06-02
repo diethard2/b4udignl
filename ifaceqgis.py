@@ -100,7 +100,6 @@ class Iface(object):
     def setVisibilityForLayer(self, wvLayer, visibility,
                               show_raster, show_vector, theme = None):
         """change the visibility for one layer"""
-        # check current visibility
         layer = wvLayer.layer
         if wvLayer.is_vector():
             if show_vector and theme is not None:
@@ -110,7 +109,8 @@ class Iface(object):
                 elif isinstance(renderer, core.QgsSingleSymbolRenderer):
                     self.setLayerVisible(layer, visibility)
         else:
-            if show_raster and self.isLayerVisible(layer) != visibility:
+            isVisible = self.isLayerVisible(layer)
+            if show_raster and isVisible != visibility:
                 # different so set visibility
                 self.setLayerVisible(layer, visibility)
 
@@ -141,13 +141,15 @@ class Iface(object):
     def _visibility_for_layer_theme(self, layer, theme):
         '''check visibility of all themes in layer.
         If all are visible: return 2
-        If none are visible: return 0
         If some are visible: return 1
+        If none are visible: return 0
         '''
         renderer = layer.renderer()
         visibility = 0
         if isinstance(renderer, core.QgsRuleBasedRenderer):
             visibility = self._visibility_from_rules_symbol(layer, theme)
+            if theme == 'datatransport' and visibility == 1:
+                self._displayThemesVisibilyMsg(layer, theme, visibility)
         elif isinstance(renderer,core.QgsSingleSymbolRenderer):
             visibility = self.isLayerVisible(layer)
         return visibility
@@ -162,19 +164,19 @@ class Iface(object):
             if theme in expression:
                 visibilities.append(rule.active())
         n_visibilities = len(visibilities)
-        sum_visibilities = sum(visibilities)
-        if n_visibilities == sum_visibilities:
+        if all(visibilities):
             state = 2
-        elif sum_visibilities == 0:
-            state = 0
-        else:
+        elif any(visibilities):
             state = 1
-##        if n_visibilities == 0:
-##            self._displayThemesVisibilyMsg(rules, theme)
+        else:
+            state = 0
+        if theme == 'datatransport':
+            self._displayThemesVisibilyMsg(rules, theme)
+        if n_visibilities == 0:
+            self._displayThemesVisibilyMsg(rules, theme)
         return state
 
     def _set_visibility_rules_symbol(self, layer, theme, visibility):
-##        self._displaySetThemesVisibilyMsg(layer, theme, visibility)
         state = None
         if visibility == 0:
             state = False
@@ -208,18 +210,17 @@ class Iface(object):
 
     def _displaySetThemesVisibilyMsg(self, layer, theme, visibility):
         title = u"set Themes Visibilities"
-        if theme == 'datatransport':
-            msg = u"Set Visibilities for Themes\n"
-            msg += "wijzig " + theme + " van " + layer.name()
-            msg += " naar " + str(visibility)+ "\n"
-            renderer = layer.renderer()
-            rules = renderer.rootRule().children()
-            for rule in rules:
-                expression = rule.filterExpression()
-                if theme in expression:
-                    msg += rule.label() + str(rule.active())
-                    msg += " to " + str(visibility) + "\n"
-            QtGui.QMessageBox.information(None, title, msg)
+        msg = u"Set Visibilities for Themes\n"
+        msg += "wijzig " + theme + " van " + layer.name()
+        msg += " naar " + str(visibility)+ "\n"
+        renderer = layer.renderer()
+        rules = renderer.rootRule().children()
+        for rule in rules:
+            expression = rule.filterExpression()
+            if theme in expression:
+                msg += rule.label() + str(rule.active())
+                msg += " to " + str(visibility) + "\n"
+        QtGui.QMessageBox.information(None, title, msg)
 
     def gotoLayer(self, wvLayer):
         """ goto extent of given layer """

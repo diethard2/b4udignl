@@ -131,7 +131,8 @@ class B4UdigNLDialog(QDialog):
                          l_names["elec_low"]: l_ui.checkBoxElec_low,
                          l_names["elec_mid"]: l_ui.checkBoxElec_mid,
                          l_names["elec_high"]: l_ui.checkBoxElec_high,
-                         l_names["elec_land"]: l_ui.checkBoxElec_land,                        l_names["sewer_free"]: l_ui.checkBoxSewer_free,
+                         l_names["elec_land"]: l_ui.checkBoxElec_land,
+                         l_names["sewer_free"]: l_ui.checkBoxSewer_free,
                          l_names["sewer_pressure"]: l_ui.checkBoxSewer_pressure,
                          l_names["heat"]: l_ui.checkBoxHeat,
                          l_names["water"]: l_ui.checkBoxWater,
@@ -219,48 +220,27 @@ class B4UdigNLDialog(QDialog):
         self._themeStateChanged(self.themeNames["Topo"], p_state)
 
     def _rasterCheckBoxStateChanged(self, p_state):
-        self._turn_all_raster(p_state)
-        doc = self.doc()
-        doc.showRaster = p_state != 0
+        if p_state != 1:
+            doc = self.doc()
+            doc.showRaster = p_state != 0
+            self._updateAllThemes(p_state)
 
     def _vectorCheckBoxStateChanged(self, p_state):
-        self._turn_all_vector(p_state)
-        doc = self.doc()
-        doc.showVector = p_state != 0
-
-    def _turn_all_raster(self, p_state):
-        doc = self.doc()
-        show_vector = doc.showVector
-        doc.showRaster = True
-        doc.showVector = False
-        # now turn of all raster!
-        self._updateAllThemes(p_state)
-        doc.showVector = show_vector
-
-    def _turn_all_vector(self, p_state):
-        doc = self.doc()
-        show_raster = doc.showRaster
-        doc.showRaster = False
-        doc.showVector = True
-        # now turn of all raster!
-        self._updateAllThemes(p_state)
-        doc.showRaster = show_raster
+        if p_state != 1:
+            doc = self.doc()
+            doc.showVector = p_state != 0
+            self._updateAllThemes(p_state)
 
     def _updateAllThemes(self, p_state):
         doc = self.doc()
-        state = 0
-        if p_state != 0:
-            state = 2
         for theme in list(doc.themes.keys()):
-            self._themeStateChanged(theme, state)
+            self._themeStateChanged(theme, p_state)
 
     def _themeStateChanged(self, p_theme, p_state):
         """
         a theme has changed and now the visibility of layers belonging
         to that theme will change (when neccesary)
         """
-        if p_theme == self.themeNames["data"]:
-            self._displayThemeStateChanged(p_theme, p_state)
         doc = self.doc()
         if doc is not None and p_theme in doc.themes:
             if p_state != 1:
