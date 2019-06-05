@@ -220,23 +220,39 @@ class B4UdigNLDialog(QDialog):
         self._themeStateChanged(self.themeNames["Topo"], p_state)
 
     def _rasterCheckBoxStateChanged(self, p_state):
-        if p_state != 1:
-            doc = self.doc()
-            doc.showRaster = p_state != 0
-            self._updateAllThemes(p_state)
+        isVector = False 
+        self._rasterVectorCheckBoxStateChanged(p_state, isVector)
 
     def _vectorCheckBoxStateChanged(self, p_state):
-        if p_state != 1:
-            doc = self.doc()
-            doc.showVector = p_state != 0
-            self._updateAllThemes(p_state)
+        isVector = True
+        self._rasterVectorCheckBoxStateChanged(p_state, isVector)
 
-    def _updateAllThemes(self, p_state):
+    def _rasterVectorCheckBoxStateChanged(self, p_state, isVector):
+        doc = self.doc()
+        if doc is not None:
+            if p_state == 0:
+                # turn of all raster/vector layers
+                self._updateAllThemes(p_state, isVector)
+                if isVector:
+                    doc.showVector = p_state
+                else:
+                    doc.showRaster = p_state
+            else:
+                # turn on all raster/vector layers, but first change the state
+                # of doc.showRaster/doc.showVector to be able to change
+                # the visibility (otherwise changing the status will be ignored).
+                if isVector:
+                    doc.showVector = p_state
+                else:
+                    doc.showRaster = p_state
+                self._updateAllThemes(p_state, isVector)
+
+    def _updateAllThemes(self, p_state, isVector):
         doc = self.doc()
         for theme in list(doc.themes.keys()):
-            self._themeStateChanged(theme, p_state)
+            self._themeStateChanged(theme, p_state, isVector)
 
-    def _themeStateChanged(self, p_theme, p_state):
+    def _themeStateChanged(self, p_theme, p_state, isVector=None):
         """
         a theme has changed and now the visibility of layers belonging
         to that theme will change (when neccesary)
@@ -245,7 +261,7 @@ class B4UdigNLDialog(QDialog):
         if doc is not None and p_theme in doc.themes:
             if p_state != 1:
                 theme = doc.themes[p_theme]
-                theme.setVisibility(p_state)
+                theme.setVisibility(p_state, isVector)
                 self._setStateOfVisibilitiesThemes(True)
                 self._iface().refreshMap()
 

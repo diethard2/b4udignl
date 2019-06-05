@@ -7,7 +7,6 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from qgis.gui import QgsColorButton
 
 class Ui_B4UdigNL(object):
     def setupUi(self, B4UdigNL):
@@ -396,7 +395,7 @@ class Ui_B4UdigNL(object):
         self.verticalLayout.addWidget(self.tabWidget)
 
         self.retranslateUi(B4UdigNL)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(B4UdigNL)
 
     def retranslateUi(self, B4UdigNL):
@@ -441,4 +440,5 @@ class Ui_B4UdigNL(object):
         self.optionMsgDirButton.setText(_translate("B4UdigNL", "Standaard folder..."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("B4UdigNL", "Opties"))
 
+from qgis.gui import QgsColorButton
 ##from qgscolorbutton import QgsColorButton
