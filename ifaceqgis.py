@@ -148,8 +148,6 @@ class Iface(object):
         visibility = 0
         if isinstance(renderer, core.QgsRuleBasedRenderer):
             visibility = self._visibility_from_rules_symbol(layer, theme)
-            if theme == 'datatransport' and visibility == 1:
-                self._displayThemesVisibilyMsg(layer, theme, visibility)
         elif isinstance(renderer,core.QgsSingleSymbolRenderer):
             visibility = self.isLayerVisible(layer)
         return visibility
@@ -161,6 +159,7 @@ class Iface(object):
         visibilities = []
         for rule in rules:
             expression = rule.filterExpression()
+            expression = str(expression).lower()
             if theme in expression:
                 visibilities.append(rule.active())
         n_visibilities = len(visibilities)
@@ -170,10 +169,6 @@ class Iface(object):
             state = 1
         else:
             state = 0
-        if theme == 'datatransport':
-            self._displayThemesVisibilyMsg(rules, theme)
-        if n_visibilities == 0:
-            self._displayThemesVisibilyMsg(rules, theme)
         return state
 
     def _set_visibility_rules_symbol(self, layer, theme, visibility):
@@ -188,39 +183,10 @@ class Iface(object):
         rules = renderer.rootRule().children()
         for rule in rules:
             expression = rule.filterExpression()
+            expression = str(expression).lower()
             if theme in expression:
                 if rule.active() != state:
                     rule.setActive(state)
-
-    def _displayRasterVectorVisibleMsg(self, show_raster, show_vector, theme):
-        title = u"Raster Vector Visibilities"
-        msg = u"Toont zichtbaarheid raster vector\n"
-        msg += "voor thema " + str(theme) + "\n"
-        msg += "raster zichtbaar " + str(show_raster)+ "\n"
-        msg += "vector zichtbaar " + str(show_vector)+ "\n"
-        QtGui.QMessageBox.information(None, title, msg)
-
-    def _displayThemesVisibilyMsg(self, rules, theme):
-        title = u"ThemesVisibilities"
-        msg = u"Toon Visibilities Themes\n"
-        msg += theme + "not found in:\n"
-        for rule in rules:
-            msg += rule.filterExpression() + "\n"
-        QtGui.QMessageBox.information(None, title, msg)
-
-    def _displaySetThemesVisibilyMsg(self, layer, theme, visibility):
-        title = u"set Themes Visibilities"
-        msg = u"Set Visibilities for Themes\n"
-        msg += "wijzig " + theme + " van " + layer.name()
-        msg += " naar " + str(visibility)+ "\n"
-        renderer = layer.renderer()
-        rules = renderer.rootRule().children()
-        for rule in rules:
-            expression = rule.filterExpression()
-            if theme in expression:
-                msg += rule.label() + str(rule.active())
-                msg += " to " + str(visibility) + "\n"
-        QtGui.QMessageBox.information(None, title, msg)
 
     def gotoLayer(self, wvLayer):
         """ goto extent of given layer """

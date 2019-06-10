@@ -38,24 +38,24 @@ import unzip, zipfile, pickle
 
 # create the dialog
 class B4UdigNLDialog(QDialog):
-    layerGroups = ["Annotatie",
-                   "Maatvoering",
-                   "Ligging",
-                   "Topo"]
+    layerGroups = ["annotatie",
+                   "maatvoering",
+                   "ligging",
+                   "topo"]
 
     themeNames = {"data": "datatransport",
-                  "gas_low": "gas lage druk",
-                  "gas_high": "gas hoge druk",
-                  "danger": "buisleiding gevaarlijke inhoud",
+                  "gas_low": "gaslagedruk",
+                  "gas_high": "gashogedruk",
+                  "danger": "buisleidinggevaarlijkeinhoud",
                   "elec_low": "laagspanning",
                   "elec_mid": "middenspanning",
                   "elec_high": "hoogspanning",
-                  "elec_land": "landelijk hoogspanningsnet",
-                  "sewer_free": "riool vrijverval",
-                  "sewer_pressure": "riool onder druk",
+                  "elec_land": "landelijkhoogspanningsnet",
+                  "sewer_free": "rioolvrijverval",
+                  "sewer_pressure": "rioolonderoverofonderdruk",
                   "heat": "warmte",
                   "water": "water",
-                  "chemical": "(petro)chemie",
+                  "chemical": "petrochemie",
                   "orphan": "wees",
                   "other": "overig"}
     """
@@ -91,10 +91,10 @@ class B4UdigNLDialog(QDialog):
 
     def layerGroupNames(self):
         """returns dictionary with legend groups"""
-        return {"Annotatie": self.tr("Annotatie"),
-                "Maatvoering": self.tr("Maatvoering"),
-                "Ligging": self.tr("Ligging"),
-                "Topo": self.tr("Topo")}
+        return {"annotatie": self.tr("Annotatie"),
+                "maatvoering": self.tr("Maatvoering"),
+                "ligging": self.tr("Ligging"),
+                "topo": self.tr("Topo")}
 
     def _userSettings(self):
         """return dictionary with user settings"""
@@ -139,10 +139,10 @@ class B4UdigNLDialog(QDialog):
                          l_names["chemical"]: l_ui.checkBoxChemical,
                          l_names["orphan"]: l_ui.checkBoxOrphan,
                          l_names["other"]: l_ui.checkBoxOther,
-                         l_names["Annotatie"]: l_ui.annotationCheckBox,
-                         l_names["Maatvoering"]: l_ui.dimensioningCheckBox,
-                         l_names["Ligging"]: l_ui.locationCheckBox,
-                         l_names["Topo"]: l_ui.topoCheckBox}
+                         l_names["annotatie"]: l_ui.annotationCheckBox,
+                         l_names["maatvoering"]: l_ui.dimensioningCheckBox,
+                         l_names["ligging"]: l_ui.locationCheckBox,
+                         l_names["topo"]: l_ui.topoCheckBox}
 
     def updateUi(self):
         """use to translate/update visibility of buttons"""
@@ -211,13 +211,13 @@ class B4UdigNLDialog(QDialog):
     def _checkBoxOtherStateChanged(self, p_state):
         self._themeStateChanged(self.themeNames["other"], p_state)
     def _annotationCheckBoxStateChanged(self, p_state):
-        self._themeStateChanged(self.themeNames["Annotatie"], p_state)
+        self._themeStateChanged(self.themeNames["annotatie"], p_state)
     def _dimensioningCheckBoxStateChanged(self, p_state):
-        self._themeStateChanged(self.themeNames["Maatvoering"], p_state)
+        self._themeStateChanged(self.themeNames["maatvoering"], p_state)
     def _locationCheckBoxStateChanged(self, p_state):
-        self._themeStateChanged(self.themeNames["Ligging"], p_state)
+        self._themeStateChanged(self.themeNames["ligging"], p_state)
     def _topoCheckBoxStateChanged(self, p_state):
-        self._themeStateChanged(self.themeNames["Topo"], p_state)
+        self._themeStateChanged(self.themeNames["topo"], p_state)
 
     def _rasterCheckBoxStateChanged(self, p_state):
         isVector = False 
