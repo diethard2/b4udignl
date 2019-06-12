@@ -34,7 +34,7 @@ the Icon is explained.<br>
 From here I use KLIC message when I refer to this result of a Dutch Dig Alert. 
 How to obtain it is explained in <a href="#aboutWion">About WION</a>.
 After you downloaded the result you will have a zip-archive. 
-You have to extract the contents first in a directory.</p>
+You can extract the contents first in a directory.</p>
 
 <p>The KLIC Viewer has three tabs, <B>Messages</B>,<B>Themes</B> and 
 <B>Options</B>.
@@ -46,23 +46,18 @@ holding the KLIC message.<BR>
 It is recommended to first set the default Directory in tab <B>Options</B> 
 so searching starts in selected directory where KLIC messages are expected 
 to be found.<BR>
-After selection and pressing [OK] this is what will happen:
+After selection and pressing <B>[OK]</B> this is what will happen:
 <ul>
 <li>The xml file of a KLIC message is read which holds information on the other 
 included files in the Wion Alert</li>
-<li>The xml file with network information in a vector format named IMKL which 
-holds geometry in GML-format is read in memory and this information is combided 
-to vector layers which are read in memory.</li> 
-<li>All PNG raster files that will be loaded as layers. Little files will 
-be created, called world files, to give those images a coordinate system turn 
-these images into transparent maps.</li>
-<li>The maps are loaded in the right order as layers into QGIS.</li>
+<li>The xml file with network information holds geometry in GML-format is read in vector layers which are read in memory layers.</li> 
+<li>PNG raster files will be loaded as layers. Little files will 
+be created, called world files, to give those PNG images a coordinate system so they can be loaded into QGIS.</li>
+<li>The maps are loaded in the right order.</li>
 <li>The registration number of this KLIC message is added to the list of loaded 
 KLIC messages.</li>
-<li>Also the documents that come with the maps, being PDF files, are sorted out 
-and placed in a list of included files.</li> 
-<li>In the tab <B>Themes</B> included themes in the KLIC message become 
-clearly visible.</li>
+<li>The PDF documents that are included in the delivery, are sorted in a list of included files.</li> 
+<li>The tab <B>Themes</B> shows the included themes in the KLIC message.</li>
 </ul>
 Be aware that a KLIC message can include many files and processing can 
 take some time.</p> 

@@ -9,7 +9,7 @@ version=2.0.4
 author=Diethard Jansen
 email=diethard.jansen@gmail.com
 changelog:
-    2.0.4   upgraded version to QGIS 3.x
+    2.0.4   upgraded version to QGIS 3.x + fixed thema's and visibility
     2.0.3   Fixed loading detailkaart into map and improved style of depth measurement objects.
     2.0.2   Renamed reference to Quantum GIS to QGIS and do a garbage collect after loading each Klic message.
     2.0.1   Fixed few problem with starting new QGIS plugin (i.e. not loading for 2.18.xx version)

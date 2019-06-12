@@ -50,12 +50,10 @@ ingesteld waar KLIC berichten normaal gesproken gevonden worden, dan
 is deze snel gevonden.<BR>  
 Na selectie en op <b>[OK]</b> te hebben gedrukt gebeurt het volgende:
 <ul>
-<li>Het xml bestand met informatie over de geleverde onderdelen die meegeleverd 
-worden middels de klic melding wordt gelezen</li>
-<li>Het xml bestand met de netwerk informatie in IMKL formaat waarbij de 
-geometrie in GML formaat is opgeslagen wordt in het geheugen ingelezen. Na het 
-inlezen wordt die informatie gecombineerd tot vector lagen die eveneens in 
-memory worden geladen.</li>
+<li>Het XML bestand/de XML bestanden die onderdeel is van een klic bericht wordt gelezen en alle informatie eruit gehaald.</li>
+<li>Het XML bestand met de netwerk informatie in IMKL formaat, waarbij 
+geometrie in GML formaat is opgeslagen, wordt in het geheugen ingelezen. Na het 
+inlezen worden vectorlagen aangemaakt die eveneens in memory lagen worden geladen.</li>
 <li>Voor alle PNG bestanden die als rasterlagen zullen worden geladen, zal 
 naast het PNG bestand een kleine bestand, de zogenaamde world-files worden 
 aangemaakt. Daardoor kunnen deze plaatjes gemaakt die ligging, annotatie, 
@@ -69,20 +67,21 @@ geladen berichten.</li>
 huisaansluitingen in staan, worden gefilterd op soort in de lijst met bijlagen
 geplaatst.</li> 
 <li>In het tabblad <B>Thema's</B> wordt zichtbaar welke thema's er aanwezig
-zijn, deze staan ook aan.
+zijn, deze staan ook aan.</li>
+<li>Mocht de levering een Eis voorzorgsmaatregel bevatten, dan krijgt u een waarschuwing.</li>
 </ul>
 Het laden van een KLIC bericht die veel informatie bevat kan even duren.
 </p> 
 <p>Vanaf 02/01/2019 is de levering van gegevens aanzienlijk veranderd en de 
-opbouw van thema's is nogal ingewikkeld. Zo is de thema informatie verspreid 
+opbouw van thema's is nogal ingewikkeld. Een thema is verspreid 
 over meerdere raster en vectorlagen. Maar elke vectorlaag bevat vaak ook 
-informatie over meerdere thema's. Het was vrij lastig om dit onderdeel te 
+informatie voor meerdere thema's. Het was vrij lastig om dit onderdeel te 
 programmeren om per thema gegevens aan en uit te zetten.</p>
 <p>Nieuw is de toevoeging van het kunnen selecteren of  <b>Vector</b> en 
 <b>Raster</b> aan of uitgezet dient te worden. In 2019 wordt tijdelijk veel 
 informatie dubbel aangeleverd in vector- en raster-formaat. De behoefte 
 bestaat wellicht om ineens even alle vector- of raster-informatie uit te 
-zetten.</p>
+zetten. Wanneer beiden aanstaan, dan is vector leidend voor de status van thema's</p> 
 <p>U kunt het zip bestand eerst zelf uitpakken, maar u kunt ook de knop
 <B>[Open Zip-bestand...]</B> gebruiken, of <b>Alt-Z</b>, de Alt-toets gevolgd 
 door de Z-toets.<BR>
@@ -265,7 +264,7 @@ informatie wenst te ontvangen. Na het doen van een graafmelding ontvangt de aanv
 binnen een dag een email met daarin een link naar de informatie die gedownload 
 dient te worden.
 Download eerst de gegevens, die in een zip-archief zijn opgeslagen, en pak het zip-archief 
-vervolgens uit naar een folder. U heeft slechts 5 pogingen om de gegevens op te halen!
+vervolgens uit naar een folder. U heeft 5 pogingen om de gegevens op te halen!
 Gebruik de KLIC Viewer om het resultaat te bekijken.</p>
 
 <p>Voor het testen van de KLIC Viewer kan een testmelding gedownload worden van 
@@ -275,8 +274,8 @@ en <a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeel
 <a name="aboutLicense">
 <H1>Licentie en gebruiksvoorwaarden</H1>
 </a>
-Copyright: (C) 2018 Diethard Jansen<BR>
-Versie: 2.0.3
+Copyright: (C) 2019 Diethard Jansen<BR>
+Versie: 2.0.4
 email: diethard.jansen@gmail.com<BR>
 
 <p>De <b>KLIC Viewer</b> python plugin is gratis software;
@@ -285,7 +284,7 @@ in de General Public License die gepubliseerd is door de Free Software
 Foundation; Versie 2 of een latere versie is van toepassing.</p>
 <p>Gebruik van deze software is geheel voor eigen risico.<BR>
 De software is echter zorgvuldig gemaakt en ik verwacht dat
-u er wel veel plezier aan zult beleven.</p>
+u er veel plezier aan zult beleven.</p>
 
 <a name="aboutIcon">
 <H1>Over het Icoon</H1>

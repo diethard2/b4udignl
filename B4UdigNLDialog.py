@@ -274,6 +274,37 @@ class B4UdigNLDialog(QDialog):
         l_msg = "Status is nu %s voor thema %s" % (p_state, str(p_theme))
         QMessageBox.information(self, l_titleMsg, l_msg)
 
+
+    def _checkEvs(self):
+        """check if this delivery contains special PDF's with special instructions"""
+        doc = self.doc()
+        pdf_files = doc.pdfFiles
+        evs = 0
+        for i_pdf in pdf_files:
+            type_pdf = i_pdf.type
+            if type_pdf == "eisVoorzorgsmaatregel":
+                evs +=1
+        if evs > 0:
+            self._displayEisVoorzorgsmaatregel(evs)
+            
+
+    def _displayEisVoorzorgsmaatregel(self, evs):
+        """
+        give a warning to user that this KLIC message contains an EV
+        (Eis voorzorgsmaatregel), this means take contact with company
+        that has issued this special warning.
+        """
+        l_titleMsg = "Dit bericht bevat "
+        if evs > 1:
+            l_titleMsg += "meerdere Eis Voorzorgsmaatregelen!"
+        else:
+            l_titleMsg += "een Eis Voorzorgsmaatregel!"
+        l_msg = "Lees de Eis Voorzorgsmaatregel(en)!\n\n \
+Hierin staat dat u verplicht bent contact op te nemen\n\
+met de netbeheerder, voor aanvang van graafwerkzaamheden."
+        QMessageBox.warning(self, l_titleMsg, l_msg)
+
+
     def _setVisibilities(self):
         """ update visibilities of buttons"""
         ui = self.ui
@@ -542,6 +573,7 @@ class B4UdigNLDialog(QDialog):
         self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
         iface.doRendering(True)
+        self._checkEvs()
 
     def _openMsg(self, p_path):
         """
