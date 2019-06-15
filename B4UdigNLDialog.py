@@ -568,12 +568,25 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         self._populateTree()
         iface = doc.iface
         iface.doRendering(False)
-        doc.loadLayers()
+        self._loadLayers()
         iface.refreshLegend()
         self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
         iface.doRendering(True)
+        doc.goto()
         self._checkEvs()
+
+    def _loadLayers(self):
+        doc = self.doc()
+        s = QSettings()
+        # prevent prompt for crs during load of layers
+        oldValidation = s.value( "/Projections/defaultBehavior" )
+        oldCrs = s.value('Projections/layerDefaultCrs')
+        s.setValue( "/Projections/defaultBehavior", 'useGlobal' )
+        s.setValue( "/Projections/layerDefaultCrs", 'EPSG:28992' )
+        doc.loadLayers()
+        s.setValue( "/Projections/defaultBehavior", oldValidation)        
+        s.setValue( "/Projections/layerDefaultCrs", oldCrs)        
 
     def _openMsg(self, p_path):
         """
@@ -681,6 +694,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             self._populateTree()
             self._setStateOfVisibilitiesThemes(True)
             self._setVisibilitiesThemes()
+            doc.goto()
 
     def _selectedMsg(self, p_currentItem):
         """returns Doc being selected message in list"""

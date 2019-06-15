@@ -15,7 +15,7 @@ in your home folder ~/.qgis2/python/plugins/
 
 Release notes
 -------------
-**version 2.0.4** 12/06/2019
+**version 2.1.0** 12/06/2019
 Upgraded plugin for QGIS 3.x
 Visibility can be controlled from tab thema's
 When a message has a Eis Voorzorgsmaatregel, a warning will be given to user
