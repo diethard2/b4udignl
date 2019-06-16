@@ -573,7 +573,6 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
         iface.doRendering(True)
-        doc.goto()
         self._checkEvs()
 
     def _loadLayers(self):
