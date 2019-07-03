@@ -28,7 +28,7 @@ sys.path.append(plugin_path)
 svg_path = os.path.join(plugin_path, 'styles', 'svg')
 # first check if we a settings exist for SVG paths, if not add it first!
 if not 'svg/searchPathsForSVG' in QSettings().allKeys():
-    QSettings().setValue('svg/searchPathsForSVG', svg_path)
+    QSettings().setValue('svg/searchPathsForSVG', [svg_path])
 # next check if path exists in setting, if not add it!
 svg_paths = QSettings().value('svg/searchPathsForSVG')
 if svg_path not in svg_paths:

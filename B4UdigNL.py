@@ -31,7 +31,7 @@ from . import qrc_resources
 application = QgsApplication.instance()
 localeName = QSettings().value("locale/userLocale", type=str)
 translator = QTranslator()
-translator.load("B4UdigNL_"+localeName, ":/")
+translator.load("B4UdigNL_"+str(localeName), ":/")
 # Add translator to application
 application.installTranslator(translator)
 
