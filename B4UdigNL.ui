@@ -254,34 +254,31 @@
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
-          <widget class="QgsColorButton" name="mColorButton">
+          <widget class="Line" name="line">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(0, 255, 0);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>0</red>
-             <green>255</green>
-             <blue>0</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -307,34 +304,31 @@
        <item row="1" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_2">
+          <widget class="Line" name="line_2">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(255, 215, 80);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>255</red>
-             <green>215</green>
-             <blue>80</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -353,34 +347,31 @@
        <item row="2" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_3">
+          <widget class="Line" name="line_3">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(255, 175, 60);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>255</red>
-             <green>175</green>
-             <blue>60</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -399,34 +390,31 @@
        <item row="3" column="0" colspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_4">
+          <widget class="Line" name="line_4">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(255, 127, 0);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>255</red>
-             <green>127</green>
-             <blue>0</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -445,34 +433,31 @@
        <item row="4" column="0" colspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout_20">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_8">
+          <widget class="Line" name="line_5">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(255, 0, 0);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>255</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -491,34 +476,31 @@
        <item row="5" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_11">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_7">
+          <widget class="Line" name="line_6">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(255, 0, 0);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>255</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -537,34 +519,31 @@
        <item row="6" column="0" colspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout_10">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_6">
+          <widget class="Line" name="line_7">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(200, 0, 0);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>200</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -583,31 +562,31 @@
        <item row="7" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_5">
+          <widget class="Line" name="line_8">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(150, 0, 0);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>150</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -626,34 +605,31 @@
        <item row="8" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_16">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_13">
+          <widget class="Line" name="line_9">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(182, 74, 0);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>182</red>
-             <green>74</green>
-             <blue>0</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -679,31 +655,31 @@
        <item row="9" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_12">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_9">
+          <widget class="Line" name="line_10">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(186, 56, 168);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>186</red>
-             <green>56</green>
-             <blue>168</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -732,34 +708,31 @@
        <item row="10" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_13">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_10">
+          <widget class="Line" name="line_11">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(128, 0, 128);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>128</red>
-             <green>0</green>
-             <blue>128</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
            </property>
-           <property name="acceptLiveUpdates" stdset="0">
-            <bool>false</bool>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -778,31 +751,31 @@
        <item row="11" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_14">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_11">
+          <widget class="Line" name="line_12">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(0, 128, 128);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>0</red>
-             <green>128</green>
-             <blue>128</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -831,31 +804,31 @@
        <item row="12" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_15">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_12">
+          <widget class="Line" name="line_13">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(0, 0, 255);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>0</red>
-             <green>0</green>
-             <blue>255</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -884,31 +857,31 @@
        <item row="13" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_17">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_14">
+          <widget class="Line" name="line_14">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(145, 138, 111);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>145</red>
-             <green>138</green>
-             <blue>111</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -937,31 +910,31 @@
        <item row="14" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_18">
          <item>
-          <widget class="QgsColorButton" name="mColorButton_15">
+          <widget class="Line" name="line_15">
            <property name="minimumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
-             <height>10</height>
+             <height>8</height>
             </size>
            </property>
-           <property name="acceptDrops">
-            <bool>false</bool>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(111, 92, 16);</string>
            </property>
-           <property name="color">
-            <color>
-             <red>111</red>
-             <green>92</green>
-             <blue>16</blue>
-            </color>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
-           <property name="showMenu">
-            <bool>false</bool>
+           <property name="lineWidth">
+            <number>6</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -1083,13 +1056,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QgsColorButton</class>
-   <extends>QToolButton</extends>
-   <header>qgscolorbutton.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
