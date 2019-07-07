@@ -10,11 +10,14 @@ Download QGIS v. 3.x from www.qgis.org.
 
 Use QGIS Python Plugin Installer for installation of this plugin.
 
-You can also manually unzip and place contents of b4udignl.zip
-in your home folder ~/.qgis2/python/plugins/
-
 Release notes
 -------------
+**version 2.1.1** 07/07/2019
+Improved gui of tab theme so on OSX/Linux you can see theme legend colors
+Fixed problem with translation, if you switch to english it is translated
+Fixed problem with XML encoding. In OSX it was not set to UTF-8
+Fixed problem to set settings for SVG path. In OSX it gave problems.
+
 **version 2.1.0** 12/06/2019
 Upgraded plugin for QGIS 3.x
 Visibility can be controlled from tab thema's

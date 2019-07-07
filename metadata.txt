@@ -9,6 +9,7 @@ version=2.1.0
 author=Diethard Jansen
 email=diethard.jansen@gmail.com
 changelog:
+    2.1.1   Update the gui, fixed translation, now it works for OSX
     2.1.0   upgraded version to QGIS 3.x + fixed thema's and visibility
     2.0.3   Fixed loading detailkaart into map and improved style of depth measurement objects.
     2.0.2   Renamed reference to Quantum GIS to QGIS and do a garbage collect after loading each Klic message.
