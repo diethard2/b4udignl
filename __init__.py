@@ -31,6 +31,12 @@ if not 'svg/searchPathsForSVG' in QSettings().allKeys():
     QSettings().setValue('svg/searchPathsForSVG', [svg_path])
 # next check if path exists in setting, if not add it!
 svg_paths = QSettings().value('svg/searchPathsForSVG')
+# fix a problem from the past (setting exist but does not hold list)
+if type(svg_paths) is not list:
+    QSettings().setValue('svg/searchPathsForSVG', [svg_path])
+    svg_paths = QSettings().value('svg/searchPathsForSVG')
+# finally when setting existed, was a list and does not contain svg_path
+# to symbols used for plugin, add it to the list.
 if svg_path not in svg_paths:
     svg_paths.append(svg_path)
     QSettings().setValue('svg/searchPathsForSVG', svg_paths)

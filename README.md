@@ -12,6 +12,9 @@ Use QGIS Python Plugin Installer for installation of this plugin.
 
 Release notes
 -------------
+**version 2.1.2*** 20/07/2019
+Fixed problem to set settings for SVG paths, introduced in v. 2.1.0
+
 **version 2.1.1** 07/07/2019
 Improved gui of tab theme so on OSX/Linux you can see theme legend colors
 Fixed problem with translation, if you switch to english it is translated
