@@ -73,22 +73,23 @@ class Iface(object):
 
     def loadLayer(self, wvLayer):
         """load given layer, and return reference of layer"""
+        features = []
         if wvLayer.is_vector():
             layer = wvLayer.layer
             provider = layer.dataProvider()
             provider.addAttributes(wvLayer.fields)
             layer.updateFields()
-            layer.dataProvider().addFeatures(wvLayer.features)
+            isAdded, features = provider.addFeatures(wvLayer.features)
             layer.updateExtents()
             project = core.QgsProject.instance()
             project.addMapLayer(layer)
-            layer = project.mapLayersByName(wvLayer.layerName)
-            layer = layer[0]
+            layers = project.mapLayersByName(wvLayer.layerName)
+            layer = layers[0]
             self.styleLayer(layer)
         else:
             layerFile = wvLayer.layerFile
             layer = self.iface.addRasterLayer(layerFile)
-        return layer
+        return layer, features
 
     def styleLayer(self, a_layer):
         qml_path = os.path.join(self.path, 'styles', 'qml')
@@ -197,8 +198,16 @@ class Iface(object):
     def removeLayer(self, wvLayer):
         """ remove layer from QGIS map registry"""
         lyr = wvLayer.layer
-        project = core.QgsProject.instance()
-        project.removeMapLayer(lyr)
+        remove = True
+        if wvLayer.is_vector():
+            lyr.startEditing()
+            lyr.deleteFeatures(wvLayer.featureIds)
+            lyr.commitChanges()
+            if lyr.hasFeatures():
+                remove = False
+        if remove:      
+            project = core.QgsProject.instance()
+            project.removeMapLayer(lyr)
 
     def bestScale(self, wvLayer):
         """Set best scale for given layer"""
