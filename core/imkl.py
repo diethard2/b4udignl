@@ -357,6 +357,7 @@ def diepteNAP():
 
 def kabelOfLeiding():
     obj = B_Object("KabelOfLeiding")
+    obj.add_field(B_Field("klicnummer", "TEXT","KlicMeldnummer"))
     obj.add_field(B_Field("id", "TEXT", "InspireId",
                           to_object=IMKL_Id, is_key_field=True))
     obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
@@ -525,6 +526,7 @@ def utilityLink():
 
 def PuntOpNet():
     obj = B_Object("PuntOpNet")
+    obj.add_field(B_Field("klicnummer", "TEXT","KlicMeldnummer"))
     obj.add_field(B_Field("id", "TEXT", "InspireId",
                           to_object=IMKL_Id, is_key_field=True))
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
@@ -638,7 +640,6 @@ def gebiedsinformatie():
     obj.name = "Gebiedsinformatie"
     obj.add_field(B_Field("ordernummer", "TEXT","Ordernummer"))
     obj.add_field(B_Field("positienummer", "TEXT","Positienummer"))
-    obj.add_field(B_Field("klicnummer", "TEXT","KlicMeldnummer"))
     obj.add_field(B_Field("aanvragers", "CONTAINER","Aanvrager",
                           to_object=aanvrager))
     obj.add_field(B_Field("referentie", "TEXT", "Referentie"))
@@ -868,6 +869,7 @@ def themabijlagePerNetbeheerder():
 
 def imkl_basis():
     obj = B_Object("imkl_basis")
+    obj.add_field(B_Field("klicnummer", "TEXT","KlicMeldnummer"))
     obj.add_field(B_Field("id", "TEXT", "Identificatie",
                           to_object=IMKL_Id, is_key_field=True))
     obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))

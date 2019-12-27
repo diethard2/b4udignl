@@ -274,14 +274,14 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition',
                           'thema','geom_id', 'label','geometry', 'diameter',
                           'druk','fluid'])
 
     def test_field_values(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.field_values(),
-                         ['nl.imkl-nbact1.ogc00001','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.ogc00001','2001-12-17T09:30:47.0Z',
                           'nl.imkl-nbact1.un00057','nl.imkl-nbact1.ul00005',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z',None,'underground',None,
@@ -290,12 +290,12 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
 
     def test_csv_header(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.csv_header(),
-                         'id;registratiedatum;network_id;link_id;status;\
+                         'klicnummer;id;registratiedatum;network_id;link_id;status;\
 validFrom;validTo;verticalPosition;thema;geom_id;label;geometry;diameter;druk;fluid')
 
     def test_as_csv(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.as_csv(),
-                         'nl.imkl-nbact1.ogc00001;2001-12-17T09:30:47.0Z;\
+                         'None;nl.imkl-nbact1.ogc00001;2001-12-17T09:30:47.0Z;\
 nl.imkl-nbact1.un00057;nl.imkl-nbact1.ul00005;\
 http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused;\
 2001-12-17T09:30:47.0Z;None;underground;None;nl.imkl-nbact1.xg00009;;None;0.0;0.0;http:\
@@ -320,12 +320,12 @@ class ExtraGeometrieTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.extraGeometrie.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum',
                           'network_id', 'thema', 'object', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.extraGeometrie.field_values(),
-                         ['nl.imkl-nbact1.xg00009','2015-10-19T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.xg00009','2015-10-19T09:30:47.0Z',
                           '9999-01-01T09:30:47.0','nl.imkl-nbact1.un00057',
                           None,None,
                           'Polygon((155052.000 388010.000, \
@@ -334,12 +334,12 @@ class ExtraGeometrieTestCase(unittest.TestCase):
 
     def test_csv_header(self):
         self.assertEqual(self.extraGeometrie.csv_header(),
-                         'id;registratiedatum;vervaldatum;network_id;thema;\
+                         'klicnummer;id;registratiedatum;vervaldatum;network_id;thema;\
 object;geometry')
 
     def test_as_csv(self):
         self.assertEqual(self.extraGeometrie.as_csv(),
-                         'nl.imkl-nbact1.xg00009;2015-10-19T09:30:47.0Z;\
+                         'None;nl.imkl-nbact1.xg00009;2015-10-19T09:30:47.0Z;\
 9999-01-01T09:30:47.0;nl.imkl-nbact1.un00057;None;None;Polygon((155052.000 388010.000, \
 155050.000 388008.000, 155048.000 388010.000, 155050.000 388012.000, \
 155052.000 388010.000))')
@@ -363,8 +363,8 @@ class GraafpolygoonTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum','vervaldatum','ordernummer',
-                          'positienummer','klicnummer','referentie',
+                         ['klicnummer', 'id', 'registratiedatum','vervaldatum','ordernummer',
+                          'positienummer','referentie',
                           'aanvraagsoort','aanvraagdatum','soortWerkzaamheden',
                           'locatieWerkzaamheden','startDatum','eindDatum',
                           'leveringsvolgnummer','datumLeveringSamengesteld',
@@ -372,9 +372,9 @@ class GraafpolygoonTestCase(unittest.TestCase):
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-KA0000._Graafpolygoon_18G007160',
+                         [None,'nl.imkl-KA0000._Graafpolygoon_18G007160',
                           '2018-07-19T12:02:03.000+02:00',None,None,None,
-                          None,None,None,None,None,None,None,None,None,None,None,
+                          None,None,None,None,None,None,None,None,None,None,
                           'Polygon((154980.0 387980.0, 155120.0 387980.0, \
 155120.0 388140.0, 154980.0 388140.0, 154980.0 387980.0))'])
 
@@ -397,16 +397,16 @@ class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','vervaldatum','ordernummer',
-                          'positienummer','klicnummer','referentie',
+                         ['klicnummer','id','registratiedatum','vervaldatum','ordernummer',
+                          'positienummer','referentie',
                           'aanvraagsoort','aanvraagdatum','soortWerkzaamheden',
                           'locatieWerkzaamheden','startDatum','eindDatum'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-KA0000._GebiedsinformatieAanvraag_18G007160',
+                         ['18G007160','nl.imkl-KA0000._GebiedsinformatieAanvraag_18G007160',
                           '2018-07-19T12:02:03.000+02:00',None,'9806758830',
-                          '0000000010','18G007160','Tbv Klicviewer - Graaf',
+                          '0000000010','Tbv Klicviewer - Graaf',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/AanvraagSoortValue/graafmelding',
                           '2018-07-19T12:02:03.000+02:00',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/SoortWerkzaamhedenValue/heien',
@@ -460,14 +460,14 @@ class AanduidingEVTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum', 'label',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum', 'label',
                           'network_id', 'eisVoorzorgsmaatregel',
                           'netbeheerderNetOmschrijving','netbeheerderWerkAanduiding',
                           'thema', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.EV1','2001-12-17T09:30:47.00+01:00',
+                         [None,'nl.imkl-nbact1.EV1','2001-12-17T09:30:47.00+01:00',
                           None,
                           'EisVoorzorgsmaatregel GHD-leiding Best-west',
                           'nl.imkl-nbact1.un00054', 'GHD-T-W3',
@@ -504,14 +504,14 @@ class BelanghebbendeTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','vervaldatum','bronhoudercode',
+                         ['klicnummer','id','registratiedatum','vervaldatum','bronhoudercode',
                           'beheerdersinformatieGeleverd','betrokkenBijAanvraag',
                           'eisVoorzorgsmaatregel','netbeheerderNetOmschrijving',
                           'idGeraaktBelang','idNetbeheerder'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact2._Belanghebbende_18G007160-1',
+                         [None,'nl.imkl-nbact2._Belanghebbende_18G007160-1',
                           '2018-07-19T12:04:10.000+02:00',None,None,'true',
                           'false','false',None,
                           'nl.imkl-nbact2._Belang_5012613-300',
@@ -537,11 +537,11 @@ class BelangTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','vervaldatum','omschrijving'])
+                         ['klicnummer','id','registratiedatum','vervaldatum','omschrijving'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact2._Belang_5012613-300',
+                         [None,'nl.imkl-nbact2._Belang_5012613-300',
                           '2016-08-09T00:00:00.000+02:00',None,
                           '02 in best'])
         
@@ -594,14 +594,14 @@ class AppurtenanceTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'network_id','status', 'validFrom', 'validTo',
+                         ['klicnummer', 'id', 'network_id','status', 'validFrom', 'validTo',
                           'verticalPosition', 'thema', 'geometry','geom_id', 'label',
                           'registratiedatum', 'appurtenanceType'])
 
     def test_field_values(self):
         self.maxDiff = None
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.app00001','nl.imkl-nbact1.un00007',
+                         [None,'nl.imkl-nbact1.app00001','nl.imkl-nbact1.un00007',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'onGroundSurface',None,'Point(155000.000 388090.000)',
@@ -627,13 +627,13 @@ class GebiedsinformatieLeveringTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum',
                           'leveringsvolgnummer','datumLeveringSamengesteld',
                           'indicatieLeveringCompleet'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-KA0000._GebiedsinformatieLevering_18G007160-1',
+                         [None,'nl.imkl-KA0000._GebiedsinformatieLevering_18G007160-1',
                           '2018-07-19T12:07:09.449+02:00',None,'1',
                           '2018-07-19T12:07:09.449+02:00',
                           'true'])
@@ -667,13 +667,13 @@ class AnnotatieTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum', 'label',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum', 'label',
                           'omschrijving', 'network_id', 'annotatieType',
                           'rotatiehoek', 'thema', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.an00001','1996-05-08T00:00:00+02:00',
+                         [None,'nl.imkl-nbact1.an00001','1996-05-08T00:00:00+02:00',
                           '9999-01-01T00:00:00+01:00', 'annotatieLabel',
                           'Omschrijving Annotatie nl.imkl-nbact1.an00001',
                           'nl.imkl-nbact1.un00002',
@@ -710,13 +710,13 @@ class MaatvoeringTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum', 'label',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum', 'label',
                           'omschrijving', 'network_id', 'maatvoeringsType',
                           'rotatiehoek', 'thema', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.mv00002','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.mv00002','2001-12-17T09:30:47.0Z',
                           '2021-12-17T09:30:47.0Z','maatvoeringsLabel',
                           'Omschrijving Maatvoering','nl.imkl-nbact1.un00050',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/MaatvoeringsTypeValue/maatvoeringslabel',
@@ -751,13 +751,13 @@ class BijlageTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum',
                           'bijlageType', 'bestandlocatie', 'bestandMediaType',
                           'bestandIdentificator'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact2.algemeen',
+                         [None,'nl.imkl-nbact2.algemeen',
                           '2001-12-17T09:30:47.0Z', None,
                           'http://definities.geostandaarden.nl/imkl2015/id/\
 waarde/BijlageTypeValue/algemeen', 'bronnen/nbact2/nl.imkl-nbact2_18G007160.algemeen.pdf',
@@ -783,14 +783,14 @@ class DiepteTovMaaiveldTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum','label',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum','label',
                           'omschrijving','network_id','diepteNauwkeurigheid',
                           'dieptePeil','datumOpmetingDieptePeil',
                           'diepteAangrijpingspunt','thema','geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.dmaai00001','2001-12-17T09:30:47',
+                         [None,'nl.imkl-nbact1.dmaai00001','2001-12-17T09:30:47',
                           '2031-12-17T09:30:48','','','nl.imkl-nbact1.un00039',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/NauwkeurigheidDiepteValue/tot50cm',
                           '2.43','2015-12-17T09:30:47',
@@ -816,7 +816,7 @@ class DiepteNAPTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum','label',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum','label',
                           'omschrijving','network_id','diepteNauwkeurigheid',
                           'dieptePeil','datumOpmetingDieptePeil',
                           'diepteAangrijpingspunt','thema','geometry',
@@ -824,7 +824,7 @@ class DiepteNAPTestCase(unittest.TestCase):
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.dnap00001',
+                         [None,'nl.imkl-nbact1.dnap00001',
                           '2001-12-17T09:30:47','2031-12-17T09:30:48',
                           'Label DiepteNap','Omschrijving DiepteNap',
                           'nl.imkl-nbact1.un00038',
@@ -853,14 +853,14 @@ class DuctTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'utilityDeliveryType',
                           'warningType','ductWidth'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.duct00001','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.duct00001','2001-12-17T09:30:47.0Z',
                           'nl.imkl-nbact1.un00040','nl.imkl-nbact1.ul00001',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
@@ -888,14 +888,14 @@ class KabelbedTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry','warningType','ductWidth',
                           'omschrijving'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.kbed00001','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.kbed00001','2001-12-17T09:30:47.0Z',
                           'nl.imkl-nbact1.un00047','nl.imkl-nbact1.ul00003',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
@@ -923,13 +923,13 @@ class KastTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','network_id','status', 'validFrom','validTo',
+                         ['klicnummer','id','network_id','status', 'validFrom','validTo',
                           'verticalPosition', 'thema','geometry','geom_id', 'label',
                           'bovengrondsZichtbaar','geoNauwkeurigheidXY'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.kast00001','nl.imkl-nbact1.un00048',
+                         [None,'nl.imkl-nbact1.kast00001','nl.imkl-nbact1.un00048',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '1996-05-08T00:00:00+02:00',
                           '9999-01-01T00:00:00+01:00','onGroundSurface',None,
@@ -956,13 +956,13 @@ class TechnischGebouwTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','network_id','status', 'validFrom','validTo',
+                         ['klicnummer','id','network_id','status', 'validFrom','validTo',
                           'verticalPosition', 'thema','geometry','geom_id', 'label',
                           'bovengrondsZichtbaar','geoNauwkeurigheidXY'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.tg00001','nl.imkl-nbact1.un00059',
+                         [None,'nl.imkl-nbact1.tg00001','nl.imkl-nbact1.un00059',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '1999-03-12T00:00:00+01:00',None,'onGroundSurface',
                           None,'Point(155050.000 388030.000)',
@@ -988,12 +988,12 @@ class MangatTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','network_id','status', 'validFrom','validTo',
+                         ['klicnummer','id','network_id','status', 'validFrom','validTo',
                           'verticalPosition', 'thema','geometry','geom_id', 'label'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.mgat00001','nl.imkl-nbact1.un00054',
+                         [None,'nl.imkl-nbact1.mgat00001','nl.imkl-nbact1.un00054',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'onGroundSurface',None,'Point(155040.000 388110.000)',
@@ -1018,13 +1018,13 @@ class MastTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','network_id','status', 'validFrom','validTo',
+                         ['klicnummer','id','network_id','status', 'validFrom','validTo',
                           'verticalPosition', 'thema','geometry','geom_id', 'label',
                           'hoogte'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.mast00001','nl.imkl-nbact1.un00056',
+                         [None,'nl.imkl-nbact1.mast00001','nl.imkl-nbact1.un00056',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'onGroundSurface',None,'Point(155050.000 388000.000)',
@@ -1049,13 +1049,13 @@ class TorenTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','network_id','status', 'validFrom','validTo',
+                         ['klicnummer','id','network_id','status', 'validFrom','validTo',
                           'verticalPosition', 'thema','geometry','geom_id', 'label',
                           'hoogte'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.toren00001','nl.imkl-nbact1.un00076',
+                         [None,'nl.imkl-nbact1.toren00001','nl.imkl-nbact1.un00076',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'onGroundSurface',None,'Point(155060.000 388080.000)',
@@ -1080,13 +1080,13 @@ class EigenTopografieTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum','thema',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum','thema',
                           'label', 'omschrijving', 'status',
                           'typeTopografischObject', 'geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.et00001','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.et00001','2001-12-17T09:30:47.0Z',
                           '9999-01-01T09:30:47.0',None,'Label EigenTopografie',
                           'Omschrijving EigenTopografie',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/EigenTopografieStatusValue/bestaand',
@@ -1112,7 +1112,7 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'operatingVoltage','nominalVoltage',
@@ -1120,7 +1120,7 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.el00001','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.el00001','2001-12-17T09:30:47.0Z',
                           'nl.imkl-nbact1.un00041','nl.imkl-nbact1.ul00002',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z',None,'underground',None,
@@ -1150,7 +1150,7 @@ class TelecommunicatiekabelTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'utilityFacilityReference',
                           'utilityDeliveryType', 'geoNauwkeurigheidXY',
@@ -1159,7 +1159,7 @@ class TelecommunicatiekabelTestCase(unittest.TestCase):
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.tc00001','2001-12-17T09:30:47.0',
+                         [None,'nl.imkl-nbact1.tc00001','2001-12-17T09:30:47.0',
                           'nl.imkl-nbact1.un00060','nl.imkl-nbact1.ul00007',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '2001-12-17T09:30:47.0','2021-12-17T09:30:47.0',
@@ -1191,14 +1191,14 @@ class MantelbuisTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'diameter','materiaal'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.mb00001','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.mb00001','2001-12-17T09:30:47.0Z',
                           'nl.imkl-nbact1.un00055','nl.imkl-nbact1.ul00004',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
@@ -1226,7 +1226,7 @@ class OverigTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'geoNauwkeurigheidXY','kabelDiameter','materiaal',
@@ -1234,7 +1234,7 @@ class OverigTestCase(unittest.TestCase):
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.overig00001','2017-04-24T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.overig00001','2017-04-24T09:30:47.0Z',
                           'nl.imkl-nbact1.un00079','nl.imkl-nbact1.ul00024',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '2017-04-24T09:30:47.0Z','2020-04-24T09:30:47.0Z',
@@ -1265,14 +1265,14 @@ class RioolleidingTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'diameter', 'druk', 'fluid'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.rl00001','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.rl00001','2001-12-17T09:30:47.0Z',
                           'nl.imkl-nbact1.un00058','nl.imkl-nbact1.ul00006',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0Z','2031-12-17T09:30:47.0Z',
@@ -1300,7 +1300,7 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'diameter', 'druk', 'producttype',
@@ -1308,7 +1308,7 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.th00001','2001-12-17T09:30:47.0',
+                         [None,'nl.imkl-nbact1.th00001','2001-12-17T09:30:47.0',
                           'nl.imkl-nbact1.un00075','nl.imkl-nbact1.ul00022',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0','2021-12-17T09:30:47.0',
@@ -1339,14 +1339,14 @@ class WaterleidingTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'diameter', 'druk', 'fluid'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.wl00001','2001-12-17T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.wl00001','2001-12-17T09:30:47.0Z',
                           'nl.imkl-nbact1.un00078','nl.imkl-nbact1.ul00023',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
@@ -1434,14 +1434,14 @@ class EVbijlageTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum',
                           'bijlageType', 'bestandlocatie', 'bestandMediaType',
                           'bestandIdentificator','thema',
                           'eisVoorzorgsmaatregel', 'toelichting'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1._EisVoorzorgsmaatregelBijlage_18G007160_gasHogeDruk',
+                         [None,'nl.imkl-nbact1._EisVoorzorgsmaatregelBijlage_18G007160_gasHogeDruk',
                           '2018-07-19T12:04:12.376+02:00',None,
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/BijlageTypeValue/eisVoorzorgsmaatregel',
                           'bronnen/nbact1/nl.imkl-nbact1_18G007160.EV_gasHogeDruk_T_risicoHoog_gasHogeDruk.pdf',
@@ -1470,13 +1470,13 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum','thema',
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum','thema',
                           'label','omschrijving','network_id',
                           'extraInfoType','bestandIdentificator','geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact1.edi00001','2015-10-15T09:30:47.0Z',
+                         [None,'nl.imkl-nbact1.edi00001','2015-10-15T09:30:47.0Z',
                           '9999-01-01T10:30:47.0Z',None,
                           'Label ExtraDetailInfo',
                           'Omschrijving ExtraDetailInfo',
@@ -1570,11 +1570,11 @@ class BeheerderTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['id', 'registratiedatum', 'vervaldatum','bronhoudercode'])
+                         ['klicnummer', 'id', 'registratiedatum', 'vervaldatum','bronhoudercode'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
-                         ['nl.imkl-nbact2._Beheerder',
+                         [None,'nl.imkl-nbact2._Beheerder',
                           '2000-01-01T00:00:00.000+01:00',None,'nbact2'])
 
     def test_name_organisation(self):
@@ -1602,7 +1602,7 @@ _suite_BeheerderTestCase = unittest.TestLoader().loadTestsFromTestCase(Beheerder
 ##
 ##    def test_field_names(self):
 ##        self.assertEqual(self.imkl_obj.field_names(),
-##                         ['id', ''])
+##                         ['klicnummer','id', ''])
 ##
 ##    def test_field_values(self):
 ##        self.assertEqual(self.imkl_obj.field_values(),
