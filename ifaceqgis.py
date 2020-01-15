@@ -73,6 +73,7 @@ class Iface(object):
 
     def loadLayer(self, wvLayer):
         """load given layer, and return reference of layer"""
+        layer=None
         features = []
         if wvLayer.is_vector():
             layer = wvLayer.layer
@@ -82,7 +83,7 @@ class Iface(object):
             isAdded, features = provider.addFeatures(wvLayer.features)
             layer.updateExtents()
             project = core.QgsProject.instance()
-            project.addMapLayer(layer)
+            project.addMapLayer(layer, True)
             layers = project.mapLayersByName(wvLayer.layerName)
             layer = layers[0]
             self.styleLayer(layer)

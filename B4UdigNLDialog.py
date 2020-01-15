@@ -84,11 +84,6 @@ class B4UdigNLDialog(QDialog):
     def doc(self):
         return self.__wv
 
-    def _iface(self):
-        doc = self.doc()
-        if doc is not None:
-            return doc.iface
-
     def layerGroupNames(self):
         """returns dictionary with legend groups"""
         return {"annotatie": self.tr("Annotatie"),
@@ -263,7 +258,7 @@ class B4UdigNLDialog(QDialog):
                 theme = doc.themes[p_theme]
                 theme.setVisibility(p_state, isVector)
                 self._setStateOfVisibilitiesThemes(True)
-                self._iface().refreshMap()
+                doc.iface.refreshMap()
 
     def _displayThemeStateChanged(self, p_theme, p_state):
         """
@@ -520,16 +515,8 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         l_doc.removeLayers()
         l_mapCanvas.setRenderFlag(True)
         # remove doc, populate message list, populate tree when neccesary
-        l_new_docs = []
-        l_new_current_doc = None
-
-        for i_wv in self.__wvs:
-            if l_klicnumber != i_wv.klicnummer:
-                l_new_docs.append(i_wv)
-                if l_new_current_doc is None:
-                    l_new_current_doc = i_wv
-        self.__wvs = l_new_docs
-        self.__wv = l_new_current_doc
+        self.__wvs.remove(self.__wv)
+        self.__wv = next(iter(self.__wvs), None)
         self._populateMsgList()
         self._populateTree()
         self._setStateOfVisibilitiesThemes(True)
@@ -558,21 +545,21 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             self.ui.textEditDirPreffered.setText(l_dir_path)
 
     def _loadMsg(self):
-        doc = self._openMsg(str(self.__dir))
+        doc = self._openMsg()
         if doc is None:
             return
         doc.iface = Iface(self.__iface)
-        self.__wv = doc
         self.__wvs.append(doc)
+        self.__wv = doc
         self._populateMsgList()
         self._populateTree()
-        iface = doc.iface
-        iface.doRendering(False)
+        l_iface = doc.iface
+        l_iface.doRendering(False)
         self._loadLayers()
-        iface.refreshLegend()
+        l_iface.refreshLegend()
         self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
-        iface.doRendering(True)
+        l_iface.doRendering(True)
         self._checkEvs()
 
     def _loadLayers(self):
@@ -587,14 +574,16 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         s.setValue( "/Projections/defaultBehavior", oldValidation)        
         s.setValue( "/Projections/layerDefaultCrs", oldCrs)        
 
-    def _openMsg(self, p_path):
+    def _openMsg(self):
         """
-        p_path = directory path where KLIC message can be found.
-        returns object of type Doc holding all information read from xml
-        found in given path.
+        Returns object of type Doc holding all information
+        read from xml found in given path.
         """
+        self._displayFolderToProcess()
+        
+        doc = None
         try:
-            doc = wv.Doc(p_path)
+            doc = wv.Doc(self.__dir)
         except IOError:
             self._displayWrongMsg()
             return None
@@ -602,6 +591,15 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             self._displayWrongMsg()
             return None
         return doc
+
+    def _displayFolderToProcess(self):
+        """
+        give a warning to user that KLIC message could not be read
+        from selected folder
+        """
+        title = "Folder KLIC bericht"
+        msg = "Geselecteerde folder is de volgende:\n%s" % self.__dir
+        QMessageBox.information(self, title, msg)
 
     def _displayWrongMsg(self):
         """
@@ -655,7 +653,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             l_klicnummer = i_doc.klicnummer
             l_item = QListWidgetItem(l_klicnummer)
             l_list.addItem(l_item)
-            if l_klicnummer == self.__wv.klicnummer:
+            if l_klicnummer == self.doc().klicnummer:
                 l_selected = l_item
         if l_selected is not None:
             l_selected.setSelected(True)
