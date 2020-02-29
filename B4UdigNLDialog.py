@@ -304,7 +304,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         """ update visibilities of buttons"""
         ui = self.ui
         doc = self.doc()
-        if self.doc() is None:
+        if doc is None:
             ui.gotoButton.setEnabled(False)
             ui.bestScaleButton.setEnabled(False)
             ui.removeMsgButton.setEnabled(False)
@@ -313,7 +313,11 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             ui.refreshButton.setEnabled(False)
             ui.rasterCheckBox.setEnabled(False)
             ui.vectorCheckBox.setEnabled(False)
+            ui.openMsgButton.setEnabled(True)
+            ui.openArchiveButton.setEnabled(True)
         else:
+            ui.openMsgButton.setEnabled(False)
+            ui.openArchiveButton.setEnabled(False)
             ui.gotoButton.setEnabled(True)
             ui.bestScaleButton.setEnabled(True)
             ui.removeMsgButton.setEnabled(True)
@@ -579,8 +583,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         Returns object of type Doc holding all information
         read from xml found in given path.
         """
-        self._displayFolderToProcess()
-        
+        #self._displayFolderToProcess()        
         doc = None
         try:
             doc = wv.Doc(self.__dir)

@@ -72,32 +72,62 @@ class Iface(object):
         return dictLayers
 
     def loadLayer(self, wvLayer):
-        """load given layer, and return reference of layer"""
-        layer=None
+        """
+        load given layer, create a new layer when it does not exist
+        add new features to it, return layer and new mapfeatures
+        """
+        layer = None
         features = []
-        if wvLayer.is_vector():
-            layer = wvLayer.layer
-            provider = layer.dataProvider()
-            provider.addAttributes(wvLayer.fields)
-            layer.updateFields()
-            isAdded, features = provider.addFeatures(wvLayer.features)
-            layer.updateExtents()
-            project = core.QgsProject.instance()
-            project.addMapLayer(layer, True)
-            layers = project.mapLayersByName(wvLayer.layerName)
+        layer = self.layerByName(wvLayer.layerName)
+        if layer is None:
+            layer = self.addLayer(wvLayer)
+        if layer is not None:
+            features = self.addFeatures(wvLayer)
+        return layer, features
+
+    def layerByName(self, a_name):
+        """return layer by name"""
+        layer = None
+        project = core.QgsProject.instance()
+        layers = project.mapLayersByName(a_name)
+        if len(layers) == 1:
             layer = layers[0]
+        return layer
+
+    def addLayer(self, wvLayer):
+        """add layer to map and return the layer"""
+        if wvLayer.is_vector():
+            a_layer = wvLayer.layer
+            provider = a_layer.dataProvider()
+            provider.addAttributes(wvLayer.fields)
+            a_layer.updateFields()
+            project = core.QgsProject.instance()
+            layer = project.addMapLayer(a_layer, True)
             self.styleLayer(layer)
         else:
             layerFile = wvLayer.layerFile
             layer = self.iface.addRasterLayer(layerFile)
-        return layer, features
+        return layer
+
+    def addFeatures(self, wvLayer):
+        """add features to given layer"""
+        features = []
+        if wvLayer.is_vector():
+            a_layer = wvLayer.layer        
+            provider = a_layer.dataProvider()
+            isAdded, features = provider.addFeatures(wvLayer.features)
+            a_layer.updateExtents()
+        return features
 
     def styleLayer(self, a_layer):
+        """
+        Using the layersname try to style the layer
+        an existing QGIS style file included with plugin
+        """
         qml_path = os.path.join(self.path, 'styles', 'qml')
         qml_file = os.path.join(qml_path, a_layer.name()) + '.qml'
         if os.path.exists(qml_file):
             a_layer.loadNamedStyle(qml_file)
-        return a_layer
 
     def setVisibilityForLayer(self, wvLayer, visibility,
                               show_raster, show_vector, theme = None):

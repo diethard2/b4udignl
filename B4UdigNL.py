@@ -72,6 +72,6 @@ class B4UdigNL(object):
         # show the dialog
         l_dialog = self.dialog
         # move the dialog to where it was the last time it was used!
-        l_dialog.restoreDialogPosition()
+        #l_dialog.restoreDialogPosition()
         l_dialog.show()
         result = l_dialog.exec_()
