@@ -13,8 +13,7 @@ Kadaster, the Dutch Mapping Agency, which can be found at
 <a href="https://zakelijk.kadaster.nl/klic-viewer">https://zakelijk.kadaster.nl/klic-viewer</a>.</p>
 
 <p>Because this viewer is part of a real GIS system, you can also 
-measure distances, add design drawings as a layer, read multiple Dig 
-Alert Results etcetera.</p>
+measure distances, add design drawings as a layer, etcetera.</p>
 
 In <a href="#using">How to Use</a> the actual functionality of the 
 KLIC Viewer itself is explained.<BR>
@@ -72,10 +71,10 @@ time it is faster to use <B>[Open Folder...]</B> instead.
 select them all, you can also open several pdf files at once. 
 Double clicking a file in the list of PDF files opens it directly. 
 </p>
-<p>You can load and work with more KLIC messages. 
-After loading another KLIC message, you can select this result in the list of 
-KLIC messages. After selection the list of accompanying documents is refreshed 
-with the ones belonging to that KLIC message.<BR>
+<p>Temporary you can not load and work with more KLIC messages! But when it is 
+available again you can, after loading another KLIC message, select this 
+message in the list of KLIC messages. After selection the list of accompanying 
+documents is refreshed with the ones belonging to that KLIC message.<BR>
 You can use the button <B>[Goto]</B> or Alt-B to move the map in QGIS to 
 the extent of selected Wion result.<BR>
 To get the best view of the KLIC message use the button <B>[Best Scale]</B> 
@@ -149,10 +148,7 @@ can contain several themes in one style. It was really hard to turn on/off the m
 Answer: Use the button <B>Save in project</B> to retain the state of
 plugin in the project.</P>
 <P>Question: Is it possible to load more KLIC messages?<BR>
-Answer: Yes you can, only when they do overlap remember that the
-topography layer delivered by Kadaster (the one starting with GB_)
-is not transparant. So you better move that layer to the bottom of the
-list with layers.
+Answer: For now, you can not! This gave to problems, but I will try to fix this issue.
 </P>
 <P>Question: How can I load a design drawing from Autocad?<BR>
 Answer: From QGIS version 1.6.0 you can load autocad dxf as a vector layer.</P>
@@ -240,8 +236,8 @@ requests from <a href="https://github.com/kadaster/klic-win/tree/master/Uitlever
 <H1>License and terms of usage</H1>
 </a>
 
-Copyright: (C) 2019 Diethard Jansen<BR>
-Version: 2.1.2
+Copyright: (C) 2020 Diethard Jansen<BR>
+Version: 2.2.0
 email: diethard.jansen@gmail.nl<BR>
 
 <p>The QGIS <b>KLIC Viewer</b> python plugin is free software;

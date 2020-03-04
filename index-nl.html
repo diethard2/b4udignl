@@ -14,7 +14,7 @@ aangeboden door het Kadaster, via
 
 <p>Doordat deze viewer onderdeel is van een echt GIS systeem, kun je
 binnen deze Viewer ook afstanden opmeten en ontwerptekeningen als laag
-toevoegen, meerdere KLIC berichten inlezen enzovoorts.</p>
+toevoegen, enzovoorts.</p>
 
 In <a href="#using">Gebruik</a> wordt het gebruik van de KLIC
 Viewer verder uitgelegd.<BR>
@@ -99,8 +99,8 @@ met de knop <B>[Open bijlage(n)]</B> of Alt-B.<BR>
 Daarnaast kunt u ook een bijlage direkt openen door in 
 de lijst van bijlages op een bijlage te dubbelklikken.
 </p>
-<p>U kunt meerdere KLIC berichten inlezen. In de lijst van geladen KLIC 
-berichten kiest u vervolgens het bericht waarmee u wilt gaan werken. Na 
+<p>U kunt voorlopig even niet meerdere KLIC berichten inlezen. Dit was mogelijk maar gaf te veel problemen. Ik probeer dit in een komende release op te lossen er weer beschikbaar te maken. Wanneer weer beschikbaar kunt u in de lijst van geladen KLIC 
+berichten het bericht kiezen waarmee u wilt gaan werken. Na 
 selectie zal onmiddelijk ook de lijst van bijlagen behorende bij dat bericht 
 worden aangepast en de lijst met thema's in het tabblad <B>Thema's</B>.
 Met de knop <B>[Ga Naar]</B> of <b>Alt-G</b>, verplaatst u
@@ -176,10 +176,7 @@ van het project, deze weer opnieuw open?<BR>
 Antwoord: U had de functie <B>[Opslaan in project]</B> moeten gebruiken.
 Daarmee word de lijst met bijlagen wel opgeslagen in een project.</P>
 <P>Vraag: Kun je meerdere KLIC berichten inlezen?<BR>
-Antwoord: Ja dat kan, alleen hou er dan rekening dat je daarna de volgorde van 
-tekenlagen nog moet verplaatsen wanneer twee KLIC berichten elkaar overlappen. 
-De meegeleverde onderliggende topo (Lagen die beginnen met GB_ zijn namelijk 
-niet transparant!</P>
+Antwoord: Dat kon, maar nu even niet meer aangezien een tweede bericht bijlade nog teveel problemen opleverde. In een toekomstige release kan dit waarschijnlijk wel weer!</P>
 <P>Vraag: Hoe kan ik een Autocad ontwerp tekening bijladen?<BR>
 Antwoord: sinds QGIS 1.6.0 wordt ook het rechtsstreeks
 inlezen van DXF autocad bestand als vectorlaag ondersteund.
@@ -243,6 +240,8 @@ gegevens te verstrekken. De gehanteerde boetes bedragen tienduizenden euro's.</p
 wordt opgeslagen in een nieuwe interne folderstructuur. Daarnaast wordt er nu 
 ook vector informatie aangeleverd!</p>
 
+<p>Vanaf 2 maart 2020 wordt de informatie geleverd in formaat v2.2 en bevat deze geen leidinginformatie meer in raster. Alleen de achtergrond is een rasterlaag.</p>
+
 <H2>3 soorten meldingen</H2>
 <p>Er kunnen drie soorten meldingen gedaan worden, elk voor een speciaal doeleinde.
     <ol>
@@ -277,7 +276,7 @@ en <a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeel
 <H1>Licentie en gebruiksvoorwaarden</H1>
 </a>
 Copyright: (C) 2019 Diethard Jansen<BR>
-Versie: 2.1.2
+Versie: 2.2.0
 email: diethard.jansen@gmail.com<BR>
 
 <p>De <b>KLIC Viewer</b> python plugin is gratis software;
