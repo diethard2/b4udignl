@@ -15,7 +15,7 @@ Release notes
 **version 2.2.0** 04/03/2020
 * Solved problem of not loading klic message V2.2 [issue 12](https://github.com/diethard2/b4udignl/issues/12)
 * Loading a second klic message gave problems, so until solved allow only to open one message.
-*Raster layers of klic message were not projected correctly.
+* Raster layers of klic message were not projected correctly.
 * Positioning of Klic Viewer plugin was sometimes outside windows bounds. So Klic viewer started but was not visible. Do not restore position settings of Klic viewer anymore.
 * Included in documentation how to store memory layers holding vector data of klic message.
 
