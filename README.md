@@ -12,65 +12,72 @@ Use QGIS Python Plugin Installer for installation of this plugin.
 
 Release notes
 -------------
-**version 2.1.2*** 20/07/2019
-Fixed problem to set settings for SVG paths, introduced in v. 2.1.0
+**version 2.2.0** 04/03/2020
+* Solved problem of not loading klic message V2.2 [issue 12](https://github.com/diethard2/b4udignl/issues/12)
+* Loading a second klic message gave problems, so until solved allow only to open one message.
+*Raster layers of klic message were not projected correctly.
+* Positioning of Klic Viewer plugin was sometimes outside windows bounds. So Klic viewer started but was not visible. Do not restore position settings of Klic viewer anymore.
+* Included in documentation how to store memory layers holding vector data of klic message.
+
+**version 2.1.2** 20/07/2019
+* Fixed problem to set settings for SVG paths, introduced in v. 2.1.0
 
 **version 2.1.1** 07/07/2019
-Improved gui of tab theme so on OSX/Linux you can see theme legend colors
-Fixed problem with translation, if you switch to english it is translated
-Fixed problem with XML encoding. In OSX it was not set to UTF-8
-Fixed problem to set settings for SVG path. In OSX it gave problems.
+* Improved gui of tab theme so on OSX/Linux you can see theme legend colors
+* Fixed problem with translation, if you switch to english it is translated
+* Fixed problem with XML encoding. In OSX it was not set to UTF-8
+* Fixed problem to set settings for SVG path. In OSX it gave problems.
 
 **version 2.1.0** 12/06/2019
-Upgraded plugin for QGIS 3.x
-Visibility can be controlled from tab thema's
+* Upgraded plugin for QGIS 3.x
+* Visibility can be controlled from tab thema's
 When a message has a Eis Voorzorgsmaatregel, a warning will be given to user
 
 **version 2.0.3** 27/01/2018
-Fixed loading detailkaarten (Themabijlagen) as rasterlayers.
-Improved style of depth measurement object DiepteNAP en DiepteTovMaaiveld.
-Forced garbage collect takes place after removing KLIC message.
+* Fixed loading detailkaarten (Themabijlagen) as rasterlayers.
+* Improved style of depth measurement object DiepteNAP en DiepteTovMaaiveld.
+* Forced garbage collect takes place after removing KLIC message.
 
 **version 2.0.2** 19/01/2018
-Renamed Quantum GIS to QGIS in documentation (and this file)
-Now GML curves are also supported for Vector Geometry of pipelines
-After loading each KLIC message, a full garbage collect is done after removing temporary datamodel
+* Renamed Quantum GIS to QGIS in documentation (and this file)
+* Now GML curves are also supported for Vector Geometry of pipelines
+* After loading each KLIC message, a full garbage collect is done after removing temporary datamodel
 
 **version 2.0.1** 05/01/2018
-fixed max qgis version to 2.99 so it will also be loaded in QGIS version 2.18.22.
-fixed problem with not adding SVG path with style symbols for this plugin when no svg symbols were added.
-Fixed problem with wrong style for Graafpolygoon (selected area to dig)
-removed unit tests and testdata from packaged delivery
+* fixed max qgis version to 2.99 so it will also be loaded in QGIS version 2.18.22.
+* fixed problem with not adding SVG path with style symbols for this plugin when no svg symbols were added.
+* Fixed problem with wrong style for Graafpolygoon (selected area to dig)
+* removed unit tests and testdata from packaged delivery
 
 **Version 2.0.0** 31/12/2018
-Major update where interface remains the same, but instead of loading rasters now also Vector information is loaded.
-From 02/01/2019 the format of the result requested from Kadaster has changed a lot.
-Previous versions of Klicviewer for QGIS can not be used to view the new results.
-This new version can be used to view old KLIC messages.
+* Major update where interface remains the same, but instead of loading rasters now also Vector information is loaded.
+* From 02/01/2019 the format of the result requested from Kadaster has changed a lot.
+* Previous versions of Klicviewer for QGIS can not be used to view the new results.
+* This new version can be used to view old KLIC messages.
 
 **Version 1.4.3**
-Added maximum version 2.18 as preparation for update to QGIS 4.3
+* Added maximum version 2.18 as preparation for update to QGIS 4.3
 
 **Version 1.4.2** 02/01/2015
 fixed:
 * encoding issue that prevented some messages from opening because xml included funny characters.
 
 **Version 1.4.1** 
-Updated metadata.txt and added a [webpage](http://diethard2.github.io/b4udignl). unfortunately forgot to release this version..
+* Updated metadata.txt and added a [webpage](http://diethard2.github.io/b4udignl). unfortunately forgot to release this version..
 
 **Version 1.4.0** 20/06/2013
-Updated plugin so it works as well for QGIS 2.0
-Changed name of plugin from QGIS WION Result Viewer to
+* Updated plugin so it works as well for QGIS 2.0
+* Changed name of plugin from QGIS WION Result Viewer to
 the QGIS KLIC Viewer.
-Removed the grouping of loaded layers because the code was complicated
+* Removed the grouping of loaded layers because the code was complicated
 and because the QGIS grouping functions of layers behaved weird.
-Updated the help function.
+* Updated the help function.
 
 
 **Version 1.3.2** 27/06/2012
-Moved this plugin to official QGIS plugins repository.
-Tested for QGIS 1.8.0 and plugin still works great.
-Repository from site http://wwww.gis-plugins.nl will be removed after
+* Moved this plugin to official QGIS plugins repository.
+* Tested for QGIS 1.8.0 and plugin still works great.
+* Repository from site http://wwww.gis-plugins.nl will be removed after
 succesfull transfer.
 
 
@@ -83,7 +90,7 @@ New functionality:
 
 
 **Version 1.3.0** 27/12/2010
-This new version can only be used for QGIS v. 1.6.0 and up!
+* This new version can only be used for QGIS v. 1.6.0 and up!
 
 New functionality:
 * contents of plugin can now be stored in project.
