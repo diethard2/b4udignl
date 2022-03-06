@@ -653,8 +653,73 @@ class DocTestCaseV2_1(unittest.TestCase):
 
 _suite_wv_doc_2_1 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_1)
 
+class DocTestCaseV2_2(unittest.TestCase):
+    """
+    unittests to test wv.Doc object, holds full klic message provided in IMKL
+    version 1.5 (valid till 1-1-2019).
+    """
+    def setUp(self):
+        """
+        For each test create a woonplaats read from xml file woonplaats.xml
+        """
+        # read the file
+        klic_msg_dir = "../test/data/22G064233_1"
+##        subdirs = ("../test/data/18G007160_1/bronnen/KN1100",
+##                   "../test/data/18G007160_1/bronnen/nbact1")
+##        for a_dir in subdirs:
+##            if not os.path.exists(a_dir):
+##                os.makedirs(a_dir)
+        self.doc = Doc(klic_msg_dir)
+        self.maxDiff = None
 
-unit_test_suites = [_suite_wv_doc_1_5, _suite_wv_doc_2_1]
+    def test_version(self):
+        self.assertEqual(self.doc.version, '2.2')
+
+    def test_imkl_elements(self):
+        self.assertEqual(sorted(self.doc.imkls.keys()),
+                         ['Beheerder','Belang','Belanghebbende',
+                          'BoundedBy','GebiedsinformatieAanvraag',
+                          'GebiedsinformatieLevering','Graafpolygoon',
+                          'Leveringsinformatie','Utiliteitsnet',
+                          'UtilityLink','Waterleiding'])
+        
+    def test_imkl_count_elements(self):
+        key_count = []
+        for key in sorted(self.doc.imkls.keys()):
+            objects = self.doc.imkls[key]
+            key_count.append((key,len(objects)))
+        self.assertEqual(key_count,
+                         [('Beheerder', 1),('Belang', 1),('Belanghebbende', 1),
+                          ('BoundedBy', 1),
+                          ('GebiedsinformatieAanvraag', 1),
+                          ('GebiedsinformatieLevering', 1),
+                          ('Graafpolygoon', 1),
+                          ('Leveringsinformatie', 1),
+                          ('Utiliteitsnet', 1),('UtilityLink', 2),
+                          ('Waterleiding', 1)])
+        
+    def test_all_imkl_pipes_have_geometry(self):
+        all_ok = True
+        for tag in imkl.tags_pipes_and_cables():
+            imkl_set = self.doc.imkls[tag]
+            for imkl_object in imkl_set:
+                if imkl_object.field("geometry").value is None:
+                    all_ok = False
+                    print(imkl_object.name)
+                    break        
+        self.assertEqual(all_ok, True)
+
+    def test_geometry_waterleiding(self):
+        leiding = self.doc.imkls[imkl.WATERLEIDING][0]
+        link_id = leiding.field("link_id").value
+        geom = leiding.field("geometry").value
+        self.assertEqual((link_id,geom),
+                         ('nl.imkl-KL1184.v_9_97565258',
+                          'LineString(105271.283 454961.871, 105266.184 454961.929)'))
+
+_suite_wv_doc_2_2 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_2)
+
+unit_test_suites = [_suite_wv_doc_1_5, _suite_wv_doc_2_1, _suite_wv_doc_2_2]
 
 def main():
     wv_test_suite = unittest.TestSuite(unit_test_suites)

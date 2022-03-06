@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="test" xmlns:gml="http://www.opengis.net/gml/3.2">
+
+<gml:LineString gml:id="Line_3">
+ <gml:posList srsDimension="2">105239.687 454732.647 105241.571 454732.628 105244.216 454732.363 105254.452 454731.334</gml:posList>
+</gml:LineString>
+
+</gml:FeatureCollection>

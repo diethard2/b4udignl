@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="gil_422fced6-5572-4c55-9766-eb7966b0d7ce" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+    <gml:boundedBy>
+        <gml:Envelope srsName="urn:ogc:def:crs:EPSG::28992" srsDimension="2">
+            <gml:lowerCorner>105219.0 454709.0</gml:lowerCorner>
+            <gml:upperCorner>105342.0 455069.0</gml:upperCorner>
+        </gml:Envelope>
+    </gml:boundedBy>
+    <gml:featureMember>
+        <imkl:GebiedsinformatieLevering gml:id="nl.imkl-KA0000._GebiedsinformatieLevering_22G064233-1">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>KA0000._GebiedsinformatieLevering_22G064233</imkl:lokaalID>
+                    <imkl:versie>1</imkl:versie>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2022-01-28T15:04:24.227+01:00</imkl:beginLifespanVersion>
+            <imkl:leveringsvolgnummer>1</imkl:leveringsvolgnummer>
+            <imkl:datumLeveringSamengesteld>2022-01-28T15:04:24.227+01:00</imkl:datumLeveringSamengesteld>
+            <imkl:indicatieLeveringCompleet>true</imkl:indicatieLeveringCompleet>
+            <imkl:achtergrondkaart>
+                <imkl:Achtergrondkaart>
+                    <imkl:achtergrondkaartSoort xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/AchtergrondkaartSoortValue/bgtBestaand"/>
+                    <imkl:kaartreferentie>bronnen/GB_22G064233.png</imkl:kaartreferentie>
+                </imkl:Achtergrondkaart>
+            </imkl:achtergrondkaart>
+            <imkl:belanghebbende xlink:href="nl.imkl-KL1184._Belanghebbende_22G064233-1"/>
+            <imkl:aanvraag xlink:href="nl.imkl-KA0000._GebiedsinformatieAanvraag_22G064233"/>
+        </imkl:GebiedsinformatieLevering>
+    </gml:featureMember>
+    <gml:featureMember>
+        <imkl:GebiedsinformatieAanvraag gml:id="nl.imkl-KA0000._GebiedsinformatieAanvraag_22G064233">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>KA0000._GebiedsinformatieAanvraag_22G064233</imkl:lokaalID>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2022-01-28T13:56:12.000+01:00</imkl:beginLifespanVersion>
+            <imkl:ordernummer>9816679773</imkl:ordernummer>
+            <imkl:positienummer>0000000010</imkl:positienummer>
+            <imkl:klicMeldnummer>22G064233</imkl:klicMeldnummer>
+            <imkl:aanvrager>
+                <imkl:Aanvrager>
+                    <imkl:contactpersoon>
+                        <imkl:Contact>
+                            <imkl:naam>tilburg</imkl:naam>
+                            <imkl:telefoon>(013) 4582161</imkl:telefoon>
+                            <imkl:email>klictilburg@geofoxx.nl</imkl:email>
+                        </imkl:Contact>
+                    </imkl:contactpersoon>
+                    <imkl:organisatie>
+                        <imkl:Organisatie>
+                            <imkl:naam>Geofox Lexmond B.V.</imkl:naam>
+                            <imkl:bezoekAdres>
+                                <imkl:Adres>
+                                    <imkl:openbareRuimteNaam>Eektestraat</imkl:openbareRuimteNaam>
+                                    <imkl:huisnummer>10</imkl:huisnummer>
+                                    <imkl:huisnummertoevoeging>12</imkl:huisnummertoevoeging>
+                                    <imkl:woonplaatsNaam>OLDENZAAL</imkl:woonplaatsNaam>
+                                    <imkl:postcode>7575AP</imkl:postcode>
+                                    <imkl:landcode>NL</imkl:landcode>
+                                </imkl:Adres>
+                            </imkl:bezoekAdres>
+                        </imkl:Organisatie>
+                    </imkl:organisatie>
+                    <imkl:extraEmail>geofoxx_tilburg@klicbeheer.nl</imkl:extraEmail>
+                </imkl:Aanvrager>
+            </imkl:aanvrager>
+            <imkl:referentie>20211301;noord</imkl:referentie>
+            <imkl:opdrachtgever>
+                <imkl:Opdrachtgever>
+                    <imkl:contactpersoon>
+                        <imkl:Contact>
+                            <imkl:naam>Ayla Schenk</imkl:naam>
+                            <imkl:telefoon>0610935056</imkl:telefoon>
+                            <imkl:email>a.schenk@geofoxx.nl</imkl:email>
+                        </imkl:Contact>
+                    </imkl:contactpersoon>
+                    <imkl:organisatie>
+                        <imkl:Organisatie>
+                            <imkl:naam>Geofox Lexmond B.V.</imkl:naam>
+                            <imkl:bezoekAdres>
+                                <imkl:Adres>
+                                    <imkl:openbareRuimteNaam>Eektestraat</imkl:openbareRuimteNaam>
+                                    <imkl:huisnummer>10</imkl:huisnummer>
+                                    <imkl:woonplaatsNaam>Oldenzaal</imkl:woonplaatsNaam>
+                                    <imkl:postcode>7575AP</imkl:postcode>
+                                    <imkl:landcode>NL</imkl:landcode>
+                                </imkl:Adres>
+                            </imkl:bezoekAdres>
+                        </imkl:Organisatie>
+                    </imkl:organisatie>
+                </imkl:Opdrachtgever>
+            </imkl:opdrachtgever>
+            <imkl:aanvraagSoort xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/AanvraagSoortValue/graafmelding"/>
+            <imkl:aanvraagDatum>2022-01-28T13:56:12.000+01:00</imkl:aanvraagDatum>
+            <imkl:soortWerkzaamheden xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/SoortWerkzaamhedenValue/bodemonderzoekSonderingen"/>
+            <imkl:locatieWerkzaamheden>Ridderbuurt 23 2771ZA Boskoop NL</imkl:locatieWerkzaamheden>
+            <imkl:startDatum>2022-02-01</imkl:startDatum>
+            <imkl:eindDatum>2022-02-23</imkl:eindDatum>
+            <imkl:graafpolygoon xlink:href="nl.imkl-KA0000._Graafpolygoon_22G064233"/>
+        </imkl:GebiedsinformatieAanvraag>
+    </gml:featureMember>
+    <gml:featureMember>
+        <imkl:Graafpolygoon gml:id="nl.imkl-KA0000._Graafpolygoon_22G064233">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>KA0000._Graafpolygoon_22G064233</imkl:lokaalID>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2022-01-28T13:56:12.000+01:00</imkl:beginLifespanVersion>
+            <imkl:geometrie>
+                <gml:Polygon srsName="urn:ogc:def:crs:EPSG::28992" srsDimension="2" gml:id="nl.imkl-KA0000._Graafpolygoon_22G064233_geo">
+                    <gml:exterior>
+                        <gml:LinearRing>
+                            <gml:posList>105265.0 455069.0 105251.0 454998.0 105250.0 454900.0 105228.0 454822.0 105219.0 454723.0 105342.0 454709.0 105302.0 454836.0 105294.0 454917.0 105311.0 455068.0 105265.0 455069.0</gml:posList>
+                        </gml:LinearRing>
+                    </gml:exterior>
+                </gml:Polygon>
+            </imkl:geometrie>
+        </imkl:Graafpolygoon>
+    </gml:featureMember>
+    <gml:featureMember>
+        <imkl:Belanghebbende gml:id="nl.imkl-KL1184._Belanghebbende_22G064233-1">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>KL1184._Belanghebbende_22G064233</imkl:lokaalID>
+                    <imkl:versie>1</imkl:versie>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2022-01-28T13:59:35.000+01:00</imkl:beginLifespanVersion>
+            <imkl:beheerdersinformatieGeleverd>true</imkl:beheerdersinformatieGeleverd>
+            <imkl:betrokkenBijAanvraag>true</imkl:betrokkenBijAanvraag>
+            <imkl:eisVoorzorgsmaatregel>false</imkl:eisVoorzorgsmaatregel>
+            <imkl:utiliteitsnet xlink:href="nl.imkl-KL1184.water"/>
+            <imkl:geraaktBelangBijGraafpolygoon xlink:href="nl.imkl-KL1184._Belang_5001179-502"/>
+            <imkl:netbeheerder xlink:href="nl.imkl-KL1184._Beheerder"/>
+        </imkl:Belanghebbende>
+    </gml:featureMember>
+    <gml:featureMember>
+        <imkl:Belang gml:id="nl.imkl-KL1184._Belang_5001179-502">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>KL1184._Belang_5001179</imkl:lokaalID>
+                    <imkl:versie>502</imkl:versie>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2019-04-19T00:00:00.000+02:00</imkl:beginLifespanVersion>
+            <imkl:omschrijving>HYDZ_1</imkl:omschrijving>
+            <imkl:contactAanvraag>
+                <imkl:AanvraagSoortContact>
+                    <imkl:aanvraagSoort xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/AanvraagSoortValue/graafmelding"/>
+                    <imkl:naam>Planning Oasen</imkl:naam>
+                    <imkl:telefoon>0182593772</imkl:telefoon>
+                    <imkl:email>klic@oasen.nl</imkl:email>
+                </imkl:AanvraagSoortContact>
+            </imkl:contactAanvraag>
+            <imkl:thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/water"/>
+            <imkl:contactNetinformatie>
+                <imkl:AanvraagSoortContact>
+                    <imkl:aanvraagSoort xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/AanvraagSoortValue/graafmelding"/>
+                    <imkl:naam>Planning Oasen</imkl:naam>
+                    <imkl:telefoon>0182593772</imkl:telefoon>
+                    <imkl:email>klic@oasen.nl</imkl:email>
+                </imkl:AanvraagSoortContact>
+            </imkl:contactNetinformatie>
+            <imkl:contactBeschadiging>
+                <imkl:Contact>
+                    <imkl:naam>Storing Oasen</imkl:naam>
+                    <imkl:telefoon>0182593530</imkl:telefoon>
+                </imkl:Contact>
+            </imkl:contactBeschadiging>
+        </imkl:Belang>
+    </gml:featureMember>
+    <gml:featureMember>
+        <imkl:Beheerder gml:id="nl.imkl-KL1184._Beheerder">
+            <imkl:identificatie>
+                <imkl:NEN3610ID>
+                    <imkl:namespace>nl.imkl</imkl:namespace>
+                    <imkl:lokaalID>KL1184._Beheerder</imkl:lokaalID>
+                </imkl:NEN3610ID>
+            </imkl:identificatie>
+            <imkl:beginLifespanVersion>2000-01-01T00:00:00.000+01:00</imkl:beginLifespanVersion>
+            <imkl:bronhoudercode>KL1184</imkl:bronhoudercode>
+            <imkl:organisatie>
+                <imkl:Organisatie>
+                    <imkl:naam>Oasen N.V.</imkl:naam>
+                    <imkl:kvkNummer>29010639</imkl:kvkNummer>
+                </imkl:Organisatie>
+            </imkl:organisatie>
+        </imkl:Beheerder>
+    </gml:featureMember>
+<gml:featureMember>
+<us-net-common:UtilityLink gml:id="nl.imkl-KL1184.v_9_97565257">
+<net:beginLifespanVersion>2019-01-01T00:00:00+01:00</net:beginLifespanVersion>
+<net:inspireId>
+<base:Identifier>
+<base:localId>KL1184.v_9_97565257</base:localId>
+<base:namespace>nl.imkl</base:namespace>
+</base:Identifier>
+</net:inspireId>
+<net:inNetwork xlink:href="nl.imkl-KL1184.water"></net:inNetwork>
+<net:centrelineGeometry>
+<gml:LineString gml:id="nl.imkl-KL1184.v_9_97565257.geo">
+<gml:posList srsDimension="2">105266.184 454961.929 105266.057 454961.737</gml:posList>
+</gml:LineString>
+</net:centrelineGeometry>
+<net:fictitious>false</net:fictitious>
+<us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional"></us-net-common:currentStatus>
+<us-net-common:validFrom>2019-01-01T00:00:00+01:00</us-net-common:validFrom>
+<us-net-common:verticalPosition>underground</us-net-common:verticalPosition>
+</us-net-common:UtilityLink>
+</gml:featureMember>
+<gml:featureMember>
+<us-net-common:UtilityLink gml:id="nl.imkl-KL1184.v_9_97565258">
+<net:beginLifespanVersion>2019-01-01T00:00:00+01:00</net:beginLifespanVersion>
+<net:inspireId>
+<base:Identifier>
+<base:localId>KL1184.v_9_97565258</base:localId>
+<base:namespace>nl.imkl</base:namespace>
+</base:Identifier>
+</net:inspireId>
+<net:inNetwork xlink:href="nl.imkl-KL1184.water"></net:inNetwork>
+<net:centrelineGeometry>
+<gml:LineString gml:id="nl.imkl-KL1184.v_9_97565258.geo">
+<gml:posList srsDimension="2">105271.283 454961.871 105266.184 454961.929</gml:posList>
+</gml:LineString>
+</net:centrelineGeometry>
+<net:fictitious>false</net:fictitious>
+<us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional"></us-net-common:currentStatus>
+<us-net-common:validFrom>2019-01-01T00:00:00+01:00</us-net-common:validFrom>
+<us-net-common:verticalPosition>underground</us-net-common:verticalPosition>
+</us-net-common:UtilityLink>
+</gml:featureMember>
+ <gml:featureMember>
+<imkl:Waterleiding gml:id="nl.imkl-KL1184.v_9_97565196">
+<net:beginLifespanVersion>2019-01-01T00:00:00+01:00</net:beginLifespanVersion>
+<net:inspireId>
+<base:Identifier>
+<base:localId>KL1184.v_9_97565196</base:localId>
+<base:namespace>nl.imkl</base:namespace>
+</base:Identifier>
+</net:inspireId>
+<net:inNetwork xlink:href="nl.imkl-KL1184.water"></net:inNetwork>
+<net:link xlink:href="nl.imkl-KL1184.v_9_97565257"></net:link>
+<net:link xlink:href="nl.imkl-KL1184.v_9_97565258"></net:link>
+<us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional"></us-net-common:currentStatus>
+<us-net-common:validFrom>2019-01-01T00:00:00+01:00</us-net-common:validFrom>
+<us-net-common:verticalPosition>underground</us-net-common:verticalPosition>
+<us-net-common:warningType xsi:nil="true"></us-net-common:warningType>
+<us-net-common:pipeDiameter uom="urn:ogc:def:uom:OGC::mm">25</us-net-common:pipeDiameter>
+<us-net-wa:waterType xlink:href="http://inspire.ec.europa.eu/codelist/WaterTypeValue/potable"></us-net-wa:waterType>
+<imkl:buismateriaalType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/PipeMaterialTypeIMKLValue/polyetheen"></imkl:buismateriaalType>
+</imkl:Waterleiding>
+</gml:featureMember>
+<gml:featureMember>
+<imkl:Utiliteitsnet gml:id="nl.imkl-KL1184.water">
+<us-net-common:utilityNetworkType xlink:href="http://inspire.ec.europa.eu/codelist/UtilityNetworkTypeValue/water"></us-net-common:utilityNetworkType>
+<us-net-common:authorityRole xlink:href="http://inspire.ec.europa.eu/codelist/RelatedPartyRoleValue/operator"></us-net-common:authorityRole>
+<imkl:identificatie>
+<imkl:NEN3610ID>
+<imkl:namespace>nl.imkl</imkl:namespace>
+<imkl:lokaalID>KL1184.water</imkl:lokaalID>
+</imkl:NEN3610ID>
+</imkl:identificatie>
+<imkl:beginLifespanVersion>2001-12-17T09:30:47+01:00</imkl:beginLifespanVersion>
+<imkl:thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/water"></imkl:thema>
+</imkl:Utiliteitsnet>
+</gml:featureMember>
+</gml:FeatureCollection>

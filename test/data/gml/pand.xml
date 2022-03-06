@@ -23,7 +23,8 @@
       <gml:posList srsDimension="3" count="5">253679.875 576724.723 0.0 253671.753 576723.992 0.0 253671.406 576727.849 0.0 253679.528 576728.58 0.0 253679.875 576724.723 0.0</gml:posList>
     </gml:LinearRing>
   </gml:interior>
-</gml:Polygon></bag_LVC:pandGeometrie><bag_LVC:bouwjaar>2012</bag_LVC:bouwjaar><bag_LVC:pandstatus>Pand in gebruik</bag_LVC:pandstatus><bag_LVC:tijdvakgeldigheid><bagtype:begindatumTijdvakGeldigheid>2014081200000000</bagtype:begindatumTijdvakGeldigheid><bagtype:einddatumTijdvakGeldigheid>2014102200000000</bagtype:einddatumTijdvakGeldigheid></bag_LVC:tijdvakgeldigheid><bag_LVC:inOnderzoek>N</bag_LVC:inOnderzoek><bag_LVC:bron><bagtype:documentdatum>20140812</bagtype:documentdatum><bagtype:documentnummer>AV-2014-08-12-001b</bagtype:documentnummer></bag_LVC:bron></bag_LVC:Pand></product_LVC:LVC-product>
+</gml:Polygon></bag_LVC:pandGeometrie>
+<bag_LVC:bouwjaar>2012</bag_LVC:bouwjaar><bag_LVC:pandstatus>Pand in gebruik</bag_LVC:pandstatus><bag_LVC:tijdvakgeldigheid><bagtype:begindatumTijdvakGeldigheid>2014081200000000</bagtype:begindatumTijdvakGeldigheid><bagtype:einddatumTijdvakGeldigheid>2014102200000000</bagtype:einddatumTijdvakGeldigheid></bag_LVC:tijdvakgeldigheid><bag_LVC:inOnderzoek>N</bag_LVC:inOnderzoek><bag_LVC:bron><bagtype:documentdatum>20140812</bagtype:documentdatum><bagtype:documentnummer>AV-2014-08-12-001b</bagtype:documentnummer></bag_LVC:bron></bag_LVC:Pand></product_LVC:LVC-product>
     </xb:producten>
   </xb:antwoord>
 </xb:BAG-Extract-Deelbestand-LVC>
