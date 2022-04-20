@@ -326,11 +326,11 @@ class DocTestCaseV2_1(unittest.TestCase):
 
     def test_geometry_rioolleiding(self):
         leiding = self.doc.imkls[imkl.RIOOLLEIDING][0]
-        link_id = leiding.field("link_id").value
+        link_ids = leiding.link_ids
         geom = leiding.field("geometry").value
-        self.assertEqual((link_id,geom),
-                         ('nl.imkl-nbact1.ul00006',
-                          'LineString(155058.000 388020.000, 155042.000 388020.000)'))
+        self.assertEqual((link_ids,geom),
+                         (['nl.imkl-nbact1.ul00006'],
+                          'MultiLineString((155058.000 388020.000, 155042.000 388020.000))'))
 
     def test_thema_kast(self):
         kast = self.doc.imkls[imkl.KAST][0]
@@ -621,12 +621,12 @@ class DocTestCaseV2_1(unittest.TestCase):
         self.assertEqual((riool_layer.layerName, field_names, attributes),
                          ('Rioolleiding',
                           [u'klicnummer', u'id',u'registratiedatum',u'network_id',
-                           u'link_id', u'status', u'validFrom', u'validTo',
+                           u'status', u'validFrom', u'validTo',
                            u'verticalPosition', u'thema', u'geom_id', u'label',
                            u'warningType', u'diameter', u'druk', u'fluid'],
                           [[u'18G007160',u'nl.imkl-nbact1.rl00001',
                             u'2001-12-17T09:30:47.0Z',u'nl.imkl-nbact1.un00058',
-                            u'nl.imkl-nbact1.ul00006', u'projected',
+                            u'projected',
                             u'2001-12-17T09:30:47.0Z',u'2031-12-17T09:30:47.0Z',
                             u'underground',u'laagspanning',
                             u'nl.imkl-nbact1.xg00010',u'',u'net',u'0',u'0',
@@ -640,12 +640,12 @@ class DocTestCaseV2_1(unittest.TestCase):
         self.assertEqual((layer.layerName, field_names, attributes),
                          ('Mantelbuis',
                           [u'klicnummer', u'id',u'registratiedatum',u'network_id',
-                           u'link_id', u'status', u'validFrom', u'validTo',
+                           u'status', u'validFrom', u'validTo',
                            u'verticalPosition', u'thema', u'geom_id', u'label',
                            u'warningType', u'diameter', u'materiaal'],
                           [[u'18G007160',u'nl.imkl-nbact1.mb00001',
                             u'2001-12-17T09:30:47.0Z',u'nl.imkl-nbact1.un00055',
-                            u'nl.imkl-nbact1.ul00004', u'projected',
+                            u'projected',
                             u'2001-12-17T09:30:47.0Z',u'2001-12-17T09:30:47.0Z',
                             u'underground',u'petrochemie',
                             u'nl.imkl-nbact1.xg00007',u'',u'net',u'100',
@@ -660,15 +660,10 @@ class DocTestCaseV2_2(unittest.TestCase):
     """
     def setUp(self):
         """
-        For each test create a woonplaats read from xml file woonplaats.xml
+        For each test create a klic document from given xml
         """
         # read the file
         klic_msg_dir = "../test/data/22G064233_1"
-##        subdirs = ("../test/data/18G007160_1/bronnen/KN1100",
-##                   "../test/data/18G007160_1/bronnen/nbact1")
-##        for a_dir in subdirs:
-##            if not os.path.exists(a_dir):
-##                os.makedirs(a_dir)
         self.doc = Doc(klic_msg_dir)
         self.maxDiff = None
 
@@ -698,24 +693,26 @@ class DocTestCaseV2_2(unittest.TestCase):
                           ('Utiliteitsnet', 1),('UtilityLink', 2),
                           ('Waterleiding', 1)])
         
-    def test_all_imkl_pipes_have_geometry(self):
-        all_ok = True
-        for tag in imkl.tags_pipes_and_cables():
-            imkl_set = self.doc.imkls[tag]
-            for imkl_object in imkl_set:
-                if imkl_object.field("geometry").value is None:
-                    all_ok = False
-                    print(imkl_object.name)
-                    break        
-        self.assertEqual(all_ok, True)
-
+        
+    def test_UtilityLinks(self):
+        objects = self.doc.imkls['UtilityLink']
+        ids = []
+        values = []
+        for utilityLink in objects:
+            ids.append(utilityLink.field("id").value)
+            values.append(utilityLink.field("geometry").value)
+        self.assertEqual((ids,values),
+                         (['nl.imkl-KL1184.v_9_97565257','nl.imkl-KL1184.v_9_97565258'],
+                          ['LineString(105266.184 454961.929, 105266.057 454961.737)',
+                           'LineString(105271.283 454961.871, 105266.184 454961.929)']))
+        
     def test_geometry_waterleiding(self):
         leiding = self.doc.imkls[imkl.WATERLEIDING][0]
-        link_id = leiding.field("link_id").value
+        link_ids = leiding.link_ids
         geom = leiding.field("geometry").value
-        self.assertEqual((link_id,geom),
-                         ('nl.imkl-KL1184.v_9_97565258',
-                          'LineString(105271.283 454961.871, 105266.184 454961.929)'))
+        self.assertEqual((link_ids,geom),
+                         (['nl.imkl-KL1184.v_9_97565257', 'nl.imkl-KL1184.v_9_97565258'],
+                          'MultiLineString((105266.184 454961.929, 105266.057 454961.737),(105271.283 454961.871, 105266.184 454961.929))'))
 
 _suite_wv_doc_2_2 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_2)
 

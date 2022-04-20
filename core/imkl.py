@@ -9,7 +9,7 @@
  -------------------
  begin                : 2018-06-01
  copyright            : (C) 2018 by Diethard Jansen
- email                : hulp at GIS-hulp.nl
+ email                : diethard.jansen at gmail.com
  ***************************************************************************/
 
 /***************************************************************************
@@ -173,6 +173,7 @@ def netbeheerderLevering():
 
 def contact():
     obj = B_Object("Contact")
+    
     obj.add_field(B_Field("naam", "TEXT", "Naam"))
     obj.add_field(B_Field("telefoon", "TEXT",
                                     "Telefoon"))
@@ -363,8 +364,6 @@ def kabelOfLeiding():
     obj.add_field(B_Field("registratiedatum", "TEXT", "BeginLifespanVersion"))
     obj.add_field(B_Field("network_id", "TEXT", "InNetwork",
                           from_attribute='Href'))
-    obj.add_field(B_Field("link_id", "TEXT", "Link",
-                          from_attribute='Href'))
     obj.add_field(B_Field("status", "TEXT", "CurrentStatus",
                           from_attribute='Href'))
     obj.add_field(B_Field("validFrom", "TEXT", "ValidFrom"))
@@ -374,7 +373,8 @@ def kabelOfLeiding():
     obj.add_field(B_Field("geom_id", "TEXT", "ExtraGeometrie",
                           from_attribute='Href'))
     obj.add_field(B_Field("label", "TEXT", "Label"))
-    obj.add_field(B_Field("geometry", "LINESTRING", "CentrelineGeometry",
+    ## We read multiple LineString tags and create a MultiLineString!   
+    obj.add_field(B_Field("geometry", "MULTILINESTRING", "CentrelineGeometry",
                           to_object=gml.LineString))
     return obj
 

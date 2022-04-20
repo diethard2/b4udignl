@@ -274,15 +274,15 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id', 
                           'status', 'validFrom','validTo', 'verticalPosition',
-                          'thema','geom_id', 'label','geometry', 'diameter',
+                          'thema','geom_id', 'label', 'geometry', 'diameter',
                           'druk','fluid'])
 
     def test_field_values(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.field_values(),
                          [None,'nl.imkl-nbact1.ogc00001','2001-12-17T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00057','nl.imkl-nbact1.ul00005',
+                          'nl.imkl-nbact1.un00057',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z',None,'underground',None,
                           'nl.imkl-nbact1.xg00009','',None,'0.0','0.0',
@@ -290,13 +290,13 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
 
     def test_csv_header(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.csv_header(),
-                         'klicnummer;id;registratiedatum;network_id;link_id;status;\
+                         'klicnummer;id;registratiedatum;network_id;status;\
 validFrom;validTo;verticalPosition;thema;geom_id;label;geometry;diameter;druk;fluid')
 
     def test_as_csv(self):
         self.assertEqual(self.buisGevaarlijkeInhoud.as_csv(),
                          'None;nl.imkl-nbact1.ogc00001;2001-12-17T09:30:47.0Z;\
-nl.imkl-nbact1.un00057;nl.imkl-nbact1.ul00005;\
+nl.imkl-nbact1.un00057;\
 http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused;\
 2001-12-17T09:30:47.0Z;None;underground;None;nl.imkl-nbact1.xg00009;;None;0.0;0.0;http:\
 //inspire.ec.europa.eu/codelist/OilGasChemicalsProductTypeValue/naturalGas')
@@ -853,7 +853,7 @@ class DuctTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'utilityDeliveryType',
                           'warningType','ductWidth'])
@@ -861,7 +861,7 @@ class DuctTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.duct00001','2001-12-17T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00040','nl.imkl-nbact1.ul00001',
+                          'nl.imkl-nbact1.un00040',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'underground',None,'nl.imkl-nbact1.xg00001','',None,
@@ -888,7 +888,7 @@ class KabelbedTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry','warningType','ductWidth',
                           'omschrijving'])
@@ -896,7 +896,7 @@ class KabelbedTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.kbed00001','2001-12-17T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00047','nl.imkl-nbact1.ul00003',
+                          'nl.imkl-nbact1.un00047',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'underground',None,'nl.imkl-nbact1.xg00004',
@@ -1112,7 +1112,7 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'operatingVoltage','nominalVoltage',
@@ -1121,7 +1121,7 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.el00001','2001-12-17T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00041','nl.imkl-nbact1.ul00002',
+                          'nl.imkl-nbact1.un00041',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused',
                           '2001-12-17T09:30:47.0Z',None,'underground',None,
                           'nl.imkl-nbact1.xg00002',None,None,
@@ -1150,7 +1150,7 @@ class TelecommunicatiekabelTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'utilityFacilityReference',
                           'utilityDeliveryType', 'geoNauwkeurigheidXY',
@@ -1160,7 +1160,7 @@ class TelecommunicatiekabelTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.tc00001','2001-12-17T09:30:47.0',
-                          'nl.imkl-nbact1.un00060','nl.imkl-nbact1.ul00007',
+                          'nl.imkl-nbact1.un00060',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '2001-12-17T09:30:47.0','2021-12-17T09:30:47.0',
                           'underground',None,None,'',None,'',
@@ -1191,7 +1191,7 @@ class MantelbuisTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'diameter','materiaal'])
@@ -1199,7 +1199,7 @@ class MantelbuisTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.mb00001','2001-12-17T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00055','nl.imkl-nbact1.ul00004',
+                          'nl.imkl-nbact1.un00055',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'underground',None,'nl.imkl-nbact1.xg00007','', None,
@@ -1226,7 +1226,7 @@ class OverigTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'geoNauwkeurigheidXY','kabelDiameter','materiaal',
@@ -1235,7 +1235,7 @@ class OverigTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.overig00001','2017-04-24T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00079','nl.imkl-nbact1.ul00024',
+                          'nl.imkl-nbact1.un00079',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional',
                           '2017-04-24T09:30:47.0Z','2020-04-24T09:30:47.0Z',
                           'underground',None,'nl.imkl-nbact1.xg00015','Label Overig',
@@ -1265,7 +1265,7 @@ class RioolleidingTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'diameter', 'druk', 'fluid'])
@@ -1273,7 +1273,7 @@ class RioolleidingTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.rl00001','2001-12-17T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00058','nl.imkl-nbact1.ul00006',
+                          'nl.imkl-nbact1.un00058',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0Z','2031-12-17T09:30:47.0Z',
                           'underground',None,'nl.imkl-nbact1.xg00010','',None,
@@ -1300,7 +1300,7 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'diameter', 'druk', 'producttype',
@@ -1309,7 +1309,7 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.th00001','2001-12-17T09:30:47.0',
-                          'nl.imkl-nbact1.un00075','nl.imkl-nbact1.ul00022',
+                          'nl.imkl-nbact1.un00075',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0','2021-12-17T09:30:47.0',
                           'underground',None,'nl.imkl-nbact1.xg00012',
@@ -1337,9 +1337,13 @@ class WaterleidingTestCase(unittest.TestCase):
         self.imkl_obj.process(self.xml_element)
         xml_file.close()
 
+    def test_link_ids(self):
+        self.assertEqual(self.imkl_obj.link_ids,
+                         ['nl.imkl-nbact1.ul00023'])
+
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id','registratiedatum','network_id', 'link_id',
+                         ['klicnummer','id','registratiedatum','network_id',
                           'status', 'validFrom','validTo', 'verticalPosition', 'thema',
                           'geom_id', 'label', 'geometry', 'warningType',
                           'diameter', 'druk', 'fluid'])
@@ -1347,7 +1351,7 @@ class WaterleidingTestCase(unittest.TestCase):
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
                          [None,'nl.imkl-nbact1.wl00001','2001-12-17T09:30:47.0Z',
-                          'nl.imkl-nbact1.un00078','nl.imkl-nbact1.ul00023',
+                          'nl.imkl-nbact1.un00078',
                           'http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/projected',
                           '2001-12-17T09:30:47.0Z','2001-12-17T09:30:47.0Z',
                           'underground',None,'nl.imkl-nbact1.xg00014','',None,

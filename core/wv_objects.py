@@ -373,6 +373,7 @@ class Layer(PY3__cmp__):
     def qgisVectorType(self):
         qgisVectorTypes = {'POLYGON': 'Polygon',
                            'LINESTRING': 'LineString',
+                           'MULTILINESTRING': 'MultiLineString',
                            'POINT': 'Point'}
         return qgisVectorTypes[self.vectorType]
         

@@ -246,36 +246,9 @@ class Polygon3DTestCase(unittest.TestCase):
 
 _suite_polygon3d = unittest.TestLoader().loadTestsFromTestCase(Polygon3DTestCase)
 
-class LineStringTestCaseOasen(unittest.TestCase):
-    """
-    unittest to test GML Polygon
-    """
-    def setUp(self):
-        """
-        For each test create the Woonplaats read from xml file woonplaats.xml
-
-        The geometry actually consists of an gml polygon element which includes
-        an outer and inner ring.
-        """
-        xml_file = open("data/gml/oasen.xml")
-        root = ET.fromstring(xml_file.read())
-        self.xml_element = xml_utils.find_xml_with_tag(root, "LineString", None)
-        self.linestring = gml.LineString()
-        self.linestring.process(self.xml_element)
-        xml_file.close()        
-
-    def test_coords(self):
-        self.assertEqual(self.linestring.coords, '105239.687 454732.647, 105241.571 454732.628, 105244.216 454732.363, 105254.452 454731.334')
-
-    def test_as_wkt(self):
-        self.assertEqual(self.linestring.as_wkt(),
-                         'LineString(105239.687 454732.647, 105241.571 454732.628, 105244.216 454732.363, 105254.452 454731.334)')
-
-_suite_linestringOasen = unittest.TestLoader().loadTestsFromTestCase(LineStringTestCaseOasen)
-
 unit_test_suites = [_suite_point, _suite_linestring, _suite_curve,
                     _suite_envelope, _suite_polygon, _suite_multipolygon,
-                    _suite_polygon3d, _suite_linestringOasen]
+                    _suite_polygon3d]
 
 def main():
     gml_test_suite = unittest.TestSuite(unit_test_suites)

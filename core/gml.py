@@ -101,7 +101,7 @@ class LineString(GmlBase):
         self.coords = wkt_coords_from_gml(self._text_poslist(elem))
 
     def as_wkt(self):
-        """Return valid geom in WKT notation for polygon"""
+        """Return valid geom in WKT notation for LineString"""
         wkt = "LineString(%s)" % self.coords
         return wkt
 

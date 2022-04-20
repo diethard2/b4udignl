@@ -237,27 +237,29 @@
 <us-net-common:verticalPosition>underground</us-net-common:verticalPosition>
 </us-net-common:UtilityLink>
 </gml:featureMember>
- <gml:featureMember>
-<imkl:Waterleiding gml:id="nl.imkl-KL1184.v_9_97565196">
-<net:beginLifespanVersion>2019-01-01T00:00:00+01:00</net:beginLifespanVersion>
-<net:inspireId>
-<base:Identifier>
-<base:localId>KL1184.v_9_97565196</base:localId>
-<base:namespace>nl.imkl</base:namespace>
-</base:Identifier>
-</net:inspireId>
-<net:inNetwork xlink:href="nl.imkl-KL1184.water"></net:inNetwork>
-<net:link xlink:href="nl.imkl-KL1184.v_9_97565257"></net:link>
-<net:link xlink:href="nl.imkl-KL1184.v_9_97565258"></net:link>
-<us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional"></us-net-common:currentStatus>
-<us-net-common:validFrom>2019-01-01T00:00:00+01:00</us-net-common:validFrom>
-<us-net-common:verticalPosition>underground</us-net-common:verticalPosition>
-<us-net-common:warningType xsi:nil="true"></us-net-common:warningType>
-<us-net-common:pipeDiameter uom="urn:ogc:def:uom:OGC::mm">25</us-net-common:pipeDiameter>
-<us-net-wa:waterType xlink:href="http://inspire.ec.europa.eu/codelist/WaterTypeValue/potable"></us-net-wa:waterType>
-<imkl:buismateriaalType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/PipeMaterialTypeIMKLValue/polyetheen"></imkl:buismateriaalType>
-</imkl:Waterleiding>
+
+<gml:featureMember>
+ <imkl:Waterleiding gml:id="nl.imkl-KL1184.v_9_97565196">
+  <net:beginLifespanVersion>2019-01-01T00:00:00+01:00</net:beginLifespanVersion>
+  <net:inspireId>
+   <base:Identifier>
+    <base:localId>KL1184.v_9_97565196</base:localId>
+    <base:namespace>nl.imkl</base:namespace>
+   </base:Identifier>
+  </net:inspireId>
+  <net:inNetwork xlink:href="nl.imkl-KL1184.water"></net:inNetwork>
+  <net:link xlink:href="nl.imkl-KL1184.v_9_97565257"></net:link>
+  <net:link xlink:href="nl.imkl-KL1184.v_9_97565258"></net:link>
+  <us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional"></us-net-common:currentStatus>
+  <us-net-common:validFrom>2019-01-01T00:00:00+01:00</us-net-common:validFrom>
+  <us-net-common:verticalPosition>underground</us-net-common:verticalPosition>
+  <us-net-common:warningType xsi:nil="true"></us-net-common:warningType>
+  <us-net-common:pipeDiameter uom="urn:ogc:def:uom:OGC::mm">25</us-net-common:pipeDiameter>
+  <us-net-wa:waterType xlink:href="http://inspire.ec.europa.eu/codelist/WaterTypeValue/potable"></us-net-wa:waterType>
+  <imkl:buismateriaalType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/PipeMaterialTypeIMKLValue/polyetheen"></imkl:buismateriaalType>
+ </imkl:Waterleiding>
 </gml:featureMember>
+
 <gml:featureMember>
 <imkl:Utiliteitsnet gml:id="nl.imkl-KL1184.water">
 <us-net-common:utilityNetworkType xlink:href="http://inspire.ec.europa.eu/codelist/UtilityNetworkTypeValue/water"></us-net-common:utilityNetworkType>

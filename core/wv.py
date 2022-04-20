@@ -310,12 +310,19 @@ class Doc(object):
                 imkl_set = self.imkls[tag]
                 for imkl_object in imkl_set:
                     geom_field = imkl_object.geometry_field()
-                    link_id = imkl_object.field("link_id").value
-                    if link_id not in self.imkls_on_id:
-##                        self._display_no_utilitylink(imkl_object, link_id)
-                        continue
-                    utility_link = self.imkls_on_id[link_id]
-                    geom_field.value = utility_link.geometry_field().value
+                    link_coords = []
+                    for link_id in imkl_object.link_ids:
+                        if link_id not in self.imkls_on_id:
+##                            self._display_no_utilitylink(imkl_object, link_id)
+                            continue
+                        utility_link = self.imkls_on_id[link_id]
+                        utility_link.field_names()
+                        geom_value = utility_link.geometry_field().value
+                        link_coords.append(geom_value[10:])
+                    new_value = 'MultiLineString('
+                    new_value += ','.join(link_coords)
+                    new_value += ')'
+                    geom_field.value = new_value
 
     def _display_no_utilitylink(self, imkl_object, link_id):
         title = u"object has no utility link!"
