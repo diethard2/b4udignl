@@ -64,6 +64,7 @@ class Doc(object):
         self._init_imkls()
         self.storage = None
         self.__version = None
+        self.schemaLocation = None
         self.layerGroups = {}
         self.__themes = {}
         self.__showVector = True
@@ -105,9 +106,20 @@ class Doc(object):
         """the first time the version is requested, find out the
         version from imkl elements"""
         version = None
-        if imkl.LEVERINGSINFORMATIE in self.imkls:
+        if self.schemaLocation is not None:
+            l = self.schemaLocation.split(sep='/')
+            if 'imkl2015' in l:
+                i = l.index('imkl2015')
+                version = l[i+1]
+            else:
+                l2 = l[5:]
+                if 'imkl' in l2:
+                    i = l2.index('imkl')
+                    version = l2[i+1]
+        if version is None and imkl.LEVERINGSINFORMATIE in self.imkls:
             imkl_obj = self.imkls[imkl.LEVERINGSINFORMATIE][0]
             version = imkl_obj.field("version").value
+                            
         return version
         
     def _path(self):
@@ -217,7 +229,14 @@ class Doc(object):
         tag = xml_utils.clean_tag(xml_element.tag)
         if tag == imkl.LEVERINGSINFORMATIE:
             self._process_tag_to_object(xml_element)
-        elif tag == imkl.FEATURECOLLECTION:
+        elif tag == imkl.FEATURECOLLECTION and not imkl.BOUNDEDBY in self.imkls:
+            xml_attributes = xml_element.attrib
+            schemaKey = None
+            for a_key in xml_attributes.keys():
+                if 'schemaLocation' in a_key:
+                    schemaKey = a_key
+            if schemaKey in xml_attributes:
+                self.schemaLocation = xml_element.attrib[schemaKey]
             for i_elem in xml_element:
                 tag = xml_utils.clean_tag(i_elem.tag)
                 if tag == imkl.BOUNDEDBY:
@@ -267,17 +286,10 @@ class Doc(object):
     def _storage_version_to_use(self):
         storage_version = 0
         version = self.version
-        if version is not None:
-            if int(version.split('.')[0]) == 1:
-                storage_version = 1
-            else:
-                storage_version = 2
+        if version == '1.5':
+            storage_version = 1
         else:
-            # no version.. we have got no leveringsinfo, but this
-            # could be a test message voor 2.1 so let us try a bit further
-            infotag = imkl.GEBIEDSINFORMATIEAANVRAAG
-            if infotag in self.imkls:
-                storage_version = 2
+            storage_version = 2
         return storage_version
         
     def _post_process_imkl(self):

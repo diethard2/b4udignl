@@ -268,7 +268,7 @@ class DocTestCaseV2_1(unittest.TestCase):
         self.maxDiff = None
 
     def test_version(self):
-        self.assertEqual(self.doc.version, '2.1')
+        self.assertEqual(self.doc.version, '1.2.1')
 
     def test_imkl_elements(self):
         self.assertEqual(sorted(self.doc.imkls.keys()),
@@ -668,7 +668,7 @@ class DocTestCaseV2_2(unittest.TestCase):
         self.maxDiff = None
 
     def test_version(self):
-        self.assertEqual(self.doc.version, '2.2')
+        self.assertEqual(self.doc.version, '1.2.1')
 
     def test_imkl_elements(self):
         self.assertEqual(sorted(self.doc.imkls.keys()),
@@ -716,7 +716,64 @@ class DocTestCaseV2_2(unittest.TestCase):
 
 _suite_wv_doc_2_2 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_2)
 
-unit_test_suites = [_suite_wv_doc_1_5, _suite_wv_doc_2_1, _suite_wv_doc_2_2]
+class DocTestCaseV2_3(unittest.TestCase):
+    """
+    unittests to test wv.Doc object, holds full klic message provided in IMKL
+    version 2.2 (valid from 1-5-2022).
+    """
+    def setUp(self):
+        """
+        For each test create a klic document from given xml
+        """
+        # read the file
+        klic_msg_dir = "../test/data/21C006906_1"
+        self.doc = Doc(klic_msg_dir)
+        self.maxDiff = None
+
+    def test_schemaLocation(self):
+        self.assertEqual(self.doc.schemaLocation, 'http://www.geostandaarden.nl/imkl/wibon http://register.geostandaarden.nl/gmlapplicatieschema/imkl/2.0.0/imkl-wibon.xsd')
+
+    def test_version(self):
+        self.assertEqual(self.doc.version, '2.0.0')
+
+    def test_imkl_elements(self):
+        self.assertEqual(sorted(self.doc.imkls.keys()),
+                         ['AanduidingEisVoorzorgsmaatregel','Annotatie',
+                          'Appurtenance','Beheerder','Belang',
+                          'Belanghebbende','Bijlage','BoundedBy','Duct',
+                          'EigenTopografie','EisVoorzorgsmaatregelBijlage',
+                          'Elektriciteitskabel','ExtraGeometrie',
+                          'GebiedsinformatieAanvraag',
+                          'GebiedsinformatieLevering','Graafpolygoon',
+                          'Kabelbed','Kast','Maatvoering','Mantelbuis',
+                          'OlieGasChemicalienPijpleiding','Rioolleiding',
+                          'TechnischGebouw','Utiliteitsnet','UtilityLink'])
+        
+    def test_imkl_count_elements(self):
+        key_count = []
+        for key in sorted(self.doc.imkls.keys()):
+            objects = self.doc.imkls[key]
+            key_count.append((key,len(objects)))
+        self.assertEqual(key_count,
+                         [('AanduidingEisVoorzorgsmaatregel', 8),
+                          ('Annotatie', 459),('Appurtenance', 2375),
+                          ('Beheerder', 3),('Belang', 3),('Belanghebbende', 3),
+                          ('Bijlage', 1),('BoundedBy', 1),('Duct', 38),
+                          ('EigenTopografie', 17),
+                          ('EisVoorzorgsmaatregelBijlage', 1),
+                          ('Elektriciteitskabel', 635),('ExtraGeometrie', 25),
+                          ('GebiedsinformatieAanvraag', 1),
+                          ('GebiedsinformatieLevering', 1),('Graafpolygoon', 1),
+                          ('Kabelbed', 324),('Kast', 24),('Maatvoering', 4388),
+                          ('Mantelbuis', 36),
+                          ('OlieGasChemicalienPijpleiding', 662),
+                          ('Rioolleiding', 241),('TechnischGebouw', 6),
+                          ('Utiliteitsnet', 7),('UtilityLink', 1942)])
+
+_suite_wv_doc_2_3 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_3)
+
+unit_test_suites = [_suite_wv_doc_1_5, _suite_wv_doc_2_1,
+                    _suite_wv_doc_2_2, _suite_wv_doc_2_3]
 
 def main():
     wv_test_suite = unittest.TestSuite(unit_test_suites)
