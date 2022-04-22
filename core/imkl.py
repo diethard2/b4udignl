@@ -190,6 +190,9 @@ def toezichthouder():
 def bijlage():
     a_bijlage = B_Object("Bijlage")
     a_bijlage.add_field(B_Field("bestandsnaam", "TEXT", "Bestandsnaam"))
+    a_bijlage.add_field(B_Field("bijlageType", "TEXT", "BijlageType",
+                                from_attribute='Href'))
+    a_bijlage.add_field(B_Field("bestandLocatie", "TEXT", "BestandLocatie"))
     a_bijlage.add_tags_to_process()
     return a_bijlage
 
@@ -628,6 +631,8 @@ def extraDetailinfo():
     obj.add_field(B_Field("extraInfoType", "TEXT",
                           "ExtraInfoType",
                           from_attribute='Href'))
+    obj.add_field(B_Field("bestandLocatie", "TEXT",
+                          "BestandLocatie"))
     obj.add_field(B_Field("bestandIdentificator", "TEXT",
                           "BestandIdentificator"))
     obj.add_field(B_Field("geometry", "POINT", "Ligging",
@@ -749,6 +754,7 @@ def bezoekadres():
 
 def adres():
     obj = B_Object("Adres")
+    obj.add_field(B_Field("BAG ID", "TEXT", "BAGid"))
     obj.add_field(B_Field("openbareRuimte", "TEXT", "OpenbareRuimteNaam"))
     obj.add_field(B_Field("huisnummer", "TEXT", "Huisnummer"))
     obj.add_field(B_Field("woonplaats", "TEXT", "WoonplaatsNaam"))

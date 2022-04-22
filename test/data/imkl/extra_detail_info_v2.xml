@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="gil_1ced8e4d-c709-4b1e-884f-8d76ef28a299" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/wibon http://register.geostandaarden.nl/gmlapplicatieschema/imkl/2.0.0/imkl-wibon.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/wibon" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+ <imkl:ExtraDetailinfo gml:id="nl.imkl-KL1051.HC_2">
+      <imkl:identificatie>
+        <imkl:NEN3610ID>
+          <imkl:namespace>nl.imkl</imkl:namespace>
+          <imkl:lokaalID>KL1051.HC_2</imkl:lokaalID>
+        </imkl:NEN3610ID>
+      </imkl:identificatie>
+      <imkl:beginLifespanVersion>1900-01-01T01:00:00</imkl:beginLifespanVersion>
+      <imkl:inNetwork xlink:href="nl.imkl-KL1051.geulen"/>
+      <imkl:adres>
+        <imkl:Adres>
+          <imkl:BAGid>0114010000278285</imkl:BAGid>
+          <imkl:openbareRuimteNaam>Bargerweg</imkl:openbareRuimteNaam>
+          <imkl:huisnummer>72</imkl:huisnummer>
+          <imkl:woonplaatsNaam>Emmen</imkl:woonplaatsNaam>
+          <imkl:postcode>7826BR</imkl:postcode>
+          <imkl:landcode xlink:href="http://publications.europa.eu/resource/authority/country/NLD"/>
+        </imkl:Adres>
+      </imkl:adres>
+      <imkl:extraInfoType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/ExtraDetailInfoTypeValue/huisaansluiting"/>
+      <imkl:bestandLocatie>bronnen/KL1051/nl.imkl-KL1051.HC_2.HA_datatransport_KPN_21G004574_7826BR_72_1.PDF.pdf</imkl:bestandLocatie>
+      <imkl:bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+      <imkl:bestandIdentificator>nl.imkl-KL1051.HC_2.HA_datatransport_KPN_21G004574_7826BR_72_1.PDF</imkl:bestandIdentificator>
+      <imkl:ligging>
+        <gml:Point gml:id="geomid.nl.imkl.KL1051.HC_2">
+          <gml:pos srsDimension="2">261146 532515</gml:pos>
+        </gml:Point>
+      </imkl:ligging>
+    </imkl:ExtraDetailinfo>
+</gml:featureMember>
+</gml:FeatureCollection>
