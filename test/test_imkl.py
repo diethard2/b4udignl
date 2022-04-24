@@ -437,9 +437,12 @@ class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
         woonplaats = adres.field("woonplaats").value
         postcode = adres.field("postcode").value
         landcode = adres.field("landcode").value
+        # after change from IMKL1.2.1 -> IMKL 2.0.0 landcode is in href
+        # attribute instead of plain text. For now we do not provide support
+        # for this. (too much effort, for little gain).
         self.assertEqual((straat,huisnummer,postcode,woonplaats,landcode),
                          ('Laan van Westenenk','701',
-                          '7334DP', 'APELDOORN', 'NL'))
+                          '7334DP', 'APELDOORN', ''))
         
 _suite_GebiedsinformatieAanvraagTestCase = unittest.TestLoader().loadTestsFromTestCase(GebiedsinformatieAanvraagTestCase)
 
@@ -1474,9 +1477,10 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
 
     def test_field_names(self):
         self.assertEqual(self.imkl_obj.field_names(),
-                         ['klicnummer','id', 'registratiedatum', 'vervaldatum','thema',
-                          'label','omschrijving','network_id',
-                          'extraInfoType','bestandIdentificator','geometry'])
+                         ['klicnummer','id', 'registratiedatum', 'vervaldatum',
+                          'thema','label','omschrijving','network_id',
+                          'extraInfoType','bestandLocatie',
+                          'bestandIdentificator','geometry'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -1486,6 +1490,7 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
                           'Omschrijving ExtraDetailInfo',
                           'nl.imkl-nbact1.un00042',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/ExtraDetailInfoTypeValue/aansluiting',
+                          'bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf',
                           'nl.imkl-nbact1.filename',
                           'Point(155030.000 388110.000)'])
 
@@ -1501,6 +1506,55 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
                           '7334DP', 'Apeldoorn'))        
 
 _suite_ExtraDetailinfoTestCase = unittest.TestLoader().loadTestsFromTestCase(ExtraDetailinfoTestCase)
+
+class ExtraDetailinfoTestCase_v2(unittest.TestCase):
+
+    def setUp(self):
+        """
+        unit test to test imkl.extraDetailinfo
+        """
+        # read the file
+        xml_file = open("data/imkl/extra_detail_info_v2.xml")
+        root = ET.fromstring(xml_file.read())
+        self.xml_element = xml_utils.find_xml_with_tag(root, "ExtraDetailinfo",
+                                                       None)
+        self.imkl_obj = imkl.extraDetailinfo()
+        self.imkl_obj.process(self.xml_element)
+        xml_file.close()
+
+    def test_field_names(self):
+        self.assertEqual(self.imkl_obj.field_names(),
+                         ['klicnummer','id','registratiedatum','vervaldatum',
+                          'thema','label','omschrijving','network_id',
+                          'extraInfoType',
+                          'bestandLocatie',
+                          'bestandIdentificator',
+                          'geometry'])
+
+    def test_field_values(self):
+        self.assertEqual(self.imkl_obj.field_values(),
+                         [None,'nl.imkl-KL1051.HC_2','1900-01-01T01:00:00',None,
+                          None,None,None,'nl.imkl-KL1051.geulen',
+                          'http://definities.geostandaarden.nl/imkl2015/id/waarde/ExtraDetailInfoTypeValue/huisaansluiting',
+                          'bronnen/KL1051/nl.imkl-KL1051.HC_2.HA_datatransport_KPN_21G004574_7826BR_72_1.PDF.pdf',
+                          'nl.imkl-KL1051.HC_2.HA_datatransport_KPN_21G004574_7826BR_72_1.PDF',
+                          'Point(261146 532515)'])
+
+    def test_adres(self):
+        adres = self.imkl_obj.field("adres").value
+        adres = adres[0]
+        BAGid = adres.field("BAG_id").value
+        straat = adres.field("openbareRuimte").value
+        huisnummer = adres.field("huisnummer").value
+        woonplaats = adres.field("woonplaats").value
+        postcode = adres.field("postcode").value
+        landcode = adres.field("landcode").value
+        self.assertEqual((BAGid,straat,huisnummer,postcode,woonplaats,landcode),
+                         ('0114010000278285','Bargerweg','72',
+                          '7826BR', 'Emmen',
+                          'http://publications.europa.eu/resource/authority/country/NLD'))        
+
+_suite_ExtraDetailinfoTestCase_v2 = unittest.TestLoader().loadTestsFromTestCase(ExtraDetailinfoTestCase_v2)
 
 class BoundsTestCase(unittest.TestCase):
 
@@ -1627,11 +1681,11 @@ unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2
                     _suite_KabelbedTestCase, _suite_KastTestCase,
                     _suite_MangatTestCase, _suite_EigenTopografieTestCase,
                     _suite_ElektriciteitskabelTestCase,_suite_EVbijlageTestCase,
-                    _suite_ExtraDetailinfoTestCase, _suite_BoundsTestCase,
-                    _suite_MantelbuisTestCase, _suite_MastTestCase,
-                    _suite_OverigTestCase, _suite_RioolleidingTestCase,
-                    _suite_TechnischGebouwTestCase, _suite_TorenTestCase,
-                    _suite_TelecommunicatiekabelTestCase,
+                    _suite_ExtraDetailinfoTestCase, _suite_ExtraDetailinfoTestCase_v2,
+                    _suite_BoundsTestCase,_suite_MantelbuisTestCase,
+                    _suite_MastTestCase, _suite_OverigTestCase,
+                    _suite_RioolleidingTestCase,_suite_TechnischGebouwTestCase,
+                    _suite_TorenTestCase,_suite_TelecommunicatiekabelTestCase,
                     _suite_ThermischePijpleidingTestCase,
                     _suite_UtiliteitsnetTestCase, _suite_UtilityLinkTestCase,
                     _suite_UtilityLink2TestCase,

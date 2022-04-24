@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gml:FeatureCollection gml:id="gil_1ced8e4d-c709-4b1e-884f-8d76ef28a299" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/wibon http://register.geostandaarden.nl/gmlapplicatieschema/imkl/2.0.0/imkl-wibon.xsd" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/wibon" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3">
+<gml:featureMember>
  <imkl:ExtraDetailinfo gml:id="nl.imkl-KL1051.HC_2">
       <imkl:identificatie>
         <imkl:NEN3610ID>

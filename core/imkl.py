@@ -754,12 +754,13 @@ def bezoekadres():
 
 def adres():
     obj = B_Object("Adres")
-    obj.add_field(B_Field("BAG ID", "TEXT", "BAGid"))
+    obj.add_field(B_Field("BAG_id", "TEXT", "BAGid"))
     obj.add_field(B_Field("openbareRuimte", "TEXT", "OpenbareRuimteNaam"))
     obj.add_field(B_Field("huisnummer", "TEXT", "Huisnummer"))
     obj.add_field(B_Field("woonplaats", "TEXT", "WoonplaatsNaam"))
     obj.add_field(B_Field("postcode", "TEXT", "Postcode"))
-    obj.add_field(B_Field("landcode", "TEXT", "Landcode"))
+    obj.add_field(B_Field("landcode", "TEXT", "Landcode",
+                          from_attribute='Href'))
     obj.add_tags_to_process()
     return obj
 

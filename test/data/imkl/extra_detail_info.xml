@@ -21,7 +21,8 @@
                     <imkl:postcode>7334DP</imkl:postcode>
                 </imkl:Adres>
             </imkl:adres>
-            <imkl:extraInfoType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/ExtraDetailInfoTypeValue/aansluiting"/><imkl:bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf</imkl:bestandLocatie>
+            <imkl:extraInfoType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/ExtraDetailInfoTypeValue/aansluiting"/>
+			<imkl:bestandLocatie>bronnen/nbact1/nl.imkl-nbact1_18G007160.filename.pdf</imkl:bestandLocatie>
             <imkl:bestandIdentificator>nl.imkl-nbact1.filename</imkl:bestandIdentificator>
             <imkl:ligging>
                 <gml:Point gml:id="Point_39" srsName="urn:ogc:def:crs:EPSG::28992">
