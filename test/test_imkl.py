@@ -748,7 +748,7 @@ class BijlageTestCase(unittest.TestCase):
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Bijlage",
                                                        None)
-        self.imkl_obj = imkl.bijlage_v2()
+        self.imkl_obj = imkl.bijlage()
         self.imkl_obj.process(self.xml_element)
         xml_file.close()
 
@@ -756,7 +756,7 @@ class BijlageTestCase(unittest.TestCase):
         self.assertEqual(self.imkl_obj.field_names(),
                          ['klicnummer','id', 'registratiedatum', 'vervaldatum',
                           'bijlageType', 'bestandlocatie', 'bestandMediaType',
-                          'bestandIdentificator'])
+                          'bestandIdentificator','bestandsnaam'])
 
     def test_field_values(self):
         self.assertEqual(self.imkl_obj.field_values(),
@@ -765,7 +765,7 @@ class BijlageTestCase(unittest.TestCase):
                           'http://definities.geostandaarden.nl/imkl2015/id/\
 waarde/BijlageTypeValue/algemeen', 'bronnen/nbact2/nl.imkl-nbact2_18G007160.algemeen.pdf',
                           'http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF',
-                          'nl.imkl-nbact2.algemeen'])
+                          'nl.imkl-nbact2.algemeen', None])
 
 _suite_BijlageTestCase = unittest.TestLoader().loadTestsFromTestCase(BijlageTestCase)
 

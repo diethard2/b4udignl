@@ -5,10 +5,11 @@ qgisMinimumVersion=3.00
 qgisMaximumVersion=3.99
 description=View the result of a B4Udig request of the Netherlands to prevent damage
 about=When you want to dig mechanically In the Netherlands you are obliged to request information on the area where you want to dig. The information on the network you receive can be viewed in QGIS. Information includes vector (IMKL with GML) + raster (PNG) + letters and detaildrawings (PDF).
-version=2.2.0
+version=2.3.0
 author=Diethard Jansen
 email=diethard.jansen@gmail.com
 changelog:
+	2.3.0   Klic viewer now opens messages for imkl 2.0.0 and supports multilines
     2.2.0   Klic viewer now supports messages of V2.2
     2.1.2   Fixed problem with SVG path plugin setting introduced at 2.1.0.
     2.1.1   Update the gui, fixed translation, now it works for OSX

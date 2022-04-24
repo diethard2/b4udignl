@@ -770,6 +770,20 @@ class DocTestCaseV2_3(unittest.TestCase):
                           ('Rioolleiding', 241),('TechnischGebouw', 6),
                           ('Utiliteitsnet', 7),('UtilityLink', 1942)])
 
+##    def test_pixel_width_heigth(self):
+##        rectangle = self.doc.rectangle
+##        self.assertEqual((rectangle.pixelsWidth,rectangle.pixelsHeight),
+##                         (1960,2240))
+##
+##    def test_rectangle(self):
+##        rectangle = self.doc.rectangle
+##        self.assertEqual(repr(rectangle),
+##                         'Rectangle(Coord(154980.00, 387980.00), Coord(155120.00, 388140.00))')
+
+    def test_graafpolygoon(self):
+        self.assertEqual(self.doc.graafpolygoon,
+                         'Polygon((189717.0 352225.0, 189664.0 352327.0, 189591.0 352574.0, 189368.0 352502.0, 189375.0 352252.0, 189376.0 352169.0, 189425.0 352112.0, 189524.0 352102.0, 189717.0 352225.0))')
+
 _suite_wv_doc_2_3 = unittest.TestLoader().loadTestsFromTestCase(DocTestCaseV2_3)
 
 unit_test_suites = [_suite_wv_doc_1_5, _suite_wv_doc_2_1,

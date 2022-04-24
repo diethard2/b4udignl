@@ -187,15 +187,6 @@ def toezichthouder():
     obj.name = "Toezichthouder"
     return obj
 
-def bijlage():
-    a_bijlage = B_Object("Bijlage")
-    a_bijlage.add_field(B_Field("bestandsnaam", "TEXT", "Bestandsnaam"))
-    a_bijlage.add_field(B_Field("bijlageType", "TEXT", "BijlageType",
-                                from_attribute='Href'))
-    a_bijlage.add_field(B_Field("bestandLocatie", "TEXT", "BestandLocatie"))
-    a_bijlage.add_tags_to_process()
-    return a_bijlage
-
 def detailkaart():
     obj = bijlage()
     obj.name = "Detailkaart"
@@ -300,11 +291,20 @@ def bijlage_basis():
                           "BestandIdentificator"))
     return obj
 
-def bijlage_v2():
+def bijlage():
     obj = bijlage_basis()
+    obj.add_field(B_Field("bestandsnaam", "TEXT", "Bestandsnaam"))
     obj.name = "Bijlage"
     obj.add_tags_to_process()
     return obj
+##def bijlage():
+##    a_bijlage = B_Object("Bijlage")
+##    a_bijlage.add_field(B_Field("bestandsnaam", "TEXT", "Bestandsnaam"))
+##    a_bijlage.add_field(B_Field("bijlageType", "TEXT", "BijlageType",
+##                                from_attribute='Href'))
+##    a_bijlage.add_field(B_Field("bestandLocatie", "TEXT", "BestandLocatie"))
+##    a_bijlage.add_tags_to_process()
+##    return a_bijlage
 
 def eisVoorzorgsmaatregelBijlage():
     obj = bijlage_basis()

@@ -12,6 +12,11 @@ Use QGIS Python Plugin Installer for installation of this plugin.
 
 Release notes
 -------------
+**version 2.3.0** 24/04/2022
+* Klic message with multi lines were provided where only the first line was loaded and displayed. Now all lines delivered are loaded.
+* The KLIC message in the IMKL V2.0.0 format could not be loaded.
+* No documents were shown, in this first version many documents delived are not loaded correctly yet and can not be started from the KLIC viewer. More time was needed to repair this.
+
 **version 2.2.0** 04/03/2020
 * Solved problem of not loading klic message V2.2 [issue 12](https://github.com/diethard2/b4udignl/issues/12)
 * Loading a second klic message gave problems, so until solved allow only to open one message.

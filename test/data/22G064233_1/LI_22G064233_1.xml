@@ -1,2 +1,44 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Leveringsinformatie xmlns="http://www.kadaster.nl/schemas/klic/leveringsinformatie/v20180418" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2"><version>2.2</version><bijlagePerLevering><soortBijlage>achtergrondkaart</soortBijlage><bestandLocatie>bronnen/GB_22G064233.png</bestandLocatie><bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/><bestandIdentificator>GB_22G064233</bestandIdentificator></bijlagePerLevering><bijlagePerLevering><soortBijlage>leveringsbrief</soortBijlage><bestandLocatie>LI_22G064233_1.pdf</bestandLocatie><bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/><bestandIdentificator>LI_22G064233_1</bestandIdentificator></bijlagePerLevering><bijlagePerLevering><soortBijlage>gebiedsinformatieLevering</soortBijlage><bestandLocatie>GI_gebiedsinformatielevering_22G064233_1.xml</bestandLocatie><bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/XML"/><bestandIdentificator>GI_gebiedsinformatielevering_22G064233_1</bestandIdentificator></bijlagePerLevering><bijlagePerLevering><soortBijlage>gebiedsinformatieLevering</soortBijlage><bestandLocatie>GI_gebiedsinformatielevering_22G064233_1_V2.xml</bestandLocatie><bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/XML"/><bestandIdentificator>GI_gebiedsinformatielevering_22G064233_1_V2</bestandIdentificator></bijlagePerLevering><pngFormaat><omsluitendeRechthoek><gml:Envelope srsName="urn:ogc:def:crs:EPSG::28992" srsDimension="2"><gml:lowerCorner>105219.0 454709.0</gml:lowerCorner><gml:upperCorner>105342.0 455069.0</gml:upperCorner></gml:Envelope></omsluitendeRechthoek><pixelsBreed>1722</pixelsBreed><pixelsHoog>5040</pixelsHoog></pngFormaat><belanghebbende><bronhoudercode>KL1184</bronhoudercode><beheerdersinformatieVersie>IMKL1.2</beheerdersinformatieVersie><beheerdersinformatie><thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/water"/><eisVoorzorgmaatregel>false</eisVoorzorgmaatregel></beheerdersinformatie></belanghebbende>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ <Leveringsinformatie xmlns="http://www.kadaster.nl/schemas/klic/leveringsinformatie/v20180418" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
+ <version>2.2</version>
+ <bijlagePerLevering>
+  <soortBijlage>achtergrondkaart</soortBijlage>
+  <bestandLocatie>bronnen/GB_22G064233.png</bestandLocatie>
+  <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PNG"/>
+  <bestandIdentificator>GB_22G064233</bestandIdentificator>
+ </bijlagePerLevering>
+ <bijlagePerLevering>
+ <soortBijlage>leveringsbrief</soortBijlage>
+  <bestandLocatie>LI_22G064233_1.pdf</bestandLocatie>
+  <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/PDF"/>
+  <bestandIdentificator>LI_22G064233_1</bestandIdentificator>
+ </bijlagePerLevering>
+ <bijlagePerLevering>
+  <soortBijlage>gebiedsinformatieLevering</soortBijlage>
+  <bestandLocatie>GI_gebiedsinformatielevering_22G064233_1.xml</bestandLocatie>
+  <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/XML"/>
+  <bestandIdentificator>GI_gebiedsinformatielevering_22G064233_1</bestandIdentificator>
+ </bijlagePerLevering>
+ <bijlagePerLevering>
+  <soortBijlage>gebiedsinformatieLevering</soortBijlage>
+  <bestandLocatie>GI_gebiedsinformatielevering_22G064233_1_V2.xml</bestandLocatie>
+  <bestandMediaType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/BestandMediaTypeValue/XML"/>
+  <bestandIdentificator>GI_gebiedsinformatielevering_22G064233_1_V2</bestandIdentificator>
+ </bijlagePerLevering>
+ <pngFormaat>
+  <omsluitendeRechthoek>
+   <gml:Envelope srsName="urn:ogc:def:crs:EPSG::28992" srsDimension="2">
+   <gml:lowerCorner>105219.0 454709.0</gml:lowerCorner>
+   <gml:upperCorner>105342.0 455069.0</gml:upperCorner></gml:Envelope>
+  </omsluitendeRechthoek>
+  <pixelsBreed>1722</pixelsBreed>
+  <pixelsHoog>5040</pixelsHoog>
+ </pngFormaat>
+ <belanghebbende>
+  <bronhoudercode>KL1184</bronhoudercode>
+  <beheerdersinformatieVersie>IMKL1.2</beheerdersinformatieVersie><beheerdersinformatie>
+   <thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/water"/>
+   <eisVoorzorgmaatregel>false</eisVoorzorgmaatregel>
+  </beheerdersinformatie>
+</belanghebbende>
 </Leveringsinformatie>

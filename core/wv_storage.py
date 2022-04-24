@@ -408,13 +408,19 @@ class Storage2(Storage):
                     self._add_feature_to_layer(imkl_object)
         super(Storage2, self)._fill_layers()
         layers = []
-        bijlagen = self._get_bijlagen_from_leveringsinfo()
+        if imkl.LEVERINGSINFORMATIE in self.imkls:
+            bijlagen = self._get_bijlagen_from_leveringsinfo()
+        else:
+            bijlagen = self._get_bijlagen_from_bijlage()
         if bijlagen is None:
             return
         for bijlage in bijlagen:
+            if bijlage.field("soort_bijlage") is not None:
+                soort = bijlage.field("soort_bijlage").value
+            else:
+                soort = bijlage.field("bijlageType").value
             bijlage_type = self._get_type_from_bijlage(bijlage)
-            soort_bijlage = bijlage.field("soort_bijlage")
-            if soort_bijlage is not None and soort_bijlage == 'detailkaart':
+            if soort is not None and soort == 'detailkaart':
                 continue
             if bijlage_type == 'PNG':
                 location = bijlage.field("bestandlocatie").value
@@ -424,8 +430,11 @@ class Storage2(Storage):
                     layers.append(layer)
         self._extend_layers(layers)
 
-    def _fill_pdf_files(self):        
-        bijlagen = self._get_bijlagen_from_leveringsinfo()
+    def _fill_pdf_files(self):
+        if imkl.LEVERINGSINFORMATIE in self.imkls:
+            bijlagen = self._get_bijlagen_from_leveringsinfo()
+        else:
+            bijlagen = self._get_bijlagen_from_bijlage()
         if bijlagen is None:
             return
         for bijlage in bijlagen:
@@ -442,9 +451,19 @@ class Storage2(Storage):
             bijlagen = leveringsinfo.field("bijlagenPerLevering").value
         return bijlagen
             
-    def _get_type_from_bijlage(self, bijlage):        
-        bijlage_type = bijlage.field("bestandstype").value
-        bijlage_type = bijlage_type.split('/')[-1]
+    def _get_bijlagen_from_bijlage(self):
+        bijlagen = None
+        if imkl.BIJLAGE in self.imkls:
+            bijlagen = self.imkls[imkl.BIJLAGE]
+        return bijlagen
+            
+    def _get_type_from_bijlage(self, bijlage):
+        bijlage_type = None
+        if imkl.LEVERINGSINFORMATIE in self.imkls and bijlage.field("bestandstype") is not None:
+            bijlage_type = bijlage.field("bestandstype").value
+            bijlage_type = bijlage_type.split('/')[-1]
+        else:
+            bijlage_type = bijlage.field("bestandMediaType").value
         return bijlage_type
 
     def _process_belanghebbende(self, belanghebbende):
@@ -542,7 +561,10 @@ class Storage2(Storage):
         theme.pdf_docs.append(pdfFile)
 
     def _create_doc_from_imkl(self, imkl_object):
-        soort = imkl_object.field("soort_bijlage").value
+        if imkl_object.field("soort_bijlage") is not None:
+            soort = imkl_object.field("soort_bijlage").value
+        else:
+            soort = imkl_object.field("bijlageType").value
         file_location = imkl_object.field("bestandlocatie").value
         file_name = file_location.split('/')[-1]
         pdfFile = PdfFile(file_name)
