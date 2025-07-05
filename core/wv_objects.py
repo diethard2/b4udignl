@@ -222,18 +222,6 @@ class Layer(PY3__cmp__):
                 self.__featureIds = feature_ids
             self.__visible = True
 
-    def pickle(self):
-        """
-        returns myself as an object that can be written to textfile
-        using the pickle module.
-        A copy is returned with no ties to quantum gis or owner (Doc)
-        """
-        l_layer = Layer(None, self.__file)
-        l_layer.__layerId = self.__layerId
-        l_layer.__visible = self.__visible
-        l_layer.__layerName = self.__layerName
-        return l_layer
-
     def addVisibility(self, theme_name):
         if theme_name not in self.themes_visible:
             self.themes_visible[theme_name] = 2
@@ -564,28 +552,6 @@ class Theme(object):
         self.__name = name
 
     name = property(fget=_name, fset=_setName)
-
-
-    def pickle(self, l_pickled_layers):
-        """
-        returns myself as an object that can be written to textfile
-        using the pickle module.
-        A copy is returned with no ties to quantum gis or owner (Doc)
-        """
-        l_theme = Theme(None, self.name)
-        l_theme.supervisionNecessary = self.supervisionNecessary
-        l_theme.supervisors = self.supervisors[:] # make a copy of list
-        # currently layers are referenced objects used in doc.layers and
-        # theme.layers, so they are used in two places. We do not want to
-        # pass the same layer objects twice.. this could otherwise end up in
-        # really hard to solve bugs in the future..
-        for i_layer in self.layers:
-            for i_pickled_layer in l_pickled_layers:
-                if  i_pickled_layer.layerId == i_layer.layerId:
-                    l_theme.layers.append(i_pickled_layer)
-                    break
-        l_theme.__visible = self.__visible
-        return l_theme
 
     def checkVisible(self, p_actual=False):
         """

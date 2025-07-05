@@ -58,8 +58,6 @@ class B4UdigNL(object):
 
     def unload(self):
         # Remove the plugin menu item and icon
-        if self.dialog != None:
-            self.dialog.storeDialogPosition()
         self.iface.removePluginMenu(QApplication.translate("B4UdigNL","&KLIC Viewer"),self.action)
         self.iface.removeToolBarIcon(self.action)
 
@@ -71,7 +69,5 @@ class B4UdigNL(object):
 
         # show the dialog
         l_dialog = self.dialog
-        # move the dialog to where it was the last time it was used!
-        #l_dialog.restoreDialogPosition()
         l_dialog.show()
         result = l_dialog.exec_()

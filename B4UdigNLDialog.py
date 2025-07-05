@@ -34,7 +34,7 @@ from .ui_B4UdigNL import Ui_B4UdigNL
 from ifaceqgis import Iface
 import os, gc
 from .core import wv
-import unzip, zipfile, pickle
+import unzip, zipfile
 
 # create the dialog
 class B4UdigNLDialog(QDialog):
@@ -79,7 +79,6 @@ class B4UdigNLDialog(QDialog):
         self._themes2checkboxes()
         self.updateUi()
         self.makeConnections()
-        self.restoreMessages()
 
     def doc(self):
         return self.__wv
@@ -94,11 +93,7 @@ class B4UdigNLDialog(QDialog):
     def _userSettings(self):
         """return dictionary with user settings"""
         l_settings = {"b4udignl/dir_preferred": ".",
-                      "b4udignl/dir_last_used": ".",
-                      "b4udignl/last_xpos_dialog": "0",
-                      "b4udignl/last_ypos_dialog": "0",
-                      "b4udignl/last_width_dialog": "0",
-                      "b4udignl/last_height_dialog": "0"}
+                      "b4udignl/dir_last_used": "."}
         s = QSettings()
         for i_key, i_value in l_settings.items():
             # try to read user settings from system configuration
@@ -172,7 +167,6 @@ class B4UdigNLDialog(QDialog):
         self.ui.dimensioningCheckBox.stateChanged.connect(self._dimensioningCheckBoxStateChanged)
         self.ui.locationCheckBox.stateChanged.connect(self._locationCheckBoxStateChanged)
         self.ui.topoCheckBox.stateChanged.connect(self._topoCheckBoxStateChanged)
-        self.__iface.projectRead.connect(self.restoreMessages)
         self.__iface.newProjectCreated.connect(self._removeMessages)
 
     def _checkBoxDataStateChanged(self, p_state):
@@ -446,11 +440,6 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         """refreshes the state of all themes"""
         self._setStateOfVisibilitiesThemes(True)
 
-    @pyqtSlot()
-    def on_saveButton_clicked(self):
-        """save messages & state to project file"""
-        self.saveMessages()
-
     def _dirNameInArchive(self, p_fileName):
         """
         l_filename = full path of zipfile
@@ -711,114 +700,6 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         """
         utils.showPluginHelp()
 
-    def storeDialogPosition(self):
-        """
-        Store the current position of the dialog in a usersetting
-        The next time the dialog is activated again the dialog
-        should be there in the same place!
-        """
-        l_pos = self.pos()
-        l_x = str(l_pos.x())
-        l_y = str(l_pos.y())
-        l_width = str(self.width())
-        l_height = str(self.height())
-        QSettings().setValue("b4udignl/last_xpos_dialog", l_x)
-        QSettings().setValue("b4udignl/last_ypos_dialog", l_y)
-        QSettings().setValue("b4udignl/last_width_dialog", l_width)
-        QSettings().setValue("b4udignl/last_height_dialog", l_height)
-
-    def restoreDialogPosition(self):
-        """
-        restore the current position of the dialog to the same
-        position saved in the usersettings the last time
-        the dialog was deactivated!
-        """
-        l_x = self.__settings["b4udignl/last_xpos_dialog"]
-        l_y = self.__settings["b4udignl/last_ypos_dialog"]
-        l_width = self.__settings["b4udignl/last_width_dialog"]
-        l_height = self.__settings["b4udignl/last_height_dialog"]
-        if l_x != "0" and l_y != "0":
-            self.move(int(l_x), int(l_y))
-            self.resize(int(l_width), int(l_height))
-
-    def saveMessages(self):
-        """
-        Saves each KLIC message using pickle in textfile in a folder KLIC
-        next to Quantum GIS projectfile. Save also reference to this
-        pickled object in project file itself.
-        """
-        l_project = QgsProject.instance()
-        l_project_file = str(l_project.fileName())
-        l_title = self.tr("Opslaan in project")
-        if l_project_file == "":
-            l_msg = self.tr("Nog niet opgeslagen als project!\nKies Bestand - Project opslaan...")
-            QMessageBox.warning(self, l_title, l_msg)
-        else:
-            # save the project setting 'b4udignl' 'wv_docs_file' in project.
-            # first it is added to the project object
-            l_wvs_file = l_project_file.replace(".qgs", "_wv_docs.txt")
-            l_wvs_file_name = os.path.basename(l_wvs_file)
-            # write project setting
-            l_project.writeEntry('b4udignl', 'wv_docs_file', l_wvs_file_name)
-            l_file = open(l_wvs_file, 'w')
-            l_wv_docs = self.docsToPickle()
-            # use pickle to write a textfile holding object instance
-            # that can be recreated.
-            pickle.dump(l_wv_docs, l_file)
-            # save the project immediately, this should be done otherwise
-            # the project setting 'wv_docs_file' could be missing when
-            # user decides upon leaving the project to Discard the changes.
-            # Adding the project setting was considered a project change.
-            l_action = self.__iface.actionSaveProject()
-            # activate(0) triggers the action save project!
-            l_action.activate(0)
-            # inform the user that changes have been included in project.
-            l_msg = self.tr("KLIC berichten opgeslagen in project")
-            QMessageBox.warning(self, l_title, l_msg)
-
-    def docsToPickle(self):
-        """
-        return list of objects which easily can be written to textfile
-        using pickle, it should be completely detached from QGIS.
-        """
-        l_wv_docs =[]
-        for i_wv_doc in self.__wvs:
-            # for each KLIC document use pickle(), this method
-            # gives back an object that can be saved to a textfile
-            # using pickle!
-            l_wv_docs.append(i_wv_doc.pickle())
-        return l_wv_docs
-
-    def restoreMessages(self):
-        """
-        Restores each KLIC message saved using pickle from textfile in a folder KLIC
-        next to Quantum GIS projectfile.
-        """
-        # now get from projectfile pickled objectstring from setting 'wvs_docs_file'
-        l_project = QgsProject.instance()
-        l_wvsFileName = str(l_project.readEntry('b4udignl', 'wv_docs_file')[0])
-        #QMessageBox.warning(self, "opgehaalde settings", l_setting_wvs)
-
-        if l_wvsFileName != "":
-            l_dir = os.path.dirname(str(l_project.fileName()))
-            l_fileName = os.path.join(l_dir, l_wvsFileName)
-            l_file = open(l_fileName)
-            # now use pickle to recreate object from file
-            l_wvs = pickle.load(l_file)
-            # connect qgis properly back to KLIC messages.
-            self.__wvs = l_wvs
-            for i_wv in self.__wvs:
-                i_wv.iface = Iface(self.__iface)
-                i_wv.attachLayers()
-                i_wv.attachThemes()
-
-            if len(l_wvs)!= 0:
-                self.__wv = l_wvs[0]
-                self._populateMsgList()
-                self._populateTree()
-                self._setStateOfVisibilitiesThemes(True)
-                self._setVisibilities()
-                self._setUnitToMeters()
 
     def _removeMessages(self):
         """
