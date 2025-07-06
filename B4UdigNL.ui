@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>324</width>
-    <height>432</height>
+    <height>475</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>660</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="focusPolicy">
    <enum>Qt::StrongFocus</enum>
@@ -38,14 +44,68 @@
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <widget class="QGroupBox" name="messageBox">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>200</height>
+          </size>
+         </property>
          <property name="title">
           <string>KLIC Berichten</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_21">
+            <item>
+             <widget class="QLabel" name="labelResultFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Resultaatbestand</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QgsFileWidget" name="resultFileWidget">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>600</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::StrongFocus</enum>
+              </property>
+              <property name="dialogTitle">
+               <string>Gpkg Resultaatbestand</string>
+              </property>
+              <property name="filter">
+               <string>*.gpkg</string>
+              </property>
+              <property name="storageMode">
+               <enum>QgsFileWidget::SaveFile</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="openMsgButton">
+              <property name="focusPolicy">
+               <enum>Qt::StrongFocus</enum>
+              </property>
               <property name="text">
                <string>&amp;Open Folder...</string>
               </property>
@@ -73,7 +133,7 @@
             </item>
            </layout>
           </item>
-          <item row="1" column="0">
+          <item>
            <widget class="QListWidget" name="msgListWidget">
             <property name="minimumSize">
              <size>
@@ -83,13 +143,13 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>600</width>
               <height>60</height>
              </size>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QPushButton" name="gotoButton">
@@ -152,8 +212,8 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
-              <height>250</height>
+              <width>600</width>
+              <height>200</height>
              </size>
             </property>
             <property name="selectionMode">
@@ -198,6 +258,9 @@
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::MinimumExpanding</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>17</width>
@@ -208,13 +271,6 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QPushButton" name="saveButton">
-           <property name="text">
-            <string>Opslaan in Project</string>
-           </property>
-          </widget>
-         </item>
          <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
@@ -1056,6 +1112,13 @@ color: rgb(111, 92, 16);</string>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsFileWidget</class>
+   <extends>QWidget</extends>
+   <header>qgsfilewidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
