@@ -303,7 +303,6 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             ui.bestScaleButton.setEnabled(False)
             ui.removeMsgButton.setEnabled(False)
             ui.openDocButton.setEnabled(False)
-            ui.saveButton.setEnabled(False)
             ui.refreshButton.setEnabled(False)
             ui.rasterCheckBox.setEnabled(False)
             ui.vectorCheckBox.setEnabled(False)
@@ -316,8 +315,6 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             ui.bestScaleButton.setEnabled(True)
             ui.removeMsgButton.setEnabled(True)
             ui.openDocButton.setEnabled(True)
-            # first release without save button enabled!
-##            ui.saveButton.setEnabled(True)
             ui.refreshButton.setEnabled(True)
             # storage_version indicates if an imkl v1 or v2 is processed
             # imkl v1 does not have vectors, so do not enable the buttons
