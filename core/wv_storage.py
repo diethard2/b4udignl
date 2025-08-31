@@ -27,8 +27,11 @@ from builtins import object
 import os
 from . import imkl
 from .wv_objects import Rectangle, Company, Person, Theme, PdfFile, Layer
-from qgis.PyQt.QtCore import QVariant
-from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsGeometry
+from qgis.PyQt.QtCore import QMetaType
+from qgis.core import (QgsVectorLayer, QgsProject, QgsField, QgsFields,
+                       QgsFeature, QgsGeometry, QgsVectorFileWriter,
+                       QgsWkbTypes, QgsCoordinateReferenceSystem)
+from qgis.PyQt.QtWidgets import QMessageBox
 
 
 class Storage(object):
@@ -166,6 +169,7 @@ class Storage(object):
         self._fill_rectangle()
         self._fill_graafpolygoon()
         self._fill_netowners()
+        self._create_layer_tabels()
         self._fill_layers()
         self._fill_pdf_files()
 
@@ -179,7 +183,8 @@ class Storage(object):
         pass
     def _fill_netowners(self):
         pass
-    
+    def _create_layer_tables(self):
+        pass
     def _fill_layers(self):
         # find pgn files in themes
         layers = []
@@ -396,16 +401,24 @@ class Storage2(Storage):
             self.netOwners_on_code[code] = netOwner
         self._process_bijlagen_netbeheerders()
 
+    def _create_layer_tabels(self):
+        ## first fill layers from IMKL definition
+        ## then create empty tables in gpkg for all layers
+        for layer_name, imkl_set in list(self.imkls.items()):
+            imkl_object = imkl_set[0]
+            if imkl_object.name in ('UtilityLink','boundedBy',
+                                    'LeveringsInformatie'):
+                continue
+            if imkl_object.geometry_field() is not None:
+                if imkl_object.name not in self.layers.keys():
+                    self._create_layer_from_imkl(imkl_object)
+                   
+
     def _fill_layers(self):
         ## all imkl objects that have a field geometry
         ## should be added to netowner..
-        for layer_name, imkl_set in list(self.imkls.items()):
-            for imkl_object in imkl_set:
-                if imkl_object.name in ('UtilityLink','boundedBy',
-                                        'LeveringsInformatie'):
-                    continue
-                if imkl_object.geometry_field() is not None:
-                    self._add_feature_to_layer(imkl_object)
+        self._add_features_from_imkl()
+                        
         super(Storage2, self)._fill_layers()
         layers = []
         if imkl.LEVERINGSINFORMATIE in self.imkls:
@@ -572,15 +585,110 @@ class Storage2(Storage):
         pdfFile.filePath = os.path.join(self.path, file_location)
         return pdfFile
                     
+    def _create_layer_from_imkl(self, imkl_object):
+        ## Create the layers where we will store the information
+        ## from imkl
+        ##
+        ## When a geopackage result file is given, create empty
+        ## layers in geopackage (and connect later)
+        ## When no result file is given, create a memory layer
+        ## and connect immediately.
+        layer = Layer(self)
+        name = imkl_object.name
+        layer.layerName = name
+        vector_type = imkl_object.geometry_field().type
+        layer.vectorType = vector_type
+        theme_field = imkl_object.field("thema")
+        
+        if theme_field is not None:
+            layer.addVisibility(theme_field.value)
+            
+        self.layers[name] = layer
+
+        result_file = self.parent.result_file
+        
+        field_types = {"TEXT": QMetaType.Type.QString,
+                       "INTEGER": QMetaType.Type.Int,
+                       "REAL": QMetaType.Type.Double}
+        fields = imkl_object.attribute_fields()
+
+        if result_file is None or len(result_file) == 0:
+            uri = vector_type + '?crs=epsg:28992'
+            layer.layer = QgsVectorLayer(uri, name, "memory")
+            # now insert the fields..
+            for field in fields:
+                field = QgsField(field.name, field_types[field.type])
+                layer.fields.append(field)
+        else:
+            # create the table in geopackage
+            schema = QgsFields()
+            for field in fields:
+                field = QgsField(field.name, field_types[field.type])
+                schema.append(field)
+                
+            geom_types = {"POLYGON": QgsWkbTypes.Polygon,
+                          "MULTILINESTRING": QgsWkbTypes.MultiLineString,
+                          "LINESTRING": QgsWkbTypes.LineString,
+                          "POINT": QgsWkbTypes.Point}
+            geom_type = geom_types[vector_type]
+            
+            crs = QgsCoordinateReferenceSystem('epsg:28992')
+            context = QgsProject.instance().transformContext()
+
+            options = QgsVectorFileWriter.SaveVectorOptions()
+            options.EditionCapability = QgsVectorFileWriter.CanAddNewLayer
+            options.layerName = name
+            
+            if os.path.exists(result_file):
+                options.actionOnExistingFile = QgsVectorFileWriter.CreateOrOverwriteLayer
+            else:
+                options.actionOnExistingFile = QgsVectorFileWriter.CreateOrOverwriteFile
+                
+            _writer = QgsVectorFileWriter.create(fileName=result_file, fields=schema,
+                                                 geometryType=geom_type, srs=crs,
+                                                 transformContext=context, options=options)        
+            del _writer
+            
+    def _add_features_from_imkl(self):
+        ## Fill the layers with imformation gathered from xml
+        result_file = self.parent.result_file
+
+        if result_file:
+            for imkl_name, imkl_set in list(self.imkls.items()):
+                imkl_object = imkl_set[0]
+                if self.layers.get(imkl_object.name) is None:
+                    continue
+                self._connect_layer_to_gpkg(imkl_object)
+
+        for imkl_name, imkl_set in list(self.imkls.items()):
+            i=0; layer = None
+            for imkl_object in imkl_set:
+                if i == 0:
+                    layer_name = imkl_object.name
+                    layer = self.layers.get(layer_name)
+                    if layer is None:
+                        continue
+                self._add_feature_to_layer(imkl_object)
+                i += 1            
+
+    def _connect_layer_to_gpkg(self, imkl_object):
+        ## Layers are created in geopackage, now make the connection
+        result_file = self.parent.result_file
+        layer_name = imkl_object.name
+        layer = self.layers.get(layer_name)
+        lyr = QgsVectorLayer(result_file, layer_name, 'ogr')
+        layer.layer = lyr        
+
     def _add_feature_to_layer(self, imkl_object):
-        if imkl_object.name not in self.layers.keys():
-            self._create_layer_from_imkl(imkl_object)
-        layer = self.layers[imkl_object.name]
+        ## from imkl_object, create a feature and add to layer
+        name = imkl_object.name
+        layer = self.layers.get(name)
+
+        if layer is None:
+            return
+
         feature = QgsFeature()
         fields = imkl_object.attribute_fields()
-        theme_field = imkl_object.field("thema")
-        if theme_field is not None:
-            layer.addVisibility(theme_field.value)        
         geom_field = imkl_object.geometry_field()
         if geom_field.value is not None:
             try:
@@ -589,25 +697,3 @@ class Storage2(Storage):
                 feature.setAttributes(values)
                 layer.features.append(feature)
             except TypeError: pass
-
-    def _create_layer_from_imkl(self, imkl_object):
-        """create a layer from imkl and add it to self.layers"""
-        layer = Layer(self)
-        name = imkl_object.name
-        layer.layerName = name
-        vector_type = imkl_object.geometry_field().type
-        layer.vectorType = vector_type
-        theme_field = imkl_object.field("thema")
-        if theme_field is not None:
-            layer.addVisibility(theme_field.value)
-        uri = layer.qgisVectorType() + '?crs=epsg:28992'
-        layer.layer = QgsVectorLayer(uri, name, "memory")
-        # now insert the fields..
-        field_types = {"TEXT": QVariant.String,
-                       "INTEGER": QVariant.Int,
-                       "REAL": QVariant.Double}
-        fields = imkl_object.attribute_fields()
-        for field in fields:
-            field = QgsField(field.name, field_types[field.type])
-            layer.fields.append(field)
-        self.layers[name] = layer

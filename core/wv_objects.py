@@ -212,7 +212,7 @@ class Layer(PY3__cmp__):
             if layer is None:
                 layer = iface.addLayer(self)
             
-        if layer is not None:
+        if layer is not None and self.is_vector():
             self.layer = layer
             self.layerName = layer.name()
             self.layerId = layer.id()

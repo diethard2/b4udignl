@@ -48,7 +48,7 @@ from qgis.PyQt.QtWidgets import QMessageBox
 
 class Doc(object):
     
-    def __init__(self, path_message):
+    def __init__(self, path_message, result_file=""):
         """path_message = full path to directory which holds result of WION message.
         Creates instance of Doc which holds all information of WION result.
         Creates whole structure using XML file in given directory.
@@ -56,9 +56,10 @@ class Doc(object):
         Interface to GIS is delegated to attribute iface.
         """
 
-        self._tag2function = imkl.tag2function()        
+        self._tag2function = imkl.tag2function()
         # holds folder used to create whole structure
         self.__path = os.path.realpath(path_message)
+        self.__result_file = result_file
         # holds interface to gis.   
         self.__iface = None
         self._init_imkls()
@@ -127,6 +128,12 @@ class Doc(object):
         return self.__path
 
     path = property(fget=_path)
+        
+    def _result_file(self):
+        """return privat attribute result_file"""
+        return self.__result_file
+
+    result_file = property(fget=_result_file)
 
     def _themes(self):
         """return private attribute themes from storage"""

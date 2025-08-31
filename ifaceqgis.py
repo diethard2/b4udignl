@@ -113,9 +113,10 @@ class Iface(object):
         """add features to given layer"""
         features = []
         if wvLayer.is_vector():
-            a_layer = wvLayer.layer        
-            provider = a_layer.dataProvider()
-            isAdded, features = provider.addFeatures(wvLayer.features)
+            a_layer = wvLayer.layer
+            with core.edit(a_layer):
+                provider = a_layer.dataProvider()
+                isAdded, features = provider.addFeatures(wvLayer.features)
             a_layer.updateExtents()
         return features
 

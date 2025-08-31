@@ -68,6 +68,7 @@ class B4UdigNLDialog(QDialog):
         QDialog.__init__(self)
         self.__iface = iface
 ##        self.__legend = iface.legendInterface()
+        self.__result_file = None
         self.__dir = None
         self.__wv = None
         self.__wvs = []
@@ -306,6 +307,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             ui.refreshButton.setEnabled(False)
             ui.rasterCheckBox.setEnabled(False)
             ui.vectorCheckBox.setEnabled(False)
+            ui.resultFileWidget.setEnabled(True)
             ui.openMsgButton.setEnabled(True)
             ui.openArchiveButton.setEnabled(True)
         else:
@@ -374,6 +376,13 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
                     self._displayThemesVisibilyMsg(theme.name)
                     state = 1
                 checkbox.setCheckState(state)
+
+    def on_resultFileWidget_fileChanged(self):
+        l_path = self.ui.resultFileWidget.filePath()
+        self.__result_file = l_path
+        title = u"Geopackage Selected"
+        msg = "Geselecteerde geopackage is de volgende:\n%s" % l_path
+        QMessageBox.information(self, title, msg)
 
     @pyqtSlot()
     def on_openMsgButton_clicked(self):
@@ -569,10 +578,10 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         Returns object of type Doc holding all information
         read from xml found in given path.
         """
-        #self._displayFolderToProcess()        
+        self._displayFolderToProcess()        
         doc = None
         try:
-            doc = wv.Doc(self.__dir)
+            doc = wv.Doc(self.__dir, self.__result_file)
         except IOError:
             self._displayWrongMsg()
             return None
