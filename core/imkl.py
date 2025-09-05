@@ -21,7 +21,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-from __future__ import absolute_import
+#from __future__ import absolute_import
 from . import gml
 from .basis import B_Object, B_Field
 from .xml_utils import B_XmlProcessor, clean_tag

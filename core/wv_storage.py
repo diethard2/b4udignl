@@ -22,7 +22,7 @@ doc attributes in a different way.
 
 Author: Diethard Jansen, 15-9-2018
 """
-from __future__ import absolute_import
+# from __future__ import absolute_import
 from builtins import object
 import os
 from . import imkl

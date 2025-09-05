@@ -18,7 +18,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-from __future__ import absolute_import
+#from __future__ import absolute_import
 from .xml_utils import *
 
 def wkt_coords_from_gml(gml_coords):
