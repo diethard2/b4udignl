@@ -35,8 +35,8 @@ a coordinate systems, measuring and the possibility to load design drawings.
 Author: Diethard Jansen, 14-3-2010
 """
 
-from __future__ import print_function
-from __future__ import absolute_import
+# from __future__ import print_function
+# from __future__ import absolute_import
 from builtins import object
 import os
 import xml.etree.ElementTree as ET

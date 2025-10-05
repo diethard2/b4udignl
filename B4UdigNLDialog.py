@@ -23,7 +23,7 @@ email                : diethard.jansen at gmail.com
  and remove last line:
  from qgscolorbutton import QgsColorButton
 """
-from __future__ import absolute_import
+# from __future__ import absolute_import
 
 from builtins import str
 from qgis.PyQt.QtCore import QSettings, pyqtSlot
