@@ -15,14 +15,17 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-"""
-import sys, os
-path_core = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(path_core)
 
-import unittest
+Usage:
+Start in terminal Python3 from product folder b4udignl (above folder)
+Start this unit test with
+>>> exec(open('test/test_wv.py').read())
+"""
+
+import unittest, os
 from core.wv import Doc
 from core import imkl
+from qgis.core import QgsApplication
 
 class DocTestCaseV1_5(unittest.TestCase):
     """
@@ -34,7 +37,7 @@ class DocTestCaseV1_5(unittest.TestCase):
         For each test create a woonplaats read from xml file woonplaats.xml
         """
         # read the file
-        klic_msg_dir = "data/14G166926_1"
+        klic_msg_dir = "test/data/14G166926_1"
         self.doc = Doc(klic_msg_dir)
         self.maxDiff = None
 
@@ -257,10 +260,15 @@ class DocTestCaseV2_1(unittest.TestCase):
         """
         For each test create a woonplaats read from xml file woonplaats.xml
         """
+        # Initialize QGIS Application
+        qgs = QgsApplication([], False)
+        QgsApplication.setPrefixPath("usr/bin/qgis.bin", True)
+        QgsApplication.initQgis()
+
         # read the file
-        klic_msg_dir = "../test/data/18G007160_1"
-        subdirs = ("../test/data/18G007160_1/bronnen/KN1100",
-                   "../test/data/18G007160_1/bronnen/nbact1")
+        klic_msg_dir = "test/data/18G007160_1"
+        subdirs = ("test/data/18G007160_1/bronnen/KN1100",
+                   "test/data/18G007160_1/bronnen/nbact1")
         for a_dir in subdirs:
             if not os.path.exists(a_dir):
                 os.makedirs(a_dir)
@@ -663,7 +671,7 @@ class DocTestCaseV2_2(unittest.TestCase):
         For each test create a klic document from given xml
         """
         # read the file
-        klic_msg_dir = "../test/data/22G064233_1"
+        klic_msg_dir = "test/data/22G064233_1"
         self.doc = Doc(klic_msg_dir)
         self.maxDiff = None
 
@@ -726,7 +734,7 @@ class DocTestCaseV2_3(unittest.TestCase):
         For each test create a klic document from given xml
         """
         # read the file
-        klic_msg_dir = "../test/data/21C006906_1"
+        klic_msg_dir = "test/data/21C006906_1"
         self.doc = Doc(klic_msg_dir)
         self.maxDiff = None
 

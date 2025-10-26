@@ -15,13 +15,15 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
+Usage:
+Start in terminal Python3 from product folder b4udignl (above folder)
+Start this unit test with
+>>> exec(open('test/test_basis.py').read())
 """
-import sys, os
-path_core = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(path_core)
 
 import unittest
-from core import xml_utils, basis, gml
+from core import basis, gml
 import xml.etree.ElementTree as ET
 
 class B_FieldRegularTestCase(unittest.TestCase):
@@ -157,15 +159,11 @@ class B_ObjectTestCase(unittest.TestCase):
         # include also how to process each tag found for object..
         # after creation.. (i.e. using method add_tags_to_process())
         klic_doc.add_tags_to_process()
-##        print woonplaats.tag2field
         # to call from reader class (for each xml tag for this object
         # encountered.
-        xml_file = open("data/basis/klic_old.xml")
+        xml_file = open("test/data/basis/klic_old.xml")
         root = ET.fromstring(xml_file.read())
         xml_elem = root
-##        xml_elem = xml_utils.find_xml_with_tag(root,"Leveringsinformatie",
-##                                               None)
-##        print(xml_woonplaats)
         klic_doc.process(xml_elem)
         self.klic_doc = klic_doc
         xml_file.close()

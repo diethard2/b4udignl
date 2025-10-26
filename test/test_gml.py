@@ -15,10 +15,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
+Usage:
+Start in terminal Python3 from product folder b4udignl (above folder)
+Start this unit test with
+>>> exec(open('test/test_gml.py').read())
 """
-import sys, os
-path_core = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(path_core)
 
 import unittest
 from core import gml, xml_utils
@@ -31,7 +33,7 @@ class PointTestCase(unittest.TestCase):
         unit test to test gml.Point
         """
         # read the file
-        xml_file = open("data/gml/gml_geometries.xml")
+        xml_file = open("test/data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Point", None)
         self.point = gml.Point()
@@ -58,7 +60,7 @@ class LineStringTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("data/gml/gml_geometries.xml")
+        xml_file = open("test/data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "LineString",
                                                         None)
@@ -86,7 +88,7 @@ class CurveTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("data/gml/gml_geometries.xml")
+        xml_file = open("test/data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Curve",
                                                         None)
@@ -117,7 +119,7 @@ class EnvelopeTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("data/gml/gml_geometries.xml")
+        xml_file = open("test/data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_geometry = xml_utils.find_xml_with_tag(root, "Envelope", None)
         self.envelope = gml.Envelope()
@@ -150,7 +152,7 @@ class PolygonTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("data/gml/gml_geometries.xml")
+        xml_file = open("test/data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_geometry = xml_utils.find_xml_with_tag(root, "Polygon", None)
         self.polygon = gml.Polygon()
@@ -186,7 +188,7 @@ class MultiPolygonTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("data/gml/gml_geometries.xml")
+        xml_file = open("test/data/gml/gml_geometries.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_geometry = xml_utils.find_xml_with_tag(root, "MultiSurface", None)
         self.multipolygon = gml.MultiPolygon()
@@ -224,7 +226,7 @@ class Polygon3DTestCase(unittest.TestCase):
         The geometry actually consists of an gml polygon element which includes
         an outer and inner ring.
         """
-        xml_file = open("data/gml/pand.xml")
+        xml_file = open("test/data/gml/pand.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_geometry = xml_utils.find_xml_with_tag(root, "PandGeometrie", None)
         self.polygon = gml.Polygon()

@@ -1,11 +1,13 @@
-## to run this text please also download, unzip and place contents in
-## directory test\data\18G007160_1
+## to run this test
+## Start in terminal Python3 from product folder b4udignl (above folder)
+## Start this unit test with
+## >>> exec(open('test/test_all.py').read())
 
 import unittest
-import test_basis
-import test_gml
-import test_imkl
-import test_wv
+from test import test_gml
+from test import test_basis
+from test import test_imkl
+from test import test_wv
 
 def main():
     unit_test_suites = test_gml.unit_test_suites

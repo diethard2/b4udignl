@@ -15,13 +15,15 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
+Usage:
+Start in terminal Python3 from product folder b4udignl (above folder)
+Start this unit test with
+>>> exec(open('test/test_imkl.py').read())
 """
-import sys, os
-path_core = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(path_core)
 
 import unittest
-from core import imkl, gml, xml_utils
+from core import imkl, xml_utils
 import xml.etree.ElementTree as ET
 
 class LeveringsInformatieTestCaseV1_5(unittest.TestCase):
@@ -32,7 +34,7 @@ class LeveringsInformatieTestCaseV1_5(unittest.TestCase):
         this is part of the old klic message (before 01-01-2019).
         """
         # read the file
-        xml_file = open("data/14G166926_1/LI_14G166926_1.xml")
+        xml_file = open("test/data/14G166926_1/LI_14G166926_1.xml")
         self.xml_element = ET.fromstring(xml_file.read())
         self.leveringsinformatie = imkl.leveringsinformatie()
         self.leveringsinformatie.process(self.xml_element)
@@ -142,7 +144,7 @@ class LeveringsInformatieTestCaseV2_1(unittest.TestCase):
         this is part of the new klic message (after 01-01-2019).
         """
         # read the file
-        xml_file = open("data/18G007160_1/LI_18G007160_1.xml")
+        xml_file = open("test/data/18G007160_1/LI_18G007160_1.xml")
         self.xml_element = ET.fromstring(xml_file.read())
         self.leveringsinformatie = imkl.leveringsinformatie()
         self.leveringsinformatie.process(self.xml_element)
@@ -265,7 +267,7 @@ class OlieGasChemicalienPijpleidingTestCase(unittest.TestCase):
         unit test to test reading OlieGasChemicalienPijpleiding XML
         """
         # read the file
-        xml_file = open("data/imkl/BuisGevaarlijkeInhoud.xml")
+        xml_file = open("test/data/imkl/BuisGevaarlijkeInhoud.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "OlieGasChemicalienPijpleiding", None)
         self.buisGevaarlijkeInhoud = imkl.olieGasChemicalienPijpleiding()
@@ -310,7 +312,7 @@ class ExtraGeometrieTestCase(unittest.TestCase):
         unit test to test imkl.ExtraGeometrie
         """
         # read the file
-        xml_file = open("data/imkl/ExtraGeometrie.xml")
+        xml_file = open("test/data/imkl/ExtraGeometrie.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "ExtraGeometrie",
                                                        None)
@@ -353,7 +355,7 @@ class GraafpolygoonTestCase(unittest.TestCase):
         unit test to test imkl.graafpolygoon
         """
         # read the file
-        xml_file = open("data/imkl/graafpolygoon.xml")
+        xml_file = open("test/data/imkl/graafpolygoon.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Graafpolygoon",
                                                        None)
@@ -387,7 +389,7 @@ class GebiedsinformatieAanvraagTestCase(unittest.TestCase):
         unit test to test imkl.gebiedsinformatieAanvraag
         """
         # read the file
-        xml_file = open("data/imkl/gebiedsinformatieAanvraag.xml")
+        xml_file = open("test/data/imkl/gebiedsinformatieAanvraag.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "GebiedsinformatieAanvraag",
                                                        None)
@@ -453,7 +455,7 @@ class AanduidingEVTestCase(unittest.TestCase):
         unit test to test imkl.AanduidingEisVoorzorgsmaatregel
         """
         # read the file
-        xml_file = open("data/imkl/aanduiding_ev.xml")
+        xml_file = open("test/data/imkl/aanduiding_ev.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "AanduidingEisVoorzorgsmaatregel",
                                                        None)
@@ -497,7 +499,7 @@ class BelanghebbendeTestCase(unittest.TestCase):
         unit test to test imkl.belanghebbende
         """
         # read the file
-        xml_file = open("data/imkl/belanghebbende.xml")
+        xml_file = open("test/data/imkl/belanghebbende.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Belanghebbende",
                                                        None)
@@ -529,7 +531,7 @@ class BelangTestCase(unittest.TestCase):
         unit test to test imkl.belang
         """
         # read the file
-        xml_file = open("data/imkl/belang.xml")
+        xml_file = open("test/data/imkl/belang.xml")
         root = ET.fromstring(xml_file.read())
         tag = imkl.BELANG
         self.xml_element = xml_utils.find_xml_with_tag(root, tag,
@@ -587,7 +589,7 @@ class AppurtenanceTestCase(unittest.TestCase):
         unit test to test imkl.appurtenance
         """
         # read the file
-        xml_file = open("data/imkl/appurtenance.xml")
+        xml_file = open("test/data/imkl/appurtenance.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Appurtenance",
                                                        None)
@@ -620,7 +622,7 @@ class GebiedsinformatieLeveringTestCase(unittest.TestCase):
         unit test to test imkl.gebiedsinformatieLevering
         """
         # read the file
-        xml_file = open("data/imkl/gebiedsinformatieLevering.xml")
+        xml_file = open("test/data/imkl/gebiedsinformatieLevering.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "GebiedsinformatieLevering",
                                                        None)
@@ -660,7 +662,7 @@ class AnnotatieTestCase(unittest.TestCase):
         unit test to test imkl.annotatie
         """
         # read the file
-        xml_file = open("data/imkl/annotatie.xml")
+        xml_file = open("test/data/imkl/annotatie.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Annotatie",
                                                        None)
@@ -703,7 +705,7 @@ class MaatvoeringTestCase(unittest.TestCase):
         unit test to test imkl.maatvoering
         """
         # read the file
-        xml_file = open("data/imkl/maatvoering.xml")
+        xml_file = open("test/data/imkl/maatvoering.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Maatvoering",
                                                        None)
@@ -744,7 +746,7 @@ class BijlageTestCase(unittest.TestCase):
         unit test to test imkl.bijlage
         """
         # read the file
-        xml_file = open("data/imkl/bijlage.xml")
+        xml_file = open("test/data/imkl/bijlage.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Bijlage",
                                                        None)
@@ -776,7 +778,7 @@ class DiepteTovMaaiveldTestCase(unittest.TestCase):
         unit test to test imkl.?
         """
         # read the file
-        xml_file = open("data/imkl/diepte.xml")
+        xml_file = open("test/data/imkl/diepte.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "DiepteTovMaaiveld",
                                                        None)
@@ -809,7 +811,7 @@ class DiepteNAPTestCase(unittest.TestCase):
         unit test to test imkl.?
         """
         # read the file
-        xml_file = open("data/imkl/diepte.xml")
+        xml_file = open("test/data/imkl/diepte.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "DiepteNAP",
                                                        None)
@@ -846,7 +848,7 @@ class DuctTestCase(unittest.TestCase):
         unit test to test imkl.duct
         """
         # read the file
-        xml_file = open("data/imkl/duct.xml")
+        xml_file = open("test/data/imkl/duct.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Duct",
                                                        None)
@@ -881,7 +883,7 @@ class KabelbedTestCase(unittest.TestCase):
         unit test to test imkl.kabelbed
         """
         # read the file
-        xml_file = open("data/imkl/kabelbed.xml")
+        xml_file = open("test/data/imkl/kabelbed.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Kabelbed",
                                                        None)
@@ -916,7 +918,7 @@ class KastTestCase(unittest.TestCase):
         unit test to test imkl.kast
         """
         # read the file
-        xml_file = open("data/imkl/kast.xml")
+        xml_file = open("test/data/imkl/kast.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Kast",
                                                        None)
@@ -949,7 +951,7 @@ class TechnischGebouwTestCase(unittest.TestCase):
         unit test to test imkl.technischGebouw
         """
         # read the file
-        xml_file = open("data/imkl/technischGebouw.xml")
+        xml_file = open("test/data/imkl/technischGebouw.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "TechnischGebouw",
                                                        None)
@@ -981,7 +983,7 @@ class MangatTestCase(unittest.TestCase):
         unit test to test imkl.mangat
         """
         # read the file
-        xml_file = open("data/imkl/mangat.xml")
+        xml_file = open("test/data/imkl/mangat.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Mangat",
                                                        None)
@@ -1011,7 +1013,7 @@ class MastTestCase(unittest.TestCase):
         unit test to test imkl.mast
         """
         # read the file
-        xml_file = open("data/imkl/mast.xml")
+        xml_file = open("test/data/imkl/mast.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Mast",
                                                        None)
@@ -1042,7 +1044,7 @@ class TorenTestCase(unittest.TestCase):
         unit test to test imkl.toren
         """
         # read the file
-        xml_file = open("data/imkl/toren.xml")
+        xml_file = open("test/data/imkl/toren.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Toren",
                                                        None)
@@ -1073,7 +1075,7 @@ class EigenTopografieTestCase(unittest.TestCase):
         unit test to test imkl.eigenTopografie
         """
         # read the file
-        xml_file = open("data/imkl/eigen_topo.xml")
+        xml_file = open("test/data/imkl/eigen_topo.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "EigenTopografie",
                                                        None)
@@ -1105,7 +1107,7 @@ class ElektriciteitskabelTestCase(unittest.TestCase):
         unit test to test imkl.elektriciteitskabel
         """
         # read the file
-        xml_file = open("data/imkl/elec_kabel.xml")
+        xml_file = open("test/data/imkl/elec_kabel.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Elektriciteitskabel",
                                                        None)
@@ -1142,7 +1144,7 @@ class TelecommunicatiekabelTestCase(unittest.TestCase):
         unit test to test imkl.telecomKabel
         """
         # read the file
-        xml_file = open("data/imkl/telecom_kabel.xml")
+        xml_file = open("test/data/imkl/telecom_kabel.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Telecommunicatiekabel",
                                                        None)
@@ -1184,7 +1186,7 @@ class MantelbuisTestCase(unittest.TestCase):
         unit test to test imkl.Mantelbuis
         """
         # read the file
-        xml_file = open("data/imkl/mantelbuis.xml")
+        xml_file = open("test/data/imkl/mantelbuis.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Mantelbuis",
                                                        None)
@@ -1219,7 +1221,7 @@ class OverigTestCase(unittest.TestCase):
         unit test to test imkl.overig
         """
         # read the file
-        xml_file = open("data/imkl/overig.xml")
+        xml_file = open("test/data/imkl/overig.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Overig",
                                                        None)
@@ -1258,7 +1260,7 @@ class RioolleidingTestCase(unittest.TestCase):
         unit test to test imkl.rioolleiding
         """
         # read the file
-        xml_file = open("data/imkl/rioolleiding.xml")
+        xml_file = open("test/data/imkl/rioolleiding.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Rioolleiding",
                                                        None)
@@ -1293,7 +1295,7 @@ class ThermischePijpleidingTestCase(unittest.TestCase):
         unit test to test imkl.thermischePijpleiding
         """
         # read the file
-        xml_file = open("data/imkl/thermischePijpleiding.xml")
+        xml_file = open("test/data/imkl/thermischePijpleiding.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "ThermischePijpleiding",
                                                        None)
@@ -1332,7 +1334,7 @@ class WaterleidingTestCase(unittest.TestCase):
         unit test to test imkl.waterleiding
         """
         # read the file
-        xml_file = open("data/imkl/waterleiding.xml")
+        xml_file = open("test/data/imkl/waterleiding.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Waterleiding",
                                                        None)
@@ -1371,7 +1373,7 @@ class UtilityLinkTestCase(unittest.TestCase):
         unit test to test imkl.utilityLink
         """
         # read the file
-        xml_file = open("data/imkl/utilityLink.xml")
+        xml_file = open("test/data/imkl/utilityLink.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "UtilityLink",
                                                        None)
@@ -1401,7 +1403,7 @@ class UtilityLink2TestCase(unittest.TestCase):
         unit test to test imkl.utilityLink
         """
         # read the file
-        xml_file = open("data/imkl/utilityLink2.xml")
+        xml_file = open("test/data/imkl/utilityLink2.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "UtilityLink",
                                                        None)
@@ -1431,7 +1433,7 @@ class EVbijlageTestCase(unittest.TestCase):
         unit test to test imkl.eisVoorzorgsmaatregelBijlage
         """
         # read the file
-        xml_file = open("data/imkl/ev_bijlage.xml")
+        xml_file = open("test/data/imkl/ev_bijlage.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "EisVoorzorgsmaatregelBijlage",
                                                        None)
@@ -1467,7 +1469,7 @@ class ExtraDetailinfoTestCase(unittest.TestCase):
         unit test to test imkl.extraDetailinfo
         """
         # read the file
-        xml_file = open("data/imkl/extra_detail_info.xml")
+        xml_file = open("test/data/imkl/extra_detail_info.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "ExtraDetailinfo",
                                                        None)
@@ -1514,7 +1516,7 @@ class ExtraDetailinfoTestCase_v2(unittest.TestCase):
         unit test to test imkl.extraDetailinfo
         """
         # read the file
-        xml_file = open("data/imkl/extra_detail_info_v2.xml")
+        xml_file = open("test/data/imkl/extra_detail_info_v2.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "ExtraDetailinfo",
                                                        None)
@@ -1541,8 +1543,8 @@ class ExtraDetailinfoTestCase_v2(unittest.TestCase):
                           'Point(261146 532515)'])
 
     def test_adres(self):
-        adres = self.imkl_obj.field("adres").value
-        adres = adres[0]
+        adres = self.imkl_obj.field("adres")
+        adres = adres.value[0]
         BAGid = adres.field("BAG_id").value
         straat = adres.field("openbareRuimte").value
         huisnummer = adres.field("huisnummer").value
@@ -1563,7 +1565,7 @@ class BoundsTestCase(unittest.TestCase):
         unit test to test imkl.?
         """
         # read the file
-        xml_file = open("data/imkl/gml_envelope.xml")
+        xml_file = open("test/data/imkl/gml_envelope.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "BoundedBy",
                                                        None)
@@ -1589,7 +1591,7 @@ class UtiliteitsnetTestCase(unittest.TestCase):
         unit test to test imkl.utiliteitsnet
         """
         # read the file
-        xml_file = open("data/imkl/utiliteitsnet.xml")
+        xml_file = open("test/data/imkl/utiliteitsnet.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Utiliteitsnet",
                                                        None)
@@ -1618,7 +1620,7 @@ class BeheerderTestCase(unittest.TestCase):
         unit test to test imkl.beheerder
         """
         # read the file
-        xml_file = open("data/imkl/beheerder.xml")
+        xml_file = open("test/data/imkl/beheerder.xml")
         root = ET.fromstring(xml_file.read())
         self.xml_element = xml_utils.find_xml_with_tag(root, "Beheerder",
                                                        None)
@@ -1643,31 +1645,6 @@ class BeheerderTestCase(unittest.TestCase):
 
 _suite_BeheerderTestCase = unittest.TestLoader().loadTestsFromTestCase(BeheerderTestCase)
 
-##class TestCase(unittest.TestCase):
-##
-##    def setUp(self):
-##        """
-##        unit test to test imkl.?
-##        """
-##        # read the file
-##        xml_file = open("data/imkl/.xml")
-##        root = ET.fromstring(xml_file.read())
-##        self.xml_element = xml_utils.find_xml_with_tag(root, "",
-##                                                       None)
-##        self.imkl_obj = imkl.()
-##        self.imkl_obj.process(self.xml_element)
-##        xml_file.close()
-##
-##    def test_field_names(self):
-##        self.assertEqual(self.imkl_obj.field_names(),
-##                         ['klicnummer','id', ''])
-##
-##    def test_field_values(self):
-##        self.assertEqual(self.imkl_obj.field_values(),
-##                         ['',
-##                          ''])
-##
-##_suite_TestCase = unittest.TestLoader().loadTestsFromTestCase(TestCase)
 
 unit_test_suites = [_suite_leveringsInformatieV1_5, _suite_leveringsInformatieV2_1,
                     _suite_olieGasChemicalienPijpleiding, _suite_extraGeometrie,
