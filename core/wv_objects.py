@@ -21,11 +21,11 @@ wv.objects.
 
 Author: Diethard Jansen, 16-9-2018
 """
-from builtins import str
 from builtins import object
-from qgis.core import QgsGeometry, QgsVectorLayer
+from qgis.core import QgsGeometry
+from qgis.PyQt.QtCore import Qt
 import os, sys
-from . import imkl, basis
+from . import basis
 
 WIN = "startfile" in dir(os)
 Ubuntu = os.environ.get('GNOME_DESKTOP_SESSION_ID') != None
@@ -224,7 +224,7 @@ class Layer(PY3__cmp__):
 
     def addVisibility(self, theme_name):
         if theme_name not in self.themes_visible:
-            self.themes_visible[theme_name] = 2
+            self.themes_visible[theme_name] = Qt.CheckState.Checked
         
     def setVisibility(self, visibility, show_raster, show_vector, theme):
         """
@@ -232,8 +232,7 @@ class Layer(PY3__cmp__):
         set of themes
         """
         theme_name = theme.name
-        iface = self._iface()
-        if iface is None or visibility == 1:
+        if visibility == Qt.CheckState.PartiallyChecked:
             return
         if theme_name in list(Layer.layerGroupNames.keys()):
             # keys in themes_visibile are different from
@@ -284,7 +283,7 @@ class Layer(PY3__cmp__):
         Checks if layer is visible, sets private __visible
         and returns boolean layer is visible or not
         """
-        visible = 0
+        visible = Qt.CheckState.Unchecked
         iface = self._iface()
         if iface != None:
             visible = iface.visibilityForLayer(self, theme_name)
@@ -298,16 +297,12 @@ class Layer(PY3__cmp__):
         return visible
 
     def _allVisible(self):
-        visible = 0
-        n_themes = 0
-        value_visible = 0
+        all_visible = True
         for value in list(self.themes_visible.values()):
-            if value is not None:
-                n_themes += 1
-                value_visible += value
-        if n_themes > 0:
-            visible = int(value_visible / n_themes)
-        return visible
+            if value != Qt.CheckState.Checked:
+                all_visible = False
+                break
+        return all_visible
 
     def goto(self):
         """
@@ -562,7 +557,7 @@ class Theme(object):
         owner = self.owner
         show_raster = owner.showRaster
         show_vector = owner.showVector
-        state = 0
+        state = Qt.CheckState.Unchecked
         visible = 0
         theme_name = self.name
         visibilities = []
@@ -576,11 +571,11 @@ class Theme(object):
                     visible = layer.visible(theme_name)
                 visibilities.append(visible)
         if all(visibilities):
-            state = 2
+            state = Qt.CheckState.Checked
         elif any(visibilities):
-            state = 1
+            state = Qt.CheckState.PartiallyChecked
         else:
-            state = 0
+            state = Qt.CheckState.Unchecked
         return state
 
     def setVisibility(self, p_visibility, isVector=None):

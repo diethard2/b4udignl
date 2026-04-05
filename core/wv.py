@@ -40,10 +40,9 @@ Author: Diethard Jansen, 14-3-2010
 from builtins import object
 import os
 import xml.etree.ElementTree as ET
-import gc
 from . import imkl, xml_utils
 from .wv_storage import Storage1, Storage2
-from .wv_objects import Theme, Layer, PdfFile
+from .wv_objects import Theme, Layer
 from qgis.PyQt.QtWidgets import QMessageBox
 
 class Doc(object):

@@ -20,8 +20,9 @@ email                : diethard.jansen at gmail.com
 
 from builtins import str
 from builtins import object
-from qgis.PyQt import QtCore, QtGui
-from qgis import core, gui
+from qgis.PyQt.QtCore import Qt
+from qgis.PyQt.QtGui import QAction
+from qgis.core import QgsProject, QgsRuleBasedRenderer, QgsSingleSymbolRenderer
 import os
 
 class Iface(object):
@@ -67,7 +68,7 @@ class Iface(object):
     def loadedLayers(self):
         """return dictionary where key is layer id and element is layer"""
         #dicLayers --> key = LayerId, Value = Layer
-        project = core.QgsProject.instance()
+        project = QgsProject.instance()
         dictLayers = project.mapLayers()
         return dictLayers
 
@@ -88,7 +89,7 @@ class Iface(object):
     def layerByName(self, a_name):
         """return layer by name"""
         layer = None
-        project = core.QgsProject.instance()
+        project = QgsProject.instance()
         layers = project.mapLayersByName(a_name)
         if len(layers) == 1:
             layer = layers[0]
@@ -101,7 +102,7 @@ class Iface(object):
             provider = a_layer.dataProvider()
             provider.addAttributes(wvLayer.fields)
             a_layer.updateFields()
-            project = core.QgsProject.instance()
+            project = QgsProject.instance()
             layer = project.addMapLayer(a_layer, True)
             self.styleLayer(layer)
         else:
@@ -136,9 +137,9 @@ class Iface(object):
         if wvLayer.is_vector():
             if show_vector and theme is not None:
                 renderer = layer.renderer()
-                if isinstance(renderer, core.QgsRuleBasedRenderer):
+                if isinstance(renderer, QgsRuleBasedRenderer):
                     self._set_visibility_rules_symbol(layer, theme, visibility)
-                elif isinstance(renderer, core.QgsSingleSymbolRenderer):
+                elif isinstance(renderer, QgsSingleSymbolRenderer):
                     self.setLayerVisible(layer, visibility)
         else:
             isVisible = self.isLayerVisible(layer)
@@ -159,7 +160,10 @@ class Iface(object):
 
     def isLayerVisible(self, layer):
         tree_layer = self._treeLayer(layer)
-        value = tree_layer.isVisible()
+        if tree_layer is None:
+            value = Qt.CheckState.Unchecked
+        else:
+            value = tree_layer.isVisible()
         return value
 
     def setLayerVisible(self, layer, visibility):
@@ -177,15 +181,15 @@ class Iface(object):
         If none are visible: return 0
         '''
         renderer = layer.renderer()
-        visibility = 0
-        if isinstance(renderer, core.QgsRuleBasedRenderer):
+        visibility = Qt.CheckState.Unchecked
+        if isinstance(renderer, QgsRuleBasedRenderer):
             visibility = self._visibility_from_rules_symbol(layer, theme)
-        elif isinstance(renderer,core.QgsSingleSymbolRenderer):
+        elif isinstance(renderer, QgsSingleSymbolRenderer):
             visibility = self.isLayerVisible(layer)
         return visibility
 
     def _visibility_from_rules_symbol(self, layer, theme):
-        state = 0
+        state = Qt.CheckState.Unchecked
         renderer = layer.renderer()
         rules = renderer.rootRule().children()
         visibilities = []
@@ -194,22 +198,22 @@ class Iface(object):
             expression = str(expression).lower()
             if theme in expression:
                 visibilities.append(rule.active())
-        n_visibilities = len(visibilities)
+
         if all(visibilities):
-            state = 2
+            state = Qt.CheckState.Checked
         elif any(visibilities):
-            state = 1
+            state = Qt.CheckState.PartiallyChecked
         else:
-            state = 0
+            state = Qt.CheckState.Unchecked
         return state
 
     def _set_visibility_rules_symbol(self, layer, theme, visibility):
         state = None
-        if visibility == 0:
+        if visibility == Qt.CheckState.Unchecked:
             state = False
-        elif visibility == 1:
+        elif visibility == Qt.CheckState.PartiallyChecked:
             return
-        elif visibility == 2:
+        elif visibility == Qt.CheckState.Checked:
             state = True
         renderer = layer.renderer()
         rules = renderer.rootRule().children()
@@ -237,12 +241,14 @@ class Iface(object):
             if lyr.hasFeatures():
                 remove = False
         if remove:      
-            project = core.QgsProject.instance()
+            project = QgsProject.instance()
             project.removeMapLayer(lyr)
 
     def bestScale(self, wvLayer):
         """Set best scale for given layer"""
         lyr = wvLayer.layer
         self.iface.setActiveLayer(lyr)
+        event = QAction.ActionEvent.Trigger
         action = self.iface.actionZoomActualSize()
-        action.activate(0) # triggers/invokes the action
+        # triggers/invokes the action
+        action.activate(event)

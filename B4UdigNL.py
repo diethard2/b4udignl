@@ -18,12 +18,11 @@ email                : diethard.jansen at gmail.com
  *                                                                         *
  ***************************************************************************/
 """
-# from __future__ import absolute_import
 # Import the PyQt and QGIS libraries
 from builtins import object
-from qgis.PyQt.QtCore import QSettings, QTranslator, QObject
-from qgis.PyQt.QtWidgets import QApplication, QAction
-from qgis.PyQt.QtGui import QIcon
+from qgis.PyQt.QtCore import QSettings, QTranslator
+from qgis.PyQt.QtWidgets import QApplication
+from qgis.PyQt.QtGui import QIcon, QAction
 from qgis.core import QgsApplication
 # Initialize Qt resources from file resources.py
 from . import qrc_resources
@@ -70,4 +69,4 @@ class B4UdigNL(object):
         # show the dialog
         l_dialog = self.dialog
         l_dialog.show()
-        result = l_dialog.exec_()
+        result = l_dialog.exec()

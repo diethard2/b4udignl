@@ -26,10 +26,9 @@ email                : diethard.jansen at gmail.com
 # from __future__ import absolute_import
 
 from builtins import str
-from qgis.PyQt.QtCore import QSettings, pyqtSlot
+from qgis.PyQt.QtCore import QSettings, pyqtSlot, Qt
 from qgis.PyQt.QtWidgets import QDialog, QFileDialog, QMessageBox, QListWidgetItem, QTreeWidgetItem
 from qgis import utils
-from qgis.core import QgsProject
 from .ui_B4UdigNL import Ui_B4UdigNL
 from ifaceqgis import Iface
 import os, gc
@@ -72,7 +71,6 @@ class B4UdigNLDialog(QDialog):
         self.__wv = None
         self.__wvs = []
         self.__themes = None
-        self.__addGroupsBuggy = False
         self.__settings = self._userSettings()
         self.ui = Ui_B4UdigNL()
         self.ui.setupUi(self)
@@ -248,7 +246,7 @@ class B4UdigNLDialog(QDialog):
         """
         doc = self.doc()
         if doc is not None and p_theme in doc.themes:
-            if p_state != 1:
+            if p_state != Qt.CheckState.PartiallyChecked:
                 theme = doc.themes[p_theme]
                 theme.setVisibility(p_state, isVector)
                 self._setStateOfVisibilitiesThemes(True)
@@ -323,13 +321,13 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             if storage_version == 2:
                 ui.rasterCheckBox.setEnabled(True)
                 ui.vectorCheckBox.setEnabled(True)
-                ui.rasterCheckBox.setCheckState(2)
-                ui.vectorCheckBox.setCheckState(2)
+                ui.rasterCheckBox.setCheckState(Qt.CheckState.Checked)
+                ui.vectorCheckBox.setCheckState(Qt.CheckState.Checked)
             elif storage_version == 1:
                 ui.rasterCheckBox.setEnabled(False)
                 ui.vectorCheckBox.setEnabled(False)
-                ui.rasterCheckBox.setCheckState(2)
-                ui.vectorCheckBox.setCheckState(0)
+                ui.rasterCheckBox.setCheckState(Qt.CheckState.Checked)
+                ui.vectorCheckBox.setCheckState(Qt.CheckState.Unchecked)
         self._setVisibilitiesThemes()
 
     def _setVisibilitiesThemes(self):
@@ -353,7 +351,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         for i_theme in list(self.__themes.keys()):
             if self.doc() is None:
                 checkbox = self.__themes[i_theme]
-                checkbox.setCheckState(0)
+                checkbox.setCheckState(Qt.CheckState.Unchecked)
             else:
                 self._setStateOfVisibilitiesTheme(i_theme, p_actual)
 
@@ -372,7 +370,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
                     state = theme.checkVisible(actual)
                 except ZeroDivisionError:
                     self._displayThemesVisibilyMsg(theme.name)
-                    state = 1
+                    state = Qt.CheckState.PartiallyChecked
                 checkbox.setCheckState(state)
 
     @pyqtSlot()
