@@ -525,10 +525,10 @@ class Doc(object):
             if not layer.vectorType:
                 pngFile = layer.layerFile
                 pngAuxFile = pngFile + '.aux.xml'
-##                if not os.path.isfile(pngAuxFile):
-                f=open(pngAuxFile, 'w')
-                f.write(self.rectangle.worldFileData())
-                f.close()
+                if not os.path.isfile(pngAuxFile):
+                    f=open(pngAuxFile, 'w')
+                    f.write(self.rectangle.worldFileData())
+                    f.close()
 
     def loadLayers(self):
         """Load all layers into QGIS"""
@@ -555,13 +555,28 @@ class Doc(object):
         if l_layer != None:
             l_layer.goto()
 
+    def enableBestScale(self):
+        """
+        Returns true if the first layer is the loaded 
+        Background Topo provided by Dutch mapping agency Kadaster
+        that can be set to best scale, otherwise return False
+        and do not enable BestScale button!
+        """
+        enable_bestScale = False
+        l_layer = self.getFirstLayer()
+        # check first layer exist and is not a vector layer!
+        if l_layer != None and not l_layer.is_vector():
+            enable_bestScale = True
+        return enable_bestScale
+
     def bestScale(self):
         """
-        Zoom to the best scale of the first layer which is in fact
+        Zoom to the best scale of the first layer which should be
         the Background Topo provided by Dutch mapping agency Kadaster.
         """
         l_layer = self.getFirstLayer()
-        if l_layer != None:
+        # check first layer exist and is not a vector layer!
+        if l_layer != None and not l_layer.is_vector():
             l_layer.bestScale()
 
     def getFirstLayer(self):

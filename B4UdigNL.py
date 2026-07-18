@@ -24,6 +24,7 @@ from qgis.PyQt.QtCore import QSettings, QTranslator
 from qgis.PyQt.QtWidgets import QApplication
 from qgis.PyQt.QtGui import QIcon, QAction
 from qgis.core import QgsApplication
+from qgis import utils
 # Initialize Qt resources from file resources.py
 from . import qrc_resources
 # Add translations to translator
@@ -54,11 +55,24 @@ class B4UdigNL(object):
         # Add toolbar button and menu item
         self.iface.addToolBarIcon(self.action)
         self.iface.addPluginToMenu(QApplication.translate("B4UdigNL","&KLIC Viewer"), self.action)
+        self.help_action = QAction(QIcon(":/b4udignl.png"),
+                                   "KLIC Viewer...",
+                                   self.iface.mainWindow())
+        # Add the action to the Help menu
+        self.iface.pluginHelpMenu().addAction(self.help_action)
+        self.help_action.triggered.connect(self.show_help)
 
+    @staticmethod
+    def show_help():
+        """ Open the help manual for this plugin. """
+        utils.showPluginHelp()
+        
     def unload(self):
         # Remove the plugin menu item and icon
         self.iface.removePluginMenu(QApplication.translate("B4UdigNL","&KLIC Viewer"),self.action)
         self.iface.removeToolBarIcon(self.action)
+        self.iface.pluginHelpMenu().removeAction(self.help_action)
+        del self.help_action
 
     # run method that performs all the real work
     def run(self):

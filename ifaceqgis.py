@@ -20,8 +20,9 @@ email                : diethard.jansen at gmail.com
 
 from builtins import str
 from builtins import object
-from qgis.PyQt.QtCore import Qt
+from qgis.PyQt.QtCore import Qt 
 from qgis.PyQt.QtGui import QAction
+
 from qgis.core import QgsProject, QgsRuleBasedRenderer, QgsSingleSymbolRenderer
 import os
 
@@ -63,7 +64,8 @@ class Iface(object):
 
     def refreshLegend(self):
         """refreshes legend"""
-        pass
+        layerTreeModel = self.iface.layerTreeView().layerTreeModel()
+        layerTreeModel.layerFlagsChanged()
 
     def loadedLayers(self):
         """return dictionary where key is layer id and element is layer"""
@@ -252,3 +254,4 @@ class Iface(object):
         action = self.iface.actionZoomActualSize()
         # triggers/invokes the action
         action.activate(event)
+

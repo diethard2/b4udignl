@@ -66,7 +66,7 @@ class B4UdigNLDialog(QDialog):
     def __init__(self, iface):
         QDialog.__init__(self)
         self.__iface = iface
-##        self.__legend = iface.legendInterface()
+#        self.__legend = iface.legendInterface()
         self.__dir = None
         self.__wv = None
         self.__wvs = []
@@ -217,7 +217,7 @@ class B4UdigNLDialog(QDialog):
     def _rasterVectorCheckBoxStateChanged(self, p_state, isVector):
         doc = self.doc()
         if doc is not None:
-            if p_state == 0:
+            if p_state == Qt.CheckState.Unchecked:
                 # turn of all raster/vector layers
                 self._updateAllThemes(p_state, isVector)
                 if isVector:
@@ -244,8 +244,10 @@ class B4UdigNLDialog(QDialog):
         a theme has changed and now the visibility of layers belonging
         to that theme will change (when neccesary)
         """
-        doc = self.doc()
+        doc = self.doc() 
         if doc is not None and p_theme in doc.themes:
+            #self._displayThemeStateChanged(p_theme, p_state)
+
             if p_state != Qt.CheckState.PartiallyChecked:
                 theme = doc.themes[p_theme]
                 theme.setVisibility(p_state, isVector)
@@ -254,10 +256,9 @@ class B4UdigNLDialog(QDialog):
 
     def _displayThemeStateChanged(self, p_theme, p_state):
         """
-        give a warning to user that KLIC message could not be read
-        from selected folder
+        give a warning to user that status for a theme has changed
         """
-        l_titleMsg = "Status Thema Gewijzigd"
+        l_titleMsg = "Status Thema bijna Gewijzigd"
         l_msg = "Status is nu %s voor thema %s" % (p_state, str(p_theme))
         QMessageBox.information(self, l_titleMsg, l_msg)
 
@@ -310,7 +311,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             ui.openMsgButton.setEnabled(False)
             ui.openArchiveButton.setEnabled(False)
             ui.gotoButton.setEnabled(True)
-            ui.bestScaleButton.setEnabled(True)
+            ui.bestScaleButton.setEnabled(doc.enableBestScale())
             ui.removeMsgButton.setEnabled(True)
             ui.openDocButton.setEnabled(True)
             ui.refreshButton.setEnabled(True)

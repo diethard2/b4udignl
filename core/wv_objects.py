@@ -570,6 +570,7 @@ class Theme(object):
                 else:
                     visible = layer.visible(theme_name)
                 visibilities.append(visible)
+
         if all(visibilities):
             state = Qt.CheckState.Checked
         elif any(visibilities):
@@ -577,7 +578,7 @@ class Theme(object):
         else:
             state = Qt.CheckState.Unchecked
         return state
-
+    
     def setVisibility(self, p_visibility, isVector=None):
         """
         p_visibility = 0 or 2 used to set same visibility for  

@@ -37,6 +37,7 @@ class Storage(object):
         self.__parent = parent
         self.__klicnummer = None
         self.__meldingsoort = None
+        self.__rectangle = None
         self.__graafpolygoon = None
         self.__netOwners = []
         self.__netOwners_on_code = {}
