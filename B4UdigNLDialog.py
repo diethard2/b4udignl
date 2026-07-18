@@ -74,7 +74,7 @@ class B4UdigNLDialog(QDialog):
         self.__settings = self._userSettings()
         self.ui = Ui_B4UdigNL()
         self.ui.setupUi(self)
-        self._themes2checkboxes()
+#        self._themes2checkboxes()
         self.updateUi()
         self.makeConnections()
 
@@ -144,6 +144,11 @@ class B4UdigNLDialog(QDialog):
     def makeConnections(self):
         """makes all neccesary connections between signals and slots"""
         self.ui.treeWidget.itemDoubleClicked.connect(self._openPdf)
+        self.__iface.newProjectCreated.connect(self._removeMessages)
+
+        """
+        Connections of tab Themes are temporarily not there
+
         self.ui.checkBoxData.stateChanged.connect(self._checkBoxDataStateChanged)
         self.ui.checkBoxGas_low.stateChanged.connect(self._checkBoxGasLowStateChanged)
         self.ui.checkBoxGas_high.stateChanged.connect(self._checkBoxGasHighStateChanged)
@@ -165,8 +170,6 @@ class B4UdigNLDialog(QDialog):
         self.ui.dimensioningCheckBox.stateChanged.connect(self._dimensioningCheckBoxStateChanged)
         self.ui.locationCheckBox.stateChanged.connect(self._locationCheckBoxStateChanged)
         self.ui.topoCheckBox.stateChanged.connect(self._topoCheckBoxStateChanged)
-        self.__iface.newProjectCreated.connect(self._removeMessages)
-
     def _checkBoxDataStateChanged(self, p_state):
         self._themeStateChanged(self.themeNames["data"], p_state)
     def _checkBoxGasLowStateChanged(self, p_state):
@@ -233,7 +236,8 @@ class B4UdigNLDialog(QDialog):
                 else:
                     doc.showRaster = p_state
                 self._updateAllThemes(p_state, isVector)
-
+"""        
+        
     def _updateAllThemes(self, p_state, isVector):
         doc = self.doc()
         for theme in list(doc.themes.keys()):
@@ -302,9 +306,9 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             ui.bestScaleButton.setEnabled(False)
             ui.removeMsgButton.setEnabled(False)
             ui.openDocButton.setEnabled(False)
-            ui.refreshButton.setEnabled(False)
-            ui.rasterCheckBox.setEnabled(False)
-            ui.vectorCheckBox.setEnabled(False)
+#            ui.refreshButton.setEnabled(False)
+#            ui.rasterCheckBox.setEnabled(False)
+#            ui.vectorCheckBox.setEnabled(False)
             ui.openMsgButton.setEnabled(True)
             ui.openArchiveButton.setEnabled(True)
         else:
@@ -314,6 +318,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
             ui.bestScaleButton.setEnabled(doc.enableBestScale())
             ui.removeMsgButton.setEnabled(True)
             ui.openDocButton.setEnabled(True)
+            """
             ui.refreshButton.setEnabled(True)
             # storage_version indicates if an imkl v1 or v2 is processed
             # imkl v1 does not have vectors, so do not enable the buttons
@@ -330,6 +335,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
                 ui.rasterCheckBox.setCheckState(Qt.CheckState.Checked)
                 ui.vectorCheckBox.setCheckState(Qt.CheckState.Unchecked)
         self._setVisibilitiesThemes()
+        """
 
     def _setVisibilitiesThemes(self):
         doc = self.doc()
@@ -508,7 +514,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         self.__wv = next(iter(self.__wvs), None)
         self._populateMsgList()
         self._populateTree()
-        self._setStateOfVisibilitiesThemes(True)
+#        self._setStateOfVisibilitiesThemes(True)
         self._setVisibilities()
         gc.collect()
 
@@ -546,7 +552,7 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         l_iface.doRendering(False)
         self._loadLayers()
         l_iface.refreshLegend()
-        self._setStateOfVisibilitiesThemes()
+ #       self._setStateOfVisibilitiesThemes()
         self._setVisibilities()
         l_iface.doRendering(True)
         self._checkEvs()
@@ -677,8 +683,8 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         if doc != None:
             self.__wv = doc
             self._populateTree()
-            self._setStateOfVisibilitiesThemes(True)
-            self._setVisibilitiesThemes()
+#            self._setStateOfVisibilitiesThemes(True)
+#            self._setVisibilitiesThemes()
             doc.goto()
 
     def _selectedMsg(self, p_currentItem):
@@ -707,5 +713,5 @@ met de netbeheerder, voor aanvang van graafwerkzaamheden."
         self.__wv = None
         self._populateMsgList()
         self._populateTree()
-        self._setStateOfVisibilitiesThemes(True)
         self._setVisibilities()
+#        self._setStateOfVisibilitiesThemes(True)
