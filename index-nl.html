@@ -8,7 +8,32 @@
 <p>De <b>KLIC Viewer</b> is ontwikkeld om snel het resultaat
 van een KLIC melding te kunnen bekijken en begrijpen.</p>
 
-<p>Let op! Deze laatste versie ondersteund nog niet volledig de laatste
+<p>
+  Dit is de 1e versie van de KLIC Viewer na de upgrade van QGIS 3 naar
+  QGIS 4. Maar helaas werkt nog niet alles voorheen. Het inlezen van een
+  KLIC levering lukt wel en ook inzoomen op de KLIC Levering met
+  <b>[Ga Naar...]</b>
+</p>
+
+<p>Wat werkt er nog niet goed.
+  <ul>
+    <li>Met het thema's tabblad, kun je per thema KLIC-objecten aan- en
+      uitzetten, maar na de upgrade kreeg ik die functionaliteit niet werkend.
+      Daarom heb ik besloten het thema"'"s tabblad er tijdelijk helemaal
+      uit te halen.</li>
+    <li>De <b>[Help...]</b> functie werkt wel onder het Windows
+      besturingsysteem, maar niet meer onder OSX (Apple) en ook niet onder
+      Linux.</li>
+    <li>het openen van de brieven die wel worden geladen werkt wel onder het
+      Windows en ook onder OSX (Apple) maar niet onder Linux.</li>
+    <li>het openen van een gezipt bestand met de knop
+      <b>[Open Zip-bestand...]</b> werkt ook nog niet. Je kunt deze het
+      beste zelf uitpakken en dan naar de folder met daarin het KLIC nummer
+      openen.</li>
+  </ul> 
+</p>
+
+<p>Let op! Deze versie ondersteund ook nog niet volledig de laatste
 versie van KLIC leveringen. Weliswaar worden nog wel alle kabels en leidingen
 op de kaart getoond, maar niet alle toegevoegde brieven! Met name de brief 
 Eis Voorzorgsmaatregel en de detailtekeningen van de huisaansluitingen
@@ -36,67 +61,62 @@ van het icoon uitgelegd.</p>
 <a name="using">
 <H1>Gebruik</H1>
 </a>
-<p>Eerst zal men moeten beschikken over een KLIC bericht. Het resultaat van
+<p>Eerst zal men moeten beschikken over een KLIC levering. Het resultaat van
 een melding gedaan in het kader van de wet WION noemen we in het vervolg een
-KLIC bericht.
+KLIC levering.
 Zie ook <a href="#aboutWion">Over WION</a> hoe je deze kunt verkrijgen.
-Wanneer je het KLIC bericht ontvangen hebt, zal het eerst een
+Wanneer je de KLIC levering hebt ontvangen, zal het eerst een
 ingepakt zip-archief zijn.</p>
 
-<p>De KLIC Viewer heeft drie tabbladen, <B>Berichten</B>, 
-<B>Thema's</B> en <B>Opties</B>. 
-Na het opstarten opent deze altijd eerst het tabblad <B>Berichten</B> 
-want eerst dient een KLIC bericht te worden ingelezen.</p>
+<p>De KLIC Viewer heeft voorlopig twee tabbladen, <B>Berichten</B>
+  en <B>Opties</B>. Na het opstarten opent deze altijd eerst het
+  tabblad <B>Berichten</B> want eerst dient een KLIC levering te worden
+  ingelezen.</p>
 
 <p>Gebruik de knop <B>[Open Folder...]</B> wanneer u een al uitgepakt
-KLIC bericht heeft. U kunt ook de Alt-toets gevolgd door de O-toets 
-gebruiken. Zo'n combinatie zal hierna worden afgekort tot <b>Alt-O</B>.<BR> 
-U kunt hiermee de folder selecteren die het KLIC bericht bevat. 
-Wanneer u in het tabblad <B>Opties</B> al de standaard folder heeft 
-ingesteld waar KLIC berichten normaal gesproken gevonden worden, dan 
-is deze snel gevonden.<BR>  
-Na selectie en op <b>[OK]</b> te hebben gedrukt gebeurt het volgende:
+  KLIC bericht heeft. U kunt ook de Alt-toets gevolgd door de O-toets
+  gebruiken. Zo'n combinatie zal hierna worden afgekort tot <b>Alt-O</B>.
+  <BR>
+  U kunt hiermee de folder selecteren die de KLIC levering bevat.
+  Wanneer u in het tabblad <B>Opties</B> al de standaard folder heeft
+  ingesteld waar KLIC leveringen normaal gesproken gevonden worden, dan
+  is deze snel gevonden.<BR>
+  Na selectie en op <b>[OK]</b> te hebben gedrukt gebeurt het volgende:
 <ul>
-<li>Het XML bestand/de XML bestanden die onderdeel is van een klic bericht wordt gelezen en alle informatie eruit gehaald.</li>
-<li>Het XML bestand met de netwerk informatie in IMKL formaat, waarbij 
-geometrie in GML formaat is opgeslagen, wordt in het geheugen ingelezen. Na het 
-inlezen worden vectorlagen aangemaakt die eveneens in memory lagen worden geladen.</li>
-<li>Voor alle PNG bestanden die als rasterlagen zullen worden geladen, zal 
-naast het PNG bestand een kleine bestand, de zogenaamde world-files worden 
-aangemaakt. Daardoor kunnen deze plaatjes gemaakt die ligging, annotatie, 
-maatvoering en onderliggende topo bevatten worden ingelezen in QGIS
-en krijgen deze het Nederlandse Coordinaten Systeem.</li>
-<li>De PNG files en in memory vectorlagen worden vervolgens in de goede 
-volgorde geopend in QGIS en zichtbaar in de kaart.</li>
-<li>Het meldnummer van het KLIC bericht wordt toegevoegd aan de lijst van
-geladen berichten.</li>
-<li>De PDF files, waarin begeleidende brieven, detailtekeningen en
-huisaansluitingen in staan, worden gefilterd op soort in de lijst met bijlagen
-geplaatst.</li> 
-<li>In het tabblad <B>Thema's</B> wordt zichtbaar welke thema's er aanwezig
-zijn, deze staan ook aan.</li>
-<li>Mocht de levering een Eis voorzorgsmaatregel bevatten, dan krijgt u een waarschuwing.</li>
+  <li>Het XML bestand/de XML bestanden die onderdeel is van een KLIC levering
+    wordt gelezen en alle informatie eruit gehaald.</li>
+  <li>Het XML bestand met de netwerk informatie in IMKL formaat, waarbij
+    geometrie in GML formaat is opgeslagen, wordt in het geheugen ingelezen.
+    Na het inlezen worden vectorlagen aangemaakt die eveneens in memory lagen
+    worden geladen.</li>
+  <li> Oudere KLIC leveringen bevatten per thema meerdere rasterlagen.
+    Deze kunnen nog steeds worden geopend met deze KLIC viewer. 
+    Voor alle PNG bestanden die als rasterlagen worden geladen, zal 
+    naast het PNG bestand een kleine bestand, de zogenaamde world-files
+    worden aangemaakt. Daardoor kunnen deze plaatjes gemaakt die ligging,
+    annotatie, maatvoering en onderliggende topo bevatten worden ingelezen
+    in QGIS en correct in het kaartbeeld worden gepositioneerd.</li>
+  <li>De PNG files en in memory vectorlagen worden vervolgens in de goede
+    volgorde geopend in QGIS en zichtbaar in de kaart.</li>
+  <li>Het KLIC nummer van het KLIC levering wordt toegevoegd aan de lijst van
+    geladen berichten.</li>
+  <li>De PDF files, waarin begeleidende brieven, detailtekeningen en
+    huisaansluitingen in staan, worden gefilterd op soort in de lijst met
+    bijlagen geplaatst.</li>
+  <li>Mocht de levering een Eis voorzorgsmaatregel bevatten en toegevoegd
+    worden aan de lijst met brieven, dan krijgt u een waarschuwing.</li>
 </ul>
 Het laden van een KLIC bericht die veel informatie bevat kan even duren.
 </p> 
-<p>Vanaf 02/01/2019 is de levering van gegevens aanzienlijk veranderd en de 
-opbouw van thema's is nogal ingewikkeld. Een thema is verspreid 
-over meerdere raster en vectorlagen. Maar elke vectorlaag bevat vaak ook 
-informatie voor meerdere thema's. Het was vrij lastig om dit onderdeel te 
-programmeren om per thema gegevens aan en uit te zetten.</p>
-<p>Nieuw is de toevoeging van het kunnen selecteren of  <b>Vector</b> en 
-<b>Raster</b> aan of uitgezet dient te worden. In 2019 wordt tijdelijk veel 
-informatie dubbel aangeleverd in vector- en raster-formaat. De behoefte 
-bestaat wellicht om ineens even alle vector- of raster-informatie uit te 
-zetten. Wanneer beiden aanstaan, dan is vector leidend voor de status van thema's</p> 
 <p>U kunt het zip bestand eerst zelf uitpakken, maar u kunt ook de knop
-<B>[Open Zip-bestand...]</B> gebruiken, of <b>Alt-Z</b>, de Alt-toets gevolgd 
+<B>[Open Zip-bestand...]</B> proberen of <b>Alt-Z</b>, de Alt-toets gevolgd 
 door de Z-toets.<BR>
 Via deze functie kunt u het Zip-bestand selecteren die het ingepakte
 KLIC bericht bevat. Na selectie pakt deze eerst het KLIC bericht uit en
 laad het vervolgens in QGIS.
-U hoeft per bericht deze functie slechts 1-maal te gebruiken, gebruik daarna
-de functie <B>[Open Folder...]</B> dan wordt het KLIC bericht sneller geladen.
+werkt deze, dan hoeft U per bericht deze functie slechts 1-maal te gebruiken,
+gebruik daarna de functie <B>[Open Folder...]</B> dan wordt het KLIC bericht
+sneller geladen.
 </p> 
 <p>Wanneer de lijst met PDF Bijlagen gevuld is kunnen deze geselecteerd en
 geopend worden met de knop <B>[Open bijlage(n)]</B>. Wanneer de lijst met
@@ -106,88 +126,31 @@ met de knop <B>[Open bijlage(n)]</B> of Alt-B.<BR>
 Daarnaast kunt u ook een bijlage direkt openen door in 
 de lijst van bijlages op een bijlage te dubbelklikken.
 </p>
-<p>U kunt voorlopig even niet meerdere KLIC berichten inlezen. Dit was mogelijk maar gaf te veel problemen. Ik probeer dit in een komende release op te lossen er weer beschikbaar te maken. Wanneer weer beschikbaar kunt u in de lijst van geladen KLIC 
-berichten het bericht kiezen waarmee u wilt gaan werken. Na 
-selectie zal onmiddelijk ook de lijst van bijlagen behorende bij dat bericht 
-worden aangepast en de lijst met thema's in het tabblad <B>Thema's</B>.
+
+<p>
 Met de knop <B>[Ga Naar]</B> of <b>Alt-G</b>, verplaatst u
 de kaart binnen QGIS naar de grens van het gebied van het KLIC bericht.<BR>
-Met de knop <B>[Beste Schaal]</B> of <b>Alt-C</b> krijgt u het bericht in de meest 
-perfect mogelijke weergave te zien.
+Met de knop <B>[Beste Schaal]</B> of <b>Alt-C</b> krijgt u het bericht, wanneer deze rasterlagen bevat, in de meest perfect mogelijke weergave te zien.
 Met de knop <B>[Sluit Bericht]</B> sluit u het bericht en de kaartlagen 
 zullen eveneens worden verwijderd uit QGIS.</p>
-<p>Met de knop <B>[Opslaan in project]</B> konden alle gegevens in de plugin
-opgeslagen worden naast het huidige QGIS projectbestand. Daarvoor moest eerst 
-wel al een opgeslagen QGIS project bestaan. 
-Dit doet u door in het menu <B>Bestand</B> de optie <B>Project opslaan</B> te 
-kiezen. Wanneer u vervolgens een project opent dan zal ook de informatie in de 
-wion viewer plugin weer zichtbaar en bruikbaar zijn.</p>
 
-<p>Echter om op tijd de KLIC viewer te kunnen leveren is deze functionaliteit 
-tijdelijk niet beschikbaar.</p>
+<p>De vector informatie uit een KLIC levering is opgeslagen in zogenaamde
+  tijdelijke memory lagen. Wanneer je het project opslaat en de volgende keer
+  opent zijn deze lagen normaal gesproken verdwenen. Wanneer echter de plugin
+  <b>Memory Layer Saver</b> is geinstalleerd, zullen de tijdelijke memory
+  layers wel worden opgeslagen. Na het openen van het project zullen de lagen
+  dan wel zichtbaar zijn, maar de KLIC viewer zal dan helaas niet worden
+  gevuld met gegevens uit de KLIC levering.</p>
 
-<p>De vector informatie uit een KLIC bericht is opgeslagen in zogenaamde tijdelijke memory lagen. Wanneer je het project opslaat en de volgende keer opent zijn deze lagen normaal gesproken verdwenen. Wanneer echter de plugin <b>Memory Layer Saver</b> is geinstalleerd, zullen de tijdelijke memory layers wel worden opgeslagen. Na het openen van het project zullen de lagen dan wel zichtbaar zijn, maar de KLIC viewer zal dan helaas niet worden gevuld met gegevens uit het klicbericht.</p>
+<p>Met de knop <B>[Afsluiten]</B> wordt de KLIC Viewer gesloten,
+  maar wanneer de KLIC Viewer weer wordt geopend dan is de inhoud
+  bewaard gebleven, m.a.w. alle instellingen worden vastgehouden.</p>
 
-<p>Met de knop <B>[Afsluiten]</B> wordt de KLIC Viewer gesloten, 
-maar wanneer de KLIC Viewer weer wordt geopend dan is de inhoud 
-bewaard gebleven, m.a.w. alle instellingen worden vastgehouden.</p>
-
-<p>Na het laden zijn standaard alle lagen zichtbaar, je kunt lagen onzichtbaar 
-maken door het aankruisvakje voor de kaartlaag te deselecteren. Het kruisje 
-verdwijnt en de geselecteerde laag is niet langer zichtbaar.  
-<p>Het is ook mogelijk om per thema kaartlagen aan of uit te zetten via het 
-tabblad <B>Thema's</B>.</p>
- 
-<p>De eerste twee letters van een laag geven aan wat voor kaartlaag dit betreft.
-<ul>
-<li><B>AN_</B> staat voor annotatie, deze lagen bevatten o.a. de bijschriften 
-voor leidingen.</li>
-<li><B>MV_</B> staat voor maatvoering, de maten waarmee de afstanden leidingen 
-ten opzichte van gebouwen etc. zijn ingemeten.</li>
-<li><B>LG_</B>staat voor ligging, deze lagen bevatten de ligging van kabels 
-en leidingen.</li>
-<li><B>GB_</B>staat voor GBKN, dit is de topologische ondergrond die het 
-Kadaster onder alle leidingen plaatst.</li>
-<li><B>PT_</B>Plan Topo en <B>ET_</B> Eigen Topo zijn aanvullingen op de 
-topologische ondergrond die door de Netbeheerder mee worden gestuurd.</li> 
-</ul>
+<p>Na het laden zijn standaard alle lagen zichtbaar, je kunt lagen onzichtbaar
+  maken door het aankruisvakje voor de kaartlaag te deselecteren. Het kruisje
+  verdwijnt en de geselecteerde laag is niet langer zichtbaar.
 </p>
-
-<P>Het tabblad <B>Thema's</B> laat zien welke thema's een KLIC bericht  
-Bevat. 
-Het is tevens een legenda van de kaart, want je kunt nu zien welke kleuren gebruikt 
-worden voor welk thema. 
-Zo zie je dat blauwe lijnen gebruikt worden om de ligging van leidingen van het 
-Thema <u>Water</u> te laten zien en groene voor de ligging van kabels van 
-het thema <u>Data</u>.<BR> 
-Alleen actieve thema's kun je aan en uit zetten middels het aankruisvakje. Niet  
-alleen de ligging, maar ook de bijbehorende labels (=annotatie) en maatvoering 
-wordt uitgezet.</p>
-<p>Met de knop <B>[Ververs]</B> <b>Alt-V</b> kun je de status van de aankruisvakje 
-geforceerd bijwerken t.o.v. de zichtbare kaartlagen. Na wijzigingen vanuit de 
-KLIC Viewer is de inhoud van Themes altijd goed, maar indien er in het 
-Lagen panel van QGIS de zichtbaarheid wordt gewijzigd worden die 
-wijzigingen niet automatisch overgenomen in het tabblad <B>Thema</B>. 
-Je kunt vanuit dit tabblad ook de legendagroepen annotatie, maatvoering, locatie
-en topo ineens aan of uitzetten.
-<P>Een aankruisvakje van een thema en een legendagroep heeft drie 
-mogelijke statussen t.a.v. de kaartlagen die ertoe behoren.
-<ol>
-<li>Leeg vierkant, alle lagen zijn niet zichtbaar.</li>
-<li>Vierkant met een grijs kruis/liggend streepje, sommige lagen zijn zichtbaar.</li>
-<li>Vierkant met Zwart kruis, alle lagen zijn zichtbaar.</li>
-</ol></p>
-<H2>Vraag en antwoord</H2>
-<P>Vraag: Waarom is de lijst met bijlagen leeg wanneer ik na het opslaan 
-van het project, deze weer opnieuw open?<BR>
-Antwoord: U had de functie <B>[Opslaan in project]</B> moeten gebruiken.
-Daarmee word de lijst met bijlagen wel opgeslagen in een project.</P>
-<P>Vraag: Kun je meerdere KLIC berichten inlezen?<BR>
-Antwoord: Dat kon, maar nu even niet meer aangezien een tweede bericht bijlade nog teveel problemen opleverde. In een toekomstige release kan dit waarschijnlijk wel weer!</P>
-<P>Vraag: Hoe kan ik een Autocad ontwerp tekening bijladen?<BR>
-Antwoord: sinds QGIS 1.6.0 wordt ook het rechtsstreeks
-inlezen van DXF autocad bestand als vectorlaag ondersteund.
-</P>
+ 
 
 <H2>Foutmeldingen</h2>
 <p>Wanneer er een folder wordt geselecteerd die geen geldig KLIC bericht bevat,
@@ -235,22 +198,25 @@ grondig bestudeert doordat dit te veel tijd in beslag zou nemen.
 
 <H2>De wet WION</H2>
 <p>Sinds 1 oktober 2009 is de wet WION in werking getreden. Deze verplicht de
-grondroerder tot het doen van een graafmelding centraal bij het Kadaster.
-De melding is niet gratis meer, per melding wordt er een bedrag van 16 euro in
-rekening gebracht (peildatum januari 2019).
-Het Kadaster verzameld van verschillende Netbeheerders de netwerkgegevens en
-levert deze terug aan de grondroerder. De OPTA is de toezichthouder en deze
-controleert of grondroerders bij mechanische graafwerkzaamheden wel informatie
-aanvragen en of netbeheerders voldoen aan de verplichting om op tijd de juiste
-gegevens te verstrekken. De gehanteerde boetes bedragen tienduizenden euro's.</p>
-<p>Sinds 2 januari 2019 wordt de informatie aangeleverd waarbij de informatie 
-wordt opgeslagen in een nieuwe interne folderstructuur. Daarnaast wordt er nu 
-ook vector informatie aangeleverd!</p>
-
-<p>Vanaf 2 maart 2020 wordt de informatie geleverd in formaat v2.2 en bevat deze geen leidinginformatie meer in raster. Alleen de achtergrond is een rasterlaag.</p>
+  grondroerder tot het doen van een graafmelding centraal bij het Kadaster.
+  De melding is niet gratis meer, per melding wordt er een bedrag van 12 euro
+  in rekening gebracht (peildatum januari 2026).
+  Het Kadaster verzameld van verschillende Netbeheerders de netwerkgegevens en
+  levert deze terug aan de grondroerder. De RDI is de toezichthouder en deze
+  controleert of grondroerders bij mechanische graafwerkzaamheden wel
+  informatie aanvragen en of netbeheerders voldoen aan de verplichting om op
+  tijd de juiste gegevens te verstrekken. De gehanteerde boetes bedragen
+  tienduizenden euro's.</p>
+<p>Sinds 2 januari 2019 wordt de informatie aangeleverd waarbij de informatie
+  wordt opgeslagen in een nieuwe interne folderstructuur. Daarnaast wordt er
+  nu ook vector informatie aangeleverd!</p>
+<p>Vanaf 2 maart 2020 wordt de informatie geleverd in formaat v2.2 en bevat
+  deze geen leidinginformatie meer in raster formaat. Alleen de achtergrond
+  is nog een rasterlaag.</p>
 
 <H2>3 soorten meldingen</H2>
-<p>Er kunnen drie soorten meldingen gedaan worden, elk voor een speciaal doeleinde.
+<p>Er kunnen drie soorten meldingen gedaan worden, elk voor een speciaal
+  doeleinde.
     <ol>
     <li>Graafmelding: Drie dagen voordat er mechanisch gegraven gaat worden
     moet deze gedaan worden. Een graafmelding is 21 dagen geldig.</li>
@@ -261,29 +227,31 @@ ook vector informatie aangeleverd!</p>
     <li>Orientatiemelding: Voor verschillende doeleinden kan er een
     orientatiemelding worden gedaan. Vaak ter voorbereiding van
     graafwerkzaamheden. Een orientatiemelding kan niet gebruikt worden om
-    daadwerkelijk te gaan graven!</li>
+    te gaan graven!</li>
     </ol>
 </P>
 <H2>Het doen van een melding</H2>
 <p>Zowel particulieren als bedrijven kunnen een graafmelding doen.
-Geregistreerde bedrijven kunnen dit doen via de webservice KLIC-online van het Kadaster. 
-Bij deze dienst kun je op een interactieve kaart aangeven over welk gebied men 
-informatie wenst te ontvangen. Na het doen van een graafmelding ontvangt de aanvrager 
-binnen een dag een email met daarin een link naar de informatie die gedownload 
-dient te worden.
-Download eerst de gegevens, die in een zip-archief zijn opgeslagen, en pak het zip-archief 
-vervolgens uit naar een folder. U heeft 5 pogingen om de gegevens op te halen!
-Gebruik de KLIC Viewer om het resultaat te bekijken.</p>
+  Geregistreerde bedrijven kunnen dit doen via de webservice KLIC-online van
+  het Kadaster. Bij deze dienst kun je op een interactieve kaart aangeven
+  over welk gebied men informatie wenst te ontvangen. Na het doen van een
+  graafmelding ontvangt de aanvrager binnen een dag een email met daarin een
+  link naar de informatie die gedownload dient te worden.
+  Download eerst de gegevens, die in een zip-archief zijn opgeslagen, en pak
+  het zip-archief vervolgens uit naar een folder. Gebruik de KLIC Viewer om
+  het resultaat te bekijken.</p>
 
-<p>Voor het testen van de KLIC Viewer kan een testmelding gedownload worden van 
-<a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden">https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden</a> 
-en <a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden%20met%20BGT">https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden met BGT</a>.<p>
+<p>
+  Voor het testen van de KLIC Viewer kan een testmelding gedownload worden
+  van <a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Archief"> https://github.com/kadaster/klic-win/tree/master/Uitleveren/Archief</a> en
+  <a href="https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden%20IMKL%20v2.0">https://github.com/kadaster/klic-win/tree/master/Uitleveren/Voorbeelden IMKL v2.0</a>.
+<p>
 
 <a name="aboutLicense">
 <H1>Licentie en gebruiksvoorwaarden</H1>
 </a>
-Copyright: (C) 2022 Diethard Jansen<BR>
-Versie: 2.3.0
+Copyright: (C) 2026 Diethard Jansen<BR>
+Versie: 3.0.0
 email: diethard.jansen@gmail.com<BR>
 
 <p>De <b>KLIC Viewer</b> python plugin is gratis software;

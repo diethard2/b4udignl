@@ -6,12 +6,17 @@ The QGIS KLIC Viewer plugin, a python plugin that can be used to view Dutch b4ud
 Installation
 ------------
 First you need an installation of QGIS! 
-Download QGIS v. 3.x from www.qgis.org.
+Download QGIS v. 4.x from www.qgis.org.
 
 Use QGIS Python Plugin Installer for installation of this plugin.
 
 Release notes
 -------------
+**version 3.0.0** 24/07/2026
+* 1st version after upgrade to QGIS 4. Unfortunately I was not able to 
+restore all functionality. The Themes tab is removed and help does not show in
+OSX and Linux.
+
 **version 2.3.0** 24/04/2022
 * Klic message with multi lines were provided where only the first line was loaded and displayed. Now all lines delivered are loaded.
 * The KLIC message in the IMKL V2.0.0 format could not be loaded.
