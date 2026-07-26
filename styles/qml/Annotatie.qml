@@ -754,7 +754,7 @@
           <Option name="properties" type="Map">
             <Option name="LabelRotation" type="Map">
               <Option name="active" type="bool" value="true"/>
-              <Option name="expression" type="QString" value="360 - (&quot;rotatiehoek&quot;)"/>
+              <Option name="expression" type="QString" value="if(&quot;rotatiehoek&quot; &lt; 0, &quot;rotatiehoek&quot; + 360, &quot;rotatiehoek&quot;)"/>
               <Option name="type" type="int" value="3"/>
             </Option>
           </Option>
