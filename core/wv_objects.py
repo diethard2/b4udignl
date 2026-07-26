@@ -173,6 +173,11 @@ class Layer(PY3__cmp__):
             return 1
         elif this_index < other_index:
             return -1
+        # mantelbuis = sleevepipe is converted to area so be last line layer
+        elif this_name == 'Mantelbuis':
+            return -1
+        elif other_name == 'Mantelbuis':
+            return 1
         elif this_name < other_name:
             return 1
         elif this_name > other_name:
