@@ -24,7 +24,7 @@ Author: Diethard Jansen, 16-9-2018
 from builtins import object
 from qgis.core import QgsGeometry
 from qgis.PyQt.QtCore import Qt
-import os, sys
+import os, sys, subprocess
 from . import basis
 
 WIN = "startfile" in dir(os)
@@ -635,23 +635,69 @@ class PdfFile(PY3__cmp__):
         return l_order
     
     def openPdf(self):
-        """open the pdf file"""
-        global WIN, Ubuntu
+        """Open the PDF file in the user's default PDF viewer."""
         l_file = self.filePath
-        if WIN:
-            os.startfile(l_file)
-        elif Ubuntu:
-            os.system('gnome-open %s' % l_file)
-        else:
-            os.system('open %s' % l_file)
 
+        if not os.path.isfile(l_file):
+            # TODO: surface this via QGIS message bar / QMessageBox
+            return
+
+        try:
+            if sys.platform.startswith("win"):
+                # Windows: os.startfile is the correct native API for this
+                os.startfile(l_file)  # noqa (only exists on Windows)
+
+            elif sys.platform == "darwin":
+                # macOS
+                subprocess.Popen(
+                    ["open", l_file],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+
+            else:
+                # Linux / BSD / other Unix-likes
+                subprocess.Popen(
+                    ["xdg-open", l_file],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+
+        except FileNotFoundError:
+            # xdg-open (or the platform opener) isn't available
+            self._handle_missing_opener()
+        except OSError as e:
+            # Covers os.startfile failures on Windows (e.g. no association)
+            self._handle_open_error(e)
+
+    def _handle_missing_opener(self):
+        """Fallback when no default-opener mechanism is available
+        (mainly Linux)."""
+        # e.g. try a list of common PDF viewers as a last resort
+        candidates = ["xdg-open", "evince", "okular", "firefox",
+                      "google-chrome"]
+        for candidate in candidates:
+            if self._which(candidate):
+                try:
+                    subprocess.Popen([candidate, self.filePath])
+                    return
+                except OSError:
+                    continue
+                # still nothing — inform the user via QGIS UI
+                # iface.messageBar().pushWarning(...) etc.
+                        
+    def _which(self, cmd):
+        from shutil import which
+        return which(cmd) is not None            
+
+    
 class LayerGroup(object):
+        
     def __init__(self, name=None):
-        """
-        Layer group holds information on name and groupIndex
+        """Layer group holds information on name and groupIndex
         """
         self.name = name
         self.index = None
-
+        
     def __repr__(self):
         return "LayerGroup('%s')" % self.name
